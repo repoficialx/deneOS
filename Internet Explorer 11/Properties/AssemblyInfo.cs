@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("Internet Explorer 11")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Minibrowser")]
+[assembly: AssemblyDescription("iNS Minibrowser")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Internet Explorer 11")]
-[assembly: AssemblyCopyright("Copyright ©  2024")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("iNS")]
+[assembly: AssemblyProduct("deneOS ExtApps")]
+[assembly: AssemblyCopyright("No license specified - 2024")]
+[assembly: AssemblyTrademark("iNS")]
 [assembly: AssemblyCulture("")]
 
 // Si establece ComVisible en false, los tipos de este ensamblado no estarán visibles 
