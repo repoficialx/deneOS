@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Traductor;
 
 namespace deneOS_Home.init
 {
@@ -23,32 +24,57 @@ namespace deneOS_Home.init
             switch (month)
             {
                 case "01":
-                    return "January";
+                    return T("mo1");
                 default:
                     return "";
                 case "02":
-                    return "February";
+                    return T("mo2");
                 case "03":
-                    return "March";
+                    return T("mo3");
                 case "04":
-                    return "April";
+                    return T("mo4");
                 case "05":
-                    return "May";
+                    return T("mo5");
                 case "06":
-                    return "June";
+                    return T("mo6");
                 case "07":
-                    return "July";
+                    return T("mo7");
                 case "08":
-                    return "August";
+                    return T("mo8");
                 case "09":
-                    return "September";
+                    return T("mo9");
                 case "10":
-                    return "October";
+                    return T("mo10");
                 case "11":
-                    return "November";
+                    return T("mo11");
                 case "12":
-                    return "December";
+                    return T("mo12");
+                default:
+                    return "";
             }
+        }
+        private void logonui_Load(object sender, EventArgs e)
+        {
+            //Load language
+            string lang = File.Exists(@"C:\Program Files\iNS\deneOS\HomeEdition\cfg\lang.ini") ? File.ReadAllText(@"C:\Program Files\iNS\deneOS\HomeEdition\cfg\lang.ini") : "en";
+            Cargar(lang);
+            txt1.Text = T("txt1");
+            txt2.Text = T("txt2");
+            txt3.Text = T("txt3");
+            txt4.Text = T("txt4");
+            txt5.Text = T("txt5");
+            txt6.Text = T("txt6");
+            txt7.Text = T("txt7");
+            txt8.Text = T("txt8");
+            txt9.Text = T("txt9");
+            txt10.Text = T("txt10");
+            txt11.Text = T("txt11");
+            txt12.Text = T("txt12");
+            txt13.Text = T("txt13");
+        }
+        void DateTime_Stuff()
+        {
+
         }
         private void MinuteUpdate_Tick(object sender, EventArgs e)
         {
@@ -72,7 +98,7 @@ namespace deneOS_Home.init
                 mm = DateTime.Now.Minute.ToString();
             }
             string hhmm = hh + ":" + mm;
-            label1.Text = hhmm;
+            txt1.Text = hhmm;
             //---------------------------Date
             string dddd;
             string dd;
@@ -113,7 +139,7 @@ namespace deneOS_Home.init
             }
             dddd = DateTime.Now.DayOfWeek.ToString().Substring(0, 3);
             yyyy = DateTime.Now.Year.ToString();
-            label2.Text = $"{dddd}., {ddd} {MonthNum2Month(mm2)} {yyyy}";
+            txt2.Text = $"{dddd}., {ddd} {MonthNum2Month(mm2)} {yyyy}";
         }
         string password = null;
             string username = null;
@@ -157,7 +183,75 @@ namespace deneOS_Home.init
 
         private void button3_Click(object sender, EventArgs e)
         {
+            panel1.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string usr;
+            string pss;
+            var cfgInfo = File.Exists(@"C:\Program Files\iNS\deneOS\HomeEdition\cfg\config.ini") ? File.ReadAllLines(@"C:\Program Files\iNS\deneOS\HomeEdition\cfg\config.ini") : new string[] { "", "", "" };
+            if (cfgInfo[2].ToLower().Contains("password = "))
+            {
+                pss = cfgInfo[2].Substring(11);
+            }
+            else
+            {
+                //button5.Show();
+                MessageBox.Show("No password set! Please enable password on settings.", "Non-protected!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                pss = "";
+            }
+            if (cfgInfo[1].ToLower().Contains("username = "))
+            {
+                usr = cfgInfo[1].Substring(11);
+            }
+            else
+            {
+                //button1.Show();
+                MessageBox.Show("No user set! Please create user on settings.", "Non-protected!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                usr = "";
+            }
+            _login(pss, usr);
 
         }
+        private void _login(string usr, string pss)
+        {
+            if (boxusr.Text == pss && boxpass.Text == usr)
+            {
+                MessageBox.Show("Welcome to deneOS Home Edition!", "Welcome!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Hide();
+                new deneOS_Home.desktop().Show();
+            }
+            else
+            {
+                MessageBox.Show("Invalid username or password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txt13_Click(object sender, EventArgs e)
+        {
+            if (boxregpass.Text == boxregpassag.Text)
+            {
+                string[] file =
+                {
+                    "[deneOS Home]",
+                    string.Format
+                    (
+                        "username = {0}",
+                        boxregusr.Text
+                    ),
+                    string.Format
+                    (
+                        "password = {0}",
+                        boxregpass.Text
+                    )
+                };
+                File.WriteAllLines(@"C:\Program Files\iNS\deneOS\HomeEdition\cfg\config.ini", file);
+                MessageBox.Show("User created successfully!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Passwords do not match.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
     }
 }

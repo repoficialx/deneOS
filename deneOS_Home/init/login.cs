@@ -39,6 +39,12 @@ namespace deneOS_Home.init
             {
                 pss = cfgInfo[2].Substring(11);
             }
+            else
+            {
+                button1.Show();
+                MessageBox.Show("No password set! Please enable password on settings.", "Non-protected!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                pss = "";
+            }
             if (cfgInfo[1].ToLower().Contains("username = "))
             {
                 usr = cfgInfo[1].Substring(11);
@@ -46,7 +52,23 @@ namespace deneOS_Home.init
             else
             {
                 button1.Show();
-                MessageBox.Show("No password set! Please enable password on settings.", "Non-protected!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show("No user set! Please create user on settings.", "Non-protected!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                usr = "";
+            }
+            _login(pss, usr);
+            
+        }
+        private void _login(string usr, string pss)
+        {
+            if (textBox1.Text == pss && textBox2.Text == usr)
+            {
+                MessageBox.Show("Welcome to deneOS Home Edition!", "Welcome!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Hide();
+                new deneOS_Home.desktop().Show();
+            }
+            else
+            {
+                MessageBox.Show("Invalid username or password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

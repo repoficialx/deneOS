@@ -35,6 +35,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
+    <Reference Include="System.Text.Json, Version=8.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -76,6 +78,7 @@
     <Compile Include="init\register.Designer.cs">
       <DependentUpon>register.cs</DependentUpon>
     </Compile>
+    <Compile Include="mlingual\Traductor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="desktop.resx">
@@ -98,6 +101,9 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Compile Include="lang\es.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -382,6 +388,129 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\X_80.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-restart-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-shutdown-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-browser-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-notes-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-internet-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-file-explorer-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-command-line-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-update-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c31.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c28.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c27.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c19.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c25.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RecipV2_NoBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Captura de pantalla 2025-05-01 164238.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
