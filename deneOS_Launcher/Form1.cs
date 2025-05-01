@@ -80,5 +80,10 @@ namespace deneOS_Launcher
             MaximumSize = new Size(401, 338);
         }
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

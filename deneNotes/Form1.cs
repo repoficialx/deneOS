@@ -16,5 +16,10 @@ namespace deneNotes
         {
             InitializeComponent();
         }
+
+        private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+        }
     }
 }

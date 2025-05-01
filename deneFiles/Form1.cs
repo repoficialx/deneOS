@@ -16,5 +16,30 @@ namespace deneFiles
         {
             InitializeComponent();
         }
+
+        private void backToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            webBrowser1.GoBack();
+        }
+
+        private void forwardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            webBrowser1.GoForward();
+        }
+
+        private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Refresh();
+        }
+
+        private void deneossysToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Navigate("c:\\deneos\\");
+        }
+
+        private void userToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Navigate("c:\\deneos\\user\\");
+        }
     }
 }

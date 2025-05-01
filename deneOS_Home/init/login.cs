@@ -46,7 +46,7 @@ namespace deneOS_Home.init
             else
             {
                 button1.Show();
-                MessageBox.Show("No password set! Please enable password on settings.", "Insecure!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show("No password set! Please enable password on settings.", "Non-protected!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
         }
     }

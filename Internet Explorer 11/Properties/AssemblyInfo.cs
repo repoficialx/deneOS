@@ -6,10 +6,10 @@ using System.Runtime.InteropServices;
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
 [assembly: AssemblyTitle("Minibrowser")]
-[assembly: AssemblyDescription("iNS Minibrowser")]
+[assembly: AssemblyDescription("iNS Minibrowser | Porting Internet Explorer into deneOS")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("iNS")]
-[assembly: AssemblyProduct("deneOS ExtApps")]
+[assembly: AssemblyProduct("deneOS")]
 [assembly: AssemblyCopyright("No license specified - 2024")]
 [assembly: AssemblyTrademark("iNS")]
 [assembly: AssemblyCulture("")]

@@ -34,7 +34,7 @@ namespace Internet_Explorer_11
 
         private void openHTMLPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            openFileDialog1.ShowDialog();
         }
 
         private void obrinsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -44,12 +44,17 @@ namespace Internet_Explorer_11
 
         private void homeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            webBrowser1.Navigate("view-source:https://ntp.msn.com/edge/ntp?locale=es&title=Nueva%20pesta%C3%B1a&dsp=0&sp=Google&PC=U531&adppc=EDGEESS");
+            webBrowser1.Navigate("https://ntp.msn.com/edge/ntp?locale=es&title=Nueva%20pesta%C3%B1a&dsp=0&sp=Google&PC=U531&adppc=EDGEESS");
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new AboutBox1().ShowDialog();
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            webBrowser1.DocumentText = System.IO.File.ReadAllText(openFileDialog1.FileName);
         }
     }
 }

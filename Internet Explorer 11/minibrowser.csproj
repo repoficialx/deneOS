@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7E89B996-8111-430B-B721-70BC5FBAD582}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Internet_Explorer_11</RootNamespace>
-    <AssemblyName>Internet Explorer 11</AssemblyName>
+    <RootNamespace>minibrowser</RootNamespace>
+    <AssemblyName>minibrowser</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -75,6 +75,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
