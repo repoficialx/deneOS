@@ -43,7 +43,7 @@ namespace deneOS_Launcher
             }
             else
             {
-                MessageBox.Show("Are you a developer? Try deneOS Pro!. 32,5$ or 30€");
+                MessageBox.Show("Are you a developer? Try deneOS Pro! 32,5$ or 28€");
                 Size = new Size(401, 185);
                 MaximumSize = new Size(401, 185);
             }

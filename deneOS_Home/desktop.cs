@@ -21,5 +21,27 @@ namespace deneOS_Home
         {
 
         }
+
+        private void panel8_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (panel2.Visible)
+            {
+                panel2.Hide();
+            }
+            else
+            {
+                panel2.Show();
+            }
+        }
     }
 }

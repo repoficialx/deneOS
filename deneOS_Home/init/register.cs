@@ -25,7 +25,14 @@ namespace deneOS_Home.init
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //txt1 usuario txt2 contraseña
+            //Comprobar si se han introducido los datos
+            if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text))
+            {
+                MessageBox.Show("Please enter a username and password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            //textBox1 = Usuario
+            //textBox2 = Contraseña
             string[] file = 
             { 
                 "[deneOS Home]", 

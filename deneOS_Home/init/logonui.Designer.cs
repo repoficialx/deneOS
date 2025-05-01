@@ -46,7 +46,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
             this.label1.Location = new System.Drawing.Point(61, 694);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(283, 128);
+            this.label1.Size = new System.Drawing.Size(353, 159);
             this.label1.TabIndex = 0;
             this.label1.Text = "23:59";
             // 
@@ -58,7 +58,7 @@
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
             this.label2.Location = new System.Drawing.Point(79, 913);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(403, 45);
+            this.label2.Size = new System.Drawing.Size(504, 54);
             this.label2.TabIndex = 1;
             this.label2.Text = "Wed., 31th December 8888";
             // 
@@ -109,11 +109,12 @@
             // 
             // logonui
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.BackgroundImage = global::deneOS_Home.Properties.Resources.img100;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(1920, 1061);
+            this.ClientSize = new System.Drawing.Size(1920, 1055);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
@@ -123,10 +124,11 @@
             this.Font = new System.Drawing.Font("Segoe UI", 24F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
-            this.MinimumSize = new System.Drawing.Size(1918, 1030);
+            this.MinimumSize = new System.Drawing.Size(1918, 1018);
             this.Name = "logonui";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Wed., 31th December 8888";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.logonui_KeyUp);
             this.ResumeLayout(false);
             this.PerformLayout();
