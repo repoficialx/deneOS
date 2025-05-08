@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -83,7 +84,10 @@ namespace deneOS_Launcher
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            Process dnh = new Process();
+            dnh.StartInfo.FileName = "C:\\Users\\rayel\\source\\repos\\!New\\repos\\deneOS\\deneOS_Home\\bin\\Debug\\DeneOS_Home.exe";
+            dnh.StartInfo.Verb = "runas";
+            dnh.StartInfo.UseShellExecute = true;
         }
     }
 }

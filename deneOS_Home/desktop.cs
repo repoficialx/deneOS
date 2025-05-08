@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,13 @@ namespace deneOS_Home
 
         private void desktop_Load(object sender, EventArgs e)
         {
+            label16.Text = "Downloadable App";
+            label16.Location = new System.Drawing.Point(180, 21);
+            if (System.IO.File.Exists(@"C:\Program Files\iNS\deneOS\HomeEdition\apps\Recip\recip.wpi"))
+            {
+                label16.Text = "App";
+                label16.Location = new System.Drawing.Point(312, 21);
+            }
             var Day = DateTime.Now.Day;
             switch (Day)
             {
@@ -169,7 +177,7 @@ namespace deneOS_Home
 
                     Process.Start(psi);
 
-                    Application.Exit();
+                    Environment.Exit(0);
                     break;
                 case DialogResult.Cancel:
                     return;
@@ -236,10 +244,10 @@ namespace deneOS_Home
         private void panel10_Click(object sender, EventArgs e)
         {
             string installPath;
-            //COMPROBAR SI RECIP ESTÁ INSTALADO. SINO: INSTALAR, SI SÍ: INICIAR. URL=https://inscorp.x10.mx/recip/versions/downloads/v1.0/Recip.dnpkg
-            if (System.IO.File.Exists(@"C:\Program Files\iNS\deneOS\HomeEdition\recip\recip.exe"))
+            //COMPROBAR SI RECIP ESTÁ INSTALADO. SINO: INSTALAR, SI SÍ: INICIAR.
+            if (System.IO.File.Exists(@"C:\Program Files\iNS\deneOS\HomeEdition\apps\Recip\recip.wpi"))
             {
-                installPath = @"C:\Program Files\iNS\deneOS\HomeEdition\recip\recip.exe";
+                installPath = @"C:\Program Files\iNS\deneOS\HomeEdition\apps\Recip\recip.wpi";
                 System.Diagnostics.Process.Start(installPath);
             }
             else
@@ -247,10 +255,44 @@ namespace deneOS_Home
                 //descargar el archivo Recip.dnpkg
                 using (var client = new System.Net.WebClient())
                 {
-                    string url = "https://inscorp.x10.mx/recip/versions/downloads/v1.0/Recip.dnpkg";
-                    string path = @"C:\Program Files\iNS\deneOS\HomeEdition\recip\Recip.dnpkg";
+                    Random random = new Random();
+                    string dtdNMR = random.Next(-2147483648, 2147483647).ToString();
+                    string url = "http://inscorp.x10.mx/recip/versiones/downloads/v1.0/Recip_DNF481_deneOS.meta";
+                    string path = $@"C:\Program Files\iNS\deneOS\HomeEdition\appDnpkgTmpDownload\{dtdNMR}\Recip_DNF481_deneOS.meta";
+                    Directory.CreateDirectory($"C:\\Program Files\\iNS\\deneOS\\HomeEdition\\appDnpkgTmpDownload\\{dtdNMR}");
                     client.DownloadFile(url, path);
-                    //
+                    url = "http://inscorp.x10.mx/recip/versiones/downloads/v1.0/Recip_DNF481_deneOS.zip";
+                    path = $@"C:\Program Files\iNS\deneOS\HomeEdition\appDnpkgTmpDownload\{dtdNMR}\Recip_DNF481_deneOS.zip";
+                    client.DownloadFile(url, path);
+                    url = "http://inscorp.x10.mx/recip/versiones/downloads/v1.0/dnpai.exe";
+                    path = $@"C:\Program Files\iNS\deneOS\HomeEdition\appDnpkgTmpDownload\{dtdNMR}\dnpai.wpi";
+                    client.DownloadFile(url, path);
+                    url = "http://inscorp.x10.mx/recip/versiones/downloads/v1.0/dnpai.exe.config";
+                    path = $@"C:\Program Files\iNS\deneOS\HomeEdition\appDnpkgTmpDownload\{dtdNMR}\dnpai.wpi.config";
+                    client.DownloadFile(url, path);
+                    url = "http://inscorp.x10.mx/recip/versiones/downloads/v1.0/dnpai.pdb";
+                    path = $@"C:\Program Files\iNS\deneOS\HomeEdition\appDnpkgTmpDownload\{dtdNMR}\dnpai.pdb";
+                    client.DownloadFile(url, path);
+                    Process dnpai = new Process();
+                    dnpai.StartInfo = new ProcessStartInfo
+                    {
+                        FileName = $@"C:\Program Files\iNS\deneOS\HomeEdition\appDnpkgTmpDownload\{dtdNMR}\dnpai.wpi",
+                        Arguments = $"\"C:\\Program Files\\iNS\\deneOS\\HomeEdition\\appDnpkgTmpDownload\\{dtdNMR}\\Recip_DNF481_deneOS.meta\" \"C:\\Program Files\\iNS\\deneOS\\HomeEdition\\appDnpkgTmpDownload\\{dtdNMR}\\Recip_DNF481_deneOS.zip\" /s",
+                        UseShellExecute = true,
+                        Verb = "runas"
+                    };
+                    try
+                    {
+                        dnpai.Start();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("ERROR 0x000005");
+                    }
+                    dnpai.WaitForExit();
+                    Directory.Delete($"C:\\Program Files\\iNS\\deneOS\\HomeEdition\\appDnpkgTmpDownload\\{dtdNMR}", true);
+                    label16.Text = "App";
+                    label16.Location = new System.Drawing.Point(312, 21);
                 }
             }
         }
@@ -258,6 +300,20 @@ namespace deneOS_Home
         private void panel11_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var psi = new ProcessStartInfo
+            {
+                FileName = "explorer.exe",
+                UseShellExecute = true,
+                WorkingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Windows)
+            };
+
+            Process.Start(psi);
+
+            Environment.Exit(0);
         }
     }
 }

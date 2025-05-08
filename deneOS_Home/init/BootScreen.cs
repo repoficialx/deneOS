@@ -50,10 +50,52 @@ namespace deneOS_Home.init
             Process cproc = new Process();
             cproc.StartInfo.FileName = "taskkill";
             cproc.StartInfo.Arguments = "/f /im explorer.exe";
+            cproc.StartInfo.CreateNoWindow = true;
             cproc.Start();
             //hacer el boot
-            //Load language
-            bool fileExists = File.Exists(@"C:\Program Files\iNS\deneOS\HomeEdition\cfg\lang.ini");
+            //Comprobar que todos los archivos estén
+            bool existeCarpetaDN = Directory.Exists("C:\\program files\\ins\\deneOS");
+            bool existeLauncher = Directory.Exists("C:\\program files\\ins\\deneOS\\Launcher");
+            bool existeLauncherCFG = File.Exists("C:\\program files\\ins\\deneOS\\Launcher\\cfg\\config.ini");
+            bool existeHomeEdition = Directory.Exists("C:\\program files\\ins\\deneOS\\HomeEdition\\");
+            bool existecfgIdioma = File.Exists("C:\\program files\\ins\\deneOS\\HomeEdition\\cfg\\lang.ini");
+            bool cfgIdiomaContenido = File.ReadAllText("C:\\program files\\ins\\deneOS\\HomeEdition\\cfg\\lang.ini") != String.Empty;
+            bool cfgIdiomaNotNull = File.ReadAllText("C:\\program files\\ins\\deneOS\\HomeEdition\\cfg\\lang.ini") != null;
+
+            bool carpetas = existeCarpetaDN && existeLauncher && existeHomeEdition;
+            bool archivos = existeLauncherCFG && existecfgIdioma;
+            bool nonempty = cfgIdiomaNotNull && cfgIdiomaContenido;
+
+            if (carpetas && archivos && nonempty)
+            {
+                Console.WriteLine("[INFO] No files missing");
+                Console.WriteLine($"[INFO] iNS\\deneOS Folder status: {existeCarpetaDN}");
+                Console.WriteLine($"[INFO] iNS\\deneOS\\Launcher folder status: {existeLauncher}");
+                Console.WriteLine($"[INFO] Launcher\\cfg\\config.ini status: {existeLauncherCFG}");
+                Console.WriteLine($"[INFO] deneOS\\HomeEdition folder status: {existeHomeEdition}");
+                Console.WriteLine($"[INFO] HomeEdition\\cfg\\lang.ini status: {existecfgIdioma}");
+                Console.WriteLine($"[INFO] lang.ini has any type of content? {cfgIdiomaContenido}");
+                Console.WriteLine($"[INFO] lang.ini is not null (blank)? {cfgIdiomaNotNull}");
+                Console.WriteLine($"[INFO] Do all the folders exist? {carpetas}");
+                Console.WriteLine($"[INFO] Do all the files exist? {archivos}");
+                Console.WriteLine($"[INFO] lang.ini isn't neither blank nor null? {nonempty}");
+            }
+            else
+            {
+                Console.WriteLine("[WARN] files missing");
+                Console.WriteLine($"[INFO] iNS\\deneOS Folder status: {existeCarpetaDN}");
+                Console.WriteLine($"[INFO] iNS\\deneOS\\Launcher folder status: {existeLauncher}");
+                Console.WriteLine($"[INFO] Launcher\\cfg\\config.ini status: {existeLauncherCFG}");
+                Console.WriteLine($"[INFO] deneOS\\HomeEdition folder status: {existeHomeEdition}");
+                Console.WriteLine($"[INFO] HomeEdition\\cfg\\lang.ini status: {existecfgIdioma}");
+                Console.WriteLine($"[INFO] lang.ini has any type of content? {cfgIdiomaContenido}");
+                Console.WriteLine($"[INFO] lang.ini is not null (blank)? {cfgIdiomaNotNull}");
+                Console.WriteLine($"[INFO] Do all the folders exist? {carpetas}");
+                Console.WriteLine($"[INFO] Do all the files exist? {archivos}");
+                Console.WriteLine($"[INFO] lang.ini isn't neither blank nor null? {nonempty}");
+            }
+                //Load language
+                bool fileExists = File.Exists(@"C:\Program Files\iNS\deneOS\HomeEdition\cfg\lang.ini");
             int langLine = 1;
             string lang;
             if (fileExists)

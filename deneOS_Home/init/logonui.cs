@@ -15,10 +15,18 @@ namespace deneOS_Home.init
 {
     public partial class logonui : Form
     {
+        /// <summary>
+        /// Inicialización de Compontentes vía InitializeComponent();
+        /// </summary>
         public logonui()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Obtener nombre del mes a partir del número del mes usando el sistema de traducción vía json
+        /// </summary>
+        /// <param name="month">numero del mes pasado a string</param>
+        /// <returns></returns>
         string MonthNum2Month(string month)
         {
             switch (month)
@@ -51,9 +59,21 @@ namespace deneOS_Home.init
                     return "";
             }
         }
+        /// <summary>
+        /// Acceder al sistema de traducciones y ponerle .Text a todos los Control la traducción
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void logonui_Load(object sender, EventArgs e)
         {
-            
+            Panel panelOculto = new Panel();
+            this.Controls.Add(panelOculto);
+            this.ActiveControl = panelOculto; // Evita que button2 tome el foco
+            this.KeyPreview = true;
+            //MessageBox.Show($"Control con foco: {this.ActiveControl?.Name}");
+            this.Activate();
+            this.Focus();
+
             txt3.Text = (string)T("txt3");
             txt4.Text = (string)T("txt4");
             txt5.Text = (string)T("txt5");
@@ -66,6 +86,9 @@ namespace deneOS_Home.init
             txt12.Text = (string)T("txt12");
             txt13.Text = (string)T("txt13");
         }
+        /// <summary>
+        /// Trabajos de fecha como asignar las variables de días, meses, años, etc.
+        /// </summary>
         void Time_Stuff()
         {
             try
@@ -96,6 +119,9 @@ namespace deneOS_Home.init
                 txt1.Text = (string)T("txt1");
             }
         }
+        /// <summary>
+        /// Trabajos de hora como asignar las variables de hora, minuto, segundo...
+        /// </summary>
         void Date_Stuff()
         {
             //---------------------------Date
@@ -145,61 +171,39 @@ namespace deneOS_Home.init
                     ddd = dd + "th";
                 }
             }
-            
-            dddd = DateTime.Now.DayOfWeek.ToString().Substring(0, 3);
+
+            string ddddnl;
+            ddddnl = DateTime.Now.DayOfWeek.ToString().Substring(0, 3);
+            dddd = (string)T($"dow{ddddnl.ToLower()}");
             yyyy = DateTime.Now.Year.ToString();
             txt2.Text = $"{dddd}., {ddd} {MonthNum2Month(mm2)} {yyyy}";
         }
+        /// <summary>
+        /// Actualizar en la pantalla la hora (00:00) y la fecha (31-12-9999)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MinuteUpdate_Tick(object sender, EventArgs e)
         {
             Time_Stuff();
             Date_Stuff();
         }
-        string password = null;
-        string username = null;
-        private void logonui_KeyUp(object sender, KeyEventArgs e)
-        {/*
-            pictureBox1.Show();
-            label3.Show();
-            var cfgInfo = File.Exists(@"C:\Program Files\iNS\deneOS\HomeEdition\cfg\config.ini") ? File.ReadAllLines(@"C:\Program Files\iNS\deneOS\HomeEdition\cfg\config.ini") : new string[]{ "", "", "" };
-            if (cfgInfo[2].Contains("password = "))
-            {
-                password = cfgInfo[2].Substring(11);
-            }
-            if (cfgInfo[1].Contains("username = "))
-            {
-                username = cfgInfo[1].Substring(11);
-                label3.Text = username;
-            }
-            if (username != null && password != null)
-            {
-                textBox1.Show();
-                button3.Show();
-                pictureBox1.Show();
-                label3.Show();
-            }
-            else {
-            button1.Show();
-            MessageBox.Show("No password set! Please enable password on settings.", "Insecure!", MessageBoxButtons.OK, MessageBoxIcon.Hand);}*/
-        }
-
+        /// <summary>
+        /// Botón de apagar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
             //Process proc = new Process(); proc.StartInfo.FileName = "shutdown"; proc.StartInfo.Arguments = "-r -f -t 0"; proc.Start();
+
             Environment.Exit(0);
         }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            this.Hide();
-            new desktop().Show();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            panel1.Show();
-        }
-
+        /// <summary>
+        /// Botón de inicio de sesión
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button5_Click(object sender, EventArgs e)
         {
             string usr;
@@ -211,7 +215,6 @@ namespace deneOS_Home.init
             }
             else
             {
-                //button5.Show();
                 MessageBox.Show("No password set! Please enable password on settings.", "Dene Safety", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 pss = "";
             }
@@ -221,13 +224,17 @@ namespace deneOS_Home.init
             }
             else
             {
-                //button1.Show();
                 MessageBox.Show("No user set! Please create user on settings.", "Dene Safety", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 usr = "";
             }
             _login(pss, usr);
 
         }
+        /// <summary>
+        /// Proceso de bienvenida al usuario
+        /// </summary>
+        /// <param name="usr"></param>
+        /// <param name="pss"></param>
         private void _login(string usr, string pss)
         {
             if (boxusr.Text == pss && boxpass.Text == usr)
@@ -241,7 +248,11 @@ namespace deneOS_Home.init
                 MessageBox.Show("Invalid username or password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        /// <summary>
+        /// Proceso de creación de un usuario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txt13_Click(object sender, EventArgs e)
         {
             if (boxregpass.Text == boxregpassag.Text)
@@ -267,6 +278,38 @@ namespace deneOS_Home.init
             {
                 MessageBox.Show("Passwords do not match.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        /// <summary>
+        /// Inicio del formulario de inicio de sesión tras presionar INTRO.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void logonui_KeyDown(object sender, KeyEventArgs e)
+        {
+            //MessageBox.Show("KEYDOWN EVENT TOOGLED ON");
+            if (e.KeyCode == Keys.Enter)
+            {
+                //MessageBox.Show("KEYDOWN EVENT ENTER KEY PRESSED");
+                e.SuppressKeyPress = true; // Evita que Enter llegue al botón
+                panel1.Show();
+                panel1.BringToFront();
+
+            }
+            /*else
+            {
+                MessageBox.Show($"KEYDOWN EVENT {e.KeyCode} PRESSED");
+            }*/
+        }
+        /// <summary>
+        /// Prevención de cierre de formulario usando técnicas como ALT+F4 o relacionadas (para evitar dejar al usuario sin
+        /// escritorio, que deneOS no se quede a medio cerrar, que pueda reiniciar el ordenador sin problema alguno, etc.) usando
+        /// e.Cancel = true;
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void logonui_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
         }
     }
 }

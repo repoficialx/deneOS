@@ -108,7 +108,7 @@
             this.txt7.TabIndex = 7;
             this.txt7.Text = "Txt7";
             this.txt7.UseVisualStyleBackColor = true;
-            this.txt7.Click += new System.EventHandler(this.button3_Click);
+            this.txt7.Visible = false;
             // 
             // txt8
             // 
@@ -118,6 +118,7 @@
             this.txt8.TabIndex = 8;
             this.txt8.Text = "Txt8";
             this.txt8.UseVisualStyleBackColor = true;
+            this.txt8.Visible = false;
             // 
             // panel1
             // 
@@ -345,8 +346,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Wed., 31th December 8888";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.logonui_FormClosing);
             this.Load += new System.EventHandler(this.logonui_Load);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.logonui_KeyUp);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.logonui_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
