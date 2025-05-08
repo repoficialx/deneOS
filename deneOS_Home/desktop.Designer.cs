@@ -57,6 +57,13 @@
             this.label17 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
             this.label15 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.label18 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.dnnaviPic = new System.Windows.Forms.PictureBox();
             this.dnnotPic = new System.Windows.Forms.PictureBox();
             this.dnupdPic = new System.Windows.Forms.PictureBox();
@@ -65,6 +72,7 @@
             this.termPic = new System.Windows.Forms.PictureBox();
             this.filesPic = new System.Windows.Forms.PictureBox();
             this.recipPic = new System.Windows.Forms.PictureBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -80,6 +88,9 @@
             this.panel3.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel11.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dnnaviPic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dnnotPic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dnupdPic)).BeginInit();
@@ -133,6 +144,7 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(364, 52);
             this.panel4.TabIndex = 5;
+            this.panel4.Click += new System.EventHandler(this.panel4_Click);
             this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
             // 
             // label3
@@ -163,6 +175,7 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(364, 52);
             this.panel5.TabIndex = 6;
+            this.panel5.Click += new System.EventHandler(this.panel5_Click);
             // 
             // label5
             // 
@@ -192,6 +205,7 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(364, 52);
             this.panel6.TabIndex = 7;
+            this.panel6.Click += new System.EventHandler(this.panel6_Click);
             // 
             // label7
             // 
@@ -221,6 +235,7 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(364, 52);
             this.panel7.TabIndex = 8;
+            this.panel7.Click += new System.EventHandler(this.panel7_Click);
             // 
             // label9
             // 
@@ -250,6 +265,7 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(364, 52);
             this.panel8.TabIndex = 9;
+            this.panel8.Click += new System.EventHandler(this.panel8_Click);
             this.panel8.Paint += new System.Windows.Forms.PaintEventHandler(this.panel8_Paint);
             // 
             // label11
@@ -280,6 +296,7 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(364, 52);
             this.panel9.TabIndex = 10;
+            this.panel9.Click += new System.EventHandler(this.panel9_Click);
             // 
             // label13
             // 
@@ -309,6 +326,7 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(364, 52);
             this.panel3.TabIndex = 4;
+            this.panel3.Click += new System.EventHandler(this.panel3_Click);
             // 
             // label2
             // 
@@ -338,6 +356,7 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(364, 52);
             this.panel10.TabIndex = 5;
+            this.panel10.Click += new System.EventHandler(this.panel10_Click);
             // 
             // label16
             // 
@@ -360,12 +379,14 @@
             // 
             // panel11
             // 
+            this.panel11.Controls.Add(this.button4);
             this.panel11.Controls.Add(this.button3);
             this.panel11.Controls.Add(this.button2);
             this.panel11.Location = new System.Drawing.Point(3, 467);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(375, 46);
             this.panel11.TabIndex = 11;
+            this.panel11.Paint += new System.Windows.Forms.PaintEventHandler(this.panel11_Paint);
             // 
             // label15
             // 
@@ -376,6 +397,72 @@
             this.label15.TabIndex = 2;
             this.label15.Text = "deneOS Home version 0.1.4 - DEBUG MODE\r\nTest mode";
             this.label15.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.panel12);
+            this.flowLayoutPanel2.Controls.Add(this.panel13);
+            this.flowLayoutPanel2.Controls.Add(this.panel14);
+            this.flowLayoutPanel2.Controls.Add(this.panel15);
+            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(65, 34);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(820, 401);
+            this.flowLayoutPanel2.TabIndex = 3;
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.label18);
+            this.panel12.Controls.Add(this.pictureBox2);
+            this.panel12.Location = new System.Drawing.Point(20, 20);
+            this.panel12.Margin = new System.Windows.Forms.Padding(20);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(131, 169);
+            this.panel12.TabIndex = 0;
+            this.panel12.Click += new System.EventHandler(this.panel12_Click);
+            // 
+            // panel13
+            // 
+            this.panel13.Location = new System.Drawing.Point(191, 20);
+            this.panel13.Margin = new System.Windows.Forms.Padding(20);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(131, 169);
+            this.panel13.TabIndex = 1;
+            // 
+            // panel14
+            // 
+            this.panel14.Location = new System.Drawing.Point(362, 20);
+            this.panel14.Margin = new System.Windows.Forms.Padding(20);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(131, 169);
+            this.panel14.TabIndex = 2;
+            // 
+            // panel15
+            // 
+            this.panel15.Location = new System.Drawing.Point(533, 20);
+            this.panel15.Margin = new System.Windows.Forms.Padding(20);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(131, 169);
+            this.panel15.TabIndex = 3;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(22, 135);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(81, 28);
+            this.label18.TabIndex = 1;
+            this.label18.Text = "dnStore";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::deneOS_Home.Properties.Resources.denestore;
+            this.pictureBox2.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(125, 125);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
             // 
             // dnnaviPic
             // 
@@ -457,13 +544,24 @@
             this.recipPic.TabIndex = 0;
             this.recipPic.TabStop = false;
             // 
+            // button4
+            // 
+            this.button4.BackgroundImage = global::deneOS_Home.Properties.Resources.icons8_exit_100;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button4.Location = new System.Drawing.Point(55, 3);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(43, 37);
+            this.button4.TabIndex = 2;
+            this.button4.UseVisualStyleBackColor = true;
+            // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.SystemColors.Control;
-            this.button3.BackgroundImage = global::deneOS_Home.Properties.Resources.icons8_restart_512;
+            this.button3.BackColor = System.Drawing.SystemColors.ControlText;
+            this.button3.BackgroundImage = global::deneOS_Home.Properties.Resources.icons8_restart_100;
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Location = new System.Drawing.Point(317, 3);
+            this.button3.Location = new System.Drawing.Point(104, 4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(43, 37);
             this.button3.TabIndex = 1;
@@ -472,8 +570,8 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.Control;
-            this.button2.BackgroundImage = global::deneOS_Home.Properties.Resources.icons8_shutdown_64;
+            this.button2.BackColor = System.Drawing.SystemColors.ControlText;
+            this.button2.BackgroundImage = global::deneOS_Home.Properties.Resources.icons8_shutdown_100;
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Location = new System.Drawing.Point(6, 3);
@@ -485,8 +583,9 @@
             // 
             // button1
             // 
-            this.button1.BackgroundImage = global::deneOS_Home.Properties.Resources.DeneOSHome;
+            this.button1.BackgroundImage = global::deneOS_Home.Properties.Resources.denelogo;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Location = new System.Drawing.Point(3, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(79, 79);
@@ -501,6 +600,7 @@
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(1920, 1080);
             this.ControlBox = false;
+            this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -535,6 +635,10 @@
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.panel11.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dnnaviPic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dnnotPic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dnupdPic)).EndInit();
@@ -590,5 +694,13 @@
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button button4;
     }
 }

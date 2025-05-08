@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExtApps", "ExtApps", "{7594
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "minibrowser", "Internet Explorer 11\minibrowser.csproj", "{7E89B996-8111-430B-B721-70BC5FBAD582}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalendarIO", "CalendarIO\CalendarIO.csproj", "{E1DDD024-DF0A-4C6B-9918-B7C512ABEA1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{7E89B996-8111-430B-B721-70BC5FBAD582}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E89B996-8111-430B-B721-70BC5FBAD582}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E89B996-8111-430B-B721-70BC5FBAD582}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1DDD024-DF0A-4C6B-9918-B7C512ABEA1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1DDD024-DF0A-4C6B-9918-B7C512ABEA1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1DDD024-DF0A-4C6B-9918-B7C512ABEA1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1DDD024-DF0A-4C6B-9918-B7C512ABEA1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{63EAA0E3-3CCD-45A2-A9BF-671681EAA7B0} = {D8D625FE-75E7-476C-B3CC-D06BA3ED3288}
 		{759404B0-660E-4DCF-BFE4-D568D338A933} = {D8D625FE-75E7-476C-B3CC-D06BA3ED3288}
 		{7E89B996-8111-430B-B721-70BC5FBAD582} = {759404B0-660E-4DCF-BFE4-D568D338A933}
+		{E1DDD024-DF0A-4C6B-9918-B7C512ABEA1A} = {759404B0-660E-4DCF-BFE4-D568D338A933}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0F5962FB-112E-42E7-9CE1-7614B24FA6E9}

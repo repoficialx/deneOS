@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System.Windows.Forms;
 
 public static class Traductor
 {
@@ -10,6 +11,7 @@ public static class Traductor
     public static void Cargar(string idioma)
     {
         string ruta = Path.Combine(System.Windows.Forms.Application.StartupPath, "lang", $"{idioma}.json");
+        //MessageBox.Show($"Existe el archivo de idioma? {File.Exists(ruta)}.");
 
         if (File.Exists(ruta))
         {
@@ -22,8 +24,33 @@ public static class Traductor
         }
     }
 
-    public static string T(string clave)
+    /*public static string T(string clave)
     {
         return traducciones.TryGetValue(clave, out var valor) ? valor : $"[{clave}]";
+    }*/
+    public static object T(string clave)
+    {
+
+        if (traducciones.TryGetValue(clave, out var valor))
+        {
+            // Intentar interpretar el valor como booleano
+            if (bool.TryParse(valor, out bool boolResult))
+            {
+                return boolResult;
+            }
+
+            // Intentar interpretar el valor como número (opcional)
+            if (int.TryParse(valor, out int intResult))
+            {
+                return intResult;
+            }
+
+            // Si no es booleano ni número, devolver como cadena
+            return valor;
+        }
+        //MessageBox.Show($"nº trads: {traducciones.Count}, estado sisfct: {traducciones.ContainsKey("sisfct")}");
+
+        return $"[{clave}]"; // Clave no encontrada
     }
+
 }

@@ -191,5 +191,73 @@ namespace deneOS_Home
             System.Diagnostics.Process.Start(Application.ExecutablePath);
             Application.Exit();
         }
+
+        private void panel12_Click(object sender, EventArgs e)
+        {
+            //INICIAR DENESTORE
+        }
+
+        private void panel4_Click(object sender, EventArgs e)
+        {
+            //INICIAR DENENAVI
+        }
+
+        private void panel5_Click(object sender, EventArgs e)
+        {
+            //INICIAR DENENOTES
+        }
+
+        private void panel6_Click(object sender, EventArgs e)
+        {
+            //INICIAR DENEUPDATE
+        }
+
+        private void panel7_Click(object sender, EventArgs e)
+        {
+            //INICIAR IE11MINIMAL
+        }
+
+        private void panel8_Click(object sender, EventArgs e)
+        {
+            //INICIAR CALENDAR.IO
+            Process.Start("C:\\Users\\rayel\\source\\repos\\!New\\repos\\deneOS\\CalendarIO\\bin\\Debug\\net9.0-windows10.0.26100.0\\CalendarIO.exe");
+        }
+
+        private void panel9_Click(object sender, EventArgs e)
+        {
+            //INICIAR DENETERMINAL
+        }
+
+        private void panel3_Click(object sender, EventArgs e)
+        {
+            //INICIAR DENEFILES
+        }
+
+        private void panel10_Click(object sender, EventArgs e)
+        {
+            string installPath;
+            //COMPROBAR SI RECIP ESTÁ INSTALADO. SINO: INSTALAR, SI SÍ: INICIAR. URL=https://inscorp.x10.mx/recip/versions/downloads/v1.0/Recip.dnpkg
+            if (System.IO.File.Exists(@"C:\Program Files\iNS\deneOS\HomeEdition\recip\recip.exe"))
+            {
+                installPath = @"C:\Program Files\iNS\deneOS\HomeEdition\recip\recip.exe";
+                System.Diagnostics.Process.Start(installPath);
+            }
+            else
+            {
+                //descargar el archivo Recip.dnpkg
+                using (var client = new System.Net.WebClient())
+                {
+                    string url = "https://inscorp.x10.mx/recip/versions/downloads/v1.0/Recip.dnpkg";
+                    string path = @"C:\Program Files\iNS\deneOS\HomeEdition\recip\Recip.dnpkg";
+                    client.DownloadFile(url, path);
+                    //
+                }
+            }
+        }
+
+        private void panel11_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

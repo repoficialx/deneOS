@@ -24,125 +24,139 @@ namespace deneOS_Home.init
             switch (month)
             {
                 case "01":
-                    return T("mo1");
-                default:
-                    return "";
+                    return (string)T("mo1");
                 case "02":
-                    return T("mo2");
+                    return (string)T("mo2");
                 case "03":
-                    return T("mo3");
+                    return (string)T("mo3");
                 case "04":
-                    return T("mo4");
+                    return (string)T("mo4");
                 case "05":
-                    return T("mo5");
+                    return (string)T("mo5");
                 case "06":
-                    return T("mo6");
+                    return (string)T("mo6");
                 case "07":
-                    return T("mo7");
+                    return (string)T("mo7");
                 case "08":
-                    return T("mo8");
+                    return (string)T("mo8");
                 case "09":
-                    return T("mo9");
+                    return (string)T("mo9");
                 case "10":
-                    return T("mo10");
+                    return (string)T("mo10");
                 case "11":
-                    return T("mo11");
+                    return (string)T("mo11");
                 case "12":
-                    return T("mo12");
+                    return (string)T("mo12");
                 default:
                     return "";
             }
         }
         private void logonui_Load(object sender, EventArgs e)
         {
-            //Load language
-            string lang = File.Exists(@"C:\Program Files\iNS\deneOS\HomeEdition\cfg\lang.ini") ? File.ReadAllText(@"C:\Program Files\iNS\deneOS\HomeEdition\cfg\lang.ini") : "en";
-            Cargar(lang);
-            txt1.Text = T("txt1");
-            txt2.Text = T("txt2");
-            txt3.Text = T("txt3");
-            txt4.Text = T("txt4");
-            txt5.Text = T("txt5");
-            txt6.Text = T("txt6");
-            txt7.Text = T("txt7");
-            txt8.Text = T("txt8");
-            txt9.Text = T("txt9");
-            txt10.Text = T("txt10");
-            txt11.Text = T("txt11");
-            txt12.Text = T("txt12");
-            txt13.Text = T("txt13");
+            
+            txt3.Text = (string)T("txt3");
+            txt4.Text = (string)T("txt4");
+            txt5.Text = (string)T("txt5");
+            txt6.Text = (string)T("txt6");
+            txt7.Text = (string)T("txt7");
+            txt8.Text = (string)T("txt8");
+            txt9.Text = (string)T("txt9");
+            txt10.Text = (string)T("txt10");
+            txt11.Text = (string)T("txt11");
+            txt12.Text = (string)T("txt12");
+            txt13.Text = (string)T("txt13");
         }
-        void DateTime_Stuff()
+        void Time_Stuff()
         {
-
+            try
+            { //-------------------------Time
+                string hh;
+                string mm;
+                if (DateTime.Now.Hour.ToString().Length < 2) /*Si la hora tiene 1 dígito*/
+                {
+                    hh = $"0{DateTime.Now.Hour}"; /* Anteponer un 0 */
+                }
+                else
+                {
+                    hh = DateTime.Now.Hour.ToString(); /*Si la hora tiene 2 dígitos, dejar iguak*/
+                }
+                if (DateTime.Now.Minute.ToString().Length < 2) /*Si el minuto tiene 1 dígito*/
+                {
+                    mm = $"0{DateTime.Now.Minute}"; /* Anteponer un 0 */
+                }
+                else
+                {
+                    mm = DateTime.Now.Minute.ToString(); /*  Si el minuto tiene 2 dígitos, dejar igual */
+                }
+                string hhmm = hh + ":" + mm; /*HHMM = HH:MM*/
+                txt1.Text = hhmm; /*TXT1=HHMM*/
+            }
+            catch
+            {
+                txt1.Text = (string)T("txt1");
+            }
         }
-        private void MinuteUpdate_Tick(object sender, EventArgs e)
+        void Date_Stuff()
         {
-            //-------------------------Time
-            string hh;
-            string mm;
-            if (DateTime.Now.Hour.ToString().Length < 2)
-            {
-                hh = $"0{DateTime.Now.Hour}";
-            }
-            else
-            {
-                hh = DateTime.Now.Hour.ToString();
-            }
-            if (DateTime.Now.Minute.ToString().Length < 2)
-            {
-                mm = $"0{DateTime.Now.Minute}";
-            }
-            else
-            {
-                mm = DateTime.Now.Minute.ToString();
-            }
-            string hhmm = hh + ":" + mm;
-            txt1.Text = hhmm;
             //---------------------------Date
-            string dddd;
-            string dd;
-            string ddd;
-            string mm2;
-            string yyyy;
+            string dddd; // DÍA DE LA SEMANA
+            string dd; // DÍA
+            string ddd; // DÍA CON TERMINACIÓN (ENG.)
+            string mm2; // MES
+            string yyyy; // AÑO (4 CIFRAS)
             if (DateTime.Now.Day.ToString().Length < 2)
             {
-                dd = $"0{DateTime.Now.Day}";
+                dd = $"0{DateTime.Now.Day}"; // DÍA= 0(DÍA DE 1 CIFRA)
             }
             else
             {
-                dd = DateTime.Now.Day.ToString();
+                dd = DateTime.Now.Day.ToString(); // DIA= DÍA DE 2 CIFRAS
             }
             if (DateTime.Now.Month.ToString().Length < 2)
             {
-                mm2 = $"0{DateTime.Now.Month}";
+                mm2 = $"0{DateTime.Now.Month}"; // MES= 0(MES DE 1 CIFRA)
             }
             else
             {
-                mm2 = DateTime.Now.Month.ToString();
+                mm2 = DateTime.Now.Month.ToString(); // MES= MES DE 2 CIFRAS
             }
-            if (dd.EndsWith("1"))
+           
+
+            if (T("sisfct") is bool sisfctValue && !sisfctValue) // Si es booleano y es false]
             {
-                ddd = dd + "st";
+                ddd = dd; // DÍA= DÍA DE 2 CIFRAS
             }
-            else if (dd.EndsWith("2"))
+            else // SI (SI) TERMINACIÓN
             {
-                ddd = dd + "nd";
+                if (dd.EndsWith("1") && int.Parse(dd)!=11)
+                {
+                    ddd = dd + "st";
+                }
+                else if (dd.EndsWith("2") && int.Parse(dd)!=12)
+                {
+                    ddd = dd + "nd";
+                }
+                else if (dd.EndsWith("3") && int.Parse(dd)!=13)
+                {
+                    ddd = dd + "rd";
+                }
+                else
+                {
+                    ddd = dd + "th";
+                }
             }
-            else if (dd.EndsWith("3"))
-            {
-                ddd = dd + "rd";
-            }
-            else
-            {
-                ddd = dd + "th";
-            }
+            
             dddd = DateTime.Now.DayOfWeek.ToString().Substring(0, 3);
             yyyy = DateTime.Now.Year.ToString();
             txt2.Text = $"{dddd}., {ddd} {MonthNum2Month(mm2)} {yyyy}";
         }
+        private void MinuteUpdate_Tick(object sender, EventArgs e)
+        {
+            Time_Stuff();
+            Date_Stuff();
+        }
         string password = null;
-            string username = null;
+        string username = null;
         private void logonui_KeyUp(object sender, KeyEventArgs e)
         {/*
             pictureBox1.Show();
@@ -198,7 +212,7 @@ namespace deneOS_Home.init
             else
             {
                 //button5.Show();
-                MessageBox.Show("No password set! Please enable password on settings.", "Non-protected!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("No password set! Please enable password on settings.", "Dene Safety", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 pss = "";
             }
             if (cfgInfo[1].ToLower().Contains("username = "))
@@ -208,7 +222,7 @@ namespace deneOS_Home.init
             else
             {
                 //button1.Show();
-                MessageBox.Show("No user set! Please create user on settings.", "Non-protected!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No user set! Please create user on settings.", "Dene Safety", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 usr = "";
             }
             _login(pss, usr);
@@ -253,5 +267,6 @@ namespace deneOS_Home.init
             {
                 MessageBox.Show("Passwords do not match.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
     }
 }

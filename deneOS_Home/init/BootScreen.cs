@@ -6,8 +6,10 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Traductor;
 
 namespace deneOS_Home.init
 {
@@ -50,7 +52,28 @@ namespace deneOS_Home.init
             cproc.StartInfo.Arguments = "/f /im explorer.exe";
             cproc.Start();
             //hacer el boot
-
+            //Load language
+            bool fileExists = File.Exists(@"C:\Program Files\iNS\deneOS\HomeEdition\cfg\lang.ini");
+            int langLine = 1;
+            string lang;
+            if (fileExists)
+            {
+                try
+                {
+                    lang = File.ReadAllLines(@"C:\Program Files\iNS\deneOS\HomeEdition\cfg\lang.ini")[langLine];
+                }
+                catch
+                {
+                    MessageBox.Show("ERROR 0x00004", "DENEOS HOME EDITION", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    lang = "en";
+                    return;
+                }
+            }
+            else
+            {
+                lang = "en";
+            }
+            Cargar(lang);
         }
 
         private void timer1_Tick(object sender, EventArgs e)

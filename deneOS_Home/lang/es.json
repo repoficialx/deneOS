@@ -33,4 +33,5 @@
   "day7": "Domingo",
   "sisfc": "DD-MM-YYYY",
   "sishr": "HH:mm:ss",
+  "sisfct": "false"
 }

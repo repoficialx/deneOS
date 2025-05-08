@@ -36,14 +36,16 @@
             this.txt7 = new System.Windows.Forms.Button();
             this.txt8 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txt3 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
             this.txt6 = new System.Windows.Forms.Button();
             this.txt5 = new System.Windows.Forms.Label();
             this.boxpass = new System.Windows.Forms.TextBox();
             this.txt4 = new System.Windows.Forms.Label();
             this.boxusr = new System.Windows.Forms.TextBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.txt3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.boxregpassag = new System.Windows.Forms.TextBox();
+            this.txt12 = new System.Windows.Forms.Label();
             this.txt9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.txt13 = new System.Windows.Forms.Button();
@@ -51,8 +53,6 @@
             this.boxregpass = new System.Windows.Forms.TextBox();
             this.txt10 = new System.Windows.Forms.Label();
             this.boxregusr = new System.Windows.Forms.TextBox();
-            this.txt12 = new System.Windows.Forms.Label();
-            this.boxregpassag = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -137,6 +137,29 @@
             this.panel1.TabIndex = 9;
             this.panel1.Visible = false;
             // 
+            // txt3
+            // 
+            this.txt3.AutoSize = true;
+            this.txt3.Font = new System.Drawing.Font("Segoe UI Variable Display", 9F);
+            this.txt3.Location = new System.Drawing.Point(3, 3);
+            this.txt3.Name = "txt3";
+            this.txt3.Size = new System.Drawing.Size(36, 20);
+            this.txt3.TabIndex = 16;
+            this.txt3.Text = "Txt3";
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.SystemColors.ControlText;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Segoe UI Variable Display", 7F);
+            this.button6.ForeColor = System.Drawing.SystemColors.Control;
+            this.button6.Location = new System.Drawing.Point(301, 4);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(33, 23);
+            this.button6.TabIndex = 15;
+            this.button6.Text = "";
+            this.button6.UseVisualStyleBackColor = false;
+            // 
             // txt6
             // 
             this.txt6.BackColor = System.Drawing.SystemColors.ControlText;
@@ -187,29 +210,6 @@
             this.boxusr.Size = new System.Drawing.Size(260, 39);
             this.boxusr.TabIndex = 10;
             // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.SystemColors.ControlText;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Segoe UI Variable Display", 7F);
-            this.button6.ForeColor = System.Drawing.SystemColors.Control;
-            this.button6.Location = new System.Drawing.Point(301, 4);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(33, 23);
-            this.button6.TabIndex = 15;
-            this.button6.Text = "";
-            this.button6.UseVisualStyleBackColor = false;
-            // 
-            // txt3
-            // 
-            this.txt3.AutoSize = true;
-            this.txt3.Font = new System.Drawing.Font("Segoe UI Variable Display", 9F);
-            this.txt3.Location = new System.Drawing.Point(3, 3);
-            this.txt3.Name = "txt3";
-            this.txt3.Size = new System.Drawing.Size(36, 20);
-            this.txt3.TabIndex = 16;
-            this.txt3.Text = "Txt3";
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ControlText;
@@ -229,6 +229,25 @@
             this.panel2.Size = new System.Drawing.Size(337, 386);
             this.panel2.TabIndex = 17;
             this.panel2.Visible = false;
+            // 
+            // boxregpassag
+            // 
+            this.boxregpassag.BackColor = System.Drawing.SystemColors.WindowText;
+            this.boxregpassag.ForeColor = System.Drawing.SystemColors.Window;
+            this.boxregpassag.Location = new System.Drawing.Point(40, 243);
+            this.boxregpassag.Name = "boxregpassag";
+            this.boxregpassag.Size = new System.Drawing.Size(260, 39);
+            this.boxregpassag.TabIndex = 18;
+            // 
+            // txt12
+            // 
+            this.txt12.AutoSize = true;
+            this.txt12.ForeColor = System.Drawing.SystemColors.Control;
+            this.txt12.Location = new System.Drawing.Point(34, 208);
+            this.txt12.Name = "txt12";
+            this.txt12.Size = new System.Drawing.Size(66, 32);
+            this.txt12.TabIndex = 17;
+            this.txt12.Text = "Txt12";
             // 
             // txt9
             // 
@@ -303,25 +322,6 @@
             this.boxregusr.Size = new System.Drawing.Size(260, 39);
             this.boxregusr.TabIndex = 10;
             // 
-            // txt12
-            // 
-            this.txt12.AutoSize = true;
-            this.txt12.ForeColor = System.Drawing.SystemColors.Control;
-            this.txt12.Location = new System.Drawing.Point(34, 208);
-            this.txt12.Name = "txt12";
-            this.txt12.Size = new System.Drawing.Size(66, 32);
-            this.txt12.TabIndex = 17;
-            this.txt12.Text = "Txt12";
-            // 
-            // boxregpassag
-            // 
-            this.boxregpassag.BackColor = System.Drawing.SystemColors.WindowText;
-            this.boxregpassag.ForeColor = System.Drawing.SystemColors.Window;
-            this.boxregpassag.Location = new System.Drawing.Point(40, 243);
-            this.boxregpassag.Name = "boxregpassag";
-            this.boxregpassag.Size = new System.Drawing.Size(260, 39);
-            this.boxregpassag.TabIndex = 18;
-            // 
             // logonui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -345,6 +345,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Wed., 31th December 8888";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.logonui_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.logonui_KeyUp);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

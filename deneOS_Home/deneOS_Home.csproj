@@ -35,6 +35,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
     <Reference Include="System.Text.Json, Version=8.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
@@ -54,6 +56,7 @@
     <Compile Include="desktop.Designer.cs">
       <DependentUpon>desktop.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalUsings.cs" />
     <Compile Include="init\BootScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,9 +104,9 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="lang\es.json">
+    <Content Include="lang\es.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -511,6 +514,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Captura de pantalla 2025-05-01 164238.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\denestore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-shutdown-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-restart-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-exit-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\denelogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
