@@ -22,7 +22,7 @@ namespace deneOS_Home
         private void desktop_Load(object sender, EventArgs e)
         {
             label16.Text = "Downloadable App";
-            label16.Location = new System.Drawing.Point(180, 21);
+            this.label16.Location = new System.Drawing.Point(180, 21);
             if (System.IO.File.Exists(@"C:\Program Files\iNS\deneOS\HomeEdition\apps\Recip\recip.wpi"))
             {
                 label16.Text = "App";
