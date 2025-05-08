@@ -43,7 +43,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::deneOS_Home.Properties.Resources.DeneOSHome;
+            this.pictureBox1.Image = global::deneOS_Home.Properties.Resources.denelogo;
             this.pictureBox1.Location = new System.Drawing.Point(684, 261);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(572, 468);
@@ -57,9 +57,9 @@
             this.label1.Font = new System.Drawing.Font("Segoe Boot Semilight", 52F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(870, 823);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(165, 116);
+            this.label1.Size = new System.Drawing.Size(99, 116);
             this.label1.TabIndex = 2;
-            this.label1.Text = "";
+            this.label1.Text = "R";
             // 
             // BootScreen
             // 

@@ -448,6 +448,7 @@
             this.label16.Size = new System.Drawing.Size(181, 28);
             this.label16.TabIndex = 2;
             this.label16.Text = "Downloadable App";
+            this.label16.Click += new System.EventHandler(this.panel10_Click);
             // 
             // label17
             // 
@@ -458,6 +459,7 @@
             this.label17.Size = new System.Drawing.Size(81, 37);
             this.label17.TabIndex = 1;
             this.label17.Text = "Recip";
+            this.label17.Click += new System.EventHandler(this.panel10_Click);
             // 
             // recipPic
             // 
@@ -468,6 +470,7 @@
             this.recipPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.recipPic.TabIndex = 0;
             this.recipPic.TabStop = false;
+            this.recipPic.Click += new System.EventHandler(this.panel10_Click);
             // 
             // panel11
             // 
@@ -535,9 +538,9 @@
             this.flowLayoutPanel2.Controls.Add(this.panel14);
             this.flowLayoutPanel2.Controls.Add(this.panel15);
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(65, 34);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(820, 401);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(1920, 493);
             this.flowLayoutPanel2.TabIndex = 3;
             // 
             // panel12
@@ -572,7 +575,7 @@
             // 
             // panel13
             // 
-            this.panel13.Location = new System.Drawing.Point(191, 20);
+            this.panel13.Location = new System.Drawing.Point(20, 229);
             this.panel13.Margin = new System.Windows.Forms.Padding(20);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(131, 169);
@@ -580,7 +583,7 @@
             // 
             // panel14
             // 
-            this.panel14.Location = new System.Drawing.Point(362, 20);
+            this.panel14.Location = new System.Drawing.Point(191, 20);
             this.panel14.Margin = new System.Windows.Forms.Padding(20);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(131, 169);
@@ -588,7 +591,7 @@
             // 
             // panel15
             // 
-            this.panel15.Location = new System.Drawing.Point(533, 20);
+            this.panel15.Location = new System.Drawing.Point(191, 229);
             this.panel15.Margin = new System.Windows.Forms.Padding(20);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(131, 169);
