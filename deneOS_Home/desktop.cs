@@ -315,5 +315,10 @@ namespace deneOS_Home
 
             Environment.Exit(0);
         }
+
+        private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
