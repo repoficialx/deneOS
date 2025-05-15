@@ -1,5 +1,5 @@
 # 🧠 deneOS  
-![Versión](https://img.shields.io/badge/v0.1-public_preview-blue)  
+![Versión](https://img.shields.io/badge/v0.4-public_preview-blue)  
 ![Compatible con .exe](https://img.shields.io/badge/exe-compatible-darkgreen)  
 ![Compatible con .wpi](https://img.shields.io/badge/wpi-compatible-skyblue)
 
