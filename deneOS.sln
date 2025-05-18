@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "minibrowser", "Internet Exp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalendarIO", "CalendarIO\CalendarIO.csproj", "{E1DDD024-DF0A-4C6B-9918-B7C512ABEA1A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "deneTerm", "deneTerm\deneTerm.csproj", "{B0DADA3A-1DCE-4F84-BE19-71AE5FB586B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "denePathParser", "denePathParser\denePathParser.csproj", "{48ADCDC7-6C72-4A9E-ACD5-B780495D48EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +59,14 @@ Global
 		{E1DDD024-DF0A-4C6B-9918-B7C512ABEA1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1DDD024-DF0A-4C6B-9918-B7C512ABEA1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1DDD024-DF0A-4C6B-9918-B7C512ABEA1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0DADA3A-1DCE-4F84-BE19-71AE5FB586B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0DADA3A-1DCE-4F84-BE19-71AE5FB586B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0DADA3A-1DCE-4F84-BE19-71AE5FB586B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0DADA3A-1DCE-4F84-BE19-71AE5FB586B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48ADCDC7-6C72-4A9E-ACD5-B780495D48EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48ADCDC7-6C72-4A9E-ACD5-B780495D48EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48ADCDC7-6C72-4A9E-ACD5-B780495D48EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48ADCDC7-6C72-4A9E-ACD5-B780495D48EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
