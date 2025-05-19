@@ -524,11 +524,11 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(1524, 936);
+            this.label15.Location = new System.Drawing.Point(1511, 936);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(396, 56);
+            this.label15.Size = new System.Drawing.Size(406, 56);
             this.label15.TabIndex = 2;
-            this.label15.Text = "deneOS Home version 0.1.5 - DEBUG MODE\r\nTest mode";
+            this.label15.Text = "deneOS Home version 0.1.5a - DEBUG MODE\r\nTest mode";
             this.label15.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // flowLayoutPanel2

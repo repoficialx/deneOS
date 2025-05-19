@@ -34,12 +34,12 @@ namespace deneFiles
 
         private void deneossysToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            webBrowser1.Navigate("c:\\deneos\\");
+            webBrowser1.Navigate("c:\\SOFTWARE\\");
         }
 
         private void userToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            webBrowser1.Navigate("c:\\deneos\\user\\");
+            webBrowser1.Navigate("c:\\DNUSR\\");
         }
     }
 }

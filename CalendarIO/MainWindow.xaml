@@ -7,10 +7,7 @@
         mc:Ignorable="d"
         Title="Calendar.IO" Height="450" Width="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="9*"/>
-            <ColumnDefinition Width="71*"/>
-        </Grid.ColumnDefinitions>
+        <Calendar HorizontalAlignment="Left" VerticalAlignment="Center" Width="800" Grid.ColumnSpan="2" Height="434"/>
 
     </Grid>
 </Window>

@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("dnFiles")]
+[assembly: AssemblyTitle("dnfl")]
 [assembly: AssemblyDescription("DENEFILES : FILEXPLORE BUILD 10 FOR DENEOS HOME")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("iNS")]
+[assembly: AssemblyCompany("repoficialx")]
 [assembly: AssemblyProduct("deneOS")]
-[assembly: AssemblyCopyright("Copyright © iNS 2024")]
-[assembly: AssemblyTrademark("iNS")]
+[assembly: AssemblyCopyright("MIT License | repoficialx | deneOS")]
+[assembly: AssemblyTrademark("repoficialx")]
 [assembly: AssemblyCulture("")]
 
 // Si establece ComVisible en false, los tipos de este ensamblado no estarán visibles 

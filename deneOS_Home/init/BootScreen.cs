@@ -40,7 +40,7 @@ namespace deneOS_Home.init
             InitializeComponent();
             // Configura el timer
             bootTimer = new Timer();
-            bootTimer.Interval = 50; // Puedes ajustar la velocidad aquí
+            bootTimer.Interval = 40; // Puedes ajustar la velocidad aquí
             bootTimer.Tick += BootTimer_Tick;
             bootTimer.Start();
         }

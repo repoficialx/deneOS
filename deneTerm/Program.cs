@@ -14,6 +14,8 @@ namespace deneOS
         {
             Console.Title = "deneTerm - Terminal Segura";
             Console.ForegroundColor = ConsoleColor.Green;
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
 
             Console.WriteLine("deneTerm - Terminal segura de deneOS");
             Console.WriteLine("Escribe 'help' para ver los comandos disponibles.\n");
@@ -28,6 +30,10 @@ namespace deneOS
                 string[] parts = input.Split(' ', 2);
                 string cmd = parts[0].ToLower();
                 string arg = parts.Length > 1 ? parts[1] : "";
+
+                var parts1 = input.Trim().Split(' ', 2);
+                var command = parts1[0].ToLower();
+                var argument = parts1.Length > 1 ? parts[1] : "";
 
                 switch (cmd)
                 {
@@ -64,6 +70,14 @@ namespace deneOS
                     default:
                         Console.WriteLine("❓ Comando no reconocido. Escribe 'help' para ver los comandos.");
                         break;
+
+                    case "mkdir": CreateDirectory(argument); break;
+                    case "rmdir": RemoveDirectory(argument); break;
+                    case "mkfile": CreateFile(argument); break;
+                    case "rmfile": DeleteFile(argument); break;
+                    case "openfile": OpenFile(argument); break;
+                    case "openapp": OpenApp(argument); break;
+                    case "pwd": Console.WriteLine(GetAlias(currentPath)); break;
                 }
             }
         }
@@ -91,13 +105,32 @@ namespace deneOS
 
         static void ChangeDirectory(string folder)
         {
-            if (string.IsNullOrWhiteSpace(folder) || folder == "..")
+            if (string.IsNullOrWhiteSpace(folder))
             {
-                Console.WriteLine("❌ Navegación hacia niveles superiores no permitida.");
+                Console.WriteLine("❌ Ruta vacía no permitida.");
                 return;
             }
 
-            string newPath = Path.Combine(currentPath, folder);
+            string newPath;
+
+            if (folder == "..")
+            {
+                string parentPath = Directory.GetParent(currentPath)?.FullName ?? "";
+
+                // No permitir salir de la main-directory
+                if (currentPath.StartsWith(userPath) && !parentPath.StartsWith(userPath) ||
+                    currentPath.StartsWith(softwarePath) && !parentPath.StartsWith(softwarePath))
+                {
+                    Console.WriteLine("❌ No puedes salir de la main-directory actual.");
+                    return;
+                }
+
+                newPath = parentPath;
+            }
+            else
+            {
+                newPath = Path.Combine(currentPath, folder);
+            }
 
             if (Directory.Exists(newPath) && IsAllowedPath(newPath))
             {
@@ -109,17 +142,18 @@ namespace deneOS
             }
         }
 
+
         static void ChangeMainDirectory(string target)
         {
             if (target.ToLower() == "user")
             {
                 currentPath = userPath;
-                Console.WriteLine("✔️ Cambiado a ~\\ (Usuario)");
+                Console.WriteLine("✅ Cambiado a ~\\ (Usuario)");
             }
             else if (target.ToLower() == "software")
             {
                 currentPath = softwarePath;
-                Console.WriteLine("✔️ Cambiado a ~S\\ (Software)");
+                Console.WriteLine("✅ Cambiado a ~S\\ (Software)");
             }
             else
             {
@@ -134,10 +168,19 @@ namespace deneOS
 
         static string GetAlias(string path)
         {
-            if (path.StartsWith(userPath)) return "~";
-            if (path.StartsWith(softwarePath)) return "~S";
+            if (path.StartsWith(userPath))
+            {
+                string sub = path.Substring(userPath.Length).TrimStart('\\', '/');
+                return "~" + (sub != "" ? "\\" + sub : "");
+            }
+            if (path.StartsWith(softwarePath))
+            {
+                string sub = path.Substring(softwarePath.Length).TrimStart('\\', '/');
+                return "~S" + (sub != "" ? "\\" + sub : "");
+            }
             return "?";
         }
+
 
         static void StartRepair()
         {
@@ -165,5 +208,80 @@ namespace deneOS
                 Console.WriteLine("❌ Error al ejecutar reparación: " + ex.Message);
             }
         }
+        static void CreateDirectory(string name)
+        {
+            string path = Path.Combine(currentPath, name);
+            if (!IsAllowedPath(path)) { Console.WriteLine("❌ Acceso denegado."); return; }
+
+            try
+            {
+                Directory.CreateDirectory(path);
+                Console.WriteLine("✅ Carpeta creada.");
+            }
+            catch { Console.WriteLine("❌ Error al crear carpeta."); }
+        }
+
+        static void RemoveDirectory(string name)
+        {
+            string path = Path.Combine(currentPath, name);
+            if (!IsAllowedPath(path)) { Console.WriteLine("❌ Acceso denegado."); return; }
+
+            try
+            {
+                Directory.Delete(path, true);
+                Console.WriteLine("🗑️ Carpeta eliminada.");
+            }
+            catch { Console.WriteLine("❌ Error al eliminar carpeta."); }
+        }
+        static void CreateFile(string name)
+        {
+            string path = Path.Combine(currentPath, name);
+            if (!IsAllowedPath(path)) { Console.WriteLine("❌ Acceso denegado."); return; }
+
+            try
+            {
+                File.WriteAllText(path, ""); // Vacío
+                Console.WriteLine("✅ Archivo creado.");
+            }
+            catch { Console.WriteLine("❌ Error al crear archivo."); }
+        }
+
+        static void DeleteFile(string name)
+        {
+            string path = Path.Combine(currentPath, name);
+            if (!IsAllowedPath(path)) { Console.WriteLine("❌ Acceso denegado."); return; }
+
+            try
+            {
+                File.Delete(path);
+                Console.WriteLine("🗑️ Archivo eliminado.");
+            }
+            catch { Console.WriteLine("❌ Error al eliminar archivo."); }
+        }
+        static void OpenFile(string name)
+        {
+            string path = Path.Combine(currentPath, name);
+            if (!IsAllowedPath(path)) { Console.WriteLine("❌ Acceso denegado."); return; }
+
+            try
+            {
+                Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
+                Console.WriteLine("📄 Archivo abierto.");
+            }
+            catch { Console.WriteLine("❌ No se pudo abrir el archivo."); }
+        }
+
+        static void OpenApp(string name)
+        {
+
+            try
+            {
+                Process.Start(new ProcessStartInfo(name) { UseShellExecute = true });
+                Console.WriteLine("🚀 Aplicación lanzada.");
+            }
+            catch { Console.WriteLine("❌ No se pudo abrir la app."); }
+        }
+
+
     }
 }
