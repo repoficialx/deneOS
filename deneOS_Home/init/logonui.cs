@@ -78,8 +78,6 @@ namespace deneOS_Home.init
             txt4.Text = (string)T("txt4");
             txt5.Text = (string)T("txt5");
             txt6.Text = (string)T("txt6");
-            txt7.Text = (string)T("txt7");
-            txt8.Text = (string)T("txt8");
             txt9.Text = (string)T("txt9");
             txt10.Text = (string)T("txt10");
             txt11.Text = (string)T("txt11");
@@ -242,6 +240,7 @@ namespace deneOS_Home.init
                 MessageBox.Show("Welcome to deneOS Home Edition!", "Welcome!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Hide();
                 new deneOS_Home.desktop().Show();
+                new tbar().Show();
             }
             else
             {
@@ -293,7 +292,7 @@ namespace deneOS_Home.init
                 e.SuppressKeyPress = true; // Evita que Enter llegue al botón
                 panel1.Show();
                 panel1.BringToFront();
-
+                txt6.Focus();
             }
             /*else
             {
@@ -310,6 +309,46 @@ namespace deneOS_Home.init
         private void logonui_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void boxpass_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void boxusr_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
