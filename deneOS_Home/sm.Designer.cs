@@ -506,8 +506,8 @@
             // 
             // sm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 27F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(378, 513);
             this.Controls.Add(this.panel2);

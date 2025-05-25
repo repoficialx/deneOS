@@ -191,7 +191,9 @@ namespace deneOS_Home
                     if (app.Proceso != null && !app.Proceso.HasExited)
                     {
                         // Si el proceso está activo, lo traemos al frente
-                        FocusEXE(app.Proceso.ProcessName);
+                        //FocusEXE(app.Proceso.ProcessName);
+                        SetForegroundWindow(app.Proceso.MainWindowHandle);
+
                         // También puedes hacer algo más aquí, como cambiar el estado del botón o mostrar información adicional
                     }
                     else
