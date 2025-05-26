@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "copilot4dene", "..\deneOS U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eMBTest", "eMBTest\eMBTest.csproj", "{B7389F32-D4F7-4CCA-988A-87E2F72F3055}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dpkxt", "dpkxt\dpkxt.csproj", "{8CA5CE96-23F9-41C6-AE87-76F310B0EFF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -245,6 +247,14 @@ Global
 		{B7389F32-D4F7-4CCA-988A-87E2F72F3055}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B7389F32-D4F7-4CCA-988A-87E2F72F3055}.Release|x64.ActiveCfg = Release|x64
 		{B7389F32-D4F7-4CCA-988A-87E2F72F3055}.Release|x64.Build.0 = Release|x64
+		{8CA5CE96-23F9-41C6-AE87-76F310B0EFF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CA5CE96-23F9-41C6-AE87-76F310B0EFF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CA5CE96-23F9-41C6-AE87-76F310B0EFF2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8CA5CE96-23F9-41C6-AE87-76F310B0EFF2}.Debug|x64.Build.0 = Debug|Any CPU
+		{8CA5CE96-23F9-41C6-AE87-76F310B0EFF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CA5CE96-23F9-41C6-AE87-76F310B0EFF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CA5CE96-23F9-41C6-AE87-76F310B0EFF2}.Release|x64.ActiveCfg = Release|Any CPU
+		{8CA5CE96-23F9-41C6-AE87-76F310B0EFF2}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
