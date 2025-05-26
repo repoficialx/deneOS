@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -81,7 +80,7 @@
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -89,11 +88,11 @@
             // textBox1
             // 
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(0, 28);
+            this.textBox1.Location = new System.Drawing.Point(0, 30);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(711, 332);
+            this.textBox1.Size = new System.Drawing.Size(711, 330);
             this.textBox1.TabIndex = 0;
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
@@ -109,7 +108,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(711, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(711, 30);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -127,7 +126,7 @@
             this.toolStripSeparator2,
             this.salirToolStripMenuItem});
             this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
-            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
+            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(73, 26);
             this.archivoToolStripMenuItem.Text = "&Archivo";
             // 
             // nuevoToolStripMenuItem
@@ -226,7 +225,7 @@
             this.seleccionarTodoToolStripMenuItem,
             this.horaYFechaToolStripMenuItem});
             this.ediciónToolStripMenuItem.Name = "ediciónToolStripMenuItem";
-            this.ediciónToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
+            this.ediciónToolStripMenuItem.Size = new System.Drawing.Size(72, 26);
             this.ediciónToolStripMenuItem.Text = "&Edición";
             // 
             // deshacerToolStripMenuItem
@@ -355,7 +354,7 @@
             this.ajusteDeLíneaToolStripMenuItem,
             this.fuenteToolStripMenuItem});
             this.formatoToolStripMenuItem.Name = "formatoToolStripMenuItem";
-            this.formatoToolStripMenuItem.Size = new System.Drawing.Size(79, 24);
+            this.formatoToolStripMenuItem.Size = new System.Drawing.Size(79, 26);
             this.formatoToolStripMenuItem.Text = "F&ormato";
             // 
             // ajusteDeLíneaToolStripMenuItem
@@ -363,14 +362,14 @@
             this.ajusteDeLíneaToolStripMenuItem.Checked = true;
             this.ajusteDeLíneaToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ajusteDeLíneaToolStripMenuItem.Name = "ajusteDeLíneaToolStripMenuItem";
-            this.ajusteDeLíneaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.ajusteDeLíneaToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
             this.ajusteDeLíneaToolStripMenuItem.Text = "Ajuste de línea";
             this.ajusteDeLíneaToolStripMenuItem.Click += new System.EventHandler(this.ajusteDeLíneaToolStripMenuItem_Click);
             // 
             // fuenteToolStripMenuItem
             // 
             this.fuenteToolStripMenuItem.Name = "fuenteToolStripMenuItem";
-            this.fuenteToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.fuenteToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
             this.fuenteToolStripMenuItem.Text = "Fuente...";
             this.fuenteToolStripMenuItem.Click += new System.EventHandler(this.fuenteToolStripMenuItem_Click);
             // 
@@ -380,7 +379,7 @@
             this.zoomToolStripMenuItem,
             this.barraDeEstadoToolStripMenuItem});
             this.verToolStripMenuItem.Name = "verToolStripMenuItem";
-            this.verToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
+            this.verToolStripMenuItem.Size = new System.Drawing.Size(44, 26);
             this.verToolStripMenuItem.Text = "&Ver";
             this.verToolStripMenuItem.Click += new System.EventHandler(this.verToolStripMenuItem_Click);
             // 
@@ -391,7 +390,7 @@
             this.alejarToolStripMenuItem,
             this.restaurarAlPredeterminadoToolStripMenuItem});
             this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.zoomToolStripMenuItem.Text = "Zoom";
             // 
             // acercarToolStripMenuItem
@@ -423,7 +422,7 @@
             this.barraDeEstadoToolStripMenuItem.Checked = true;
             this.barraDeEstadoToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.barraDeEstadoToolStripMenuItem.Name = "barraDeEstadoToolStripMenuItem";
-            this.barraDeEstadoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.barraDeEstadoToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.barraDeEstadoToolStripMenuItem.Text = "Barra de estado";
             this.barraDeEstadoToolStripMenuItem.Click += new System.EventHandler(this.barraDeEstadoToolStripMenuItem_Click);
             // 
@@ -434,7 +433,7 @@
             this.toolStripSeparator6,
             this.acercaDeDeneNoteToolStripMenuItem});
             this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
-            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
+            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(65, 26);
             this.ayudaToolStripMenuItem.Text = "&Ayuda";
             // 
             // verLaAyudaToolStripMenuItem
