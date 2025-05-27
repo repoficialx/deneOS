@@ -34,7 +34,7 @@ namespace deneOS_Home
             this.TopMost = true;
 
             Timer tim = new Timer();
-            tim.Interval = 1000;
+            tim.Interval = 100;
             tim.Tick += new EventHandler(timer1_Tick);
             tim.Start();
 
@@ -61,6 +61,11 @@ namespace deneOS_Home
             label22.Text = GetBatteryIcon(getBattery, isCharging, isSaverOn);
             gws();
             gvs();
+
+            if (globaldata.isImageLoaded)
+            {
+                BackColor = ColorTranslator.FromHtml(globaldata.wallpaperPredominantColorHex);
+            }
         }
         private void utb_Tick(object sender, EventArgs e)
         {
@@ -92,18 +97,18 @@ namespace deneOS_Home
             string voli;
             if (vol == 0)
                 voli = ""; // no volumen
-            else if (vol > 0)
+            else if (vol > 0 && vol <= 33)
                 voli = "";
-            else if (vol > 33)
+            else if (vol > 33 && vol <= 66)
                 voli = "";
             else if (vol > 66)
                 voli = "";
             else
-                voli = "";
+                voli = ""; // mute
 
             // Mostrar en la UI
             label23.Text = voli;
-            label25.Text = vol.ToString();
+            label25.Text = vol.ToString()+"%";
         }
         static string GetBatteryIcon(float percentage, bool charging, bool saverMode)
         {
@@ -261,6 +266,34 @@ namespace deneOS_Home
         private void tbar_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true; // Evitar que se cierre el formulario
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label23_Click(object sender, EventArgs e)
+        {
+            volSlider volSlider = new volSlider();
+            var trigger = label23;
+            var triggerScreenPos = trigger.PointToScreen(Point.Empty);
+
+            // Centro horizontal del label
+            int centerX = triggerScreenPos.X + trigger.Width / 2;
+
+            // Tamaño del popup
+            int popupWidth = volSlider.Width;
+            int popupHeight = volSlider.Height;
+
+            // Posición final del popup
+            int popupX = centerX - (popupWidth / 2);
+            int popupY = triggerScreenPos.Y - popupHeight - 10; // 10px encima
+
+            volSlider.StartPosition = FormStartPosition.Manual;
+            volSlider.Location = new Point(popupX, popupY);
+            volSlider.Show();
+
         }
     }
 }

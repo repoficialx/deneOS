@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel16 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel17 = new System.Windows.Forms.Panel();
@@ -39,15 +42,12 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panel16.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.panel17.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -59,6 +59,36 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1920, 60);
             this.panel1.TabIndex = 1;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.panel2);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1396, 60);
+            this.flowLayoutPanel1.TabIndex = 2;
+            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(72, 60);
+            this.panel2.TabIndex = 3;
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImage = global::deneOS_Home.Properties.Resources.denelogo;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(72, 60);
+            this.button1.TabIndex = 0;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel16
             // 
@@ -134,9 +164,9 @@
             // 
             // label25
             // 
-            this.label25.Location = new System.Drawing.Point(161, 0);
+            this.label25.Location = new System.Drawing.Point(138, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(39, 58);
+            this.label25.Size = new System.Drawing.Size(62, 58);
             this.label25.TabIndex = 7;
             this.label25.Text = "100%";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -144,51 +174,23 @@
             // label23
             // 
             this.label23.Font = new System.Drawing.Font("Segoe Fluent Icons", 16F);
-            this.label23.Location = new System.Drawing.Point(103, 0);
+            this.label23.Location = new System.Drawing.Point(80, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(52, 62);
             this.label23.TabIndex = 5;
             this.label23.Text = "";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label23.Click += new System.EventHandler(this.label23_Click);
             // 
             // label24
             // 
             this.label24.Font = new System.Drawing.Font("Segoe Fluent Icons", 16F);
-            this.label24.Location = new System.Drawing.Point(55, 0);
+            this.label24.Location = new System.Drawing.Point(32, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(42, 58);
             this.label24.TabIndex = 6;
             this.label24.Text = "";
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // button1
-            // 
-            this.button1.BackgroundImage = global::deneOS_Home.Properties.Resources.denelogo;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(72, 60);
-            this.button1.TabIndex = 0;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.panel2);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1396, 60);
-            this.flowLayoutPanel1.TabIndex = 2;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Location = new System.Drawing.Point(3, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(72, 60);
-            this.panel2.TabIndex = 3;
             // 
             // tbar
             // 
@@ -206,11 +208,11 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.tbar_FormClosing);
             this.Load += new System.EventHandler(this.tbar_Load);
             this.panel1.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
             this.panel17.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

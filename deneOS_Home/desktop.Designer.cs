@@ -50,7 +50,7 @@
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(263, 56);
             this.label15.TabIndex = 2;
-            this.label15.Text = "deneOS Home version 0.1.6a\r\nTest mode";
+            this.label15.Text = "deneOS Home version 0.1.7a\r\nTest mode";
             this.label15.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // flowLayoutPanel2

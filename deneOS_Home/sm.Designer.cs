@@ -97,6 +97,7 @@
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             this.flowLayoutPanel1.Controls.Add(this.panel4);
             this.flowLayoutPanel1.Controls.Add(this.panel5);
             this.flowLayoutPanel1.Controls.Add(this.panel6);
@@ -458,6 +459,7 @@
             // 
             // panel11
             // 
+            this.panel11.BackColor = System.Drawing.Color.Transparent;
             this.panel11.Controls.Add(this.button4);
             this.panel11.Controls.Add(this.button3);
             this.panel11.Controls.Add(this.button2);
@@ -480,7 +482,7 @@
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.SystemColors.ControlText;
+            this.button3.BackColor = System.Drawing.Color.Transparent;
             this.button3.BackgroundImage = global::deneOS_Home.Properties.Resources.icons8_restart_100;
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -493,7 +495,7 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.ControlText;
+            this.button2.BackColor = System.Drawing.Color.Transparent;
             this.button2.BackgroundImage = global::deneOS_Home.Properties.Resources.icons8_shutdown_100;
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;

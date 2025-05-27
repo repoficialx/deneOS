@@ -33,6 +33,7 @@ namespace deneOS_Home
             this.StartPosition = FormStartPosition.Manual;
             this.Size = new Size(startMenuWidth, startMenuHeight);
             this.Location = new Point(0, screenHeight - taskbarHeight - startMenuHeight);
+            this.BackColor = ColorTranslator.FromHtml(globaldata.wallpaperPredominantColorHex);
 
             panel2.BringToFront();
 
