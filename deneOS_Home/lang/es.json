@@ -40,5 +40,9 @@
   "dowthu": "Jue",
   "dowfri": "Vie",
   "dowsat": "Sáb",
-  "dowsun": "Dom"
+  "dowsun": "Dom",
+  "iApp": "App Importada",
+  "dApp": "App Descargable",
+  "App": "App",
+  "sApp": "App del Sistema"
 }

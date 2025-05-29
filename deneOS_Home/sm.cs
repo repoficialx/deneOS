@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Traductor;
 
 namespace deneOS_Home
 {
@@ -33,16 +34,16 @@ namespace deneOS_Home
             this.StartPosition = FormStartPosition.Manual;
             this.Size = new Size(startMenuWidth, startMenuHeight);
             this.Location = new Point(0, screenHeight - taskbarHeight - startMenuHeight);
-            this.BackColor = ColorTranslator.FromHtml(globaldata.wallpaperPredominantColorHex);
+            this.BackColor = globaldata.isImageLoaded ? ColorTranslator.FromHtml(globaldata.wallpaperPredominantColorHex) : Color.Black;
 
             panel2.BringToFront();
 
-            label16.Text = "Downloadable App";
-            this.label16.Location = new System.Drawing.Point(180, 21);
+            rec.Text = (string)T("dApp");
+            this.rec.Location = new System.Drawing.Point(180, 21);
             if (System.IO.File.Exists(@"C:\Program Files\iNS\deneOS\HomeEdition\apps\Recip\recip.wpi"))
             {
-                label16.Text = "App";
-                label16.Location = new System.Drawing.Point(312, 21);
+                rec.Text = (string)T("App");
+                rec.Location = new System.Drawing.Point(312, 21);
             }
             var Day = DateTime.Now.Day;
             switch (Day)
@@ -148,6 +149,14 @@ namespace deneOS_Home
 
             this.TopMost = true;
 
+            this.term.Text = (string)T("iApp");
+            this.ie.Text = (string)T("App");
+            cio.Text = (string)T("App");
+            def.Text = (string)T("sApp");
+            dnn.Text = (string)T("sApp");
+            dnno.Text = (string)T("sApp");
+            dnu.Text = (string)T("sApp");
+            
         }
 
         private void panel12_Click(object sender, EventArgs e)
@@ -241,8 +250,8 @@ namespace deneOS_Home
                     }
                     dnpai.WaitForExit();
                     Directory.Delete($"C:\\Program Files\\iNS\\deneOS\\HomeEdition\\appDnpkgTmpDownload\\{dtdNMR}", true);
-                    label16.Text = "App";
-                    label16.Location = new System.Drawing.Point(312, 21);
+                    rec.Text = "App";
+                    rec.Location = new System.Drawing.Point(312, 21);
                 }
             }
         }   

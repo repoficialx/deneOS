@@ -31,35 +31,35 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.dnn = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dnnaviPic = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
+            this.dnno = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dnnotPic = new System.Windows.Forms.PictureBox();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
+            this.dnu = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.dnupdPic = new System.Windows.Forms.PictureBox();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
+            this.ie = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.ie11minPic = new System.Windows.Forms.PictureBox();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
+            this.cio = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.calendarPic = new System.Windows.Forms.PictureBox();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
+            this.term = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.termPic = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.def = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.filesPic = new System.Windows.Forms.PictureBox();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.label16 = new System.Windows.Forms.Label();
+            this.rec = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.recipPic = new System.Windows.Forms.PictureBox();
             this.panel11 = new System.Windows.Forms.Panel();
@@ -115,7 +115,7 @@
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.label3);
+            this.panel4.Controls.Add(this.dnn);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.dnnaviPic);
             this.panel4.Location = new System.Drawing.Point(3, 3);
@@ -124,15 +124,15 @@
             this.panel4.TabIndex = 5;
             this.panel4.Click += new System.EventHandler(this.panel4_Click);
             // 
-            // label3
+            // dnn
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(246, 20);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(117, 27);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "System App";
-            this.label3.Click += new System.EventHandler(this.panel4_Click);
+            this.dnn.AutoSize = true;
+            this.dnn.Location = new System.Drawing.Point(246, 20);
+            this.dnn.Name = "dnn";
+            this.dnn.Size = new System.Drawing.Size(117, 27);
+            this.dnn.TabIndex = 2;
+            this.dnn.Text = "System App";
+            this.dnn.Click += new System.EventHandler(this.panel4_Click);
             // 
             // label4
             // 
@@ -158,7 +158,7 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.label5);
+            this.panel5.Controls.Add(this.dnno);
             this.panel5.Controls.Add(this.label6);
             this.panel5.Controls.Add(this.dnnotPic);
             this.panel5.Location = new System.Drawing.Point(3, 61);
@@ -167,15 +167,15 @@
             this.panel5.TabIndex = 6;
             this.panel5.Click += new System.EventHandler(this.panel5_Click);
             // 
-            // label5
+            // dnno
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(244, 20);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(117, 27);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "System App";
-            this.label5.Click += new System.EventHandler(this.panel5_Click);
+            this.dnno.AutoSize = true;
+            this.dnno.Location = new System.Drawing.Point(244, 20);
+            this.dnno.Name = "dnno";
+            this.dnno.Size = new System.Drawing.Size(117, 27);
+            this.dnno.TabIndex = 2;
+            this.dnno.Text = "System App";
+            this.dnno.Click += new System.EventHandler(this.panel5_Click);
             // 
             // label6
             // 
@@ -201,7 +201,7 @@
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.label7);
+            this.panel6.Controls.Add(this.dnu);
             this.panel6.Controls.Add(this.label8);
             this.panel6.Controls.Add(this.dnupdPic);
             this.panel6.Location = new System.Drawing.Point(3, 119);
@@ -210,15 +210,15 @@
             this.panel6.TabIndex = 7;
             this.panel6.Click += new System.EventHandler(this.panel6_Click);
             // 
-            // label7
+            // dnu
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(245, 21);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(117, 27);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "System App";
-            this.label7.Click += new System.EventHandler(this.panel6_Click);
+            this.dnu.AutoSize = true;
+            this.dnu.Location = new System.Drawing.Point(245, 21);
+            this.dnu.Name = "dnu";
+            this.dnu.Size = new System.Drawing.Size(117, 27);
+            this.dnu.TabIndex = 2;
+            this.dnu.Text = "System App";
+            this.dnu.Click += new System.EventHandler(this.panel6_Click);
             // 
             // label8
             // 
@@ -244,7 +244,7 @@
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.label9);
+            this.panel7.Controls.Add(this.ie);
             this.panel7.Controls.Add(this.label10);
             this.panel7.Controls.Add(this.ie11minPic);
             this.panel7.Location = new System.Drawing.Point(3, 177);
@@ -253,15 +253,15 @@
             this.panel7.TabIndex = 8;
             this.panel7.Click += new System.EventHandler(this.panel7_Click);
             // 
-            // label9
+            // ie
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(312, 21);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(49, 27);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "App";
-            this.label9.Click += new System.EventHandler(this.panel7_Click);
+            this.ie.AutoSize = true;
+            this.ie.Location = new System.Drawing.Point(312, 21);
+            this.ie.Name = "ie";
+            this.ie.Size = new System.Drawing.Size(49, 27);
+            this.ie.TabIndex = 2;
+            this.ie.Text = "App";
+            this.ie.Click += new System.EventHandler(this.panel7_Click);
             // 
             // label10
             // 
@@ -287,7 +287,7 @@
             // 
             // panel8
             // 
-            this.panel8.Controls.Add(this.label11);
+            this.panel8.Controls.Add(this.cio);
             this.panel8.Controls.Add(this.label12);
             this.panel8.Controls.Add(this.calendarPic);
             this.panel8.Location = new System.Drawing.Point(3, 235);
@@ -296,15 +296,15 @@
             this.panel8.TabIndex = 9;
             this.panel8.Click += new System.EventHandler(this.panel8_Click);
             // 
-            // label11
+            // cio
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(312, 21);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(49, 27);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "App";
-            this.label11.Click += new System.EventHandler(this.panel8_Click);
+            this.cio.AutoSize = true;
+            this.cio.Location = new System.Drawing.Point(312, 21);
+            this.cio.Name = "cio";
+            this.cio.Size = new System.Drawing.Size(49, 27);
+            this.cio.TabIndex = 2;
+            this.cio.Text = "App";
+            this.cio.Click += new System.EventHandler(this.panel8_Click);
             // 
             // label12
             // 
@@ -330,7 +330,7 @@
             // 
             // panel9
             // 
-            this.panel9.Controls.Add(this.label13);
+            this.panel9.Controls.Add(this.term);
             this.panel9.Controls.Add(this.label14);
             this.panel9.Controls.Add(this.termPic);
             this.panel9.Location = new System.Drawing.Point(3, 293);
@@ -339,15 +339,15 @@
             this.panel9.TabIndex = 10;
             this.panel9.Click += new System.EventHandler(this.panel9_Click);
             // 
-            // label13
+            // term
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(225, 21);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(136, 27);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "Imported App";
-            this.label13.Click += new System.EventHandler(this.panel8_Click);
+            this.term.AutoSize = true;
+            this.term.Location = new System.Drawing.Point(225, 21);
+            this.term.Name = "term";
+            this.term.Size = new System.Drawing.Size(136, 27);
+            this.term.TabIndex = 2;
+            this.term.Text = "Imported App";
+            this.term.Click += new System.EventHandler(this.panel8_Click);
             // 
             // label14
             // 
@@ -373,7 +373,7 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.label2);
+            this.panel3.Controls.Add(this.def);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.filesPic);
             this.panel3.Location = new System.Drawing.Point(3, 351);
@@ -382,15 +382,15 @@
             this.panel3.TabIndex = 4;
             this.panel3.Click += new System.EventHandler(this.panel3_Click);
             // 
-            // label2
+            // def
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(245, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(117, 27);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "System App";
-            this.label2.Click += new System.EventHandler(this.panel3_Click);
+            this.def.AutoSize = true;
+            this.def.Location = new System.Drawing.Point(245, 21);
+            this.def.Name = "def";
+            this.def.Size = new System.Drawing.Size(117, 27);
+            this.def.TabIndex = 2;
+            this.def.Text = "System App";
+            this.def.Click += new System.EventHandler(this.panel3_Click);
             // 
             // label1
             // 
@@ -416,7 +416,7 @@
             // 
             // panel10
             // 
-            this.panel10.Controls.Add(this.label16);
+            this.panel10.Controls.Add(this.rec);
             this.panel10.Controls.Add(this.label17);
             this.panel10.Controls.Add(this.recipPic);
             this.panel10.Location = new System.Drawing.Point(3, 409);
@@ -425,15 +425,15 @@
             this.panel10.TabIndex = 5;
             this.panel10.Click += new System.EventHandler(this.panel10_Click);
             // 
-            // label16
+            // rec
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(180, 21);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(181, 27);
-            this.label16.TabIndex = 2;
-            this.label16.Text = "Downloadable App";
-            this.label16.Click += new System.EventHandler(this.panel10_Click);
+            this.rec.AutoSize = true;
+            this.rec.Location = new System.Drawing.Point(180, 21);
+            this.rec.Name = "rec";
+            this.rec.Size = new System.Drawing.Size(181, 27);
+            this.rec.TabIndex = 2;
+            this.rec.Text = "Downloadable App";
+            this.rec.Click += new System.EventHandler(this.panel10_Click);
             // 
             // label17
             // 
@@ -557,35 +557,35 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label dnn;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox dnnaviPic;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label dnno;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox dnnotPic;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label dnu;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox dnupdPic;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label ie;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.PictureBox ie11minPic;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label cio;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.PictureBox calendarPic;
         private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label term;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.PictureBox termPic;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label def;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox filesPic;
         private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label rec;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.PictureBox recipPic;
         private System.Windows.Forms.Panel panel11;
