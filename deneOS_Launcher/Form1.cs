@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -96,7 +96,16 @@ namespace deneOS_Launcher
             {
                 case DialogResult.Yes:
                     MessageBox.Show("Installing fonts...", "deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    DownloadAll();
+                    InstallFonts();
+                    MessageBox.Show("Installing libraries...");
+                    InstallLibraries();
+                    MessageBox.Show("Installing languages...");
+                    InstallLanguages();
+                    MessageBox.Show("Installing executable...");
+                    InstallExecutable();
+                    MessageBox.Show("Writing Configuration...");
+                    WriteConfiguration();
+                    MessageBox.Show("Installation completed successfully!", "deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);;
 
                     break;
                 case DialogResult.Cancel:
@@ -115,8 +124,8 @@ namespace deneOS_Launcher
             InstallFonts();
             InstallLibraries();
             InstallLanguages();
-            MessageBox.Show("Installation completed successfully!", "deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
             WriteConfiguration();
+            MessageBox.Show("Installation completed successfully!", "deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         void InstallFonts()
