@@ -75,8 +75,8 @@ namespace deneOS_Home
                     this.BackColor = Color.Black;
                 }
             }
-            
 
+            DesktopLoader.LoadShortcuts("C:\\DENEOS\\desktop\\", flowLayoutPanel2);
         }
 
         private void panel12_Click(object sender, EventArgs e)

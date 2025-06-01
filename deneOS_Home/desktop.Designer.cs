@@ -80,12 +80,12 @@
             // 
             // label18
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(22, 135);
+            this.label18.Location = new System.Drawing.Point(0, 133);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(81, 28);
+            this.label18.Size = new System.Drawing.Size(131, 28);
             this.label18.TabIndex = 1;
             this.label18.Text = "dnStore";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pictureBox2
             // 
@@ -152,7 +152,6 @@
             this.Load += new System.EventHandler(this.desktop_Load);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.panel12.ResumeLayout(false);
-            this.panel12.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

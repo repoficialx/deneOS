@@ -119,6 +119,7 @@
     <Compile Include="desktop.Designer.cs">
       <DependentUpon>desktop.cs</DependentUpon>
     </Compile>
+    <Compile Include="DesktopLoader.cs" />
     <Compile Include="globaldata.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="init\BootScreen.cs">
@@ -136,6 +137,7 @@
     <Compile Include="mlingual\Traductor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShellIcon.cs" />
     <Compile Include="sm.cs">
       <SubType>Form</SubType>
     </Compile>
