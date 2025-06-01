@@ -33,9 +33,6 @@
             this.panel12 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.panel15 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel2.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -46,19 +43,16 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(1654, 0);
+            this.label15.Location = new System.Drawing.Point(1670, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(263, 56);
+            this.label15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label15.Size = new System.Drawing.Size(248, 56);
             this.label15.TabIndex = 2;
-            this.label15.Text = "deneOS Home version 0.1.7a\r\nTest mode";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.label15.Text = "deneOS Home version 0.8a\r\nTest mode";
             // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.panel12);
-            this.flowLayoutPanel2.Controls.Add(this.panel13);
-            this.flowLayoutPanel2.Controls.Add(this.panel14);
-            this.flowLayoutPanel2.Controls.Add(this.panel15);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
@@ -97,32 +91,9 @@
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
-            // panel13
-            // 
-            this.panel13.Location = new System.Drawing.Point(20, 229);
-            this.panel13.Margin = new System.Windows.Forms.Padding(20);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(131, 169);
-            this.panel13.TabIndex = 1;
-            // 
-            // panel14
-            // 
-            this.panel14.Location = new System.Drawing.Point(20, 438);
-            this.panel14.Margin = new System.Windows.Forms.Padding(20);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(131, 169);
-            this.panel14.TabIndex = 2;
-            // 
-            // panel15
-            // 
-            this.panel15.Location = new System.Drawing.Point(20, 647);
-            this.panel15.Margin = new System.Windows.Forms.Padding(20);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(131, 169);
-            this.panel15.TabIndex = 3;
-            // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.label15);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 964);
@@ -163,9 +134,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.Panel panel13;
-        private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panel1;

@@ -23,7 +23,18 @@ public class DesktopLoader
                 Margin = new Padding(20),
                 BackColor = Color.Transparent
             };
-
+            panel.Click += (sender, e) =>
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(shortcut);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al abrir el acceso directo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+            };
             // Imagen (icono)
             PictureBox pic = new PictureBox
             {
@@ -33,6 +44,19 @@ public class DesktopLoader
                 Location = new Point(3, 3) // pequeño margen interno
             };
 
+            pic.Click += (sender, e) =>
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(shortcut);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al abrir el acceso directo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            };
+
             // Etiqueta (nombre)
             Label label = new Label
             {
@@ -40,6 +64,19 @@ public class DesktopLoader
                 Size = new Size(131, 28),
                 Location = new Point(0, 133),
                 TextAlign = ContentAlignment.TopCenter
+            };
+
+            label.Click += (sender, e) =>
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(shortcut);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al abrir el acceso directo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
             };
 
             panel.Controls.Add(pic);

@@ -49,6 +49,12 @@ namespace deneOS_Launcher
                 MaximumSize = new Size(401, 185);
             }
             #endregion
+            if (!File.Exists("C:\\Program Files\\iNS\\deneOS\\HomeEdition\\cfg\\default.ini"))
+            {
+                button1.Text = "INSTALL►";
+                button1.Click -= button1_Click;
+                button1.Click += Install_Click;
+            }
         }
         #region DON'T TOUCH THIS CODE!
         void getRgKey()
@@ -81,6 +87,35 @@ namespace deneOS_Launcher
             MaximumSize = new Size(401, 338);
         }
         #endregion
+
+        void Install_Click(object sender, EventArgs e)
+        {
+            Process dnh = new Process();
+            var response = MessageBox.Show("Install on Verbose mode?", "deneOS Setup", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            switch (response)
+            {
+                case DialogResult.Yes:
+                    MessageBox.Show("Installing fonts...", "deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    InstallFonts();
+
+                    break;
+                case DialogResult.Cancel:
+                    MessageBox.Show("Installation cancelled.", "deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                case DialogResult.No:
+                    InstallFonts();
+                    break;
+            }
+            Environment.Exit(0);
+        }
+
+        void InstallFonts()
+        {
+            WebClient client = new WebClient();
+            // Descargar Segoe UI Fluent Icons
+            client.DownloadFile(
+                "https://mi")
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
