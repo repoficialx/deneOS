@@ -66,7 +66,7 @@
                     break;
                 case 0x0A:
                     //icon = MessageBoxIcon.User;
-                    break;
+                    throw new NotImplementedException();
                 case 0x0B:
                     System.Drawing.Icon icon_ = new Icon(pathToCustomIcon);
                     var _ = CustomMessageBox.Show(msg, title, icon_);
@@ -81,9 +81,19 @@
             var __ = MessageBox.Show(msg, title, MessageBoxButtons.OK, icon);
             return (int)__;
         }
+        public static class deneOSVersion
+        {
+            public const string Version = "v0.9a";
+            public const string Channel = "Alpha";
+            public static readonly string Build = DateTime.Now.ToString("yyyyMMdd");
+
+            public static string GetVersionInfo() =>
+                $"deneOS {Version} - {Channel} Channel - Build {Build}";
+        }
+
     }
 
-public class CustomMessageBox : Form
+    public class CustomMessageBox : Form
     {
         public CustomMessageBox(string message, string title, Icon customIcon)
         {
