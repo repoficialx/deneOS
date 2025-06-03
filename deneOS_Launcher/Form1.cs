@@ -34,7 +34,7 @@ namespace deneOS_Launcher
                     havePro = false;
                     MessageBox.Show("ANTI-PIRACY ALERT! - PLEASE BUY deneOS PRO ON iNS WEBPAGE!");
                     //Registry.SetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\iNS\\deneOS", "deneOSProEnabled", "n");
-                    Directory.Delete(@"C:\Program Files\iNS\deneOS\Launcher\cfg", true);
+                    Directory.Delete(@"C:\DENEOS\sysconf\cfg", true);
                     Environment.Exit(-3278947);
                 }
                 else
@@ -61,15 +61,15 @@ namespace deneOS_Launcher
         {
             bool proEnabled2 = false;
             bool proKeyEnabled = false;
-            bool cfg = File.Exists(@"C:\Program Files\iNS\deneOS\Launcher\cfg\config.ini");
+            bool cfg = File.Exists(@"C:\DENEOS\sisconf\config.ini");
             if (cfg)
             {
-                var cfgInfo = File.ReadAllLines(@"C:\Program Files\iNS\deneOS\Launcher\cfg\config.ini");
+                var cfgInfo = File.ReadAllLines(@"C:\DENEOS\sysconf\config.ini");
                 if (cfgInfo[1].Contains("deneOSProEnabled = true"))
                 {
                     proEnabled2 = true;
                 }
-                if (cfgInfo[2].Contains("deneOSProKey = {7843NF-DRF764-VD9786-67W4N3}"))
+                if (cfgInfo.Length > 2 && cfgInfo[2].Contains("deneOSProKey = {7843NF-DRF764-VD9786-67W4N3}"))
                 {
                     proKeyEnabled = true;
                 }
@@ -110,12 +110,14 @@ namespace deneOS_Launcher
                     break;
                 case DialogResult.Cancel:
                     MessageBox.Show("Installation cancelled.", "deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
+                    return; 
                 case DialogResult.No:
                     DownloadAll();
+
                     break;
             }
-            Application.Restart();
+            Process.Start(Application.ExecutablePath);
+            Application.Exit();
         }
 
         void DownloadAll()
@@ -285,12 +287,10 @@ namespace deneOS_Launcher
 
         void WriteConfiguration()
         {
-            Directory.CreateDirectory(@"C:\Program Files\iNS\deneOS\");
-            Directory.CreateDirectory(@"C:\Program Files\iNS\deneOS\Launcher\");
-            Directory.CreateDirectory(@"C:\Program Files\iNS\deneOS\Launcher\cfg\");
-            Directory.CreateDirectory(@"C:\Program Files\iNS\deneOS\HomeEdition\");
-            Directory.CreateDirectory(@"C:\Program Files\iNS\deneOS\HomeEdition\cfg\");
-            string configPath = @"C:\Program Files\iNS\deneOS\Launcher\cfg\config.ini";
+            Directory.CreateDirectory(@"C:\DENEOS\");
+            Directory.CreateDirectory(@"C:\DENEOS\sysconf\");
+
+            string configPath = @"C:\DENEOS\sysconf\config.ini";
             if (!File.Exists(configPath))
             {
                 using (StreamWriter sw = new StreamWriter(configPath))
@@ -300,7 +300,7 @@ namespace deneOS_Launcher
                 }
             }
 
-            string langConfigPath = @"C:\Program Files\iNS\deneOS\HomeEdition\cfg\lang.ini";
+            string langConfigPath = @"C:\DENEOS\sysconf\lang.ini";
             if (!File.Exists(langConfigPath))
             {
                 void Lang2LangCode(SelENorES.Language lang, out string lc)
@@ -332,7 +332,7 @@ namespace deneOS_Launcher
         private void button1_Click(object sender, EventArgs e)
         {
             Process dnh = new Process();
-            dnh.StartInfo.FileName = "c:\\deneOS\\bin\\deneOS_Home.exe";
+            dnh.StartInfo.FileName = "c:\\DENEOS\\bin\\deneOS_Home.exe";
             dnh.StartInfo.Verb = "runas";
             dnh.StartInfo.UseShellExecute = true;
             dnh.Start();

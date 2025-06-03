@@ -55,6 +55,9 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>denelogo-_1_.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -115,6 +118,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="denelogo-_1_.ico" />
     <Content Include="DeneOSHome.png" />
     <Content Include="DeneOSPro.png" />
   </ItemGroup>

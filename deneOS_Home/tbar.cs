@@ -168,7 +168,7 @@ namespace deneOS_Home
                     return;
                 }
 
-                MessageBox.Show("ERROR 0x0000006: INCOHERENCIA DE ESTADO DE FORMULARIO", "deneOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ERROR 0x6: INCOHERENCIA DE ESTADO DE FORMULARIO", "deneOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {

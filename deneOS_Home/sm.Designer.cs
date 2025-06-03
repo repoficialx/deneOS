@@ -428,8 +428,9 @@
             // rec
             // 
             this.rec.AutoSize = true;
-            this.rec.Location = new System.Drawing.Point(180, 21);
+            this.rec.Location = new System.Drawing.Point(180, 19);
             this.rec.Name = "rec";
+            this.rec.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.rec.Size = new System.Drawing.Size(181, 27);
             this.rec.TabIndex = 2;
             this.rec.Text = "Downloadable App";

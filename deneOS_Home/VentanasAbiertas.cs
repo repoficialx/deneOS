@@ -106,7 +106,7 @@ public static class VentanasActivas
                             continue;
 
                         string exeName = Path.GetFileNameWithoutExtension(proceso.MainModule.FileName);
-                        string[] procesosInternos = { "deneOS_Home", "explorerdna", "tbar", "Shell de experiencia de Windows", "sm", "volSlider" };
+                        string[] procesosInternos = { "deneOS_Home", "explorerdna", "tbar", "Shell de experiencia de Windows", "sm", "volSlider", "Host de experiencia del shell de Windows"};
                         if (procesosInternos.Contains<string>(exeName))
                             continue;
 

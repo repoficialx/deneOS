@@ -206,7 +206,7 @@ namespace deneOS_Home.init
         {
             string usr;
             string pss;
-            var cfgInfo = File.Exists(@"C:\Program Files\iNS\deneOS\HomeEdition\cfg\config.ini") ? File.ReadAllLines(@"C:\Program Files\iNS\deneOS\HomeEdition\cfg\config.ini") : new string[] { "", "", "" };
+            var cfgInfo = File.Exists(@"C:\DENEOS\sysconf") ? File.ReadAllLines(@"C:\DENEOS\sysconf\config.ini") : new string[] { "", "", "" };
             if (cfgInfo[2].ToLower().Contains("password = "))
             {
                 pss = cfgInfo[2].Substring(11);
@@ -270,7 +270,7 @@ namespace deneOS_Home.init
                         boxregpass.Text
                     )
                 };
-                File.WriteAllLines(@"C:\Program Files\iNS\deneOS\HomeEdition\cfg\config.ini", file);
+                File.WriteAllLines(@"C:\DENEOS\sysconf\config.ini", file);
                 MessageBox.Show("User created successfully!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
