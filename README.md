@@ -1,16 +1,16 @@
 # 🧠 deneOS  
-![Versión](https://img.shields.io/badge/v0.4-public_preview-blue)  
+![Versión](https://img.shields.io/badge/v0.9-alpha-blue)  
 ![Compatible con .exe](https://img.shields.io/badge/exe-compatible-darkgreen)  
 ![Compatible con .wpi](https://img.shields.io/badge/wpi-compatible-skyblue)
 
 ### 📌 ¿Qué es *deneOS*?
 
-**deneOS** es un MiniOS que se ejecuta sobre Windows.  
+**deneOS** es un miniOS que se ejecuta sobre Windows.  
 Ligero, rápido y con una interfaz totalmente personalizable, está diseñado para ofrecer una experiencia minimalista y directa, sin complicaciones ni distracciones.
 
-### 💻 ¿Qué es un MiniOS?
+### 💻 ¿Qué es un miniOS?
 
-Un **MiniOS** (mini operating system) es una aplicación que corre a pantalla completa, imitando el comportamiento y diseño de un sistema operativo.  
+Un **miniOS** (mini operating system) es una aplicación que corre a pantalla completa, imitando el comportamiento y diseño de un sistema operativo.  
 Es ideal para:
 
 - 💼 Computadoras dedicadas a tareas específicas  
@@ -26,6 +26,7 @@ En resumen: es como tener tu propio sistema operativo… ¡pero encima de Window
 - Compatible con:
   - `.exe` estándar
   - Archivos `.wpi` (formato de instalación personalizado de deneOS)
+  - Archivos `.dna` y próximamente con `.dpk`
 
 ### 🛠️ Próximamente
 
@@ -37,7 +38,7 @@ En resumen: es como tener tu propio sistema operativo… ¡pero encima de Window
 ### 🧪 Estado del proyecto
 
 > **deneOS v1.0** estará disponible próximamente.  
-Actualmente se encuentra en fase **public preview**, pero ya puedes probar su funcionalidad base.
+Actualmente se encuentra en fase **alfa**, pero ya puedes probar su funcionalidad base.
 
 ---
 
