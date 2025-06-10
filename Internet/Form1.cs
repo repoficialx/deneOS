@@ -17,89 +17,40 @@ namespace Internet
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ObtenerSSID();
-            ObtenerVersionWiFi();
+            debug("obtenerssid a ser llamado");
+            label6.Text = Internet.ObtenerSSID();
+            debug("obtenerssid llamado");
+            debug("obtenerversionwifi a ser llamado");
+            label4.Text = Internet.ObtenerVersionWiFi(comboBox1);
+            debug("obtenerversionwifi llaado");
+            debug("obtenerestadodatosmoviles a ser llamado");
             ObtenerEstadoDatosMoviles();
+            debug("obtenerestadodatosmoviles llamado");
+            //MessageBox.Show(Internet.getBand().ToString());
+            debug("msgbox mostrado");
+            label3.Text = Band2Icon(Internet.getBand());
+            debug("label3 asignado");
+            debug($"texto asignado a label3: {label3.Text}");
+            debug($"getBand estado: {Internet.getBand()}");
+        }
+        void debug(string texto)
+        {
+            Console.WriteLine("[DEBUG] " + texto);
         }
 
-        private void ObtenerSSID()
+        string Band2Icon(string band)
         {
-            Process process = new Process
+            switch (band.Trim().ToLowerInvariant()) // Quita espacios y estandariza mayúsculas
             {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = "netsh",
-                    Arguments = "wlan show interfaces",
-                    RedirectStandardOutput = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true
-                }
-            };
-
-            process.Start();
-            string output = process.StandardOutput.ReadToEnd();
-            process.WaitForExit();
-#pragma warning disable CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
-            // Extraer el SSID de la salida
-            string ssid = output.Split('\n')
-                                .FirstOrDefault(line => line.Contains("SSID") && !line.Contains("BSSID"))?
-                                .Split(':')[1]
-                                .Trim();
-
-            label6.Text = "WiFi: " + (ssid ?? "No conectado");
-        }
-        private void ObtenerVersionWiFi()
-        {
-            Process process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = "netsh",
-                    Arguments = "wlan show interfaces",
-                    RedirectStandardOutput = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true
-                }
-            };
-
-            process.Start();
-            string output = process.StandardOutput.ReadToEnd();
-            process.WaitForExit();
-
-            // Extraer la versión WiFi
-
-            string wifiVersion = output.Split('\n')
-                                      .FirstOrDefault(line => line.Contains("Tipo de radio"))?
-                                      .Split(':')[1]
-                                      .Trim();
-            switch (wifiVersion)
-            {
-                case "802.11be":
-                    label4.Text = "looks_7";
-                    break;
-                case "802.11ax":
-                    label4.Text = "looks_6";
-                    break;
-                case "802.11ac":
-                    label4.Text = "looks_5";
-                    break;
-                case "802.11n":
-                    label4.Text = "looks_4";
-                    break;
-                case "802.11g":
-                    label4.Text = "looks_3";
-                    break;
-                case "802.11b":
-                    label4.Text = "looks_2";
-                    break;
-                case "802.11a":
-                    label4.Text = "looks_1";
-                    break;
+                case "2,4 ghz":
+                    return "filter_4";
+                case "5 ghz":
+                    return "5g";
+                case "6 ghz":
+                    return "filter_6";
                 default:
-                    label4.Text = "unknown";
-                    break;
+                    return band;
             }
-            comboBox1.Text = wifiVersion;
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -177,7 +128,12 @@ namespace Internet
 
         private void button1_Click(object sender, EventArgs e)
         {
+            new networkList().ShowDialog();
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            new ExtendedWLANInfo().ShowDialog();
         }
     }
 }

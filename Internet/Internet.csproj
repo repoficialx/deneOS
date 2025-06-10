@@ -13,4 +13,10 @@
     <PackageReference Include="System.Management" Version="9.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="NativeWifi">
+      <HintPath>..\..\..\..\NativeWifi\bin\Debug\NativeWifi.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
