@@ -96,7 +96,7 @@ namespace deneNotes
 
         private void alejarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            textBox1.Font = new Font(textBox1.Font.Name, textBox1.Font.Size - 2, textBox1.Font.Style, textBox1.Font.Unit, textBox1.Font.GdiCharSet, textBox1.Font.GdiVerticalFont);
+            textBox1.Font = new Font(textBox1.Font.Name, textBox1.Font.Size>=2 ? textBox1.Font.Size-2 : textBox1.Font.Size, textBox1.Font.Style, textBox1.Font.Unit, textBox1.Font.GdiCharSet, textBox1.Font.GdiVerticalFont);
         }
 
         private void restaurarAlPredeterminadoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -138,7 +138,13 @@ namespace deneNotes
 
         private void fuenteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fontDialog1.ShowDialog();
+            if (fontDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Font old = textBox1.Font;
+                Font newFont = new Font(fontDialog1.Font.FontFamily, old.Size, fontDialog1.Font.Style);
+                textBox1.Font = newFont;
+            }
+
         }
 
         private void deshacerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -199,9 +205,32 @@ namespace deneNotes
         private void timer1_Tick(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = $"Línea {textBox1.GetLineFromCharIndex(textBox1.SelectionStart) + 1}, Columna {textBox1.SelectionStart - textBox1.GetFirstCharIndexFromLine(textBox1.GetLineFromCharIndex(textBox1.SelectionStart)) + 1}";
-            toolStripStatusLabel2.Text = $"{(textBox1.Font.Size / 12) * 100}%";
-            toolStripStatusLabel3.Text = "LF";
-            toolStripStatusLabel4.Text = Encoding.UTF8.ToString();
+            toolStripStatusLabel2.Text = $"{(int)Math.Round((textBox1.Font.Size / 12) * 100)}%";
+            toolStripStatusLabel3.Text = getNLineMethod(textBox1);
+            toolStripStatusLabel4.Text = Encoding.UTF8.EncodingName;
+        }
+
+        string getNLineMethod(TextBox textBox)
+        {
+            string text = textBox.Text;
+
+            if (text.Contains("\r\n"))
+            {
+                return "CRLF";
+            }
+            else if (text.Contains("\n"))
+            {
+                return "LF";
+            }
+            else if (text.Contains("\r"))
+            {
+                return "CR";
+            }
+            else
+            {
+                return "There isn't more than 1 line";
+            }
+
         }
 
         private void verToolStripMenuItem_Click(object sender, EventArgs e)
@@ -213,6 +242,7 @@ namespace deneNotes
         {
             textBox1.Font = fontDialog1.Font;
         }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -226,6 +256,11 @@ namespace deneNotes
                 e.SuppressKeyPress = true;
                 SendKeys.Send("+{LEFT}{DEL}");
             }
+        }
+
+        private void ediciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

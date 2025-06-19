@@ -52,6 +52,7 @@ namespace deneOS_Home.init
             cproc.StartInfo.Arguments = "/f /im explorer.exe";
             cproc.StartInfo.CreateNoWindow = true;
             cproc.Start();
+            //Process.Start("explorer.exe", "/nogui");
             //hacer el boot
             //Comprobar que todos los archivos estén
             bool existeCarpetaDN = Directory.Exists("C:\\DENEOS");

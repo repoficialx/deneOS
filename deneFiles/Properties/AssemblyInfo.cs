@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
 [assembly: AssemblyTitle("dnfl")]
-[assembly: AssemblyDescription("DENEFILES : FILEXPLORE BUILD 10 FOR DENEOS HOME")]
+[assembly: AssemblyDescription("DENEFILES")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("repoficialx")]
 [assembly: AssemblyProduct("deneOS")]
