@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dpkxt", "dpkxt\dpkxt.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dosu", "dosu\dosu.csproj", "{CC882D0B-7CE2-43CA-A9F0-55CF8DA7C97D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WARun", "WARun\WARun.csproj", "{1326C8DA-D9B6-4B51-AABF-6270CFAE744F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -225,6 +227,14 @@ Global
 		{CC882D0B-7CE2-43CA-A9F0-55CF8DA7C97D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CC882D0B-7CE2-43CA-A9F0-55CF8DA7C97D}.Release|x64.ActiveCfg = Release|Any CPU
 		{CC882D0B-7CE2-43CA-A9F0-55CF8DA7C97D}.Release|x64.Build.0 = Release|Any CPU
+		{1326C8DA-D9B6-4B51-AABF-6270CFAE744F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1326C8DA-D9B6-4B51-AABF-6270CFAE744F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1326C8DA-D9B6-4B51-AABF-6270CFAE744F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1326C8DA-D9B6-4B51-AABF-6270CFAE744F}.Debug|x64.Build.0 = Debug|Any CPU
+		{1326C8DA-D9B6-4B51-AABF-6270CFAE744F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1326C8DA-D9B6-4B51-AABF-6270CFAE744F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1326C8DA-D9B6-4B51-AABF-6270CFAE744F}.Release|x64.ActiveCfg = Release|Any CPU
+		{1326C8DA-D9B6-4B51-AABF-6270CFAE744F}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

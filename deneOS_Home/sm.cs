@@ -198,6 +198,20 @@ namespace deneOS_Home
         private void panel3_Click(object sender, EventArgs e)
         {
             //INICIAR DENEFILES
+            string deneFiles = @"C:\DENEOS\systemApps\deneFiles\deneFiles.exe";
+            if (!File.Exists(deneFiles))
+            {
+                MessageBox.Show("deneFiles no está instalado. Por favor, instálalo desde GitHub.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            // Si el archivo existe, iniciar el proceso
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = deneFiles,
+                Arguments = flagMgmt.EnableRoot ? "/dangerZone:enableRoot" : "",
+                UseShellExecute = true
+            };
+            Process.Start(startInfo);
         }
 
         private void panel10_Click(object sender, EventArgs e)
@@ -312,8 +326,7 @@ namespace deneOS_Home
 
         private void button3_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(Application.ExecutablePath);
-            Application.Exit();
+            Application.Restart();
         }
 
         private void button1_Click(object sender, EventArgs e)

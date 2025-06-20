@@ -121,6 +121,7 @@
     <Content Include="denelogo-_1_.ico" />
     <Content Include="DeneOSHome.png" />
     <Content Include="DeneOSPro.png" />
+    <None Include="Resources\denelogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

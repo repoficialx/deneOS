@@ -37,15 +37,111 @@ namespace deneOS_Home.init
         private Timer bootTimer;
         public BootScreen()
         {
+            if (flagMgmt.ResetPrefs)
+            {
+                Properties.Settings.Default.Reset();
+                Properties.Settings.Default.Save();
+            }
+            if (flagMgmt.EnableDebug)
+            {
+                Console.WriteLine("[DEBUG] Debug mode enabled");
+            }
+            if (flagMgmt.EnableRoot)
+            {
+                Console.WriteLine("[DEBUG] Root mode enabled");
+            }
+            if (flagMgmt.DisableLockScreen)
+            {
+                Console.WriteLine("[DEBUG] Lock screen disabled");
+            }
+            if (flagMgmt.MockBattery)
+            {
+                Console.WriteLine("[DEBUG] Mock battery enabled");
+            }
+            if (flagMgmt.ClassicMode)
+            {
+                Console.WriteLine("[DEBUG] Classic mode enabled");
+            }
+            if (flagMgmt.ForceUpdate)
+            {
+                Console.WriteLine("[DEBUG] Force update enabled");
+            }
+            if (flagMgmt.SafeMode)
+            {
+                Console.WriteLine("[DEBUG] Safe mode enabled");
+            }
+            if (flagMgmt.SafeModeWithNetwork)
+            {
+                Console.WriteLine("[DEBUG] Safe mode with network enabled");
+            }
+            if (flagMgmt.RecoverMode)
+            {
+                Console.WriteLine("[DEBUG] Recover mode enabled");
+            }
+            if (flagMgmt.LogSession)
+            {
+                Console.WriteLine("[DEBUG] Session logging enabled");
+            }
+            if (flagMgmt.BypassChecks)
+            {
+                Console.WriteLine("[DEBUG] Bypass checks enabled");
+            }
+            if (flagMgmt.ShowSysInfo)
+            {
+                Console.WriteLine("[DEBUG] System info display enabled");
+            }
+            if (flagMgmt.NoShell)
+            {
+                Console.WriteLine("[DEBUG] No shell mode enabled");
+            }
+            if (flagMgmt.EmergencyUI)
+            {
+                Console.WriteLine("[DEBUG] Emergency UI enabled");
+                EmergencyScreen emergencyScreen = new EmergencyScreen();
+                emergencyScreen.ShowDialog();
+                this.BeginInvoke(new Action(() => this.Close()));
+            }
+            if (flagMgmt.OfflineOnly)
+            {
+                Console.WriteLine("[DEBUG] Offline only mode enabled");
+            }
+            if (flagMgmt.Language != "")
+            {
+                Console.WriteLine($"[DEBUG] Language set to {flagMgmt.Language}");
+            }
+            if (flagMgmt.LaunchAppId != "")
+            {
+                Console.WriteLine($"[DEBUG] Launch app ID set to {flagMgmt.LaunchAppId}");
+            }
+            if (flagMgmt.Locale != "")
+            {
+                Console.WriteLine($"[DEBUG] Locale set to {flagMgmt.Locale}");
+            }
+            if (flagMgmt.SelectedTimeFormat != flagMgmt.TimeFormat.SystemDefault)
+            {
+                Console.WriteLine($"[DEBUG] Time format set to {flagMgmt.SelectedTimeFormat}");
+            }
+            if (flagMgmt.ShowUntranslatedStrings)
+            {
+                Console.WriteLine("[DEBUG] Showing untranslated strings");
+            }
+
+            if (flagMgmt.SkipBootAnim)
+            {
+                DisableExplorer();
+                FilenFolderCheck();
+                CargarIdioma();
+                new logonui();
+                return;
+            }
             InitializeComponent();
             // Configura el timer
             bootTimer = new Timer();
-            bootTimer.Interval = 40; // Puedes ajustar la velocidad aquí
+            bootTimer.Interval = 30; // Puedes ajustar la velocidad aquí
             bootTimer.Tick += BootTimer_Tick;
             bootTimer.Start();
         }
-
-        private void BootScreen_Load(object sender, EventArgs e)
+        void DisableExplorer()
         {
             Process cproc = new Process();
             cproc.StartInfo.FileName = "taskkill";
@@ -53,7 +149,9 @@ namespace deneOS_Home.init
             cproc.StartInfo.CreateNoWindow = true;
             cproc.Start();
             //Process.Start("explorer.exe", "/nogui");
-            //hacer el boot
+        }
+        void FilenFolderCheck()
+        {
             //Comprobar que todos los archivos estén
             bool existeCarpetaDN = Directory.Exists("C:\\DENEOS");
             bool existeLauncher = true;
@@ -93,8 +191,22 @@ namespace deneOS_Home.init
                 Console.WriteLine($"[INFO] Do all the files exist? {archivos}");
                 Console.WriteLine($"[INFO] lang.ini isn't neither blank nor null? {nonempty}");
             }
-                //Load language
-                bool fileExists = File.Exists(@"C:\DENEOS\sysconf\lang.ini");
+            
+        }
+        void CargarIdioma()
+        {
+            if (flagMgmt.ShowUntranslatedStrings)
+            {
+                Traductor.UN_ST = true;
+                return;
+            }
+            if (flagMgmt.Language != "")
+            {
+                Cargar(flagMgmt.Language);
+                return;
+            }
+            //Load language
+            bool fileExists = File.Exists(@"C:\DENEOS\sysconf\lang.ini");
             int langLine = 1;
             string lang;
             if (fileExists)
@@ -116,12 +228,18 @@ namespace deneOS_Home.init
             }
             Cargar(lang);
         }
+        private void BootScreen_Load(object sender, EventArgs e)
+        {
+            DisableExplorer();
+            FilenFolderCheck();
+            CargarIdioma();
+        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             timer1.Stop();
             this.Hide();
-            new logonui().Show();
+            new logonui();
             
         }
 

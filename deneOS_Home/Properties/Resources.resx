@@ -124,6 +124,9 @@
   <data name="DisplaySystemToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DisplaySystemToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="HealthSystemToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HealthSystemToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="KeyboardSystemToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\KeyboardSystemToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -136,14 +139,14 @@
   <data name="X_80.contrastblack" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\X_80.contrast-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="img100" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img100.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="c25" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\c25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MouseSystemToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MouseSystemToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="c4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\c4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="denelogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\denelogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="c6" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\c6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -154,14 +157,17 @@
   <data name="c9" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\c9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="StorageSenseToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\@StorageSenseToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="X_80" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\X_80.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HeadphoneSystemToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HeadphoneSystemToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="WindowsHelloFaceToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\@WindowsHelloFaceToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DesktopKeepOnToastImg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DesktopKeepOnToastImg.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="c20" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\c20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,23 +175,14 @@
   <data name="c2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\c2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bitlockertoastimage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\@bitlockertoastimage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="edptoastimage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\@edptoastimage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="OkDone_80" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OkDone_80.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="c16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\c16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="c10" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\c10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="c26" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\c26.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="RestartTonight_80" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RestartTonight_80.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RemoteSystemToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RemoteSystemToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -199,17 +196,11 @@
   <data name="BluetoothPairingSystemToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BluetoothPairingSystemToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DesktopSpotlightToastIcon_Dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DesktopSpotlightToastIcon_Dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="denestore" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\denestore.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="MediaSystemToastIconcontrastwhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MediaSystemToastIcon.contrast-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="c14" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\c14.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="KeyboardSystemToastIconcontrastwhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KeyboardSystemToastIcon.contrast-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BluetoothPairingSystemToastIconcontrastblack" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BluetoothPairingSystemToastIcon.contrast-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -231,9 +222,6 @@
   </data>
   <data name="WirelessDisplayToast" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\@WirelessDisplayToast.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="c25" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\c25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-file-explorer-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-file-explorer-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -262,6 +250,9 @@
   <data name="optionalfeatures" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\@optionalfeatures.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="WLOGO_48x48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\@WLOGO_48x48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="c1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\c1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -274,6 +265,9 @@
   <data name="OkDone_80contrastblack" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OkDone_80.contrast-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="c3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\c3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ScheduleTime_80contrastwhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ScheduleTime_80.contrast-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -282,6 +276,12 @@
   </data>
   <data name="MediaSystemToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MediaSystemToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Snooze_80" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Snooze_80.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SecurityAndMaintenance" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SecurityAndMaintenance.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BluetoothSystemToastIconcontrastwhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BluetoothSystemToastIcon.contrast-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -319,8 +319,8 @@
   <data name="icons8-shutdown-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-shutdown-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="c13" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\c13.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bitlockertoastimage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\@bitlockertoastimage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="c8" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\c8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -355,8 +355,8 @@
   <data name="icons8-command-line-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-command-line-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="RecipV2_NoBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RecipV2_NoBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="denestore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\denestore.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AppHelpToast" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\@AppHelpToast.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -364,8 +364,8 @@
   <data name="c30" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\c30.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="c5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\c5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SecurityAndMaintenance_Error" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SecurityAndMaintenance_Error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-restart-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-restart-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -382,11 +382,11 @@
   <data name="wpcatltoast" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\wpcatltoast.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-shutdown-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-shutdown-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DesktopSpotlightToastIcon_Dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DesktopSpotlightToastIcon_Dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="HealthSystemToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HealthSystemToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="c10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\c10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DefaultAccountTile" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DefaultAccountTile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -412,8 +412,8 @@
   <data name="windowshelloV41" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\@windows-hello-V4.1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="KeyboardSystemToastIconcontrastwhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\KeyboardSystemToastIcon.contrast-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="img100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img100.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RestartNowPower_80contrastwhit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RestartNowPower_80.contrast-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -421,23 +421,26 @@
   <data name="SpeakersSystemToastIconcontrastwhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SpeakersSystemToastIcon.contrast-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="WindowsUpdateToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\@WindowsUpdateToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="InputSystemToastIconcontrastwhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\InputSystemToastIcon.contrast-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="StorageSenseToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\@StorageSenseToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="c26" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\c26.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="EnrollmentToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\@EnrollmentToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="WLOGO_48x48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\@WLOGO_48x48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="edptoastimage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\@edptoastimage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HealthSystemToastIconcontrastwhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HealthSystemToastIcon.contrast-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DesktopKeepOnToastImg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DesktopKeepOnToastImg.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="c4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\c4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="WindowsUpdateToastIconcontrastwhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\@WindowsUpdateToastIcon.contrast-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -448,11 +451,11 @@
   <data name="c7" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\c7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BluetoothPairingSystemToastIconcontrasthigh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BluetoothPairingSystemToastIcon.contrast-high.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="AudioToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\@AudioToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="HandwritingSystemToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HandwritingSystemToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GameSystemToastIconcontrastwhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GameSystemToastIcon.contrast-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -469,14 +472,14 @@
   <data name="BackgroundAccessToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\@BackgroundAccessToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="WindowsUpdateToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\@WindowsUpdateToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="c14" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\c14.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="c3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\c3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="c5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\c5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BluetoothPairingSystemToastIconcontrasthigh" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BluetoothPairingSystemToastIcon.contrast-high.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="HandwritingSystemToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HandwritingSystemToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LaptopPlugInToastImg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LaptopPlugInToastImg.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -484,8 +487,8 @@
   <data name="MouseSystemToastIconcontrastwhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MouseSystemToastIcon.contrast-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Snooze_80" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Snooze_80.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-shutdown-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-shutdown-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BluetoothSystemToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BluetoothSystemToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -505,22 +508,25 @@
   <data name="icons8-update-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-update-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SecurityAndMaintenance" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SecurityAndMaintenance.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="RecipV2_NoBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RecipV2_NoBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Snooze_80contrastblack" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Snooze_80.contrast-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="RestartTonight_80" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RestartTonight_80.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="c13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\c13.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SecurityAndMaintenance_Error" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SecurityAndMaintenance_Error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="WindowsHelloFaceToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\@WindowsHelloFaceToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HeadsetSystemToastIcon.ontrastwhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HeadsetSystemToastIcon.contrast-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="denelogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\denelogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-high-priority-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-high-priority-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-high-risk-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-high-risk-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

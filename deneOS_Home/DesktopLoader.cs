@@ -19,7 +19,7 @@ public class DesktopLoader
             // Panel contenedor
             Panel panel = new Panel
             {
-                Size = new Size(131, 169),
+                Size = new Size(75, 94),
                 Margin = new Padding(20),
                 BackColor = Color.Transparent
             };
@@ -38,10 +38,10 @@ public class DesktopLoader
             // Imagen (icono)
             PictureBox pic = new PictureBox
             {
-                Size = new Size(125, 125),
+                Size = new Size(60, 60),
                 SizeMode = PictureBoxSizeMode.Zoom,
                 Image = icon.ToBitmap(),
-                Location = new Point(3, 3) // pequeño margen interno
+                Location = new Point(3, 0) // pequeño margen interno
             };
 
             pic.Click += (sender, e) =>
@@ -61,8 +61,8 @@ public class DesktopLoader
             Label label = new Label
             {
                 Text = name,
-                Size = new Size(131, 28),
-                Location = new Point(0, 133),
+                Size = new Size(75, 48),
+                Location = new Point(0, 60),
                 TextAlign = ContentAlignment.TopCenter
             };
 

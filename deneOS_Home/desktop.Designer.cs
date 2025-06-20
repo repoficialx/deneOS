@@ -68,15 +68,16 @@
             this.panel12.Location = new System.Drawing.Point(20, 20);
             this.panel12.Margin = new System.Windows.Forms.Padding(20);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(131, 169);
+            this.panel12.Size = new System.Drawing.Size(75, 94);
             this.panel12.TabIndex = 0;
             this.panel12.Click += new System.EventHandler(this.panel12_Click);
             // 
             // label18
             // 
-            this.label18.Location = new System.Drawing.Point(0, 133);
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label18.Location = new System.Drawing.Point(3, 64);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(131, 28);
+            this.label18.Size = new System.Drawing.Size(69, 28);
             this.label18.TabIndex = 1;
             this.label18.Text = "dnStore";
             this.label18.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -86,7 +87,7 @@
             this.pictureBox2.Image = global::deneOS_Home.Properties.Resources.denestore;
             this.pictureBox2.Location = new System.Drawing.Point(3, 3);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(125, 125);
+            this.pictureBox2.Size = new System.Drawing.Size(69, 60);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;

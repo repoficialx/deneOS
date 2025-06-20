@@ -7,9 +7,10 @@ using System.Windows.Forms;
 public static class Traductor
 {
     private static Dictionary<string, string> traducciones = new Dictionary<string, string>();
-
+    public static bool UN_ST = false;
     public static void Cargar(string idioma)
     {
+        UN_ST = false;
         string ruta = Path.Combine(System.Windows.Forms.Application.StartupPath, "lang", $"{idioma}.json");
         //MessageBox.Show($"Existe el archivo de idioma? {File.Exists(ruta)}.");
 
@@ -30,7 +31,10 @@ public static class Traductor
     }*/
     public static object T(string clave)
     {
-
+        if (UN_ST)
+        {
+            return clave;
+        }
         if (traducciones.TryGetValue(clave, out var valor))
         {
             // Intentar interpretar el valor como booleano

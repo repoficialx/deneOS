@@ -803,6 +803,26 @@ namespace deneOS_Home.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_high_priority_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-high-priority-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_high_risk_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-high-risk-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_internet_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8-internet-100", resourceCulture);

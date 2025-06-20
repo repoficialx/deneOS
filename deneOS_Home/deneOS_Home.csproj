@@ -106,6 +106,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="adminMgmt.cs" />
     <Compile Include="AppPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -120,6 +121,14 @@
       <DependentUpon>desktop.cs</DependentUpon>
     </Compile>
     <Compile Include="DesktopLoader.cs" />
+    <Compile Include="EmergencyScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmergencyScreen.Designer.cs">
+      <DependentUpon>EmergencyScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="exMgmt.cs" />
+    <Compile Include="flagMgmt.cs" />
     <Compile Include="globaldata.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="init\BootScreen.cs">
@@ -160,11 +169,16 @@
       <DependentUpon>volSlider.cs</DependentUpon>
     </Compile>
     <Compile Include="wfs.cs" />
+    <None Include="Resources\icons8-high-risk-100.png" />
+    <None Include="Resources\icons8-high-priority-100.png" />
     <EmbeddedResource Include="AppPanel.resx">
       <DependentUpon>AppPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="desktop.resx">
       <DependentUpon>desktop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmergencyScreen.resx">
+      <DependentUpon>EmergencyScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="init\BootScreen.resx">
       <DependentUpon>BootScreen.cs</DependentUpon>

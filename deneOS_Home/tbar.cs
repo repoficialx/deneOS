@@ -50,7 +50,7 @@ namespace deneOS_Home
             label19.Text = DateTime.Now.ToString("HH:mm:ss");
             label20.Text = DateTime.Now.ToString("dd/MM/yyyy");
             float getBattery = status.BatteryLifePercent * 100;
-            label21.Text = $"{getBattery}%";
+            label21.Text = !flagMgmt.MockBattery ? $"{getBattery}%" : "100%";
             //CAMBIAR ICONO (LABEL22)
             BatteryChargeStatus chargeStatus = status.BatteryChargeStatus;
             PowerLineStatus powerLineStatus = status.PowerLineStatus;
@@ -112,6 +112,11 @@ namespace deneOS_Home
         }
         static string GetBatteryIcon(float percentage, bool charging, bool saverMode)
         {
+            if (flagMgmt.MockBattery)
+            {
+                // Si se está simulando la batería, devolver un icono fijo
+                return ""; // Icono de batería al 100% (simulado)
+            }
             if (charging)
             {
                 if (percentage >= 90) return "";

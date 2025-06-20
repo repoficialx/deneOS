@@ -364,14 +364,14 @@
             this.ajusteDeLíneaToolStripMenuItem.Checked = true;
             this.ajusteDeLíneaToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ajusteDeLíneaToolStripMenuItem.Name = "ajusteDeLíneaToolStripMenuItem";
-            this.ajusteDeLíneaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.ajusteDeLíneaToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
             this.ajusteDeLíneaToolStripMenuItem.Text = "Ajuste de línea";
             this.ajusteDeLíneaToolStripMenuItem.Click += new System.EventHandler(this.ajusteDeLíneaToolStripMenuItem_Click);
             // 
             // fuenteToolStripMenuItem
             // 
             this.fuenteToolStripMenuItem.Name = "fuenteToolStripMenuItem";
-            this.fuenteToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.fuenteToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
             this.fuenteToolStripMenuItem.Text = "Fuente...";
             this.fuenteToolStripMenuItem.Click += new System.EventHandler(this.fuenteToolStripMenuItem_Click);
             // 

@@ -15,12 +15,22 @@ namespace deneOS_Home.init
 {
     public partial class logonui : Form
     {
+        public Panel panelToShow;
         /// <summary>
         /// Inicialización de Compontentes vía InitializeComponent();
         /// </summary>
         public logonui()
         {
+            if (flagMgmt.DisableLockScreen)
+            {
+                // Cerrar formulario y abrir el escritorio directamente lanzando una advertencia de seguridad
+                MessageBox.Show("Lock screen is disabled. This may pose a security risk.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                new desktop().Show();
+                new tbar().Show();
+                return;
+            }
             InitializeComponent();
+            this.Show();
         }
         /// <summary>
         /// Obtener nombre del mes a partir del número del mes usando el sistema de traducción vía json
@@ -66,14 +76,45 @@ namespace deneOS_Home.init
         /// <param name="e"></param>
         private void logonui_Load(object sender, EventArgs e)
         {
-            Panel panelOculto = new Panel();
+            string pss = "";
+            string usr = "";
+            string configFile = @"C:\DENEOS\sysconf\config.ini";
+            bool fileExists = File.Exists(configFile);
+            int headerLn = 0;
+            int userLn = 1;
+            int passLn = 2;
+            string[] cfgInfo = new string[3];
+            cfgInfo = fileExists ? File.ReadAllLines(configFile).Concat(new string[] { "", "", "" }).Take(3).ToArray() : new string[] { "", "", "" };
+            bool userSpecified = cfgInfo[userLn].Contains("username = ");
+            bool passSpecified = cfgInfo[passLn].Contains("password = ");
+            bool isValid = userSpecified && passSpecified;
+            bool Corrupted = ( userSpecified && !passSpecified ) || ( !userSpecified && passSpecified) ;
+            Panel panelToShow;
+            if (!isValid)
+            {
+                if (Corrupted)
+                {
+                    MessageBox.Show("Config file corrupted. Please fix it.", "DeneOS Home Edition", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(1);
+                    panelToShow = panel1;
+                }
+                else
+                {
+                    panelToShow = panel2;
+                }
+            }
+            else
+            {
+                panelToShow = panel1;
+            }
+                Panel panelOculto = new Panel();
             this.Controls.Add(panelOculto);
             this.ActiveControl = panelOculto; // Evita que button2 tome el foco
             this.KeyPreview = true;
             //MessageBox.Show($"Control con foco: {this.ActiveControl?.Name}");
             this.Activate();
             this.Focus();
-
+            this.panelToShow = panelToShow;
             txt3.Text = (string)T("txt3");
             txt4.Text = (string)T("txt4");
             txt5.Text = (string)T("txt5");
@@ -206,7 +247,7 @@ namespace deneOS_Home.init
         {
             string usr;
             string pss;
-            var cfgInfo = File.Exists(@"C:\DENEOS\sysconf") ? File.ReadAllLines(@"C:\DENEOS\sysconf\config.ini") : new string[] { "", "", "" };
+            var cfgInfo = File.Exists(@"C:\DENEOS\sysconf\config.ini") ? File.ReadAllLines(@"C:\DENEOS\sysconf\config.ini") : new string[] { "", "", "" };
             if (cfgInfo[2].ToLower().Contains("password = "))
             {
                 pss = cfgInfo[2].Substring(11);
@@ -238,8 +279,8 @@ namespace deneOS_Home.init
             if (boxusr.Text == pss && boxpass.Text == usr)
             {
                 MessageBox.Show("Welcome to deneOS Home Edition!", "Welcome!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Hide();
-                new deneOS_Home.desktop().Show();
+                Hide();
+                new desktop().Show();
                 new tbar().Show();
             }
             else
@@ -254,6 +295,7 @@ namespace deneOS_Home.init
         /// <param name="e"></param>
         private void txt13_Click(object sender, EventArgs e)
         {
+            
             if (boxregpass.Text == boxregpassag.Text)
             {
                 string[] file =
@@ -290,8 +332,8 @@ namespace deneOS_Home.init
             {
                 //MessageBox.Show("KEYDOWN EVENT ENTER KEY PRESSED");
                 e.SuppressKeyPress = true; // Evita que Enter llegue al botón
-                panel1.Show();
-                panel1.BringToFront();
+                panelToShow.Show();
+                panelToShow.BringToFront();
                 txt6.Focus();
             }
             /*else

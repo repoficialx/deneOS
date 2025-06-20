@@ -63,6 +63,16 @@ namespace deneOS_Launcher.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap denelogo {
+            get {
+                object obj = ResourceManager.GetObject("denelogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DeneOSHome {
             get {
                 object obj = ResourceManager.GetObject("DeneOSHome", resourceCulture);
