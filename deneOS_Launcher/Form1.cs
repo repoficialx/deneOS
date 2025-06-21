@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -49,7 +50,7 @@ namespace deneOS_Launcher
                 MaximumSize = new Size(401, 185);
             }
             #endregion
-            if (!File.Exists("C:\\DENEOS\\bin\\deneOS_Home.exe"))
+            if (!File.Exists("C:\\DENEOS\\core\\deneOS_Home.exe"))
             {
                 button1.Text = "INSTALL►";
                 button1.Click -= button1_Click;
@@ -105,6 +106,8 @@ namespace deneOS_Launcher
                     InstallExecutable();
                     MessageBox.Show("Writing Configuration...");
                     WriteConfiguration();
+                    MessageBox.Show("Downloading System Applications...");
+                    DownloadSystemApps();
                     MessageBox.Show("Installation completed successfully!", "deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);;
 
                     break;
@@ -127,6 +130,8 @@ namespace deneOS_Launcher
             InstallLibraries();
             InstallLanguages();
             WriteConfiguration();
+            DownloadSystemApps();
+
             MessageBox.Show("Installation completed successfully!", "deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -188,7 +193,7 @@ namespace deneOS_Launcher
 
         void InstallLibraries()
         {
-            string librariesPath = @"C:\DENEOS\bin\";
+            string librariesPath = @"C:\DENEOS\core\";
             if (!Directory.Exists(librariesPath))
             {
                 Directory.CreateDirectory(librariesPath);
@@ -233,7 +238,7 @@ namespace deneOS_Launcher
             WebClient client = new WebClient();
             foreach (string library in libraries)
             {
-                string libraryUri = $"https://repoficialx.xyz/deneosversions/v08/{library}";
+                string libraryUri = $"https://repoficialx.xyz/deneosversions/v09a/{library}";
                 string libraryPath = Path.Combine(librariesPath, library);
                 if (File.Exists(libraryPath))
                 {
@@ -246,22 +251,22 @@ namespace deneOS_Launcher
 
         void InstallExecutable()
         {
-            if (!Directory.Exists("C:\\DENEOS\\bin")) Directory.CreateDirectory("C:\\DENEOS\\bin");
-            string executablePath = @"C:\DENEOS\bin\deneOS_Home.exe";
+            if (!Directory.Exists("C:\\DENEOS\\core")) Directory.CreateDirectory("C:\\DENEOS\\core");
+            string executablePath = @"C:\DENEOS\core\deneOS_Home.exe";
             if (File.Exists(executablePath))
             {
                 File.Delete(executablePath);
             }
             WebClient client = new WebClient();
             string executableUri = 
-                "https://repoficialx.xyz/deneosversions/v08/deneOS_Home.exe";
+                "https://repoficialx.xyz/deneosversions/v09a/deneOS_Home.exe";
             client.DownloadFile(executableUri, executablePath);
             Console.WriteLine($"Downloaded deneOS_Home.exe to {executablePath}");
         }
 
         void InstallLanguages()
         {
-            string languagesPath = @"C:\DENEOS\bin\lang\";
+            string languagesPath = @"C:\DENEOS\core\lang\";
             if (!Directory.Exists(languagesPath))
             {
                 Directory.CreateDirectory(languagesPath);
@@ -274,7 +279,7 @@ namespace deneOS_Launcher
             WebClient client = new WebClient();
             foreach (string language in languages)
             {
-                string languageUri = $"https://repoficialx.xyz/deneosversions/v08/lang/{language}";
+                string languageUri = $"https://repoficialx.xyz/deneosversions/v09a/lang/{language}";
                 string languagePath = Path.Combine(languagesPath, language);
                 if (File.Exists(languagePath))
                 {
@@ -289,15 +294,12 @@ namespace deneOS_Launcher
         {
             Directory.CreateDirectory(@"C:\DENEOS\");
             Directory.CreateDirectory(@"C:\DENEOS\sysconf\");
+            Directory.CreateDirectory(@"C:\DENEOS\desktop\");
 
             string configPath = @"C:\DENEOS\sysconf\config.ini";
-            if (!File.Exists(configPath))
+            if (File.Exists(configPath))
             {
-                using (StreamWriter sw = new StreamWriter(configPath))
-                {
-                    sw.WriteLine("[deneOS]");
-                    sw.WriteLine("deneOSProEnabled = false");
-                }
+                File.Delete(configPath);
             }
 
             string langConfigPath = @"C:\DENEOS\sysconf\lang.ini";
@@ -327,12 +329,135 @@ namespace deneOS_Launcher
                     sw.WriteLine(langCode);
                 }
             }
+
+            // Registro
+            string input = InputMessageBox.Show("Wallpaper location: (leave empty for default)", "deneOS Installer");
+            string fixedInput = string.IsNullOrEmpty(input) ? @"c:\windows\web\4k\Wallpaper\windows\img0_1920x1200.jpg" : input;
+            using (RegistryKey key = Registry.CurrentUser.CreateSubKey(@"Software\deneOS\desktop"))
+            {
+                if (key != null)
+                {
+                    // Establecer valor DWORD showIcons = 1
+                    key.SetValue("showIcons", 1, RegistryValueKind.DWord);
+
+                    // Establecer valor cadena wallpaper = ruta de la imagen
+                    key.SetValue("wallpaper", fixedInput, RegistryValueKind.String);
+                }
+            }
+        }
+
+        void DownloadSystemApps()
+        {
+            DownloadDeneFiles();
+            DownloadDeneNavi();
+            DownloadDeneNotes();
+        }
+
+        void DownloadDeneFiles()
+        {
+            const string denefilespath = @"C:\DENEOS\systemApps\deneFiles\";
+            const string denefilehost = "https://repoficialx.xyz/deneosversions/systemApps/deneFiles/";
+            string[] files =
+            {
+                "deneFiles.exe",
+                "deneFiles.exe.config",
+                "deneFiles.pdb"
+            };
+            if (Directory.Exists(denefilespath))
+            {
+                Directory.Delete(denefilespath, true);
+            }
+            else
+            {
+                Directory.CreateDirectory(denefilespath);
+                foreach (var a in files)
+                {
+                    WebClient client = new WebClient();
+                    string fileUri = denefilehost + a;
+                    string filePath = Path.Combine(denefilespath, a);
+                    client.DownloadFile(fileUri, filePath);
+                    Console.WriteLine($"Downloaded {a} to {filePath}");
+                }
+            }
+        }
+
+        void DownloadDeneNavi()
+        {
+            const string denenavipath = @"C:\DENEOS\systemApps\deneNavi\";
+            const string denenavihost = "https://repoficialx.xyz/deneosversions/systemApps/deneNavi/";
+            string[] files =
+            {
+        "Internet Explorer 11.exe",
+        "Internet Explorer 11.exe.config",
+        "Internet Explorer 11.pdb",
+        "Microsoft.Web.WebView2.Core.dll",
+        "Microsoft.Web.WebView2.Core.xml",
+        "Microsoft.Web.WebView2.WinForms.dll",
+        "Microsoft.Web.WebView2.WinForms.xml",
+        "Microsoft.Web.WebView2.Wpf.dll",
+        "Microsoft.Web.WebView2.Wpf.xml",
+        "runtimes/win-arm64/native/WebView2Loader.dll",
+        "runtimes/win-x64/native/WebView2Loader.dll",
+        "runtimes/win-x86/native/WebView2Loader.dll",
+    };
+
+            if (Directory.Exists(denenavipath))
+            {
+                Directory.Delete(denenavipath, true);
+            }
+
+            Directory.CreateDirectory(denenavipath);
+
+            foreach (var a in files)
+            {
+                WebClient client = new WebClient();
+                string fileUri = denenavihost + a;
+                string filePath = Path.Combine(denenavipath, a);
+
+                // Crear carpetas intermedias si no existen
+                string directory = Path.GetDirectoryName(filePath);
+                if (!string.IsNullOrEmpty(directory))
+                    Directory.CreateDirectory(directory);
+
+                client.DownloadFile(fileUri, filePath);
+                Console.WriteLine($"Downloaded {a} to {filePath}");
+            }
+        }
+
+        void DownloadDeneNotes()
+        {
+            const string denenotespath = @"C:\DENEOS\systemApps\deneNotes\";
+            const string denenoteshost = "https://repoficialx.xyz/deneosversions/systemApps/deneNotes/";
+            Array files = new string[]
+            {
+                "deneNotes.exe",
+                "deneNotes.exe.config",
+                "deneNotes.pdb"
+            };
+            if (!Directory.Exists(denenotespath))
+            {
+                Directory.CreateDirectory(denenotespath);
+                foreach (string b in files)
+                {
+                    var client = new WebClient();
+                    string fileUri = denenoteshost + b;
+                    string filePath = Path.Combine(denenotespath, b);
+                    if (File.Exists(filePath))
+                    {
+                        File.Delete(filePath);
+                    }
+                    client.DownloadFile(fileUri, filePath);
+                    Console.WriteLine($"Downloaded {b} to {filePath}");
+
+                }
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Process dnh = new Process();
-            dnh.StartInfo.FileName = "c:\\DENEOS\\bin\\deneOS_Home.exe";
+            dnh.StartInfo.FileName = "c:\\DENEOS\\core\\deneOS_Home.exe";
             dnh.StartInfo.Verb = "runas";
             dnh.StartInfo.UseShellExecute = true;
             dnh.Start();
