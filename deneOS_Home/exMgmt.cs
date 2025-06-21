@@ -102,6 +102,14 @@ namespace deneOS_Home
                     this.Close();
                 };
             }
+            public exception(bool critical, string errorcode)
+            {
+                if (critical)
+                {
+                    EmergencyScreen _ = new EmergencyScreen(errorcode);
+                    _.Show();
+                }
+            }
         }
     }
 }
