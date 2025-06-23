@@ -4,6 +4,7 @@ using System.IO;
 
 namespace deneOS
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Estilos de nombres", Justification = "<pendiente>")]
     internal class deneTerm
     {
         static string currentPath = @"C:\DNUSR";
@@ -45,11 +46,23 @@ namespace deneOS
                         Console.WriteLine("- chamadi <user/software>: Cambia entre ~\\ (usuario) y ~S\\ (software)");
                         Console.WriteLine("- repair: Ejecuta herramientas de reparación");
                         Console.WriteLine("- exit: Cierra la terminal");
+                        Console.WriteLine("- mkdir <nombre>: Crea una carpeta en el directorio actual");
+                        Console.WriteLine("- rmdir <nombre>: Elimina una carpeta en el directorio actual");
+                        Console.WriteLine("- mkfile <nombre>: Crea un archivo vacío en el directorio actual");
+                        Console.WriteLine("- rmfile <nombre>: Elimina un archivo en el directorio actual");
+                        Console.WriteLine("- openfile <nombre>: Abre un archivo en el directorio actual");
+                        Console.WriteLine("- openapp <nombre>: Abre una aplicación instalada en $PATH$ o en SOFTWARE");
+                        Console.WriteLine("- pwd: Muestra la ruta actual con alias");
+                        Console.WriteLine("- start <file>: Abre un archivo o ejecutable en el directorio actual");
+                        Console.WriteLine("- a:openapp <nombre>: Abre una aplicación instalada en $PATH$ o en SOFTWARE como administrador");
+                        Console.WriteLine("- l:openapp <nombre>: Abre una aplicación instalada en $PATH$ o en SOFTWARE mostrando salida");
+                        Console.WriteLine("- l:a:openapp <nombre>: Abre una aplicación instalada en $PATH$ o en SOFTWARE como administrador y mostrando salida");
                         break;
 
                     case "ls":
                         ListDirectory();
                         break;
+
 
                     case "cd":
                         ChangeDirectory(arg);
@@ -76,8 +89,21 @@ namespace deneOS
                     case "mkfile": CreateFile(argument); break;
                     case "rmfile": DeleteFile(argument); break;
                     case "openfile": OpenFile(argument); break;
-                    case "openapp": OpenApp(argument); break;
+                    case "openapp": OpenApp(argument,false, false); break;
+                    case "l:openapp": OpenApp(argument, false, true); break; 
+                    case "a:openapp": OpenApp(argument, true, false); break;
+                    case "l:a:openapp": OpenApp(argument, true, true); break;
                     case "pwd": Console.WriteLine(GetAlias(currentPath)); break;
+                    case "start":
+                        if (File.Exists(Path.Combine(currentPath, arg)) || Directory.Exists(Path.Combine(currentPath, arg)))
+                        {
+                            Process.Start(new ProcessStartInfo(Path.Combine(currentPath, arg)) { UseShellExecute = true });
+                        }
+                        else
+                        {
+                            Console.WriteLine("❌ Archivo o directorio no encontrado.");
+                        }
+                        break;
                 }
             }
         }
@@ -191,14 +217,18 @@ namespace deneOS
                 {
                     FileName = "cmd.exe",
                     Arguments = "/c sfc /scannow",
-                    UseShellExecute = true
+                    UseShellExecute = false,
+                    Verb = "runas",
+                    RedirectStandardOutput = true
                 });
 
                 Process.Start(new ProcessStartInfo
                 {
                     FileName = "cmd.exe",
                     Arguments = "/c DISM /Online /Cleanup-Image /RestoreHealth",
-                    UseShellExecute = true
+                    UseShellExecute = false,
+                    Verb = "runas",
+                    RedirectStandardOutput = true
                 });
 
                 Console.WriteLine("🛠 Reparaciones iniciadas. Puede tardar unos minutos.");
@@ -271,17 +301,143 @@ namespace deneOS
             catch { Console.WriteLine("❌ No se pudo abrir el archivo."); }
         }
 
-        static void OpenApp(string name)
+        static void OpenApp(string name, bool shellExec, bool showOutput)
         {
 
             try
             {
-                Process.Start(new ProcessStartInfo(name) { UseShellExecute = true });
-                Console.WriteLine("🚀 Aplicación lanzada.");
+                ProcessStartInfo startInfo = new ProcessStartInfo()
+                {
+                    FileName = name,
+                    UseShellExecute = !showOutput, // Si es administrador, usar shell,
+                    Verb = shellExec ? "runas" : null, // Si es administrador, usar "runas"
+                    CreateNoWindow = !showOutput,
+                    WindowStyle = showOutput ? ProcessWindowStyle.Normal : ProcessWindowStyle.Hidden
+                };
+                Process.Start(startInfo);
+                Console.WriteLine("🚀 Aplicación lanzada. (ID#1)");
+                return;
             }
-            catch { Console.WriteLine("❌ No se pudo abrir la app."); }
+            catch 
+            {
+            RETRYING:
+                try
+                {
+                    string softwareAppPath = Path.Combine(softwarePath, name);
+                    Console.WriteLine("🔍 Buscando aplicación en SOFTWARE...");
+                    var programs = Directory.GetDirectories(softwarePath);
+                    foreach (var program in programs)
+                    {
+                        if (program.Contains(name, StringComparison.OrdinalIgnoreCase))
+                        {
+                            var files = Directory.GetFiles(program);
+                            foreach (var file in files)
+                            {
+                                //SI TERMINA EN EXE Y EL NOMBRE DEL PROGRAMA COINCIDE:
+                                try
+                                {
+                                    if (file.EndsWith(".exe") && (program.StartsWith(file) || file.StartsWith(program)))
+                                    {
+                                        ProcessStartInfo startInfo = new ProcessStartInfo()
+                                        {
+                                            FileName = file,
+                                            UseShellExecute = !showOutput, // Si es administrador, usar shell,
+                                            Verb = shellExec ? "runas" : null, // Si es administrador, usar "runas"
+                                            CreateNoWindow = !showOutput,
+                                            WindowStyle = showOutput ? ProcessWindowStyle.Normal : ProcessWindowStyle.Hidden
+                                        };
+                                        Process.Start(startInfo);
+                                        Console.WriteLine($"🚀 Aplicación '{name}' lanzada desde SOFTWARE. (ID#2)");
+                                        return;
+                                    }
+                                }
+                                catch // SI NO SE PUEDE ABRIR LA APLICACIÓN:
+                                {
+                                    //Console.WriteLine($"❌ No se pudo abrir la aplicación '{name}' desde SOFTWARE.");
+
+                                    // SI SE LLAMA UN NOMBRE DE LA LISTA DE PROBABLES:
+                                    try
+                                    {
+                                        string[] probableApps = { "launcher.exe", "main.exe", "start.exe", "app.exe" };
+                                        foreach (var probableApp in probableApps)
+                                        {
+                                            string probablePath = Path.Combine(program, probableApp);
+                                            if (File.Exists(probablePath))
+                                            {
+                                                ProcessStartInfo startInfo = new ProcessStartInfo()
+                                                {
+                                                    FileName = probablePath,
+                                                    UseShellExecute = !showOutput, // Si es administrador, usar shell,
+                                                    Verb = shellExec ? "runas" : null, // Si es administrador, usar "runas"
+                                                    CreateNoWindow = !showOutput,
+                                                    WindowStyle = showOutput ? ProcessWindowStyle.Normal : ProcessWindowStyle.Hidden
+                                                };
+                                                Process.Start(startInfo);
+                                                Console.WriteLine($"🚀 Aplicación '{name}' lanzada desde SOFTWARE usando {probableApp}. (ID#3)");
+                                                return;
+                                            }
+                                        }
+                                    } // SI NO ES NI PROBABLE NI COINCIDE
+                                    catch
+                                    {
+                                        //Console.WriteLine($"❌ No se pudo abrir la aplicación '{name}' desde SOFTWARE.");
+
+                                        try
+                                        {
+                                            // Abrir el primer archivo .exe encontrado en el directorio
+                                            var firstExe = Directory.GetFiles(program, "*.exe").FirstOrDefault();
+                                            if (firstExe != null)
+                                            {
+                                                ProcessStartInfo startInfo = new ProcessStartInfo()
+                                                {
+                                                    FileName = firstExe,
+                                                    UseShellExecute = !showOutput, // Si es administrador, usar shell,
+                                                    Verb = shellExec ? "runas" : null, // Si es administrador, usar "runas"
+                                                    CreateNoWindow = !showOutput,
+                                                    WindowStyle = showOutput ? ProcessWindowStyle.Normal : ProcessWindowStyle.Hidden
+                                                };
+                                                Process.Start(startInfo);
+                                                Console.WriteLine($"🚀 Aplicación '{name}' lanzada desde SOFTWARE usando el primer .exe encontrado. (ID#4)");
+                                                return;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine($"❌ No se encontró un ejecutable para '{name}' en SOFTWARE.");
+                                            }
+                                        }
+                                        catch
+                                        {
+                                            Console.WriteLine($"❌ No se pudo abrir la aplicación '{name}' desde SOFTWARE. Desea abortar la operación?");
+                                            string[] opcionessi = { "si", "sí", "yes", "y", "s" };
+                                            string[] opcionesno = { "no", "n" };
+                                            string respuesta = Console.ReadLine()?.Trim().ToLower();
+                                            if (opcionessi.Contains(respuesta))
+                                            {
+                                                Console.WriteLine("Operación abortada.");
+                                                return;
+                                            }
+                                            else if (opcionesno.Contains(respuesta))
+                                            {
+                                                Console.WriteLine("Continuando sin abrir la aplicación.");
+                                                goto RETRYING;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("Respuesta no válida. Operación abortada.");
+                                                return;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("❌ No se pudo abrir la app.");
+                }
+            }
         }
-
-
     }
 }

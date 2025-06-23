@@ -44,11 +44,12 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Variable Display Semib", 32F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(173, 31);
+            this.label1.Location = new System.Drawing.Point(144, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(588, 72);
             this.label1.TabIndex = 0;
             this.label1.Text = "deneOS had a problem";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // pictureBox1
             // 

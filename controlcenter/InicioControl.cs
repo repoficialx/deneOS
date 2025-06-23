@@ -39,9 +39,9 @@ public partial class InicioControl : UserControl
         labelFecha.Size = new Size(500, 30);
 
         // btnEstablecerShell
-        btnEstablecerShell.Text = "Establecer deneOS como Shell";
+        btnEstablecerShell.Text = (string)T("setdeneosasdefshell");
         btnEstablecerShell.Location = new Point(20, 150);
-        btnEstablecerShell.Size = new Size(300, 40);
+        btnEstablecerShell.Size = new Size(400, 40);
 
         btnEstablecerShell.Click += btnEstablecerShell_Click;
 
@@ -67,11 +67,11 @@ public partial class InicioControl : UserControl
             key.SetValue("Shell", Application.ExecutablePath);
             key.Close();
 
-            MessageBox.Show("deneOS ha sido establecido como shell del sistema. Reinicia para aplicar los cambios.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"{T("sdadsdone")}. {T("restarttoapplychanges")}.", (string)T("suc"), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Error: " + ex.Message, "Permiso denegado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show((string)T("restarttoapplychanges") + ": " + ex.Message, (string)T("accessdenied"), MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

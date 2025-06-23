@@ -73,6 +73,16 @@ namespace controlcenter.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_checkmark {
+            get {
+                object obj = ResourceManager.GetObject("icons8-checkmark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_ethernet_settings_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8-ethernet-settings-100", resourceCulture);
@@ -103,9 +113,29 @@ namespace controlcenter.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_info {
+            get {
+                object obj = ResourceManager.GetObject("icons8-info", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_laptop_settings_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8-laptop-settings-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_medium_risk_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-medium-risk-100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -136,6 +166,16 @@ namespace controlcenter.Properties {
         internal static System.Drawing.Bitmap icons8_software_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8-software-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_windows_update_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-windows-update-100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

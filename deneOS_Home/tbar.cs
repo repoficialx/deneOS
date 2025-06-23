@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Traductor;
 
 namespace deneOS_Home
 {
@@ -173,7 +174,7 @@ namespace deneOS_Home
                     return;
                 }
 
-                MessageBox.Show("ERROR 0x6: INCOHERENCIA DE ESTADO DE FORMULARIO", "deneOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"ERROR 0x6: {T("e0x6")}", "deneOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -208,7 +209,7 @@ namespace deneOS_Home
                     }
                     else
                     {
-                        MessageBox.Show("La aplicación no está abierta o ha finalizado.", "deneOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show((string)T("appclosed"), "deneOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 };
                 ToolTip tip = new ToolTip();

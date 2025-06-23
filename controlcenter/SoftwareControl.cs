@@ -2,7 +2,7 @@
 using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
-
+#pragma warning disable
 namespace controlcenter;
 
 public partial class SoftwareControl : UserControl
@@ -24,7 +24,7 @@ public partial class SoftwareControl : UserControl
 
         // Etiqueta apps de usuario
         Label lblUserApps = new Label();
-        lblUserApps.Text = "Aplicaciones instaladas (usuario):";
+        lblUserApps.Text = (string)T("userappsinstalled")+":";
         lblUserApps.Location = new Point(20, 20);
         lblUserApps.Font = new Font("Segoe UI", 10);
         lblUserApps.AutoSize = true;
@@ -36,14 +36,14 @@ public partial class SoftwareControl : UserControl
 
         // Botón de desinstalar
         Button btnUninstall = new Button();
-        btnUninstall.Text = "Desinstalar";
+        btnUninstall.Text = (string)T("uninstallapp");
         btnUninstall.Location = new Point(20, 260);
         btnUninstall.Click += BtnUninstall_Click;
         btnUninstall.Size = new Size(100, 30);
 
         // Etiqueta apps del sistema
         Label lblSysApps = new Label();
-        lblSysApps.Text = "Apps del sistema (solo lectura):";
+        lblSysApps.Text = (string)T("sysappsinstalled") + ":";
         lblSysApps.Location = new Point(300, 20);
         lblSysApps.Font = new Font("Segoe UI", 10);
         lblSysApps.AutoSize = true;
@@ -89,18 +89,18 @@ public partial class SoftwareControl : UserControl
             string appName = userAppsList.SelectedItem.ToString();
             string fullPath = Path.Combine(@"C:\SOFTWARE\", appName);
 
-            var result = MessageBox.Show($"¿Seguro que deseas eliminar {appName}?", "Confirmar desinstalación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            var result = MessageBox.Show(string.Format((string)T("uninstallappdesc"), appName), (string)T("uninstallappconfirm"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
                 try
                 {
                     Directory.Delete(fullPath, true);
                     userAppsList.Items.Remove(appName);
-                    MessageBox.Show("Aplicación eliminada correctamente.");
+                    MessageBox.Show((string)T("appuninstalled"));
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error al eliminar: {ex.Message}");
+                    MessageBox.Show($"{T("erruninstallingapp")}: {ex.Message}");
                 }
             }
         }

@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formAjustes));
             panel1 = new Panel();
+            btnUpd = new Button();
             btnAcerca = new Button();
             btnAvanzado = new Button();
             btnSoftware = new Button();
@@ -41,6 +43,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(btnUpd);
             panel1.Controls.Add(btnAcerca);
             panel1.Controls.Add(btnAvanzado);
             panel1.Controls.Add(btnSoftware);
@@ -52,6 +55,20 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(150, 450);
             panel1.TabIndex = 0;
+            // 
+            // btnUpd
+            // 
+            btnUpd.Dock = DockStyle.Top;
+            btnUpd.Image = Properties.Resources.icons8_windows_update_100;
+            btnUpd.ImageAlign = ContentAlignment.MiddleLeft;
+            btnUpd.Location = new Point(0, 270);
+            btnUpd.Name = "btnUpd";
+            btnUpd.Size = new Size(150, 45);
+            btnUpd.TabIndex = 7;
+            btnUpd.Text = "deneUpdate";
+            btnUpd.TextAlign = ContentAlignment.MiddleRight;
+            btnUpd.UseVisualStyleBackColor = true;
+            btnUpd.Click += btnUpd_Click;
             // 
             // btnAcerca
             // 
@@ -65,6 +82,7 @@
             btnAcerca.Text = "Acerca de...";
             btnAcerca.TextAlign = ContentAlignment.MiddleRight;
             btnAcerca.UseVisualStyleBackColor = true;
+            btnAcerca.Click += btnAcerca_Click;
             // 
             // btnAvanzado
             // 
@@ -151,6 +169,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "formAjustes";
             Text = "Centro de control";
             Load += formAjustes_Load;
@@ -168,5 +187,6 @@
         private Button btnGeneral;
         private Button btnPantalla;
         private Panel panel2;
+        private Button btnUpd;
     }
 }

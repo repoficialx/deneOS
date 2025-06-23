@@ -36,7 +36,7 @@ namespace controlcenter
 
             // Etiqueta
             Label lbl = new Label();
-            lbl.Text = "Brillo de pantalla";
+            lbl.Text = (string)T("brightness");
             lbl.Font = new Font("Segoe UI", 11, FontStyle.Bold);
             lbl.AutoSize = true;
             lbl.Location = new Point(60, 25);
@@ -51,7 +51,7 @@ namespace controlcenter
             slider.Location = new Point(20, 70);
             slider.Scroll += (s, e) => {
                 // Aquí pondrías el código para ajustar el brillo
-                Console.WriteLine($"Nuevo brillo: {slider.Value}%");
+                Console.WriteLine($"{T("newbrightness")}: {slider.Value}%");
             };
 
             // Agrega los controles al panel

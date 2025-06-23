@@ -36,7 +36,7 @@ namespace controlcenter
             // Botón de reinicio con root
             btnRootRestart = new Button()
             {
-                Text = "Reiniciar e iniciar en modo root",
+                Text = (string)T("restartinroot"),
                 Location = new System.Drawing.Point(20, 0),
                 AutoSize = true,
             };
@@ -68,25 +68,25 @@ namespace controlcenter
                 string selected = checkedListBoxFlags.SelectedItem?.ToString() ?? "";
                 lblFlagsDescription.Text = selected switch
                 {
-                    "/dangerZone:enableRoot" => "Permite acceder al sistema como root. ⚠️ Peligroso.",
-                    "/safeMode" => "Inicia deneOS en modo seguro.",
-                    "/language:es" => "Fuerza el idioma español.",
-                    "/bypassChecks" => "Omite verificaciones internas. ⚠️ Riesgoso.",
-                    _ => "Descripción no disponible para esta flag."
+                    "/dangerZone:enableRoot" => (string)T("dzrootdesc"),
+                    "/safeMode" => (string)T("sfmodedesc"),
+                    "/language:es" => (string)T("langesdesc"),
+                    "/bypassChecks" => (string)T("bypasschecksDesc"),
+                    _ => (string)T("descNotAvailable")
                 };
             };
 
 
             // Botón
             btnLaunchWithFlags = new Button();
-            btnLaunchWithFlags.Text = "Iniciar con flags seleccionadas";
+            btnLaunchWithFlags.Text = (string)T("bootwithselectedflags");
             btnLaunchWithFlags.Location = new Point(20, 230);
             btnLaunchWithFlags.Size = new Size(300, 30);
             btnLaunchWithFlags.Click += btnLaunchWithFlags_Click;
 
             // Label para descripción
             lblFlagsDescription = new Label();
-            lblFlagsDescription.Text = "Selecciona una flag para ver la descripción.";
+            lblFlagsDescription.Text =(string)T("selectaflagtoseedesc");
             lblFlagsDescription.Location = new Point(20, 270);
             lblFlagsDescription.Size = new Size(300, 60);
             lblFlagsDescription.AutoSize = false;
@@ -100,7 +100,7 @@ namespace controlcenter
             // Botón para abrir carpeta de sistema
             btnOpenSystemFolder = new Button()
             {
-                Text = "Abrir carpeta del sistema",
+                Text = (string)T("opensysfolder"),
                 Location = new System.Drawing.Point(20, 340),
                 AutoSize = true
             };
@@ -110,7 +110,7 @@ namespace controlcenter
             // Botón para panel de control deneOS
             btnControlPanel = new Button()
             {
-                Text = "Panel de control de deneOS",
+                Text = (string)T("deneOScontrolpanel"),
                 Location = new System.Drawing.Point(20, 370),
                 AutoSize = true,
                 Enabled = false // activar cuando esté implementado
@@ -126,7 +126,7 @@ namespace controlcenter
 
             if (selectedFlags.Length == 0)
             {
-                MessageBox.Show("Selecciona al menos una flag.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show((string)T("errselectoneflag"), (string)T("warn"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -136,7 +136,8 @@ namespace controlcenter
             {
                 Process.Start(new ProcessStartInfo
                 {
-                    FileName = @"C:\DENEOS\core\deneOS_Home.exe",
+                    //FileName = @"C:\DENEOS\core\deneOS_Home.exe", // para pruebas usamos el ultimo desde bin\debug
+                    FileName = @"C:\Users\rayel\source\repos\!New\repos\deneOS\deneOS_Home\bin\x64\Debug\deneOS_Home.exe",
                     Arguments = combinedArgs,
                     UseShellExecute = true,
                     Verb = "runas"
@@ -146,7 +147,7 @@ namespace controlcenter
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al iniciar deneOS con flags:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show((string)T("errorbootingwithflags") + ":\n" + ex.Message, (string)T("err"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -165,19 +166,19 @@ namespace controlcenter
             if (Directory.Exists(systemPath))
                 Process.Start("explorer.exe", systemPath);
             else
-                MessageBox.Show("La carpeta del sistema no se encontró.");
+                MessageBox.Show((string)T("errsysfoldernotfound"));
         }
 
         private void BtnControlPanel_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Panel de control de deneOS aún no está disponible.");
+            MessageBox.Show((string)T("errdeneoscontrolpanelnotavailable"));
         }
 
         private void BtnRootRestart_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(
-                "deneOS se reiniciará con permisos de root habilitados.\n¿Estás seguro?",
-                "Confirmar reinicio con root",
+                (string)T("deneoswillrestartwithroot"),
+                (string)T("confirmrestartroot"),
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning
             );
@@ -204,7 +205,7 @@ namespace controlcenter
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error al reiniciar con root: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{T("errrestartingroot")}: {ex.Message}", (string)T("err"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

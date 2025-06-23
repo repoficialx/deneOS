@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+using static Traductor;
 using System.Text.RegularExpressions;   
 
 class wfs
@@ -31,17 +32,17 @@ class wfs
         }
         Console.Write(output);
         // Buscar "Señal : 96%" usando regex)
-        Match match = Regex.Match(output, @"SeÃ±al\s*:\s*(\d+)%");
+        Match match = Regex.Match(output, @"(\d+)%");
         if (match.Success)
         {
             int signalStrength = int.Parse(match.Groups[1].Value);
-            Console.WriteLine($"Intensidad de señal WiFi: {signalStrength}%");
+            Console.WriteLine($"{T("wifistrength")} {signalStrength}%");
             //MessageBox.Show($"Intensidad de señal WiFi: {signalStrength}%");
             return signalStrength;
         }
         else
         {
-            Console.WriteLine("No se pudo obtener la señal WiFi.");
+            Console.WriteLine(T("nowifisignal"));
             return -1;
         }
 

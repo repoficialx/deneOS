@@ -1,3 +1,5 @@
+using deneOS_Home;
+
 namespace controlcenter
 {
     public partial class formAjustes : Form
@@ -59,6 +61,17 @@ namespace controlcenter
             btnInicio.Image = RedimensionarImagen(Properties.Resources.icons8_home_page_100, 30, 30) as Image;
             btnPantalla.Image = RedimensionarImagen(Properties.Resources.icons8_monitor_100, 30, 30) as Image;
             btnSoftware.Image = RedimensionarImagen(Properties.Resources.icons8_software_100, 30, 30) as Image;
+            btnUpd.Image = RedimensionarImagen(Properties.Resources.icons8_windows_update_100, 30, 30) as Image;
+
+            // Textos traducidos
+
+            Text = (string)T("controlcenter");
+            btnAcerca.Text = (string)T("about");
+            btnAvanzado.Text = (string)T("advanced");
+            btnGeneral.Text = (string)T("general");
+            btnInicio.Text = (string)T("home");
+            btnPantalla.Text = (string)T("screen");
+            btnSoftware.Text = (string)T("software");
         }
         private void btnPantalla_Click(object sender, EventArgs e)
         {
@@ -95,6 +108,20 @@ namespace controlcenter
             InicioControl inicio = new();
             panel2.Controls.Add(inicio);
 
+        }
+
+        private void btnAcerca_Click(object sender, EventArgs e)
+        {
+            panel2.Controls.Clear();
+            AboutControl acerca = new();
+            panel2.Controls.Add(acerca);
+        }
+
+        private void btnUpd_Click(object sender, EventArgs e)
+        {
+            panel2.Controls.Clear();
+            UpdateControl upd = new();
+            panel2.Controls.Add(upd);
         }
     }
 }

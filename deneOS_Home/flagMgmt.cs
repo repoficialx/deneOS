@@ -30,5 +30,7 @@
         // Flags de tipo enum (puedes ampliarlo más adelante)
         public enum TimeFormat { SystemDefault, Metric, Military }
         public static TimeFormat SelectedTimeFormat = TimeFormat.SystemDefault;
+        
+        
     }
 }

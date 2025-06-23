@@ -11,7 +11,8 @@ namespace controlcenter
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            
+
+            CargarIdiomas();
 
             if (args.Length > 0)
             {
@@ -28,6 +29,31 @@ namespace controlcenter
             }
 
             Application.Run(new formAjustes());
+        }
+
+        public static void CargarIdiomas()
+        {
+            bool fileExists = File.Exists(@"C:\DENEOS\sysconf\lang.ini");
+            int langLine = 1;
+            string lang;
+            if (fileExists)
+            {
+                try
+                {
+                    lang = File.ReadAllLines(@"C:\DENEOS\sysconf\lang.ini")[langLine];
+                }
+                catch
+                {
+                    MessageBox.Show("ERROR 0x4", "DENEOS HOME EDITION", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    lang = "en";
+                    return;
+                }
+            }
+            else
+            {
+                lang = "en";
+            }
+            Traductor.Cargar(lang);
         }
     }
 }

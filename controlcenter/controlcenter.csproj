@@ -2,11 +2,32 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net9.0-windows</TargetFramework>
+    <TargetFramework>net9.0-windows10.0.22621.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <SupportedOSPlatformVersion>10.0.22000.0</SupportedOSPlatformVersion>
+    <PlatformTarget>x64</PlatformTarget>
+    <ApplicationIcon>icons8-macbook-settings-100.ico</ApplicationIcon>
+    <Company>repoficialx</Company>
+    <Authors>repoficialx</Authors>
+    <Product>deneOS</Product>
+    <Description>Control Center for deneOS /\/\/\/ More user friendly alternative to Control Panel for deneOS.
+Made in together with deneOS v0.1b</Description>
+    <Copyright>©2025 repoficialx</Copyright>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="icons8-macbook-settings-100.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
@@ -21,6 +42,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Traductor">
+      <Static>True</Static>
+    </Using>
   </ItemGroup>
 
 </Project>

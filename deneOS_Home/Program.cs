@@ -1,7 +1,10 @@
 ﻿using deneOS_Home.init;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Remoting;
+using System.Runtime.Remoting.Messaging;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -29,11 +32,17 @@ namespace deneOS_Home
             myEx.ShowDialog();*/
         }
 
-        public static void Arguments() { 
-            string[] args = Environment.GetCommandLineArgs();
+        public static void Arguments() {
+            if (File.Exists("c:\\currentsessionflags.txt")) File.Delete("c:\\currentsessionflags.txt");
+            else _ = (string)null;
 
+
+                string[] args = Environment.GetCommandLineArgs();
+            string[] argfile = { };
             foreach (string arg in args)
             {
+                _ = argfile.Length < args.Length ? argfile.Append(arg + Environment.NewLine) : null;
+
                 if (arg.StartsWith("/dangerZone:enableRoot")) flagMgmt.EnableRoot = true;
                 else if (arg.StartsWith("/dangerZone:debug")) flagMgmt.EnableDebug = true;
                 else if (arg.StartsWith("/dangerZone:disableLockScreen")) flagMgmt.DisableLockScreen = true;
@@ -66,6 +75,7 @@ namespace deneOS_Home
                 else if (arg.StartsWith("/metricTime"))
                     flagMgmt.SelectedTimeFormat = flagMgmt.TimeFormat.Metric;
             }
+            File.WriteAllLines(@"C:\CurrentSessionFlags.txt", argfile);
         }
     }
 }

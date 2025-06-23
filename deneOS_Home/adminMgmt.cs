@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Traductor;
 
 namespace deneOS_Home
 {
@@ -25,7 +26,7 @@ namespace deneOS_Home
             if (arg < 0 || arg >= argsCount)
             {
                 //throw new ArgumentOutOfRangeException(nameof(arg), "Argument index is out of range.");
-                exMgmt.exception myEx = new exMgmt.exception("Argument index is out of range. Please check the argument index you are trying to access.", "adminMgmt", "Ok", null);
+                exMgmt.exception myEx = new exMgmt.exception($"{T("ex_argoutofindex")} {T("checkargindexyoutryingtoaccess")}", "adminMgmt", "Ok", null);
                 myEx.ShowDialog();
                 myEx.Dispose();
             }

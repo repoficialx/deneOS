@@ -166,12 +166,12 @@ namespace deneOS_Home
 
         private void panel4_Click(object sender, EventArgs e)
         {
-            //INICIAR DENENAVI
+            Process.Start(@"C:\DENEOS\systemApps\deneNavi\Internet Explorer 11.exe");
         }
 
         private void panel5_Click(object sender, EventArgs e)
         {
-            //INICIAR DENENOTES
+            Process.Start("C:\\DENEOS\\systemApps\\deneNotes\\deneNotes.exe");
         }
 
         private void panel6_Click(object sender, EventArgs e)
@@ -181,7 +181,7 @@ namespace deneOS_Home
 
         private void panel7_Click(object sender, EventArgs e)
         {
-            //INICIAR IE11MINIMAL
+            panel4_Click(sender, e); 
         }
 
         private void panel8_Click(object sender, EventArgs e)
@@ -201,7 +201,7 @@ namespace deneOS_Home
             string deneFiles = @"C:\DENEOS\systemApps\deneFiles\deneFiles.exe";
             if (!File.Exists(deneFiles))
             {
-                MessageBox.Show("deneFiles no está instalado. Por favor, instálalo desde GitHub.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show((string)T("dfni"), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             // Si el archivo existe, iniciar el proceso
@@ -286,7 +286,7 @@ namespace deneOS_Home
         private void button2_Click(object sender, EventArgs e)
         {
             string a1; string b1; object c1; object d1;
-            a1 = "Shutdown options: Do you want to shutdown the computer? (Pressing [YES] will shutdown, pressing [NO] will start Windows, pressing [CANCEL] will return)";
+            a1 = (string)T("sdopt");
             b1 = "deneOS Home Edition";
             c1 = MessageBoxButtons.YesNoCancel;
             d1 = MessageBoxIcon.Question;
@@ -317,7 +317,7 @@ namespace deneOS_Home
         {
             for (int i = 5; i >= 1; i--)
             {
-                MessageBox.Show($"El sistema se apagará en {i} segundos...", "deneOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"{T("syspwoffin")} {i} {T("ss")}...", "deneOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 await Task.Delay(1000); // espera 1 segundo
             }
 

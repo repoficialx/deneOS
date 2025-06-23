@@ -24,7 +24,7 @@ namespace deneOS_Home.init
             if (flagMgmt.DisableLockScreen)
             {
                 // Cerrar formulario y abrir el escritorio directamente lanzando una advertencia de seguridad
-                MessageBox.Show("Lock screen is disabled. This may pose a security risk.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"{T("lockscrdisabled")} {T("thismayposeasecrisk")}", (string)T("warn"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 new desktop().Show();
                 new tbar().Show();
                 return;
@@ -94,7 +94,7 @@ namespace deneOS_Home.init
             {
                 if (Corrupted)
                 {
-                    MessageBox.Show("Config file corrupted. Please fix it.", "DeneOS Home Edition", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{T("cfgflcorr")} {T("plsfxit")}", "deneOS Home Edition", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Environment.Exit(1);
                     panelToShow = panel1;
                 }
@@ -254,7 +254,7 @@ namespace deneOS_Home.init
             }
             else
             {
-                MessageBox.Show("No password set! Please enable password on settings.", "Dene Safety", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show((string)T("npss"), "dene Safety", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 pss = "";
             }
             if (cfgInfo[1].ToLower().Contains("username = "))
@@ -263,7 +263,7 @@ namespace deneOS_Home.init
             }
             else
             {
-                MessageBox.Show("No user set! Please create user on settings.", "Dene Safety", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show((string)T("nuss"), "dene Safety", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 usr = "";
             }
             _login(pss, usr);
@@ -278,14 +278,14 @@ namespace deneOS_Home.init
         {
             if (boxusr.Text == pss && boxpass.Text == usr)
             {
-                MessageBox.Show("Welcome to deneOS Home Edition!", "Welcome!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show((string)T("welctodeneosE"), (string)T("welc"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Hide();
                 new desktop().Show();
                 new tbar().Show();
             }
             else
             {
-                MessageBox.Show("Invalid username or password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show((string)T("invusrpss"), (string)T("err"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         /// <summary>
@@ -313,11 +313,11 @@ namespace deneOS_Home.init
                     )
                 };
                 File.WriteAllLines(@"C:\DENEOS\sysconf\config.ini", file);
-                MessageBox.Show("User created successfully!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show((string)T("usrcrscc"), (string)T("suc"), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Passwords do not match.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show((string)T("pssdntmatch"), (string)T("pssdntmatch"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         /// <summary>

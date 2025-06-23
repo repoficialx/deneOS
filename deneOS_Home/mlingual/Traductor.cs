@@ -11,7 +11,7 @@ public static class Traductor
     public static void Cargar(string idioma)
     {
         UN_ST = false;
-        string ruta = Path.Combine(System.Windows.Forms.Application.StartupPath, "lang", $"{idioma}.json");
+        string ruta = Path.Combine(@"C:\DENEOS\", "lang", $"{idioma}.json");
         //MessageBox.Show($"Existe el archivo de idioma? {File.Exists(ruta)}.");
 
         if (File.Exists(ruta))
