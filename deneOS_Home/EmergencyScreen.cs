@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Traductor;
 
-namespace deneOS_Home
+namespace deneOS
 {
     public partial class EmergencyScreen : Form
     {
@@ -57,6 +57,11 @@ namespace deneOS_Home
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EmergencyScreen_Load(object sender, EventArgs e)
         {
 
         }

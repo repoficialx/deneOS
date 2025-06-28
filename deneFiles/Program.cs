@@ -25,17 +25,48 @@ namespace deneFiles
                     case "/dangerZone:enableRoot":
                         // Aquí podrías implementar la lógica para habilitar el acceso a la raíz del sistema
                         // Por ejemplo, podrías cambiar la URL inicial del WebBrowser a "file:///C:/"
-                        Application.Run(new Form1(true)); // Ejecutar con acceso a la raíz
+                        if (args.Length > 1 && args[1].StartsWith("/folder:"))
+                        {
+                            // Si hay un segundo argumento que especifica una carpeta, podrías manejarlo aquí
+                            // Por ejemplo, podrías cambiar la URL inicial del WebBrowser a esa carpeta específica
+                            switch (args[1])
+                            {
+                                case "/folder:SOFTWARE":
+                                    Application.Run(new Form1(true, Form1.FolderType.SOFTWARE)); // Ejecutar con acceso a la carpeta SOFTWARE
+                                    break;
+                                case "/folder:DNUSR":
+                                    Application.Run(new Form1(true, Form1.FolderType.DNUSR)); // Ejecutar con acceso a la carpeta DNUSR
+                                    break;
+                                default:
+                                    MessageBox.Show("Carpeta no reconocida. Ejecutando con configuración por defecto.");
+                                    Application.Run(new Form1(true)); // Ejecutar con configuración por defecto
+                                    break;
+                            } // fin de switch anidado
+                        }
+                            else
+                                Application.Run(new Form1(true)); // Ejecutar con acceso a la raíz
                         break;
                     case "/folder:SOFTWARE":
                         // Aquí podrías implementar la lógica para navegar a la carpeta SOFTWARE
                         // Por ejemplo, podrías cambiar la URL inicial del WebBrowser a "file:///C:/SOFTWARE/"
-                        Application.Run(new Form1(false, Form1.FolderType.SOFTWARE)); // Ejecutar con acceso a la carpeta SOFTWARE
+                        if (args.Length > 1 && args[1] == "/dangerZone:enableRoot")
+                        {
+                            // Si hay un segundo argumento que habilita el acceso a la raíz, podrías manejarlo aquí
+                            Application.Run(new Form1(true, Form1.FolderType.SOFTWARE)); // Ejecutar con acceso a la carpeta SOFTWARE
+                        }
+                            else
+                                Application.Run(new Form1(false, Form1.FolderType.SOFTWARE)); // Ejecutar con acceso a la carpeta SOFTWARE
                         break;
                     case "/folder:DNUSR":
                         // Aquí podrías implementar la lógica para navegar a la carpeta DNUSR
                         // Por ejemplo, podrías cambiar la URL inicial del WebBrowser a "file:///C:/DNUSR/"
-                        Application.Run(new Form1(false, Form1.FolderType.DNUSR)); // Ejecutar con acceso a la carpeta DNUSR
+                        if (args.Length > 1 && args[1] == "/dangerZone:enableRoot")
+                        {
+                            // Si hay un segundo argumento que habilita el acceso a la raíz, podrías manejarlo aquí
+                            Application.Run(new Form1(true, Form1.FolderType.DNUSR)); // Ejecutar con acceso a la carpeta DNUSR
+                        }
+                            else
+                                Application.Run(new Form1(false, Form1.FolderType.DNUSR)); // Ejecutar con acceso a la carpeta DNUSR
                         break;
                     default:
                         // Si no se reconoce el argumento, podrías mostrar un mensaje de error o ejecutar con la configuración por defecto

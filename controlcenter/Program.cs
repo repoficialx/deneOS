@@ -16,6 +16,23 @@ namespace controlcenter
 
             if (args.Length > 0)
             {
+                if (args[0].StartsWith("/installUpdate:"))
+                {
+                    string downloadUrl = args[0].Substring("/installUpdate:".Length);
+                    if (Uri.IsWellFormedUriString(downloadUrl, UriKind.Absolute))
+                    {
+                        // Aquí podrías iniciar el proceso de descarga e instalación de la actualización
+                        MessageBox.Show("Iniciando actualización desde: " + downloadUrl, "Actualización", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Application.Run(new UpdateScreen(downloadUrl));
+                        Application.Exit();
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("URL de actualización no válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
                 formAjustes.CurrentPage = args[0] switch
                 {
                     "page:screen" => (formAjustes.Pages?)formAjustes.Pages.Pantalla,

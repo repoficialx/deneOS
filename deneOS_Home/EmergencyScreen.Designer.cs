@@ -1,4 +1,4 @@
-﻿namespace deneOS_Home
+﻿namespace deneOS
 {
     partial class EmergencyScreen
     {
@@ -135,6 +135,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CRITICAL ERROR";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.EmergencyScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

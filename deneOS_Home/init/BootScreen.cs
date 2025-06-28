@@ -197,7 +197,7 @@ namespace deneOS_Home.init
         {
             if (flagMgmt.ShowUntranslatedStrings)
             {
-                Traductor.UN_ST = true;
+                UN_ST = true;
                 return;
             }
             if (flagMgmt.Language != "")
@@ -205,28 +205,7 @@ namespace deneOS_Home.init
                 Cargar(flagMgmt.Language);
                 return;
             }
-            //Load language
-            bool fileExists = File.Exists(@"C:\DENEOS\sysconf\lang.ini");
-            int langLine = 1;
-            string lang;
-            if (fileExists)
-            {
-                try
-                {
-                    lang = File.ReadAllLines(@"C:\DENEOS\sysconf\lang.ini")[langLine];
-                }
-                catch
-                {
-                    MessageBox.Show("ERROR 0x4", "DENEOS HOME EDITION", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    lang = "en";
-                    return;
-                }
-            }
-            else
-            {
-                lang = "en";
-            }
-            Cargar(lang);
+            Cargar(dosu.UniversalConfiguration.GetLang());
         }
         private void BootScreen_Load(object sender, EventArgs e)
         {

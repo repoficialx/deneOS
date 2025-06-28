@@ -74,6 +74,14 @@ namespace controlcenter
             cbAutoStart.Font = new Font("Segoe UI", 10);    
             cbAutoStart.AutoSize = true;
 
+            // Label usuario actual
+            Label currentUsuario = new Label();
+            string usuario = File.ReadAllLines(@"C:\DENEOS\sysconf\config.ini")[1].Substring(File.ReadAllLines(@"C:\DENEOS\sysconf\config.ini")[1].TrimEnd().LastIndexOf(' ') + 1);
+            currentUsuario.Text = $"{(string)T("currentuser")}: {usuario}";
+            currentUsuario.Location = new Point(20, 150);
+            currentUsuario.Font = new Font("Segoe UI", 10);
+            currentUsuario.AutoSize = true;
+
             // Checkbox animaciones
             CheckBox cbAnimaciones = new CheckBox();
             cbAnimaciones.Text = (string)T("dnOSdefshell");
@@ -122,11 +130,41 @@ namespace controlcenter
                 }
             };
 
+            // Botón eliminar usuario
+            Button btnEliminarUsuario = new Button();
+            btnEliminarUsuario.Text = (string)T("deleteuser");
+            btnEliminarUsuario.Location = new Point(20, 120);
+            btnEliminarUsuario.Font = new Font("Segoe UI", 10);
+            btnEliminarUsuario.AutoSize = true;
+            btnEliminarUsuario.Click += (s, e) =>
+            {
+                // Aquí se puede agregar la lógica para eliminar el usuario
+                // Por ejemplo, mostrar un mensaje de confirmación
+                DialogResult result = MessageBox.Show((string)T("confirmdeleteuser"), (string)T("deleteuser"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    File.Delete(@"C:\DENEOS\sysconf\config.ini");
+                    A();
+                    MessageBox.Show((string)T("userdeleted"));
+                    
+                }
+
+
+            };
+           
             // Agregar controles
             this.Controls.Add(lblIdioma);
             this.Controls.Add(cbIdioma);
             this.Controls.Add(cbAutoStart);
             this.Controls.Add(cbAnimaciones);
+            this.Controls.Add(btnEliminarUsuario);
+            this.Controls.Add(currentUsuario);
+
+            void A()
+            {
+                currentUsuario.Text = $"{(string)T("currentuser")}: N/A";
+
+            }
         }
 
         void cbAutoStart(object sender, EventArgs e)

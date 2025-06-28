@@ -8,7 +8,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace deneOS_Home
+namespace deneOS
 {
     internal static class Program
     {

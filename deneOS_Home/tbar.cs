@@ -57,7 +57,7 @@ namespace deneOS_Home
             PowerLineStatus powerLineStatus = status.PowerLineStatus;
 
             bool isCharging = chargeStatus.HasFlag(BatteryChargeStatus.Charging);
-            bool isSaverOn = BatteryHelper.IsBatterySaverOn();
+            bool isSaverOn = dosu.Power.BatteryStatus.IsBatterySaverOn();
 
             label22.Text = GetBatteryIcon(getBattery, isCharging, isSaverOn);
             gws();
@@ -74,7 +74,7 @@ namespace deneOS_Home
         }
         void gws()
         {
-            int wifiSignal = wfs.GetWifiSignalStrength(); // 0 - 100
+            int wifiSignal = dosu.Network.WiFiStatus.GetWifiSignalStrength(); // 0 - 100
             string wifiIcon;
             if (wifiSignal < 0)
                 wifiIcon = ""; // no wifi
@@ -94,7 +94,7 @@ namespace deneOS_Home
         }
         void gvs()
         {
-            int vol = vls.GetSystemVolume(); // 0 - 100
+            int vol = dosu.Audio.VolumeManager.GetSystemVolume(); // 0 - 100
             string voli;
             if (vol == 0)
                 voli = ""; // no volumen
@@ -186,7 +186,7 @@ namespace deneOS_Home
         public static List<Form> VentanasAbiertas = new List<Form>();
         void addApps()
         {
-            var apps = VentanasActivas.ObtenerVentanas();
+            var apps = dosu.UI.WindowTracker.ObtenerVentanas();
 
             foreach (var app in apps)
             {

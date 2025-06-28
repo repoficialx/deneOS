@@ -22,9 +22,15 @@ namespace controlcenter
         private string latestVersion = "0.0";
         private string changelog = "";
         private string downloadUrl = "";
-        public UpdateScreen()
+        private Boolean forcedUrl = false;
+        public UpdateScreen(string? URL = null)
         {
             InitializeComponent();
+            if (URL != null)
+            {
+                forcedUrl = true;
+                downloadUrl = URL;
+            }
             var x = FileVersionInfo.GetVersionInfo(@"C:\DENEOS\core\deneOS_Home.exe");
             int[] preVersion = { x.FileMajorPart, x.FileMinorPart, x.FileBuildPart };
             string tag = preVersion[2] == 0 ? "" : (preVersion[2] == 1 ? "b" : "a");
@@ -58,7 +64,7 @@ namespace controlcenter
                 {
                     latestVersion = info.latestVersion;
                     changelog = info.changelog;
-                    downloadUrl = info.download;
+                    downloadUrl = forcedUrl ? downloadUrl : info.download;
                     log.Text += "Deleting actual system files..." + Environment.NewLine;
                     Process.Start("taskkill", "/f /im deneOS_Home.exe");
                     ZipFile.CreateFromDirectory(@"C:\DENEOS\core\", @$"C:\DENEOS\core{currentVersion}_backup.bck");

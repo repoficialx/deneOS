@@ -30,7 +30,7 @@ namespace deneOS_Home
             {
                 Minimum = 0,
                 Maximum = 100,
-                Value = (int)vls.GetSystemVolume(), // tu método GetVolume
+                Value = (int)dosu.Audio.VolumeManager.GetSystemVolume(), // tu método GetVolume
                 TickStyle = TickStyle.None,
                 Width = 150
             };
@@ -39,7 +39,7 @@ namespace deneOS_Home
             {
                 //vls.SetSystemVolume(slider.Value / 100f); // tu método SetVolume
                 float value = (float)slider.Value / 100f;
-                vls.SetSystemVolume(value);
+                dosu.Audio.VolumeManager.SetSystemVolume(value);
             };
 
             this.Controls.Add(slider);

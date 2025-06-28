@@ -59,6 +59,9 @@
     <Reference Include="ColorThief.Desktop.v46, Version=1.1.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ksemenenko.ColorThief.1.1.1.4\lib\net46\ColorThief.Desktop.v46.dll</HintPath>
     </Reference>
+    <Reference Include="dosu">
+      <HintPath>..\dosu\bin\Debug\net8.0-windows\dosu.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Win32.Registry, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Registry.4.7.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
     </Reference>
@@ -85,6 +88,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.9.0.6\lib\net462\System.Drawing.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
@@ -113,7 +119,6 @@
     <Compile Include="AppPanel.Designer.cs">
       <DependentUpon>AppPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="bs.cs" />
     <Compile Include="desktop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,15 +165,12 @@
     <Compile Include="tbar.Designer.cs">
       <DependentUpon>tbar.cs</DependentUpon>
     </Compile>
-    <Compile Include="VentanasAbiertas.cs" />
-    <Compile Include="vls.cs" />
     <Compile Include="volSlider.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="volSlider.Designer.cs">
       <DependentUpon>volSlider.cs</DependentUpon>
     </Compile>
-    <Compile Include="wfs.cs" />
     <None Include="Resources\icons8-high-risk-100.png" />
     <None Include="Resources\icons8-high-priority-100.png" />
     <EmbeddedResource Include="AppPanel.resx">
@@ -191,9 +193,6 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Content Include="lang\es.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <EmbeddedResource Include="sm.resx">
       <DependentUpon>sm.cs</DependentUpon>
     </EmbeddedResource>
@@ -204,9 +203,6 @@
       <DependentUpon>volSlider.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
-    <Content Include="lang\en.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

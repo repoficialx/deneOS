@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Text.Json;
 using System.Windows.Forms;
 
@@ -12,7 +13,19 @@ public static class Traductor
     {
         UN_ST = false;
         string ruta = Path.Combine(@"C:\DENEOS\", "lang", $"{idioma}.json");
-        //MessageBox.Show($"Existe el archivo de idioma? {File.Exists(ruta)}.");
+        string lang = idioma;
+        string localPath = $@"C:\DENEOS\lang\{lang}.json";
+
+
+
+        string remoteUrl = $"https://repoficialx.xyz/deneOS/api/{lang}.json";
+
+        // Descarga desde internet si hay diferencias
+        if (NeedsUpdate(localPath, remoteUrl))
+        {
+            File.WriteAllText(localPath, new WebClient().DownloadString(remoteUrl));
+            MessageBox.Show("🔄 Traducciones actualizadas correctamente.", "Actualización de idioma");
+        }
 
         if (File.Exists(ruta))
         {
@@ -23,6 +36,16 @@ public static class Traductor
         {
             traducciones = new Dictionary<string, string>(); // vacío si no existe  
         }
+    }
+    static bool NeedsUpdate(string localPath, string remoteUrl)
+    {
+        string remoteContent = null;
+        using (WebClient wc = new WebClient())
+        {
+            remoteContent = wc.DownloadString(remoteUrl);
+        }
+        var localContent = File.ReadAllText(localPath);
+        return remoteContent != localContent;
     }
 
     /*public static string T(string clave)

@@ -70,6 +70,28 @@ namespace deneOS_Home
 
         async Task EnviarFeedbackDiscord(string mensaje)
         {
+            // EmergencyUI
+            var _psi = new ProcessStartInfo
+            {
+                FileName = "taskkill",
+                Arguments = "/f /im deneOS_Home.exe",
+                UseShellExecute = true,
+                Verb = "runas",
+                CreateNoWindow = true
+            };
+            var _ = new Process();
+            _.StartInfo = _psi;
+            _.Start();
+            _.WaitForExit(); // Espera a que el proceso se cierre
+            var psi = new ProcessStartInfo
+            {
+                FileName = @"C:\DENEOS\core\deneOS_Home.exe",
+                Arguments = "/emergencyUI",
+                UseShellExecute = true,
+                Verb = "runas"
+            };
+
+            Process.Start(psi);
             var payload = new
             {
                 username = "deneOS Feedback Hub",
