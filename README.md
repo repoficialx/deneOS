@@ -23,6 +23,7 @@ En resumen: es como tener tu propio sistema operativo… ¡pero encima de Window
 
 - **DNF 4.8** (.NET Framework)
 - **DNC 7** (.NET Core para funcionalidades específicas)
+- **DNC 8**
 - Compatible con:
   - `.exe` estándar
   - Archivos `.wpi` (formato de instalación personalizado de deneOS)
@@ -37,7 +38,7 @@ En resumen: es como tener tu propio sistema operativo… ¡pero encima de Window
 
 ### 🧪 Estado del proyecto
 
-> **deneOS v1.0** estará disponible próximamente.  
+> **deneOS v1.0** estará disponible próximamente. (previsto para 2026 o 2027)
 Actualmente se encuentra en fase **alfa**, pero ya puedes probar su funcionalidad base.
 
 ---
