@@ -113,7 +113,7 @@
             panel1.Controls.Add(boxusr);
             panel1.Font = new Font("Segoe UI Variable Display", 14F);
             panel1.ForeColor = SystemColors.Control;
-            panel1.Location = new Point(523, 226);
+            panel1.Location = new Point(526, 230);
             panel1.Name = "panel1";
             panel1.Size = new Size(403, 402);
             panel1.TabIndex = 9;
