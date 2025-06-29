@@ -38,7 +38,7 @@ En resumen: es como tener tu propio sistema operativo… ¡pero encima de Window
 
 ### 🧪 Estado del proyecto
 
-> **deneOS v1.0** estará disponible próximamente. (previsto para 2026 o 2027)
+> **deneOS v1.0** estará disponible próximamente. (previsto para 2025 o 2026)
 Actualmente se encuentra en fase **beta**, pero ya puedes probar su funcionalidad base.
 
 ---
