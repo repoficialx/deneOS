@@ -10,6 +10,8 @@
     <PlatformTarget>x64</PlatformTarget>
     <ApplicationIcon>icons8-macbook-settings-100.ico</ApplicationIcon>
     <Company>repoficialx</Company>
+	  <PublishSingleFile>true</PublishSingleFile>
+	  <SelfContained>true</SelfContained>
     <Authors>repoficialx</Authors>
     <Product>deneOS</Product>
     <Description>Control Center for deneOS /\/\/\/ More user friendly alternative to Control Panel for deneOS.

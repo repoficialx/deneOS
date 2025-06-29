@@ -24,7 +24,7 @@ public static class Traductor
         // Descarga desde internet si hay diferencias
         if (NeedsUpdate(localPath, remoteUrl))
         {
-            //File.WriteAllText(localPath, new WebClient().DownloadString(remoteUrl));
+            File.WriteAllText(localPath, new WebClient().DownloadString(remoteUrl));
             MessageBox.Show("🔄 Traducciones actualizadas correctamente.", "Actualización de idioma");
         }
 

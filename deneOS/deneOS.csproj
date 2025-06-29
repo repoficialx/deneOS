@@ -18,7 +18,7 @@ Windows? Nah. Mejor deneOS. No es solo una "skin". Es una super-shell.</Descript
     <Copyright>©2025 repoficialx. MIT license</Copyright>
     <PackageProjectUrl>https://repoficialx.xyz/deneOS</PackageProjectUrl>
 	  <PublishSingleFile>true</PublishSingleFile>
-	  <SelfContained>false</SelfContained>
+	  <SelfContained>true</SelfContained>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
