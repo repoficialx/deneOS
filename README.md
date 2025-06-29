@@ -1,5 +1,5 @@
 # 🧠 deneOS  
-![Versión](https://img.shields.io/badge/v0.9-alpha-blue)  
+![Versión](https://img.shields.io/badge/v0.1-beta-blue)  
 ![Compatible con .exe](https://img.shields.io/badge/exe-compatible-darkgreen)  
 ![Compatible con .wpi](https://img.shields.io/badge/wpi-compatible-skyblue)
 
@@ -21,9 +21,9 @@ En resumen: es como tener tu propio sistema operativo… ¡pero encima de Window
 
 ### 🧩 Tecnologías usadas
 
-- **DNF 4.8** (.NET Framework)
+- **DNF 4.8** (.NET Framework en algunas apps como deneFiles)
 - **DNC 7** (.NET Core para funcionalidades específicas)
-- **DNC 8**
+- **DNC 8** (Launcher y deneOS en sí)
 - Compatible con:
   - `.exe` estándar
   - Archivos `.wpi` (formato de instalación personalizado de deneOS)
@@ -38,8 +38,8 @@ En resumen: es como tener tu propio sistema operativo… ¡pero encima de Window
 
 ### 🧪 Estado del proyecto
 
-> **deneOS v1.0** estará disponible próximamente. (previsto para 2026 o 2027)
-Actualmente se encuentra en fase **alfa**, pero ya puedes probar su funcionalidad base.
+> **deneOS v1.0** estará disponible próximamente. (previsto para 2025 o 2026)
+Actualmente se encuentra en fase **beta**, pero ya puedes probar su funcionalidad base.
 
 ---
 
