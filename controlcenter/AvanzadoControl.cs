@@ -136,8 +136,7 @@ namespace controlcenter
             {
                 Process.Start(new ProcessStartInfo
                 {
-                    //FileName = @"C:\DENEOS\core\deneOS_Home.exe", // para pruebas usamos el ultimo desde bin\debug
-                    FileName = @"C:\Users\rayel\source\repos\!New\repos\deneOS\deneOS_Home\bin\x64\Debug\deneOS_Home.exe",
+                    FileName = @"C:\DENEOS\core\deneOS.exe",
                     Arguments = combinedArgs,
                     UseShellExecute = true,
                     Verb = "runas"
@@ -188,8 +187,8 @@ namespace controlcenter
                 try
                 {
                     // Ruta al ejecutable principal
-                    string deneOSExe = @"C:\DENEOS\core\deneOS_Home.exe";
-                    Process.GetProcessesByName("deneOS_Home").ToList().ForEach(p => p.Kill()); // Cerrar cualquier instancia de deneOS_Home
+                    string deneOSExe = @"C:\DENEOS\core\deneOS.exe";
+                    Process.GetProcessesByName("deneOS").ToList().ForEach(p => p.Kill()); // Cerrar cualquier instancia de deneOS_Home
 
                     // Lanzar deneOS con la flag de root
                     Process.Start(new ProcessStartInfo

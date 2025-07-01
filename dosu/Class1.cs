@@ -735,4 +735,184 @@ namespace dosu
 
     }
 
+    public static class BrightnessMGMT
+    {
+        [DllImport("gdi32.dll")]
+        private static extern bool SetDeviceGammaRamp(IntPtr hdc, ref RAMP lpRamp);
+        [DllImport("dxva2.dll", SetLastError = true)]
+        private static extern bool GetMonitorBrightness(IntPtr hMonitor, out uint minimumBrightness, out uint currentBrightness, out uint maximumBrightness);
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetDC(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        private static extern int ReleaseDC(IntPtr hWnd, IntPtr hDC);
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern IntPtr MonitorFromWindow(IntPtr hwnd, uint dwFlags);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern IntPtr GetDesktopWindow();
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+        
+        private struct RAMP
+        {
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 256)]
+            public byte[] Red;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 256)]
+            public byte[] Green;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 256)]
+            public byte[] Blue;
+        }
+        public static bool isLaptop()
+        {
+            try
+            {
+                using var process = new Process();
+                process.StartInfo.FileName = "powershell";
+                process.StartInfo.Arguments = "-Command \"(Get-CimInstance -ClassName Win32_SystemEnclosure).ChassisTypes\"";
+                process.StartInfo.RedirectStandardOutput = true;
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.CreateNoWindow = true;
+
+                process.Start();
+                string output = process.StandardOutput.ReadToEnd();
+                process.WaitForExit();
+
+                // Chassis types para laptops: 8 (portable), 9 (laptop), 10 (notebook), 14 (sub notebook)
+                var laptopTypes = new[] { "8", "9", "10", "14" };
+
+                foreach (var type in laptopTypes)
+                    if (output.Contains(type))
+                        return true;
+            }
+            catch { }
+
+            return false;
+        }
+        public static void SetBrightness(int brightness)
+        {
+            if (isLaptop())
+            {
+                BrightnessLaptopMGMT.SetBrightness((byte)brightness);
+                return;
+            }
+            IntPtr hdc = GetDC(IntPtr.Zero);
+            try
+            {
+                RAMP ramp = new RAMP
+                {
+                    Red = new byte[256],
+                    Green = new byte[256],
+                    Blue = new byte[256]
+                };
+
+                int adjustedBrightness = (brightness * 256) / 100;
+
+                for (int i = 0; i < 256; i++)
+                {
+                    ushort temp = (ushort)(i * adjustedBrightness);
+                    byte value = (byte)Math.Min((ushort)255, (ushort)temp);
+                    ramp.Red[i] = ramp.Green[i] = ramp.Blue[i] = value;
+                }
+
+                SetDeviceGammaRamp(hdc, ref ramp);
+            }
+            finally
+            {
+                ReleaseDC(IntPtr.Zero, hdc);
+            }
+        }
+        public static int? GetBrightness()
+        {
+            if (isLaptop())
+            {
+                return BrightnessLaptopMGMT.GetBrightness();
+            }
+            IntPtr desktopWindow = GetDesktopWindow();
+            IntPtr monitor = MonitorFromWindow(desktopWindow, 0);
+
+            if (monitor == IntPtr.Zero)
+            {
+                Console.WriteLine("Failed to get monitor handle.");
+                return -1;
+            }
+
+            if (GetMonitorBrightness(monitor, out uint min, out uint current, out uint max))
+            {
+                Console.WriteLine($"Brightness: {current} (Min: {min}, Max: {max})");
+                return Convert.ToInt32(current);
+            }
+            else
+            {
+                Console.WriteLine("Failed to retrieve brightness.");
+                return -2;
+            }
+        }
+    }
+    public static class BrightnessLaptopMGMT
+    {
+        public static int? GetBrightness()
+        {
+            try
+            {
+                using Process process = new Process();
+                process.StartInfo.FileName = "powershell";
+                process.StartInfo.Arguments = "-Command \"(Get-WmiObject -Namespace root/wmi -Class WmiMonitorBrightness).CurrentBrightness\"";
+                process.StartInfo.RedirectStandardOutput = true;
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.CreateNoWindow = true;
+
+                process.Start();
+                string output = process.StandardOutput.ReadToEnd();
+                //process.WaitForExit();
+
+                if (int.TryParse(output.Trim(), out int brightness))
+                    return brightness;
+            }
+            catch { }
+
+            return -1;
+        }
+
+        public static void SetBrightness(byte brightness)
+        {
+            try
+            {
+                using Process process = new Process();
+                process.StartInfo.FileName = "powershell";
+                process.StartInfo.Arguments = $"-Command \"(Get-WmiObject -Namespace root/wmi -Class WmiMonitorBrightnessMethods).WmiSetBrightness(1,{brightness})\"";
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.CreateNoWindow = true;
+                process.StartInfo.RedirectStandardOutput = true;
+                process.StartInfo.RedirectStandardError = true;
+                process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+
+                process.Start();
+                //process.WaitForExit();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR: " + ex.Message);
+            }
+
+        }
+
+        public static async Task SetBrightnessAsync(byte brightness)
+        {
+            await Task.Run(() =>
+            {
+                using Process process = new Process();
+                process.StartInfo.FileName = "powershell";
+                process.StartInfo.Arguments =
+                    $"-WindowStyle Hidden -Command \"(Get-CimInstance -Namespace root/wmi -ClassName WmiMonitorBrightnessMethods).WmiSetBrightness(1,{brightness})\"";
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.CreateNoWindow = true;
+                process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                process.Start();
+                process.WaitForExit();
+            });
+        }
+
+    }
 }

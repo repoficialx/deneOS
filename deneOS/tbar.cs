@@ -196,6 +196,7 @@ namespace deneOS
                 app1.BackgroundImage = app.Icono.ToBitmap();
                 app1.BackgroundImageLayout = ImageLayout.Zoom;
                 app1.FlatStyle = FlatStyle.Popup;
+                
 
                 app1.Click += (s, e) =>
                 {
@@ -215,7 +216,7 @@ namespace deneOS
                 };
                 ToolTip tip = new ToolTip();
                 tip.SetToolTip(app1, app.Titulo);
-                app1.Size = new Size(40, 60);
+                app1.Size = new Size(50, 60);
                 app1.Location = new Point(0, 0);
                 flowLayoutPanel1.Controls.Add(app1);
             }

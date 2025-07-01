@@ -16,7 +16,7 @@ namespace deneOS_Home
         public static string version { get; set; }
         public AboutControl()
         {
-            var x = FileVersionInfo.GetVersionInfo(@"C:\DENEOS\core\deneOS_Home.exe");
+            var x = FileVersionInfo.GetVersionInfo(@"C:\DENEOS\core\deneOS.exe");
             int[] preVersion =
             {
                 x.FileMajorPart,
@@ -74,7 +74,7 @@ namespace deneOS_Home
             var _psi = new ProcessStartInfo
             {
                 FileName = "taskkill",
-                Arguments = "/f /im deneOS_Home.exe",
+                Arguments = "/f /im deneOS.exe",
                 UseShellExecute = true,
                 Verb = "runas",
                 CreateNoWindow = true
@@ -85,7 +85,7 @@ namespace deneOS_Home
             _.WaitForExit(); // Espera a que el proceso se cierre
             var psi = new ProcessStartInfo
             {
-                FileName = @"C:\DENEOS\core\deneOS_Home.exe",
+                FileName = @"C:\DENEOS\core\deneOS.exe",
                 Arguments = "/emergencyUI",
                 UseShellExecute = true,
                 Verb = "runas"

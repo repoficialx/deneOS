@@ -33,15 +33,6 @@
             txt2 = new Label();
             MinuteUpdate = new System.Windows.Forms.Timer(components);
             button2 = new Button();
-            panel1 = new Panel();
-            pictureBox1 = new PictureBox();
-            txt3 = new Label();
-            button6 = new Button();
-            txt6 = new Button();
-            txt5 = new Label();
-            boxpass = new TextBox();
-            txt4 = new Label();
-            boxusr = new TextBox();
             panel2 = new Panel();
             boxregpassag = new TextBox();
             txt12 = new Label();
@@ -52,8 +43,6 @@
             boxregpass = new TextBox();
             txt10 = new Label();
             boxregusr = new TextBox();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -99,116 +88,6 @@
             button2.Text = "";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = SystemColors.ControlText;
-            panel1.Controls.Add(pictureBox1);
-            panel1.Controls.Add(txt3);
-            panel1.Controls.Add(button6);
-            panel1.Controls.Add(txt6);
-            panel1.Controls.Add(txt5);
-            panel1.Controls.Add(boxpass);
-            panel1.Controls.Add(txt4);
-            panel1.Controls.Add(boxusr);
-            panel1.Font = new Font("Segoe UI Variable Display", 14F);
-            panel1.ForeColor = SystemColors.Control;
-            panel1.Location = new Point(526, 230);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(403, 402);
-            panel1.TabIndex = 9;
-            panel1.Visible = false;
-            panel1.Paint += panel1_Paint;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = Properties.Resources.DefaultAccountTile;
-            pictureBox1.Location = new Point(101, 47);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(171, 155);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 17;
-            pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
-            // 
-            // txt3
-            // 
-            txt3.AutoSize = true;
-            txt3.Font = new Font("Segoe UI Variable Display", 9F);
-            txt3.Location = new Point(3, 3);
-            txt3.Name = "txt3";
-            txt3.Size = new Size(36, 20);
-            txt3.TabIndex = 16;
-            txt3.Text = "Txt3";
-            txt3.Click += txt3_Click;
-            // 
-            // button6
-            // 
-            button6.BackColor = SystemColors.ControlText;
-            button6.FlatStyle = FlatStyle.Flat;
-            button6.Font = new Font("Segoe UI Variable Display", 7F);
-            button6.ForeColor = SystemColors.Control;
-            button6.Location = new Point(368, 3);
-            button6.Name = "button6";
-            button6.Size = new Size(33, 23);
-            button6.TabIndex = 15;
-            button6.Text = "";
-            button6.UseVisualStyleBackColor = false;
-            button6.Click += button6_Click;
-            // 
-            // txt6
-            // 
-            txt6.BackColor = SystemColors.ControlText;
-            txt6.ForeColor = SystemColors.Control;
-            txt6.Location = new Point(17, 345);
-            txt6.Name = "txt6";
-            txt6.Size = new Size(366, 45);
-            txt6.TabIndex = 14;
-            txt6.Text = "Txt6";
-            txt6.UseVisualStyleBackColor = false;
-            txt6.Click += button5_Click;
-            // 
-            // txt5
-            // 
-            txt5.AutoSize = true;
-            txt5.ForeColor = SystemColors.Control;
-            txt5.Location = new Point(12, 283);
-            txt5.Name = "txt5";
-            txt5.Size = new Size(57, 32);
-            txt5.TabIndex = 13;
-            txt5.Text = "Txt5";
-            txt5.Click += txt5_Click;
-            // 
-            // boxpass
-            // 
-            boxpass.BackColor = SystemColors.WindowText;
-            boxpass.ForeColor = SystemColors.Window;
-            boxpass.Location = new Point(158, 283);
-            boxpass.Name = "boxpass";
-            boxpass.Size = new Size(226, 39);
-            boxpass.TabIndex = 12;
-            boxpass.TextChanged += boxpass_TextChanged;
-            // 
-            // txt4
-            // 
-            txt4.AutoSize = true;
-            txt4.ForeColor = SystemColors.Control;
-            txt4.Location = new Point(12, 216);
-            txt4.Name = "txt4";
-            txt4.Size = new Size(57, 32);
-            txt4.TabIndex = 11;
-            txt4.Text = "Txt4";
-            txt4.Click += txt4_Click;
-            // 
-            // boxusr
-            // 
-            boxusr.BackColor = SystemColors.ControlText;
-            boxusr.ForeColor = SystemColors.Window;
-            boxusr.Location = new Point(158, 216);
-            boxusr.Name = "boxusr";
-            boxusr.Size = new Size(226, 39);
-            boxusr.TabIndex = 10;
-            boxusr.TextChanged += boxusr_TextChanged;
             // 
             // panel2
             // 
@@ -331,7 +210,6 @@
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(1920, 1055);
             Controls.Add(panel2);
-            Controls.Add(panel1);
             Controls.Add(button2);
             Controls.Add(txt2);
             Controls.Add(txt1);
@@ -346,9 +224,6 @@
             FormClosing += logonui_FormClosing;
             Load += logonui_Load;
             KeyDown += logonui_KeyDown;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
@@ -362,14 +237,6 @@
         private System.Windows.Forms.Label txt2;
         private System.Windows.Forms.Timer MinuteUpdate;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button txt6;
-        private System.Windows.Forms.Label txt5;
-        private System.Windows.Forms.TextBox boxpass;
-        private System.Windows.Forms.Label txt4;
-        private System.Windows.Forms.TextBox boxusr;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Label txt3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label txt9;
         private System.Windows.Forms.Button button1;
@@ -380,6 +247,5 @@
         private System.Windows.Forms.TextBox boxregusr;
         private System.Windows.Forms.TextBox boxregpassag;
         private System.Windows.Forms.Label txt12;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

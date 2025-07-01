@@ -16,7 +16,7 @@ namespace deneOS.init
 {
     public partial class logonui : Form
     {
-        public Panel panelToShow;
+        public Form formToShow;
         /// <summary>
         /// Inicialización de Compontentes vía InitializeComponent();
         /// </summary>
@@ -31,6 +31,11 @@ namespace deneOS.init
                 return;
             }
             InitializeComponent();
+            txt9.Text = (string)T("txt9");
+            txt10.Text = (string)T("txt10");
+            txt11.Text = (string)T("txt11");
+            txt12.Text = (string)T("txt12");
+            txt13.Text = (string)T("txt13");
             this.Show();
         }
         /// <summary>
@@ -90,14 +95,12 @@ namespace deneOS.init
             bool passSpecified = cfgInfo[passLn].Contains("password = ");
             bool isValid = userSpecified && passSpecified;
             bool Corrupted = ( userSpecified && !passSpecified ) || ( !userSpecified && passSpecified) ;
-            Panel panelToShow;
             if (!isValid)
             {
                 if (Corrupted)
                 {
                     MessageBox.Show($"{T("cfgflcorr")} {T("plsfxit")}", "deneOS Home Edition", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Environment.Exit(1);
-                    panelToShow = panel1;
                 }
                 else
                 {
@@ -106,7 +109,7 @@ namespace deneOS.init
             }
             else
             {
-                panelToShow = panel1;
+                formToShow = new login();
             }
                 Panel panelOculto = new Panel();
             this.Controls.Add(panelOculto);
@@ -115,16 +118,7 @@ namespace deneOS.init
             //MessageBox.Show($"Control con foco: {this.ActiveControl?.Name}");
             this.Activate();
             this.Focus();
-            this.panelToShow = panelToShow;
-            txt3.Text = (string)T("txt3");
-            txt4.Text = (string)T("txt4");
-            txt5.Text = (string)T("txt5");
-            txt6.Text = (string)T("txt6");
-            txt9.Text = (string)T("txt9");
-            txt10.Text = (string)T("txt10");
-            txt11.Text = (string)T("txt11");
-            txt12.Text = (string)T("txt12");
-            txt13.Text = (string)T("txt13");
+            
         }
         /// <summary>
         /// Trabajos de fecha como asignar las variables de días, meses, años, etc.
@@ -247,56 +241,6 @@ namespace deneOS.init
             Environment.Exit(0);
         }
         /// <summary>
-        /// Botón de inicio de sesión
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button5_Click(object sender, EventArgs e)
-        {
-            string usr;
-            string pss;
-            var cfgInfo = File.Exists(@"C:\DENEOS\sysconf\config.ini") ? File.ReadAllLines(@"C:\DENEOS\sysconf\config.ini") : new string[] { "", "", "" };
-            if (cfgInfo[2].ToLower().Contains("password = "))
-            {
-                pss = cfgInfo[2].Substring(11);
-            }
-            else
-            {
-                MessageBox.Show((string)T("npss"), "dene Safety", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                pss = "";
-            }
-            if (cfgInfo[1].ToLower().Contains("username = "))
-            {
-                usr = cfgInfo[1].Substring(11);
-            }
-            else
-            {
-                MessageBox.Show((string)T("nuss"), "dene Safety", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                usr = "";
-            }
-            _login(pss, usr);
-
-        }
-        /// <summary>
-        /// Proceso de bienvenida al usuario
-        /// </summary>
-        /// <param name="usr"></param>
-        /// <param name="pss"></param>
-        private void _login(string usr, string pss)
-        {
-            if (boxusr.Text == pss && boxpass.Text == usr)
-            {
-                MessageBox.Show((string)T("welctodeneosE"), (string)T("welc"), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Hide();
-                new desktop().Show();
-                new tbar().Show();
-            }
-            else
-            {
-                MessageBox.Show((string)T("invusrpss"), (string)T("err"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        /// <summary>
         /// Proceso de creación de un usuario
         /// </summary>
         /// <param name="sender"></param>
@@ -323,10 +267,8 @@ namespace deneOS.init
                 File.WriteAllLines(@"C:\DENEOS\sysconf\config.ini", file);
                 MessageBox.Show((string)T("usrcrscc"), (string)T("suc"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 // Cerrar el formulario de registro y mostrar el formulario de inicio de sesión
-                panel1.Show();
-                panelToShow = panel1;
-                boxusr.Focus();
                 panel2.Hide();
+                new login().ShowDialog();
             }
             else
             {
@@ -340,19 +282,12 @@ namespace deneOS.init
         /// <param name="e"></param>
         private void logonui_KeyDown(object sender, KeyEventArgs e)
         {
-            //MessageBox.Show("KEYDOWN EVENT TOOGLED ON");
             if (e.KeyCode == Keys.Enter)
             {
-                //MessageBox.Show("KEYDOWN EVENT ENTER KEY PRESSED");
                 e.SuppressKeyPress = true; // Evita que Enter llegue al botón
-                panelToShow.Show();
-                panelToShow.BringToFront();
-                txt6.Focus();
+                formToShow.Show();
+                formToShow.BringToFront();
             }
-            /*else
-            {
-                MessageBox.Show($"KEYDOWN EVENT {e.KeyCode} PRESSED");
-            }*/
         }
         /// <summary>
         /// Prevención de cierre de formulario usando técnicas como ALT+F4 o relacionadas (para evitar dejar al usuario sin

@@ -28,192 +28,194 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel16 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel17 = new System.Windows.Forms.Panel();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel16.SuspendLayout();
-            this.flowLayoutPanel3.SuspendLayout();
-            this.panel17.SuspendLayout();
-            this.SuspendLayout();
+            panel1 = new Panel();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            panel2 = new Panel();
+            button1 = new Button();
+            panel16 = new Panel();
+            flowLayoutPanel3 = new FlowLayoutPanel();
+            panel17 = new Panel();
+            label20 = new Label();
+            label19 = new Label();
+            label21 = new Label();
+            label22 = new Label();
+            label25 = new Label();
+            label23 = new Label();
+            label24 = new Label();
+            panel1.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
+            panel2.SuspendLayout();
+            panel16.SuspendLayout();
+            flowLayoutPanel3.SuspendLayout();
+            panel17.SuspendLayout();
+            SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.flowLayoutPanel1);
-            this.panel1.Controls.Add(this.panel16);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1920, 60);
-            this.panel1.TabIndex = 1;
+            panel1.Controls.Add(flowLayoutPanel1);
+            panel1.Controls.Add(panel16);
+            panel1.Dock = DockStyle.Bottom;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1920, 60);
+            panel1.TabIndex = 1;
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.panel2);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1396, 60);
-            this.flowLayoutPanel1.TabIndex = 2;
-            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
+            flowLayoutPanel1.Controls.Add(panel2);
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Location = new Point(0, 0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(1396, 60);
+            flowLayoutPanel1.TabIndex = 2;
+            flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Location = new System.Drawing.Point(3, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(72, 60);
-            this.panel2.TabIndex = 3;
+            panel2.Controls.Add(button1);
+            panel2.Location = new Point(3, 3);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(72, 60);
+            panel2.TabIndex = 3;
             // 
             // button1
             // 
-            this.button1.BackgroundImage = global::deneOS.Properties.Resources.denelogo;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(72, 60);
-            this.button1.TabIndex = 0;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            button1.BackgroundImage = Properties.Resources.denelogo;
+            button1.BackgroundImageLayout = ImageLayout.Zoom;
+            button1.FlatStyle = FlatStyle.Popup;
+            button1.Location = new Point(0, 0);
+            button1.Name = "button1";
+            button1.Size = new Size(72, 60);
+            button1.TabIndex = 0;
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // panel16
             // 
-            this.panel16.Controls.Add(this.flowLayoutPanel3);
-            this.panel16.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel16.Location = new System.Drawing.Point(1396, 0);
-            this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(524, 60);
-            this.panel16.TabIndex = 1;
+            panel16.Controls.Add(flowLayoutPanel3);
+            panel16.Dock = DockStyle.Right;
+            panel16.Location = new Point(1396, 0);
+            panel16.Name = "panel16";
+            panel16.Size = new Size(524, 60);
+            panel16.TabIndex = 1;
             // 
             // flowLayoutPanel3
             // 
-            this.flowLayoutPanel3.Controls.Add(this.panel17);
-            this.flowLayoutPanel3.Controls.Add(this.label21);
-            this.flowLayoutPanel3.Controls.Add(this.label22);
-            this.flowLayoutPanel3.Controls.Add(this.label25);
-            this.flowLayoutPanel3.Controls.Add(this.label23);
-            this.flowLayoutPanel3.Controls.Add(this.label24);
-            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(524, 60);
-            this.flowLayoutPanel3.TabIndex = 0;
+            flowLayoutPanel3.Controls.Add(panel17);
+            flowLayoutPanel3.Controls.Add(label21);
+            flowLayoutPanel3.Controls.Add(label22);
+            flowLayoutPanel3.Controls.Add(label25);
+            flowLayoutPanel3.Controls.Add(label23);
+            flowLayoutPanel3.Controls.Add(label24);
+            flowLayoutPanel3.Dock = DockStyle.Fill;
+            flowLayoutPanel3.FlowDirection = FlowDirection.RightToLeft;
+            flowLayoutPanel3.Location = new Point(0, 0);
+            flowLayoutPanel3.Name = "flowLayoutPanel3";
+            flowLayoutPanel3.Size = new Size(524, 60);
+            flowLayoutPanel3.TabIndex = 0;
             // 
             // panel17
             // 
-            this.panel17.Controls.Add(this.label20);
-            this.panel17.Controls.Add(this.label19);
-            this.panel17.Location = new System.Drawing.Point(323, 3);
-            this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(198, 79);
-            this.panel17.TabIndex = 0;
+            panel17.Controls.Add(label20);
+            panel17.Controls.Add(label19);
+            panel17.Location = new Point(323, 3);
+            panel17.Name = "panel17";
+            panel17.Size = new Size(198, 79);
+            panel17.TabIndex = 0;
             // 
             // label20
             // 
-            this.label20.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.label20.Location = new System.Drawing.Point(3, 24);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(194, 35);
-            this.label20.TabIndex = 1;
-            this.label20.Text = "00/00/0000";
-            this.label20.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            label20.Font = new Font("Segoe UI", 13F);
+            label20.Location = new Point(3, 24);
+            label20.Name = "label20";
+            label20.Size = new Size(194, 35);
+            label20.TabIndex = 1;
+            label20.Text = "00/00/0000";
+            label20.TextAlign = ContentAlignment.TopRight;
             // 
             // label19
             // 
-            this.label19.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.label19.Location = new System.Drawing.Point(3, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(194, 35);
-            this.label19.TabIndex = 0;
-            this.label19.Text = "00:00";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            label19.Font = new Font("Segoe UI", 13F);
+            label19.Location = new Point(3, 0);
+            label19.Name = "label19";
+            label19.Size = new Size(194, 35);
+            label19.TabIndex = 0;
+            label19.Text = "00:00";
+            label19.TextAlign = ContentAlignment.TopRight;
             // 
             // label21
             // 
-            this.label21.Location = new System.Drawing.Point(254, 0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(63, 58);
-            this.label21.TabIndex = 2;
-            this.label21.Text = "100%";
-            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            label21.Font = new Font("Segoe UI Variable Display", 9F);
+            label21.Location = new Point(255, 0);
+            label21.Name = "label21";
+            label21.Size = new Size(62, 58);
+            label21.TabIndex = 2;
+            label21.Text = "100%";
+            label21.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label22
             // 
-            this.label22.Font = new System.Drawing.Font("Segoe Fluent Icons", 16F);
-            this.label22.Location = new System.Drawing.Point(206, 0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(42, 58);
-            this.label22.TabIndex = 4;
-            this.label22.Text = "";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            label22.Font = new Font("Segoe Fluent Icons", 16F);
+            label22.Location = new Point(207, 0);
+            label22.Name = "label22";
+            label22.Size = new Size(42, 58);
+            label22.TabIndex = 4;
+            label22.Text = "";
+            label22.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label25
             // 
-            this.label25.Location = new System.Drawing.Point(138, 0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(62, 58);
-            this.label25.TabIndex = 7;
-            this.label25.Text = "100%";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            label25.Font = new Font("Segoe UI Variable Display", 9F);
+            label25.Location = new Point(139, 0);
+            label25.Name = "label25";
+            label25.Size = new Size(62, 58);
+            label25.TabIndex = 7;
+            label25.Text = "100%";
+            label25.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label23
             // 
-            this.label23.Font = new System.Drawing.Font("Segoe Fluent Icons", 16F);
-            this.label23.Location = new System.Drawing.Point(80, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(52, 62);
-            this.label23.TabIndex = 5;
-            this.label23.Text = "";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label23.Click += new System.EventHandler(this.label23_Click);
+            label23.Font = new Font("Segoe Fluent Icons", 16F);
+            label23.Location = new Point(81, 0);
+            label23.Name = "label23";
+            label23.Size = new Size(52, 62);
+            label23.TabIndex = 5;
+            label23.Text = "";
+            label23.TextAlign = ContentAlignment.MiddleRight;
+            label23.Click += label23_Click;
             // 
             // label24
             // 
-            this.label24.Font = new System.Drawing.Font("Segoe Fluent Icons", 16F);
-            this.label24.Location = new System.Drawing.Point(32, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(42, 58);
-            this.label24.TabIndex = 6;
-            this.label24.Text = "";
-            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            label24.Font = new Font("Segoe Fluent Icons", 16F);
+            label24.Location = new Point(19, 0);
+            label24.Name = "label24";
+            label24.Size = new Size(56, 58);
+            label24.TabIndex = 6;
+            label24.Text = "";
+            label24.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // tbar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.SystemColors.ControlText;
-            this.ClientSize = new System.Drawing.Size(1920, 60);
-            this.Controls.Add(this.panel1);
-            this.Font = new System.Drawing.Font("Segoe UI Variable Display", 12F);
-            this.ForeColor = System.Drawing.SystemColors.Control;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "tbar";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "tbar";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.tbar_FormClosing);
-            this.Load += new System.EventHandler(this.tbar_Load);
-            this.panel1.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel16.ResumeLayout(false);
-            this.flowLayoutPanel3.ResumeLayout(false);
-            this.panel17.ResumeLayout(false);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            BackColor = SystemColors.ControlText;
+            ClientSize = new Size(1920, 60);
+            Controls.Add(panel1);
+            Font = new Font("Segoe UI Variable Display", 12F);
+            ForeColor = SystemColors.Control;
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "tbar";
+            StartPosition = FormStartPosition.Manual;
+            Text = "tbar";
+            FormClosing += tbar_FormClosing;
+            Load += tbar_Load;
+            panel1.ResumeLayout(false);
+            flowLayoutPanel1.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            panel16.ResumeLayout(false);
+            flowLayoutPanel3.ResumeLayout(false);
+            panel17.ResumeLayout(false);
+            ResumeLayout(false);
 
         }
 

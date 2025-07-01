@@ -76,7 +76,7 @@ namespace controlcenter
 
             // Label usuario actual
             Label currentUsuario = new Label();
-            string usuario = File.ReadAllLines(@"C:\DENEOS\sysconf\config.ini")[1].Substring(File.ReadAllLines(@"C:\DENEOS\sysconf\config.ini")[1].TrimEnd().LastIndexOf(' ') + 1);
+            string usuario = File.Exists(@"C:\DENEOS\sysconf\config.ini") ? File.ReadAllLines(@"C:\DENEOS\sysconf\config.ini")[1].Substring(File.ReadAllLines(@"C:\DENEOS\sysconf\config.ini")[1].TrimEnd().LastIndexOf(' ') + 1) : "N/A";
             currentUsuario.Text = $"{(string)T("currentuser")}: {usuario}";
             currentUsuario.Location = new Point(20, 150);
             currentUsuario.Font = new Font("Segoe UI", 10);

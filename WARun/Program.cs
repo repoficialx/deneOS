@@ -16,20 +16,20 @@ namespace WARun
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            string title = null!;
-            string icon = null!;
-            string url = null!;
+            string title = "";
+            string icon = "";
+            string url = "";
 
             foreach (string arg in args)
             {
                 if (arg.StartsWith("/title:"))
-                    title = arg.Substring("/title:".Length);
+                    title = arg["/title:".Length..];
                 else if (arg.StartsWith("/icon:"))
-                    icon = arg.Substring("/icon:".Length);
+                    icon = arg["/icon:".Length..];
                 else if (arg.StartsWith("/url:"))
-                    url = arg.Substring("/url:".Length);
+                    url = arg["/url:".Length..];
             }
-            Application.Run(new Form1(title!, icon!, url!));
+            Application.Run(new Form1(title, icon, url));
         }
     }
 }

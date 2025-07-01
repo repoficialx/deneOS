@@ -21,7 +21,7 @@ namespace deneOS
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - 200, 40);
             this.BackColor = ColorTranslator.FromHtml(globaldata.wallpaperPredominantColorHex);
-            this.Opacity = 0.95;
+            this.Opacity = 0.55;
         }
 
         private void volSlider_Load(object sender, EventArgs e)

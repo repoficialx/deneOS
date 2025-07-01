@@ -28,528 +28,529 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.dnn = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dnnaviPic = new System.Windows.Forms.PictureBox();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.dnno = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dnnotPic = new System.Windows.Forms.PictureBox();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.dnu = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.dnupdPic = new System.Windows.Forms.PictureBox();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.ie = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.ie11minPic = new System.Windows.Forms.PictureBox();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.cio = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.calendarPic = new System.Windows.Forms.PictureBox();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.term = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.termPic = new System.Windows.Forms.PictureBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.def = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.filesPic = new System.Windows.Forms.PictureBox();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.rec = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.recipPic = new System.Windows.Forms.PictureBox();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.panel2.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dnnaviPic)).BeginInit();
-            this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dnnotPic)).BeginInit();
-            this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dnupdPic)).BeginInit();
-            this.panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ie11minPic)).BeginInit();
-            this.panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.calendarPic)).BeginInit();
-            this.panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.termPic)).BeginInit();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.filesPic)).BeginInit();
-            this.panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.recipPic)).BeginInit();
-            this.panel11.SuspendLayout();
-            this.SuspendLayout();
+            panel2 = new Panel();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            panel4 = new Panel();
+            dnn = new Label();
+            label4 = new Label();
+            dnnaviPic = new PictureBox();
+            panel5 = new Panel();
+            dnno = new Label();
+            label6 = new Label();
+            dnnotPic = new PictureBox();
+            panel6 = new Panel();
+            dnu = new Label();
+            label8 = new Label();
+            dnupdPic = new PictureBox();
+            panel7 = new Panel();
+            ie = new Label();
+            label10 = new Label();
+            ie11minPic = new PictureBox();
+            panel8 = new Panel();
+            cio = new Label();
+            label12 = new Label();
+            calendarPic = new PictureBox();
+            panel9 = new Panel();
+            term = new Label();
+            label14 = new Label();
+            termPic = new PictureBox();
+            panel3 = new Panel();
+            def = new Label();
+            label1 = new Label();
+            filesPic = new PictureBox();
+            panel10 = new Panel();
+            rec = new Label();
+            label17 = new Label();
+            recipPic = new PictureBox();
+            panel11 = new Panel();
+            button4 = new Button();
+            button3 = new Button();
+            button2 = new Button();
+            panel2.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
+            panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dnnaviPic).BeginInit();
+            panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dnnotPic).BeginInit();
+            panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dnupdPic).BeginInit();
+            panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ie11minPic).BeginInit();
+            panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)calendarPic).BeginInit();
+            panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)termPic).BeginInit();
+            panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)filesPic).BeginInit();
+            panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)recipPic).BeginInit();
+            panel11.SuspendLayout();
+            SuspendLayout();
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.flowLayoutPanel1);
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(378, 513);
-            this.panel2.TabIndex = 2;
+            panel2.Controls.Add(flowLayoutPanel1);
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(378, 513);
+            panel2.TabIndex = 2;
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.flowLayoutPanel1.Controls.Add(this.panel4);
-            this.flowLayoutPanel1.Controls.Add(this.panel5);
-            this.flowLayoutPanel1.Controls.Add(this.panel6);
-            this.flowLayoutPanel1.Controls.Add(this.panel7);
-            this.flowLayoutPanel1.Controls.Add(this.panel8);
-            this.flowLayoutPanel1.Controls.Add(this.panel9);
-            this.flowLayoutPanel1.Controls.Add(this.panel3);
-            this.flowLayoutPanel1.Controls.Add(this.panel10);
-            this.flowLayoutPanel1.Controls.Add(this.panel11);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(378, 513);
-            this.flowLayoutPanel1.TabIndex = 0;
+            flowLayoutPanel1.BackColor = Color.Transparent;
+            flowLayoutPanel1.Controls.Add(panel4);
+            flowLayoutPanel1.Controls.Add(panel5);
+            flowLayoutPanel1.Controls.Add(panel6);
+            flowLayoutPanel1.Controls.Add(panel7);
+            flowLayoutPanel1.Controls.Add(panel8);
+            flowLayoutPanel1.Controls.Add(panel9);
+            flowLayoutPanel1.Controls.Add(panel3);
+            flowLayoutPanel1.Controls.Add(panel10);
+            flowLayoutPanel1.Controls.Add(panel11);
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Location = new Point(0, 0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(378, 513);
+            flowLayoutPanel1.TabIndex = 0;
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.dnn);
-            this.panel4.Controls.Add(this.label4);
-            this.panel4.Controls.Add(this.dnnaviPic);
-            this.panel4.Location = new System.Drawing.Point(3, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(364, 52);
-            this.panel4.TabIndex = 5;
-            this.panel4.Click += new System.EventHandler(this.panel4_Click);
+            panel4.Controls.Add(dnn);
+            panel4.Controls.Add(label4);
+            panel4.Controls.Add(dnnaviPic);
+            panel4.Location = new Point(3, 3);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(364, 52);
+            panel4.TabIndex = 5;
+            panel4.Click += panel4_Click;
             // 
             // dnn
             // 
-            this.dnn.AutoSize = true;
-            this.dnn.Location = new System.Drawing.Point(246, 20);
-            this.dnn.Name = "dnn";
-            this.dnn.Size = new System.Drawing.Size(117, 27);
-            this.dnn.TabIndex = 2;
-            this.dnn.Text = "System App";
-            this.dnn.Click += new System.EventHandler(this.panel4_Click);
+            dnn.AutoSize = true;
+            dnn.Location = new Point(246, 20);
+            dnn.Name = "dnn";
+            dnn.Size = new Size(117, 27);
+            dnn.TabIndex = 2;
+            dnn.Text = "System App";
+            dnn.Click += panel4_Click;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.label4.Location = new System.Drawing.Point(55, 11);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(133, 37);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "DeneNavi";
-            this.label4.Click += new System.EventHandler(this.panel4_Click);
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 16F);
+            label4.Location = new Point(55, 11);
+            label4.Name = "label4";
+            label4.Size = new Size(133, 37);
+            label4.TabIndex = 1;
+            label4.Text = "DeneNavi";
+            label4.Click += panel4_Click;
             // 
             // dnnaviPic
             // 
-            this.dnnaviPic.Image = global::deneOS.Properties.Resources.icons8_browser_100;
-            this.dnnaviPic.Location = new System.Drawing.Point(6, 5);
-            this.dnnaviPic.Name = "dnnaviPic";
-            this.dnnaviPic.Size = new System.Drawing.Size(43, 43);
-            this.dnnaviPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.dnnaviPic.TabIndex = 0;
-            this.dnnaviPic.TabStop = false;
-            this.dnnaviPic.Click += new System.EventHandler(this.panel4_Click);
+            dnnaviPic.Image = Properties.Resources.icons8_browser_100;
+            dnnaviPic.Location = new Point(6, 5);
+            dnnaviPic.Name = "dnnaviPic";
+            dnnaviPic.Size = new Size(43, 43);
+            dnnaviPic.SizeMode = PictureBoxSizeMode.Zoom;
+            dnnaviPic.TabIndex = 0;
+            dnnaviPic.TabStop = false;
+            dnnaviPic.Click += panel4_Click;
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.dnno);
-            this.panel5.Controls.Add(this.label6);
-            this.panel5.Controls.Add(this.dnnotPic);
-            this.panel5.Location = new System.Drawing.Point(3, 61);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(364, 52);
-            this.panel5.TabIndex = 6;
-            this.panel5.Click += new System.EventHandler(this.panel5_Click);
+            panel5.Controls.Add(dnno);
+            panel5.Controls.Add(label6);
+            panel5.Controls.Add(dnnotPic);
+            panel5.Location = new Point(3, 61);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(364, 52);
+            panel5.TabIndex = 6;
+            panel5.Click += panel5_Click;
             // 
             // dnno
             // 
-            this.dnno.AutoSize = true;
-            this.dnno.Location = new System.Drawing.Point(244, 20);
-            this.dnno.Name = "dnno";
-            this.dnno.Size = new System.Drawing.Size(117, 27);
-            this.dnno.TabIndex = 2;
-            this.dnno.Text = "System App";
-            this.dnno.Click += new System.EventHandler(this.panel5_Click);
+            dnno.AutoSize = true;
+            dnno.Location = new Point(244, 20);
+            dnno.Name = "dnno";
+            dnno.Size = new Size(117, 27);
+            dnno.TabIndex = 2;
+            dnno.Text = "System App";
+            dnno.Click += panel5_Click;
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.label6.Location = new System.Drawing.Point(55, 11);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(149, 37);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "DeneNotes";
-            this.label6.Click += new System.EventHandler(this.panel5_Click);
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 16F);
+            label6.Location = new Point(55, 11);
+            label6.Name = "label6";
+            label6.Size = new Size(149, 37);
+            label6.TabIndex = 1;
+            label6.Text = "DeneNotes";
+            label6.Click += panel5_Click;
             // 
             // dnnotPic
             // 
-            this.dnnotPic.Image = global::deneOS.Properties.Resources.icons8_notes_100;
-            this.dnnotPic.Location = new System.Drawing.Point(6, 5);
-            this.dnnotPic.Name = "dnnotPic";
-            this.dnnotPic.Size = new System.Drawing.Size(43, 43);
-            this.dnnotPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.dnnotPic.TabIndex = 0;
-            this.dnnotPic.TabStop = false;
-            this.dnnotPic.Click += new System.EventHandler(this.panel5_Click);
+            dnnotPic.Image = Properties.Resources.icons8_notes_100;
+            dnnotPic.Location = new Point(6, 5);
+            dnnotPic.Name = "dnnotPic";
+            dnnotPic.Size = new Size(43, 43);
+            dnnotPic.SizeMode = PictureBoxSizeMode.Zoom;
+            dnnotPic.TabIndex = 0;
+            dnnotPic.TabStop = false;
+            dnnotPic.Click += panel5_Click;
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.dnu);
-            this.panel6.Controls.Add(this.label8);
-            this.panel6.Controls.Add(this.dnupdPic);
-            this.panel6.Location = new System.Drawing.Point(3, 119);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(364, 52);
-            this.panel6.TabIndex = 7;
-            this.panel6.Click += new System.EventHandler(this.panel6_Click);
+            panel6.Controls.Add(dnu);
+            panel6.Controls.Add(label8);
+            panel6.Controls.Add(dnupdPic);
+            panel6.Location = new Point(3, 119);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(364, 52);
+            panel6.TabIndex = 7;
+            panel6.Click += panel6_Click;
             // 
             // dnu
             // 
-            this.dnu.AutoSize = true;
-            this.dnu.Location = new System.Drawing.Point(245, 21);
-            this.dnu.Name = "dnu";
-            this.dnu.Size = new System.Drawing.Size(117, 27);
-            this.dnu.TabIndex = 2;
-            this.dnu.Text = "System App";
-            this.dnu.Click += new System.EventHandler(this.panel6_Click);
+            dnu.AutoSize = true;
+            dnu.Location = new Point(245, 21);
+            dnu.Name = "dnu";
+            dnu.Size = new Size(117, 27);
+            dnu.TabIndex = 2;
+            dnu.Text = "System App";
+            dnu.Click += panel6_Click;
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.label8.Location = new System.Drawing.Point(55, 11);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(167, 37);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "DeneUpdate";
-            this.label8.Click += new System.EventHandler(this.panel6_Click);
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 16F);
+            label8.Location = new Point(55, 11);
+            label8.Name = "label8";
+            label8.Size = new Size(167, 37);
+            label8.TabIndex = 1;
+            label8.Text = "DeneUpdate";
+            label8.Click += panel6_Click;
             // 
             // dnupdPic
             // 
-            this.dnupdPic.Image = global::deneOS.Properties.Resources.icons8_update_100;
-            this.dnupdPic.Location = new System.Drawing.Point(6, 5);
-            this.dnupdPic.Name = "dnupdPic";
-            this.dnupdPic.Size = new System.Drawing.Size(43, 43);
-            this.dnupdPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.dnupdPic.TabIndex = 0;
-            this.dnupdPic.TabStop = false;
-            this.dnupdPic.Click += new System.EventHandler(this.panel6_Click);
+            dnupdPic.Image = Properties.Resources.icons8_update_100;
+            dnupdPic.Location = new Point(6, 5);
+            dnupdPic.Name = "dnupdPic";
+            dnupdPic.Size = new Size(43, 43);
+            dnupdPic.SizeMode = PictureBoxSizeMode.Zoom;
+            dnupdPic.TabIndex = 0;
+            dnupdPic.TabStop = false;
+            dnupdPic.Click += panel6_Click;
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.ie);
-            this.panel7.Controls.Add(this.label10);
-            this.panel7.Controls.Add(this.ie11minPic);
-            this.panel7.Location = new System.Drawing.Point(3, 177);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(364, 52);
-            this.panel7.TabIndex = 8;
-            this.panel7.Click += new System.EventHandler(this.panel7_Click);
+            panel7.Controls.Add(ie);
+            panel7.Controls.Add(label10);
+            panel7.Controls.Add(ie11minPic);
+            panel7.Location = new Point(3, 177);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(364, 52);
+            panel7.TabIndex = 8;
+            panel7.Click += panel7_Click;
             // 
             // ie
             // 
-            this.ie.AutoSize = true;
-            this.ie.Location = new System.Drawing.Point(312, 21);
-            this.ie.Name = "ie";
-            this.ie.Size = new System.Drawing.Size(49, 27);
-            this.ie.TabIndex = 2;
-            this.ie.Text = "App";
-            this.ie.Click += new System.EventHandler(this.panel7_Click);
+            ie.AutoSize = true;
+            ie.Location = new Point(312, 21);
+            ie.Name = "ie";
+            ie.Size = new Size(49, 27);
+            ie.TabIndex = 2;
+            ie.Text = "App";
+            ie.Click += panel7_Click;
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.label10.Location = new System.Drawing.Point(55, 11);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(250, 37);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "Internet Explorer 11";
-            this.label10.Click += new System.EventHandler(this.panel7_Click);
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 16F);
+            label10.Location = new Point(55, 11);
+            label10.Name = "label10";
+            label10.Size = new Size(250, 37);
+            label10.TabIndex = 1;
+            label10.Text = "Internet Explorer 11";
+            label10.Click += panel7_Click;
             // 
             // ie11minPic
             // 
-            this.ie11minPic.Image = global::deneOS.Properties.Resources.icons8_internet_100;
-            this.ie11minPic.Location = new System.Drawing.Point(6, 5);
-            this.ie11minPic.Name = "ie11minPic";
-            this.ie11minPic.Size = new System.Drawing.Size(43, 43);
-            this.ie11minPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ie11minPic.TabIndex = 0;
-            this.ie11minPic.TabStop = false;
-            this.ie11minPic.Click += new System.EventHandler(this.panel7_Click);
+            ie11minPic.Image = Properties.Resources.icons8_internet_100;
+            ie11minPic.Location = new Point(6, 5);
+            ie11minPic.Name = "ie11minPic";
+            ie11minPic.Size = new Size(43, 43);
+            ie11minPic.SizeMode = PictureBoxSizeMode.Zoom;
+            ie11minPic.TabIndex = 0;
+            ie11minPic.TabStop = false;
+            ie11minPic.Click += panel7_Click;
             // 
             // panel8
             // 
-            this.panel8.Controls.Add(this.cio);
-            this.panel8.Controls.Add(this.label12);
-            this.panel8.Controls.Add(this.calendarPic);
-            this.panel8.Location = new System.Drawing.Point(3, 235);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(364, 52);
-            this.panel8.TabIndex = 9;
-            this.panel8.Click += new System.EventHandler(this.panel8_Click);
+            panel8.Controls.Add(cio);
+            panel8.Controls.Add(label12);
+            panel8.Controls.Add(calendarPic);
+            panel8.Location = new Point(3, 235);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(364, 52);
+            panel8.TabIndex = 9;
+            panel8.Click += panel8_Click;
             // 
             // cio
             // 
-            this.cio.AutoSize = true;
-            this.cio.Location = new System.Drawing.Point(312, 21);
-            this.cio.Name = "cio";
-            this.cio.Size = new System.Drawing.Size(49, 27);
-            this.cio.TabIndex = 2;
-            this.cio.Text = "App";
-            this.cio.Click += new System.EventHandler(this.panel8_Click);
+            cio.AutoSize = true;
+            cio.Location = new Point(312, 21);
+            cio.Name = "cio";
+            cio.Size = new Size(49, 27);
+            cio.TabIndex = 2;
+            cio.Text = "App";
+            cio.Click += panel8_Click;
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.label12.Location = new System.Drawing.Point(55, 11);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(161, 37);
-            this.label12.TabIndex = 1;
-            this.label12.Text = "Calendar-IO";
-            this.label12.Click += new System.EventHandler(this.panel8_Click);
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI", 16F);
+            label12.Location = new Point(55, 11);
+            label12.Name = "label12";
+            label12.Size = new Size(161, 37);
+            label12.TabIndex = 1;
+            label12.Text = "Calendar-IO";
+            label12.Click += panel8_Click;
             // 
             // calendarPic
             // 
-            this.calendarPic.Image = global::deneOS.Properties.Resources.ScheduleTime_80;
-            this.calendarPic.Location = new System.Drawing.Point(6, 5);
-            this.calendarPic.Name = "calendarPic";
-            this.calendarPic.Size = new System.Drawing.Size(43, 43);
-            this.calendarPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.calendarPic.TabIndex = 0;
-            this.calendarPic.TabStop = false;
-            this.calendarPic.Click += new System.EventHandler(this.panel8_Click);
+            calendarPic.Image = Properties.Resources.ScheduleTime_80;
+            calendarPic.Location = new Point(6, 5);
+            calendarPic.Name = "calendarPic";
+            calendarPic.Size = new Size(43, 43);
+            calendarPic.SizeMode = PictureBoxSizeMode.Zoom;
+            calendarPic.TabIndex = 0;
+            calendarPic.TabStop = false;
+            calendarPic.Click += panel8_Click;
             // 
             // panel9
             // 
-            this.panel9.Controls.Add(this.term);
-            this.panel9.Controls.Add(this.label14);
-            this.panel9.Controls.Add(this.termPic);
-            this.panel9.Location = new System.Drawing.Point(3, 293);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(364, 52);
-            this.panel9.TabIndex = 10;
-            this.panel9.Click += new System.EventHandler(this.panel9_Click);
+            panel9.Controls.Add(term);
+            panel9.Controls.Add(label14);
+            panel9.Controls.Add(termPic);
+            panel9.Location = new Point(3, 293);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(364, 52);
+            panel9.TabIndex = 10;
+            panel9.Click += panel9_Click;
             // 
             // term
             // 
-            this.term.AutoSize = true;
-            this.term.Location = new System.Drawing.Point(225, 21);
-            this.term.Name = "term";
-            this.term.Size = new System.Drawing.Size(136, 27);
-            this.term.TabIndex = 2;
-            this.term.Text = "Imported App";
-            this.term.Click += new System.EventHandler(this.panel8_Click);
+            term.AutoSize = true;
+            term.Location = new Point(225, 21);
+            term.Name = "term";
+            term.Size = new Size(136, 27);
+            term.TabIndex = 2;
+            term.Text = "Imported App";
+            term.Click += panel8_Click;
             // 
             // label14
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.label14.Location = new System.Drawing.Point(55, 11);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(117, 37);
-            this.label14.TabIndex = 1;
-            this.label14.Text = "Terminal";
-            this.label14.Click += new System.EventHandler(this.panel9_Click);
+            label14.AutoSize = true;
+            label14.Font = new Font("Segoe UI", 16F);
+            label14.Location = new Point(55, 11);
+            label14.Name = "label14";
+            label14.Size = new Size(117, 37);
+            label14.TabIndex = 1;
+            label14.Text = "Terminal";
+            label14.Click += panel9_Click;
             // 
             // termPic
             // 
-            this.termPic.Image = global::deneOS.Properties.Resources.icons8_command_line_100;
-            this.termPic.Location = new System.Drawing.Point(6, 5);
-            this.termPic.Name = "termPic";
-            this.termPic.Size = new System.Drawing.Size(43, 43);
-            this.termPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.termPic.TabIndex = 0;
-            this.termPic.TabStop = false;
-            this.termPic.Click += new System.EventHandler(this.panel9_Click);
+            termPic.Image = Properties.Resources.icons8_command_line_100;
+            termPic.Location = new Point(6, 5);
+            termPic.Name = "termPic";
+            termPic.Size = new Size(43, 43);
+            termPic.SizeMode = PictureBoxSizeMode.Zoom;
+            termPic.TabIndex = 0;
+            termPic.TabStop = false;
+            termPic.Click += panel9_Click;
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.def);
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.filesPic);
-            this.panel3.Location = new System.Drawing.Point(3, 351);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(364, 52);
-            this.panel3.TabIndex = 4;
-            this.panel3.Click += new System.EventHandler(this.panel3_Click);
+            panel3.Controls.Add(def);
+            panel3.Controls.Add(label1);
+            panel3.Controls.Add(filesPic);
+            panel3.Location = new Point(3, 351);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(364, 52);
+            panel3.TabIndex = 4;
+            panel3.Click += panel3_Click;
             // 
             // def
             // 
-            this.def.AutoSize = true;
-            this.def.Location = new System.Drawing.Point(245, 21);
-            this.def.Name = "def";
-            this.def.Size = new System.Drawing.Size(117, 27);
-            this.def.TabIndex = 2;
-            this.def.Text = "System App";
-            this.def.Click += new System.EventHandler(this.panel3_Click);
+            def.AutoSize = true;
+            def.Location = new Point(245, 21);
+            def.Name = "def";
+            def.Size = new Size(117, 27);
+            def.TabIndex = 2;
+            def.Text = "System App";
+            def.Click += panel3_Click;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.label1.Location = new System.Drawing.Point(55, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(131, 37);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "DeneFiles";
-            this.label1.Click += new System.EventHandler(this.panel3_Click);
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 16F);
+            label1.Location = new Point(55, 11);
+            label1.Name = "label1";
+            label1.Size = new Size(131, 37);
+            label1.TabIndex = 1;
+            label1.Text = "DeneFiles";
+            label1.Click += panel3_Click;
             // 
             // filesPic
             // 
-            this.filesPic.Image = global::deneOS.Properties.Resources.icons8_file_explorer_100;
-            this.filesPic.Location = new System.Drawing.Point(6, 5);
-            this.filesPic.Name = "filesPic";
-            this.filesPic.Size = new System.Drawing.Size(43, 43);
-            this.filesPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.filesPic.TabIndex = 0;
-            this.filesPic.TabStop = false;
-            this.filesPic.Click += new System.EventHandler(this.panel3_Click);
+            filesPic.Image = Properties.Resources.icons8_file_explorer_100;
+            filesPic.Location = new Point(6, 5);
+            filesPic.Name = "filesPic";
+            filesPic.Size = new Size(43, 43);
+            filesPic.SizeMode = PictureBoxSizeMode.Zoom;
+            filesPic.TabIndex = 0;
+            filesPic.TabStop = false;
+            filesPic.Click += panel3_Click;
             // 
             // panel10
             // 
-            this.panel10.Controls.Add(this.rec);
-            this.panel10.Controls.Add(this.label17);
-            this.panel10.Controls.Add(this.recipPic);
-            this.panel10.Location = new System.Drawing.Point(3, 409);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(364, 52);
-            this.panel10.TabIndex = 5;
-            this.panel10.Click += new System.EventHandler(this.panel10_Click);
+            panel10.Controls.Add(rec);
+            panel10.Controls.Add(label17);
+            panel10.Controls.Add(recipPic);
+            panel10.Location = new Point(3, 409);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(364, 52);
+            panel10.TabIndex = 5;
+            panel10.Click += panel10_Click;
             // 
             // rec
             // 
-            this.rec.AutoSize = true;
-            this.rec.Location = new System.Drawing.Point(180, 19);
-            this.rec.Name = "rec";
-            this.rec.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.rec.Size = new System.Drawing.Size(181, 27);
-            this.rec.TabIndex = 2;
-            this.rec.Text = "Downloadable App";
-            this.rec.Click += new System.EventHandler(this.panel10_Click);
+            rec.AutoSize = true;
+            rec.Location = new Point(180, 19);
+            rec.Name = "rec";
+            rec.RightToLeft = RightToLeft.Yes;
+            rec.Size = new Size(181, 27);
+            rec.TabIndex = 2;
+            rec.Text = "Downloadable App";
+            rec.Click += panel10_Click;
             // 
             // label17
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.label17.Location = new System.Drawing.Point(55, 11);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(81, 37);
-            this.label17.TabIndex = 1;
-            this.label17.Text = "Recip";
-            this.label17.Click += new System.EventHandler(this.panel10_Click);
+            label17.AutoSize = true;
+            label17.Font = new Font("Segoe UI", 16F);
+            label17.Location = new Point(55, 11);
+            label17.Name = "label17";
+            label17.Size = new Size(81, 37);
+            label17.TabIndex = 1;
+            label17.Text = "Recip";
+            label17.Click += panel10_Click;
             // 
             // recipPic
             // 
-            this.recipPic.Image = global::deneOS.Properties.Resources.RecipV2_NoBackground;
-            this.recipPic.Location = new System.Drawing.Point(6, 5);
-            this.recipPic.Name = "recipPic";
-            this.recipPic.Size = new System.Drawing.Size(43, 43);
-            this.recipPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.recipPic.TabIndex = 0;
-            this.recipPic.TabStop = false;
-            this.recipPic.Click += new System.EventHandler(this.panel10_Click);
+            recipPic.Image = Properties.Resources.RecipV2_NoBackground;
+            recipPic.Location = new Point(6, 5);
+            recipPic.Name = "recipPic";
+            recipPic.Size = new Size(43, 43);
+            recipPic.SizeMode = PictureBoxSizeMode.Zoom;
+            recipPic.TabIndex = 0;
+            recipPic.TabStop = false;
+            recipPic.Click += panel10_Click;
             // 
             // panel11
             // 
-            this.panel11.BackColor = System.Drawing.Color.Transparent;
-            this.panel11.Controls.Add(this.button4);
-            this.panel11.Controls.Add(this.button3);
-            this.panel11.Controls.Add(this.button2);
-            this.panel11.Location = new System.Drawing.Point(3, 467);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(375, 46);
-            this.panel11.TabIndex = 11;
+            panel11.BackColor = Color.Transparent;
+            panel11.Controls.Add(button4);
+            panel11.Controls.Add(button3);
+            panel11.Controls.Add(button2);
+            panel11.Location = new Point(3, 467);
+            panel11.Name = "panel11";
+            panel11.Size = new Size(375, 46);
+            panel11.TabIndex = 11;
             // 
             // button4
             // 
-            this.button4.BackgroundImage = global::deneOS.Properties.Resources.icons8_exit_100;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button4.Location = new System.Drawing.Point(55, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(43, 37);
-            this.button4.TabIndex = 2;
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            button4.BackgroundImage = Properties.Resources.icons8_exit_100;
+            button4.BackgroundImageLayout = ImageLayout.Zoom;
+            button4.FlatStyle = FlatStyle.Popup;
+            button4.Location = new Point(55, 3);
+            button4.Name = "button4";
+            button4.Size = new Size(43, 37);
+            button4.TabIndex = 2;
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.Color.Transparent;
-            this.button3.BackgroundImage = global::deneOS.Properties.Resources.icons8_restart_100;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Location = new System.Drawing.Point(104, 4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(43, 37);
-            this.button3.TabIndex = 1;
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            button3.BackColor = Color.Transparent;
+            button3.BackgroundImage = Properties.Resources.icons8_restart_100;
+            button3.BackgroundImageLayout = ImageLayout.Zoom;
+            button3.FlatStyle = FlatStyle.Popup;
+            button3.Location = new Point(104, 4);
+            button3.Name = "button3";
+            button3.Size = new Size(43, 37);
+            button3.TabIndex = 1;
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.BackgroundImage = global::deneOS.Properties.Resources.icons8_shutdown_100;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Location = new System.Drawing.Point(6, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(43, 37);
-            this.button2.TabIndex = 0;
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            button2.BackColor = Color.Transparent;
+            button2.BackgroundImage = Properties.Resources.icons8_shutdown_100;
+            button2.BackgroundImageLayout = ImageLayout.Zoom;
+            button2.FlatStyle = FlatStyle.Popup;
+            button2.Location = new Point(6, 3);
+            button2.Name = "button2";
+            button2.Size = new Size(43, 37);
+            button2.TabIndex = 0;
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // sm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.SystemColors.ControlText;
-            this.ClientSize = new System.Drawing.Size(378, 513);
-            this.Controls.Add(this.panel2);
-            this.Font = new System.Drawing.Font("Segoe UI Variable Display", 12F);
-            this.ForeColor = System.Drawing.SystemColors.Control;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "sm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "sm";
-            this.Load += new System.EventHandler(this.sm_Load);
-            this.panel2.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dnnaviPic)).EndInit();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dnnotPic)).EndInit();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dnupdPic)).EndInit();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ie11minPic)).EndInit();
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.calendarPic)).EndInit();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.termPic)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.filesPic)).EndInit();
-            this.panel10.ResumeLayout(false);
-            this.panel10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.recipPic)).EndInit();
-            this.panel11.ResumeLayout(false);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            BackColor = SystemColors.ControlText;
+            ClientSize = new Size(378, 513);
+            Controls.Add(panel2);
+            Font = new Font("Segoe UI Variable Display", 12F);
+            ForeColor = SystemColors.Control;
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(4, 5, 4, 5);
+            Name = "sm";
+            Opacity = 0.75D;
+            StartPosition = FormStartPosition.Manual;
+            Text = "sm";
+            Load += sm_Load;
+            panel2.ResumeLayout(false);
+            flowLayoutPanel1.ResumeLayout(false);
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dnnaviPic).EndInit();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dnnotPic).EndInit();
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dnupdPic).EndInit();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)ie11minPic).EndInit();
+            panel8.ResumeLayout(false);
+            panel8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)calendarPic).EndInit();
+            panel9.ResumeLayout(false);
+            panel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)termPic).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)filesPic).EndInit();
+            panel10.ResumeLayout(false);
+            panel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)recipPic).EndInit();
+            panel11.ResumeLayout(false);
+            ResumeLayout(false);
 
         }
 

@@ -65,7 +65,7 @@ namespace deneFiles.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap icons8_back_100 {
             get {
-                object obj = ResourceManager.GetObject("icons8-back-100", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_back_100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -75,7 +75,7 @@ namespace deneFiles.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap icons8_back_arrow_100 {
             get {
-                object obj = ResourceManager.GetObject("icons8-back-arrow-100", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_back_arrow_100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -85,7 +85,7 @@ namespace deneFiles.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap icons8_forward_100 {
             get {
-                object obj = ResourceManager.GetObject("icons8-forward-100", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_forward_100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -95,7 +95,7 @@ namespace deneFiles.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap icons8_group_100__1_ {
             get {
-                object obj = ResourceManager.GetObject("icons8-group-100 (1)", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_group_100__1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -105,7 +105,7 @@ namespace deneFiles.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap icons8_prev_100 {
             get {
-                object obj = ResourceManager.GetObject("icons8-prev-100", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_prev_100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -115,7 +115,7 @@ namespace deneFiles.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap icons8_program_100 {
             get {
-                object obj = ResourceManager.GetObject("icons8-program-100", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_program_100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -125,7 +125,7 @@ namespace deneFiles.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap icons8_rotate_100 {
             get {
-                object obj = ResourceManager.GetObject("icons8-rotate-100", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_rotate_100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -135,7 +135,7 @@ namespace deneFiles.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap icons8_software_100 {
             get {
-                object obj = ResourceManager.GetObject("icons8-software-100", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_software_100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

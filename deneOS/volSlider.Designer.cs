@@ -28,19 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
+            SuspendLayout();
             // 
             // volSlider
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(100, 40);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "volSlider";
-            this.Text = "volSlider";
-            this.TopMost = true;
-            this.Load += new System.EventHandler(this.volSlider_Load);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(100, 50);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "volSlider";
+            Opacity = 0.45D;
+            Text = "volSlider";
+            TopMost = true;
+            Load += volSlider_Load;
+            ResumeLayout(false);
 
         }
 

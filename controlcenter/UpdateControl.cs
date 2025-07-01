@@ -90,7 +90,7 @@ public partial class UpdateControl : UserControl
 
     private void GetCurrentVersion()
     {
-        var x = FileVersionInfo.GetVersionInfo(@"C:\DENEOS\core\deneOS_Home.exe");
+        var x = FileVersionInfo.GetVersionInfo(@"C:\DENEOS\core\deneOS.exe");
         int[] preVersion = { x.FileMajorPart, x.FileMinorPart, x.FileBuildPart };
         string tag = preVersion[2] == 0 ? "" : (preVersion[2] == 1 ? "b" : "a");
         currentVersion = $"{preVersion[0]}.{preVersion[1]}{tag}";

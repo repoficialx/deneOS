@@ -18,10 +18,7 @@ namespace deneOS
         public sm()
         {
             InitializeComponent();
-        }
 
-        private void sm_Load(object sender, EventArgs e)
-        {
             int startMenuWidth = 378;
             int startMenuHeight = 513;
 
@@ -156,7 +153,16 @@ namespace deneOS
             dnn.Text = (string)T("sApp");
             dnno.Text = (string)T("sApp");
             dnu.Text = (string)T("sApp");
-            
+        }
+
+        private async void sm_Load(object sender, EventArgs e)
+        {
+            this.Opacity = 0;
+            for (double i = 0; i <= 0.5; i += 0.05)
+            {
+                this.Opacity = i;
+                await Task.Delay(5);
+            }
         }
 
         private void panel12_Click(object sender, EventArgs e)
