@@ -41,6 +41,7 @@ namespace controlcenter
                     "page:software" => (formAjustes.Pages?)formAjustes.Pages.Software,
                     "page:home" => (formAjustes.Pages?)formAjustes.Pages.Inicio,
                     "page:about" => (formAjustes.Pages?)formAjustes.Pages.AcercaDe,
+                    "page:custom" => (formAjustes.Pages?)formAjustes.Pages.Personalizacion,
                     _ => (formAjustes.Pages?)formAjustes.Pages.Inicio,
                 };
             }

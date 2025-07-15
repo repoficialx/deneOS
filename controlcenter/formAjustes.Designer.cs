@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formAjustes));
             panel1 = new Panel();
+            btnCustom = new Button();
             btnUpd = new Button();
             btnAcerca = new Button();
             btnAvanzado = new Button();
@@ -43,6 +44,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(btnCustom);
             panel1.Controls.Add(btnUpd);
             panel1.Controls.Add(btnAcerca);
             panel1.Controls.Add(btnAvanzado);
@@ -55,6 +57,20 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(150, 450);
             panel1.TabIndex = 0;
+            // 
+            // btnCustom
+            // 
+            btnCustom.Dock = DockStyle.Top;
+            btnCustom.Image = Properties.Resources.icons8_windows_10_personalization_100;
+            btnCustom.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCustom.Location = new Point(0, 315);
+            btnCustom.Name = "btnCustom";
+            btnCustom.Size = new Size(150, 45);
+            btnCustom.TabIndex = 8;
+            btnCustom.Text = "Personalización";
+            btnCustom.TextAlign = ContentAlignment.MiddleRight;
+            btnCustom.UseVisualStyleBackColor = true;
+            btnCustom.Click += btnCustom_Click;
             // 
             // btnUpd
             // 
@@ -188,5 +204,6 @@
         private Button btnPantalla;
         private Panel panel2;
         private Button btnUpd;
+        private Button btnCustom;
     }
 }

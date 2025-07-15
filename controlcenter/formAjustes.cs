@@ -6,7 +6,7 @@ namespace controlcenter
     {
         public enum Pages
         {
-            Inicio, Pantalla, General, Software, Avanzado, AcercaDe
+            Inicio, Pantalla, General, Software, Avanzado, AcercaDe, Personalizacion
         }
         public static Pages? CurrentPage = null;
         public static UserControl page2control(Pages? page)
@@ -25,6 +25,10 @@ namespace controlcenter
                     return new SoftwareControl();
                 case Pages.Avanzado:
                     return new AvanzadoControl();
+                case Pages.AcercaDe:
+                    return new AboutControl();
+                case Pages.Personalizacion:
+                //
                 /*case Pages.AcercaDe:
                     return new AcercaDeControl();*/
                 default:
@@ -62,6 +66,7 @@ namespace controlcenter
             btnPantalla.Image = RedimensionarImagen(Properties.Resources.icons8_monitor_100, 30, 30) as Image;
             btnSoftware.Image = RedimensionarImagen(Properties.Resources.icons8_software_100, 30, 30) as Image;
             btnUpd.Image = RedimensionarImagen(Properties.Resources.icons8_windows_update_100, 30, 30) as Image;
+            btnCustom.Image = RedimensionarImagen(Properties.Resources.icons8_windows_10_personalization_100, 30, 30) as Image;
 
             // Textos traducidos
 
@@ -122,6 +127,13 @@ namespace controlcenter
             panel2.Controls.Clear();
             UpdateControl upd = new();
             panel2.Controls.Add(upd);
+        }
+
+        private void btnCustom_Click(object sender, EventArgs e)
+        {
+            panel2.Controls.Clear();
+            CustomControl custom = new();
+            panel2.Controls.Add(custom);
         }
     }
 }

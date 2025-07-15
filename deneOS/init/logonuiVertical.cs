@@ -14,13 +14,13 @@ using static Traductor;
 
 namespace deneOS.init
 {
-    public partial class logonui : Form
+    public partial class logonuiVertical : Form
     {
         public Form formToShow;
         /// <summary>
         /// Inicialización de Compontentes vía InitializeComponent();
         /// </summary>
-        public logonui()
+        public logonuiVertical()
         {
             if (flagMgmt.DisableLockScreen)
             {
@@ -31,7 +31,6 @@ namespace deneOS.init
                 return;
             }
             InitializeComponent();
-            
             this.Show();
         }
         /// <summary>
@@ -246,17 +245,6 @@ namespace deneOS.init
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true; // Evita que Enter llegue al botón
-                if (formToShow.IsDisposed)
-                {
-                    if (formToShow is login)
-                    {
-                        formToShow = new login();
-                    }
-                    else if (formToShow is newusr)
-                    {
-                        formToShow = new newusr();
-                    }
-                }
                 formToShow.Show();
                 formToShow.BringToFront();
                 if (formToShow is login loginForm)
@@ -281,6 +269,46 @@ namespace deneOS.init
         private void logonui_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void boxpass_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void boxusr_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -141,6 +141,7 @@
             ForeColor = SystemColors.Control;
             FormBorderStyle = FormBorderStyle.None;
             Name = "login";
+            Opacity = 0.6D;
             Text = "login";
             Load += login_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

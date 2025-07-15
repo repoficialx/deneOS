@@ -56,7 +56,14 @@ namespace deneOS.init
             }
             Panel panelOculto = new Panel();
             this.Controls.Add(panelOculto);
-            this.ActiveControl = boxusr;
+            if (boxusr.Enabled)
+            {
+                if (boxusr.Visible)
+                {
+                    //this.ActiveControl = boxusr;
+                }
+                
+            }
             this.AcceptButton = txt6;
             this.KeyPreview = true;
             this.Activate();

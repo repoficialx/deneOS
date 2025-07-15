@@ -38,6 +38,9 @@ Made in together with deneOS v0.1b</Description>
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="CustomControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

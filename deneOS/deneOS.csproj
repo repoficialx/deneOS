@@ -41,19 +41,32 @@ Windows? Nah. Mejor deneOS. No es solo una "skin". Es una super-shell.</Descript
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\dosu\dosu.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="dosu">
       <HintPath>..\dosu\bin\Debug\net8.0-windows\dosu.dll</HintPath>
     </Reference>
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="HomeScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="desktop.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="EmergencyScreen.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="init\BootScreenVertical.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="init\BootScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="init\logonuiVertical.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="init\logonui.cs">
@@ -70,6 +83,9 @@ Windows? Nah. Mejor deneOS. No es solo una "skin". Es una super-shell.</Descript
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Update="sm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="TopBar.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="tbar.cs">

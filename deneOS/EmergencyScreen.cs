@@ -18,13 +18,27 @@ namespace deneOS
         public EmergencyScreen(string error_code = "")
         {
             InitializeComponent();
+            //CargarIdioma();
             label1.Text = (string)T("dhap");
             label2.Text = (string)T("rsodmsg");
             label3.Text = error_code != "" ? string.Format("{0}: {1}", T("errcode"), error_code) : (string)T("noecprov");
             button1.Text = (string)T("rstnow");
             label4.Text = string.Format("{0} {1} {2}", T("resetin"), 10, T("ss"));
         }
-
+        void CargarIdioma()
+        {
+            if (flagMgmt.ShowUntranslatedStrings)
+            {
+                UN_ST = true;
+                return;
+            }
+            if (flagMgmt.Language != "")
+            {
+                Cargar(flagMgmt.Language);
+                return;
+            }
+            Cargar(dosu.UniversalConfiguration.GetLang());
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             ForceReboot();

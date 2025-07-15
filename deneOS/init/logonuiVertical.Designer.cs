@@ -1,6 +1,6 @@
 ﻿namespace deneOS.init
 {
-    partial class logonui
+    partial class logonuiVertical
     {
         /// <summary>
         /// Required designer variable.
@@ -39,11 +39,11 @@
             // 
             txt1.AutoSize = true;
             txt1.BackColor = Color.Transparent;
-            txt1.Font = new Font("Segoe UI Variable Display", 72F);
+            txt1.Font = new Font("Segoe UI Variable Display", 152F);
             txt1.ForeColor = SystemColors.Control;
-            txt1.Location = new Point(61, 694);
+            txt1.Location = new Point(213, 77);
             txt1.Name = "txt1";
-            txt1.Size = new Size(307, 159);
+            txt1.Size = new Size(650, 338);
             txt1.TabIndex = 0;
             txt1.Text = "TXT1";
             // 
@@ -51,11 +51,11 @@
             // 
             txt2.AutoSize = true;
             txt2.BackColor = Color.Transparent;
-            txt2.Font = new Font("Segoe UI Variable Display", 22F);
+            txt2.Font = new Font("Segoe UI Variable Display", 32F);
             txt2.ForeColor = SystemColors.Control;
-            txt2.Location = new Point(79, 913);
+            txt2.Location = new Point(485, 984);
             txt2.Name = "txt2";
-            txt2.Size = new Size(102, 49);
+            txt2.Size = new Size(147, 72);
             txt2.TabIndex = 1;
             txt2.Text = "TXT2";
             // 
@@ -70,7 +70,7 @@
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Segoe MDL2 Assets", 24F);
             button2.ForeColor = SystemColors.Control;
-            button2.Location = new Point(1820, 980);
+            button2.Location = new Point(993, 12);
             button2.Name = "button2";
             button2.Size = new Size(75, 57);
             button2.TabIndex = 100;
@@ -78,24 +78,24 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // logonui
+            // logonuiVertical
             // 
             AutoScaleDimensions = new SizeF(120F, 120F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = SystemColors.ControlText;
             BackgroundImage = Properties.Resources.img100;
-            BackgroundImageLayout = ImageLayout.Zoom;
-            ClientSize = new Size(1920, 1055);
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(1080, 1102);
             Controls.Add(button2);
             Controls.Add(txt2);
             Controls.Add(txt1);
             Font = new Font("Segoe UI", 24F);
             FormBorderStyle = FormBorderStyle.None;
-            MaximumSize = new Size(1920, 1080);
-            MinimumSize = new Size(1918, 1018);
-            Name = "logonui";
+            MaximumSize = new Size(1080, 1920);
+            MinimumSize = new Size(1080, 1018);
+            Name = "logonuiVertical";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Wed., 31th December 8888";
+            Text = "deneOS";
             WindowState = FormWindowState.Maximized;
             FormClosing += logonui_FormClosing;
             Load += logonui_Load;

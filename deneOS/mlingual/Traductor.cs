@@ -1,7 +1,9 @@
-﻿using System;
+﻿using deneOS;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Text.Json;
 using System.Windows.Forms;
 
@@ -40,8 +42,27 @@ public static class Traductor
     }
     static bool NeedsUpdate(string localPath, string remoteUrl)
     {
+        try
+        {
+            Ping ping = new();
+            IPAddress google = new([142, 250, 184, 14]);
+            var reply = ping.Send(google);
+            if (!(reply.Status == IPStatus.Success))
+            {
+                MessageBox.Show("ERROR: No Internet Connection.", "deneOS", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            //new EmergencyScreen("NO_INTERNET").ShowDialog();
+            //return false;
+
+            MessageBox.Show("ERROR: No Internet Connection.", "deneOS", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            return false;
+        }
         string remoteContent = null;
-        using (WebClient wc = new WebClient())
+        using (WebClient wc = new())
         {
             remoteContent = wc.DownloadString(remoteUrl);
         }

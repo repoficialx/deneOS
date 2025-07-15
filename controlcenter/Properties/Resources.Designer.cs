@@ -173,6 +173,16 @@ namespace controlcenter.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_windows_10_personalization_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-windows-10-personalization-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_windows_update_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8-windows-update-100", resourceCulture);
