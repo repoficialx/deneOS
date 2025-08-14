@@ -390,6 +390,7 @@ public:
     }
     static void OpenApp(String^ name, bool runAsAdmin, bool showOutput)
     {
+        
         String^ path = Path::Combine(currentPath, name);
         if (!IsAllowedPath(path))
         {

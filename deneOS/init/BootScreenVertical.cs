@@ -10,6 +10,7 @@ using System.IO;
 using System.Windows.Forms;
 using static Traductor;
 using Timer = System.Windows.Forms.Timer;
+using deneOS.OOBE;
 
 namespace deneOS.init
 {
@@ -131,7 +132,7 @@ namespace deneOS.init
                 DisableExplorer();
                 FilenFolderCheck();
                 CargarIdioma();
-                new logonui();
+                new logonuiVertical();
                 return;
             }
             
@@ -219,7 +220,20 @@ namespace deneOS.init
         {
             timer1.Stop();
             this.Hide();
-            new logonui();
+            // en vez de false, aquí debería ir una comprobación de si existe algún usuario
+            if (false)
+            {
+                // Si hay usuarios, mostramos la pantalla de inicio de sesión
+                Console.WriteLine("[INFO] BootScreen: Showing logonuiVertical");
+                this.BeginInvoke(new Action(() => new logonuiVertical().ShowDialog()));
+            }
+            else
+            {
+                // Si no hay usuarios, mostramos la pantalla de bienvenida
+                Console.WriteLine("[INFO] BootScreen: Showing welcome screen");
+                this.BeginInvoke(new Action(() => new Intro().ShowDialog()));
+            }
+            //new logonuiVertical();
             
         }
 

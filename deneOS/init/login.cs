@@ -1,4 +1,5 @@
-﻿using System;
+﻿#pragma warning disable
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,9 +15,22 @@ namespace deneOS.init
     {
         public login()
         {
+
             InitializeComponent();
+            this.DoubleBuffered = true;
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            UpdateStyles();
         }
 
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            if (BackgroundImage != null)
+            {
+                e.Graphics.DrawImage(BackgroundImage, ClientRectangle);
+            }
+        }
         private void button6_Click(object sender, EventArgs e)
         {
             Close();
@@ -62,7 +76,7 @@ namespace deneOS.init
                 {
                     //this.ActiveControl = boxusr;
                 }
-                
+
             }
             this.AcceptButton = txt6;
             this.KeyPreview = true;
@@ -108,6 +122,16 @@ namespace deneOS.init
             {
                 MessageBox.Show((string)T("invusrpss"), (string)T("err"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void login_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

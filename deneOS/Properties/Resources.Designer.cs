@@ -563,6 +563,16 @@ namespace deneOS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap denePhone1_Logo {
+            get {
+                object obj = ResourceManager.GetObject("denePhone1_Logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap denestore {
             get {
                 object obj = ResourceManager.GetObject("denestore", resourceCulture);
@@ -683,6 +693,36 @@ namespace deneOS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap gradiente {
+            get {
+                object obj = ResourceManager.GetObject("gradiente", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gradiente2 {
+            get {
+                object obj = ResourceManager.GetObject("gradiente2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gradiente8 {
+            get {
+                object obj = ResourceManager.GetObject("gradiente8", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap HandwritingSystemToastIcon {
             get {
                 object obj = ResourceManager.GetObject("HandwritingSystemToastIcon", resourceCulture);
@@ -763,6 +803,16 @@ namespace deneOS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_andorra_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-andorra-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_browser_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8_browser_100", resourceCulture);
@@ -783,6 +833,26 @@ namespace deneOS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_country_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-country-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_england_circular_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-england-circular-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_exit_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8_exit_100", resourceCulture);
@@ -796,6 +866,26 @@ namespace deneOS.Properties {
         internal static System.Drawing.Bitmap icons8_file_explorer_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8_file_explorer_100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_france_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-france-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_germany_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-germany-100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -883,9 +973,29 @@ namespace deneOS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_spain_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-spain-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_update_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8_update_100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_usa_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-usa-100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

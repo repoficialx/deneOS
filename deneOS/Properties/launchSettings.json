@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "deneOS": {
+      "commandName": "Project",
+      "commandLineArgs": "/forceVertical"
+    }
+  }
+}

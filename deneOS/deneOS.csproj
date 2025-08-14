@@ -72,6 +72,9 @@ Windows? Nah. Mejor deneOS. No es solo una "skin". Es una super-shell.</Descript
     <Compile Update="init\logonui.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="OOBE\Region.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

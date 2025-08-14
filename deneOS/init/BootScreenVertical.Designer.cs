@@ -44,7 +44,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.denelogo;
-            pictureBox1.Location = new Point(684, 261);
+            pictureBox1.Location = new Point(-22, 80);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(572, 468);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -55,18 +55,18 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe Boot Semilight", 52F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(870, 823);
+            label1.Location = new Point(172, 758);
             label1.Name = "label1";
             label1.Size = new Size(165, 116);
             label1.TabIndex = 2;
             label1.Text = "";
             // 
-            // BootScreen
+            // BootScreenVertical
             // 
             AutoScaleDimensions = new SizeF(120F, 120F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = SystemColors.ControlText;
-            ClientSize = new Size(1920, 1080);
+            ClientSize = new Size(540, 960);
             ControlBox = false;
             Controls.Add(label1);
             Controls.Add(pictureBox1);
@@ -76,7 +76,7 @@
             MaximizeBox = false;
             MaximumSize = new Size(1920, 1080);
             MinimizeBox = false;
-            Name = "BootScreen";
+            Name = "BootScreenVertical";
             ShowIcon = false;
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;

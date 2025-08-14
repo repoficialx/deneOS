@@ -15,7 +15,14 @@ namespace deneOS
             adminMgmt.argsCount = args.Length;
             Arguments();
             ApplicationConfiguration.Initialize();
-            Application.Run(new BootScreen());
+            if (ornMgmt.GetOrientation() == Orientation.Vertical)
+            {
+                Application.Run(new BootScreenVertical());
+            }
+            else
+            {
+                Application.Run(new BootScreen());
+            }
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration
         }
@@ -50,6 +57,7 @@ namespace deneOS
                 else if (arg == "/noShell") flagMgmt.NoShell = true;
                 else if (arg == "/emergencyUI") flagMgmt.EmergencyUI = true;
                 else if (arg == "/offlineOnly") flagMgmt.OfflineOnly = true;
+                else if (arg == "/forceVertical") flagMgmt.ForceVertical = true;
 
                 else if (arg.StartsWith("/language:"))
                     flagMgmt.Language = arg.Split(':')[1];
