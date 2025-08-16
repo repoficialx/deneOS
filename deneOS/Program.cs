@@ -31,7 +31,9 @@ namespace deneOS
             if (File.Exists("c:\\currentsessionflags.txt")) File.Delete("c:\\currentsessionflags.txt");
             else _ = (string)null;
 
-
+#if DEBUG
+            flagMgmt.EnableDebug = true;
+#endif
             string[] args = Environment.GetCommandLineArgs();
             string[] argfile = { };
             foreach (string arg in args)

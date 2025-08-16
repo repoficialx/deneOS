@@ -383,7 +383,7 @@ namespace dosu
                     Utils.SysMsg($"Error al leer el archivo de configuración de idioma: {ex.Message}", 0x01, 0x01, "Error de Configuración");
                 }
             }
-            return "en"; // Idioma por defecto si no se encuentra el archivo o hay un error
+            return System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName.ToLower().TrimEnd();
         }
 
         public static void SetLang(string lang)
@@ -576,9 +576,8 @@ namespace dosu
     {
         public static class WiFiStatus
         {
-            public static int GetWifiSignalStrength()
+            public static async Task<int> GetWifiSignalStrengthAsync()
             {
-
                 ProcessStartInfo psi = new ProcessStartInfo
                 {
                     FileName = "netsh",
@@ -588,34 +587,42 @@ namespace dosu
                     CreateNoWindow = true
                 };
 
-                string output;
-                using (Process process = Process.Start(psi))
+                try
                 {
-                    output = process.StandardOutput.ReadToEnd();
-                    process.WaitForExit();
+                    string output;
+                    using (Process process = Process.Start(psi))
+                    {
+                        // Leer la salida de forma asíncrona para evitar el interbloqueo
+                        output = await process.StandardOutput.ReadToEndAsync();
+                        await Task.Run(() => process.WaitForExit());
+                    }
+
+                    Console.Write(output);
+                    Match match = Regex.Match(output, @"Señal\s*:\s*(\d+)%");
+                    if (match.Success)
+                    {
+                        int signalStrength = int.Parse(match.Groups[1].Value);
+                        Console.WriteLine($"{T("wifistrength")} {signalStrength}%");
+                        return signalStrength;
+                    }
+                    else
+                    {
+                        Console.WriteLine(T("nowifisignal"));
+                        return -1;
+                    }
                 }
-                Console.Write(output);
-                // Buscar "Señal : 96%" usando regex)
-                Match match = Regex.Match(output, @"(\d+)%");
-                if (match.Success)
+                catch (Exception ex)
                 {
-                    int signalStrength = int.Parse(match.Groups[1].Value);
-                    Console.WriteLine($"{T("wifistrength")} {signalStrength}%");
-                    //MessageBox.Show($"Intensidad de señal WiFi: {signalStrength}%");
-                    return signalStrength;
-                }
-                else
-                {
-                    Console.WriteLine(T("nowifisignal"));
+                    Console.WriteLine($"Error al obtener la señal de WiFi: {ex.Message}");
                     return -1;
                 }
-
-
             }
-
             private static object T(string v)
+
             {
+
                 return MUI.T(v);
+
             }
         }
     }

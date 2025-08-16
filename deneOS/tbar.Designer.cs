@@ -85,7 +85,7 @@
             button1.FlatStyle = FlatStyle.Popup;
             button1.Location = new Point(0, 0);
             button1.Name = "button1";
-            button1.Size = new Size(72, 60);
+            button1.Size = new Size(72, 55);
             button1.TabIndex = 0;
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
@@ -118,9 +118,9 @@
             // 
             panel17.Controls.Add(label20);
             panel17.Controls.Add(label19);
-            panel17.Location = new Point(323, 3);
+            panel17.Location = new Point(370, 3);
             panel17.Name = "panel17";
-            panel17.Size = new Size(198, 79);
+            panel17.Size = new Size(151, 79);
             panel17.TabIndex = 0;
             // 
             // label20
@@ -128,7 +128,7 @@
             label20.Font = new Font("Segoe UI", 13F);
             label20.Location = new Point(3, 24);
             label20.Name = "label20";
-            label20.Size = new Size(194, 35);
+            label20.Size = new Size(151, 35);
             label20.TabIndex = 1;
             label20.Text = "00/00/0000";
             label20.TextAlign = ContentAlignment.TopRight;
@@ -138,7 +138,7 @@
             label19.Font = new Font("Segoe UI", 13F);
             label19.Location = new Point(3, 0);
             label19.Name = "label19";
-            label19.Size = new Size(194, 35);
+            label19.Size = new Size(151, 35);
             label19.TabIndex = 0;
             label19.Text = "00:00";
             label19.TextAlign = ContentAlignment.TopRight;
@@ -146,9 +146,9 @@
             // label21
             // 
             label21.Font = new Font("Segoe UI Variable Display", 9F);
-            label21.Location = new Point(255, 0);
+            label21.Location = new Point(319, 0);
             label21.Name = "label21";
-            label21.Size = new Size(62, 58);
+            label21.Size = new Size(45, 58);
             label21.TabIndex = 2;
             label21.Text = "100%";
             label21.TextAlign = ContentAlignment.MiddleLeft;
@@ -156,7 +156,7 @@
             // label22
             // 
             label22.Font = new Font("Segoe Fluent Icons", 16F);
-            label22.Location = new Point(207, 0);
+            label22.Location = new Point(271, 0);
             label22.Name = "label22";
             label22.Size = new Size(42, 58);
             label22.TabIndex = 4;
@@ -166,9 +166,9 @@
             // label25
             // 
             label25.Font = new Font("Segoe UI Variable Display", 9F);
-            label25.Location = new Point(139, 0);
+            label25.Location = new Point(220, 0);
             label25.Name = "label25";
-            label25.Size = new Size(62, 58);
+            label25.Size = new Size(45, 58);
             label25.TabIndex = 7;
             label25.Text = "100%";
             label25.TextAlign = ContentAlignment.MiddleLeft;
@@ -176,9 +176,9 @@
             // label23
             // 
             label23.Font = new Font("Segoe Fluent Icons", 16F);
-            label23.Location = new Point(81, 0);
+            label23.Location = new Point(176, 0);
             label23.Name = "label23";
-            label23.Size = new Size(52, 62);
+            label23.Size = new Size(38, 62);
             label23.TabIndex = 5;
             label23.Text = "";
             label23.TextAlign = ContentAlignment.MiddleRight;
@@ -187,9 +187,9 @@
             // label24
             // 
             label24.Font = new Font("Segoe Fluent Icons", 16F);
-            label24.Location = new Point(19, 0);
+            label24.Location = new Point(129, 0);
             label24.Name = "label24";
-            label24.Size = new Size(56, 58);
+            label24.Size = new Size(41, 58);
             label24.TabIndex = 6;
             label24.Text = "";
             label24.TextAlign = ContentAlignment.MiddleLeft;
@@ -208,6 +208,7 @@
             StartPosition = FormStartPosition.Manual;
             Text = "tbar";
             FormClosing += tbar_FormClosing;
+            FormClosed += tbar_FormClosed;
             Load += tbar_Load;
             panel1.ResumeLayout(false);
             flowLayoutPanel1.ResumeLayout(false);

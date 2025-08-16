@@ -220,18 +220,48 @@ namespace deneOS.init
         {
             timer1.Stop();
             this.Hide();
-            // en vez de false, aquí debería ir una comprobación de si existe algún usuario
-            if (false)
+            string userDataFile = @"C:\DENEOS\sysconf\config.ini";
+            int UserLine = 1;
+            int PassLine = 2;
+            string[] userData = File.Exists(userDataFile) ? File.ReadAllLines(userDataFile) : ["", "", ""];
+            string userLine = userData[UserLine];
+            string passLine = userData[PassLine];
+            string usr;
+            string pss;
+            if (passLine.ToLower().Contains("password = "))
             {
-                // Si hay usuarios, mostramos la pantalla de inicio de sesión
-                Console.WriteLine("[INFO] BootScreen: Showing logonuiVertical");
-                this.BeginInvoke(new Action(() => new logonuiVertical().ShowDialog()));
+                pss = passLine.Substring(11);
             }
             else
             {
+                MessageBox.Show((string)T("npss"), "dene Safety", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                pss = "";
+            }
+            if (userLine.ToLower().Contains("username = "))
+            {
+                usr = userLine.Substring(11);
+            }
+            else
+            {
+                MessageBox.Show((string)T("nuss"), "dene Safety", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                usr = "";
+            }
+            bool user = !(string.IsNullOrEmpty(usr));
+            bool pass = !(string.IsNullOrEmpty(pss));
+            bool account = user && pass;
+            bool newUser = !account;
+            // en vez de false, aquí debería ir una comprobación de si existe algún usuario
+            if (account)
+            {
+                // Si hay usuarios, mostramos la pantalla de inicio de sesión
+                Console.WriteLine("[INFO] BootScreen: Showing logonuiVertical");
+                this.BeginInvoke(new Action(() => { Hide(); new logonuiVertical().ShowDialog(); }));
+            }
+            else if (newUser)
+            {
                 // Si no hay usuarios, mostramos la pantalla de bienvenida
                 Console.WriteLine("[INFO] BootScreen: Showing welcome screen");
-                this.BeginInvoke(new Action(() => new Intro().ShowDialog()));
+                this.BeginInvoke(new Action(() => { Hide(); new Intro().ShowDialog(); }));
             }
             //new logonuiVertical();
             

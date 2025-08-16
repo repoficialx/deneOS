@@ -283,14 +283,26 @@
   <data name="ScheduleTime_80" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ScheduleTime_80.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icons8-language-35" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-language-35.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="language_notification_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\@language_notification_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="W12_LIGHT_1200P1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\W12_LIGHT_1200P1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="c11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\c11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="WLOGO_96x96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\@WLOGO_96x96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="FeatureToastDlpImg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FeatureToastDlpImg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="W12_LIGHT_1200P" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\W12_LIGHT_1200P.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="c4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\c4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -421,6 +433,9 @@
   <data name="OkDone_80contrast_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OkDone_80.contrast-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icons8-macbook-settings-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-macbook-settings-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Capturadepantalla20250501164238" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Captura de pantalla 2025-05-01 164238.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -481,6 +496,9 @@
   <data name="FeatureToastBulldogImg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FeatureToastBulldogImg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="FY25_Pride2025__BKG_08-Desktop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FY25_Pride2025__BKG_08-Desktop.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="c19" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\c19.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -492,6 +510,12 @@
   </data>
   <data name="VpnToastIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\@VpnToastIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-england-circular-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-england-circular-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-language-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-language-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DesktopSpotlightToastIcon_Dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DesktopSpotlightToastIcon_Dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -532,6 +556,9 @@
   <data name="DeneOSHome" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeneOSHome.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icons8-privacy-policy-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-privacy-policy-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icons8-country-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-country-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -559,7 +586,7 @@
   <data name="BluetoothPairingSystemToastIconcontrastblack" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BluetoothPairingSystemToastIcon.contrast-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-england-circular-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-england-circular-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="FY25_Pride2025__BKG_02-Desktop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FY25_Pride2025__BKG_02-Desktop.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

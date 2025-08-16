@@ -2,7 +2,7 @@
   "profiles": {
     "deneOS": {
       "commandName": "Project",
-      "commandLineArgs": "/forceVertical"
+      "commandLineArgs": "/locale:es\r\n/language:es"
     }
   }
 }

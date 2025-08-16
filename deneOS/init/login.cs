@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Traductor;
 using System.Windows.Forms;
 
 namespace deneOS.init
@@ -22,6 +23,11 @@ namespace deneOS.init
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             UpdateStyles();
+            //debug
+            txt3.Text = (string)T("txt3");
+            txt4.Text = (string)T("txt4");
+            txt5.Text = (string)T("txt5");
+            txt6.Text = (string)T("txt6");
         }
 
         protected override void OnPaintBackground(PaintEventArgs e)

@@ -121,7 +121,7 @@
             Name = "HomeScreen";
             ShowIcon = false;
             StartPosition = FormStartPosition.Manual;
-            Text = "explorer.dna";
+            Text = "explorer";
             FormClosing += desktop_FormClosing;
             Load += desktop_Load;
             flowLayoutPanel2.ResumeLayout(false);

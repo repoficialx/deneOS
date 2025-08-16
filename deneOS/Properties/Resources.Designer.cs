@@ -673,6 +673,26 @@ namespace deneOS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FY25_Pride2025__BKG_02_Desktop {
+            get {
+                object obj = ResourceManager.GetObject("FY25_Pride2025__BKG_02-Desktop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FY25_Pride2025__BKG_08_Desktop {
+            get {
+                object obj = ResourceManager.GetObject("FY25_Pride2025__BKG_08-Desktop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap GameSystemToastIcon {
             get {
                 object obj = ResourceManager.GetObject("GameSystemToastIcon", resourceCulture);
@@ -923,9 +943,49 @@ namespace deneOS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_language_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-language-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_language_35 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-language-35", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_macbook_settings_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-macbook-settings-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_notes_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8_notes_100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_privacy_policy_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-privacy-policy-100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1403,6 +1463,26 @@ namespace deneOS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap W12_LIGHT_1200P {
+            get {
+                object obj = ResourceManager.GetObject("W12_LIGHT_1200P", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap W12_LIGHT_1200P1 {
+            get {
+                object obj = ResourceManager.GetObject("W12_LIGHT_1200P1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap windows_hllo_V41 {
             get {
                 object obj = ResourceManager.GetObject("windows_hllo_V41", resourceCulture);
@@ -1486,6 +1566,16 @@ namespace deneOS.Properties {
         internal static System.Drawing.Bitmap WLOGO_48x48 {
             get {
                 object obj = ResourceManager.GetObject("WLOGO_48x48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WLOGO_96x96 {
+            get {
+                object obj = ResourceManager.GetObject("WLOGO_96x96", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

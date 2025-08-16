@@ -1,10 +1,13 @@
-﻿using System;
+﻿#pragma warning disable CS8622
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,15 +18,30 @@ namespace deneOS
 {
     public partial class tbar : Form
     {
+        private KeyboardHook _keyboardHook = new KeyboardHook();
         public tbar()
         {
             InitializeComponent();
             this.TopMost = true;
-
+            // Suscribirse al evento de la tecla de Windows
+            _keyboardHook.WindowsKeyPressed += (s, e) =>
+            {
+                // Aquí pones la lógica para mostrar/ocultar el menú de inicio (sm)
+                bool estaAbierto = Application.OpenForms.OfType<sm>().Any();
+                if (estaAbierto)
+                {
+                    Application.OpenForms.OfType<sm>().FirstOrDefault()?.Close();
+                }
+                else
+                {
+                    new sm().Show();
+                }
+            };
         }
 
         private void tbar_Load(object sender, EventArgs e)
         {
+            _keyboardHook.HookKeyboard();
             int screenWidth = Screen.PrimaryScreen.Bounds.Width;
             int screenHeight = Screen.PrimaryScreen.Bounds.Height;
 
@@ -37,6 +55,7 @@ namespace deneOS
 
             Timer tim = new Timer();
             tim.Interval = 100;
+
             tim.Tick += new EventHandler(timer1_Tick);
             tim.Start();
 
@@ -45,7 +64,7 @@ namespace deneOS
             utb.Tick += new EventHandler(utb_Tick);
             utb.Start();
         }
-        private void timer1_Tick(object sender, EventArgs e)
+        private async void timer1_Tick(object sender, EventArgs e)
         {
             PowerStatus status = SystemInformation.PowerStatus;
             //OBTENER PORCENTAJE BATERÍA
@@ -61,7 +80,7 @@ namespace deneOS
             bool isSaverOn = dosu.Power.BatteryStatus.IsBatterySaverOn();
 
             label22.Text = GetBatteryIcon(getBattery, isCharging, isSaverOn);
-            gws();
+            await gws();
             gvs();
 
             if (globaldata.isImageLoaded)
@@ -73,10 +92,21 @@ namespace deneOS
         {
             RefreshTaskbar();
         }
-        void gws()
+        async Task gws()
         {
-            int wifiSignal = dosu.Network.WiFiStatus.GetWifiSignalStrength(); // 0 - 100
+            // Si no se puede pingear, no hay conexión a Internet.
+            Ping ping = new();
             string wifiIcon;
+            IPAddress google = new([142, 250, 184, 14]);
+            var reply = ping.Send(google);
+            if (!(reply.Status == IPStatus.Success))
+            {
+                wifiIcon = "";
+                label24.Text = wifiIcon;
+                return; // no hay conexión a Internet
+            }
+            int wifiSignal = dosu.Network.WiFiStatus.GetWifiSignalStrengthAsync().Result; // 0 - 100
+
             if (wifiSignal < 0)
                 wifiIcon = ""; // no wifi
             else if (wifiSignal <= 25)
@@ -110,7 +140,7 @@ namespace deneOS
 
             // Mostrar en la UI
             label23.Text = voli;
-            label25.Text = vol.ToString()+"%";
+            label25.Text = vol.ToString() + "%";
         }
         static string GetBatteryIcon(float percentage, bool charging, bool saverMode)
         {
@@ -182,7 +212,7 @@ namespace deneOS
                 sm sm = new sm();
                 sm.Show();
             }
-            
+
         }
         public static List<Form> VentanasAbiertas = new List<Form>();
         void addApps()
@@ -196,7 +226,7 @@ namespace deneOS
                 app1.BackgroundImage = app.Icono.ToBitmap();
                 app1.BackgroundImageLayout = ImageLayout.Zoom;
                 app1.FlatStyle = FlatStyle.Popup;
-                
+
 
                 app1.Click += (s, e) =>
                 {
@@ -222,31 +252,6 @@ namespace deneOS
             }
 
 
-        }
-        void FocusEXE(string exeName)
-        {
-            string processName = exeName;
-
-            Process[] processes = Process.GetProcessesByName(processName);
-            if (processes.Length > 0)
-            {
-                // Get the main window handle of the first matching process
-                IntPtr handle = processes[0].MainWindowHandle;
-
-                // Bring the application to the foreground
-                if (SetForegroundWindow(handle))
-                {
-                    Console.WriteLine($"{processName} is now focused.");
-                }
-                else
-                {
-                    Console.WriteLine($"Failed to focus {processName}.");
-                }
-            }
-            else
-            {
-                Console.WriteLine($"No process named {processName} is running.");
-            }
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]
@@ -302,6 +307,19 @@ namespace deneOS
             volSlider.Location = new Point(popupX, popupY);
             volSlider.Show();
 
+        }
+
+        private void tbar_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _keyboardHook.UnhookKeyboard();
+        }
+        private void ApagarSistema()
+        {
+            // 1. Desenganchar el hook del teclado
+            _keyboardHook.UnhookKeyboard();
+
+            // 2. Cerrar la aplicación
+            Application.Exit();
         }
     }
 }

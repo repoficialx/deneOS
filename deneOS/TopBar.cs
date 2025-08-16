@@ -45,7 +45,7 @@ namespace deneOS
             utb.Tick += new EventHandler(utb_Tick);
             utb.Start();
         }
-        private void timer1_Tick(object sender, EventArgs e)
+        private async void timer1_Tick(object sender, EventArgs e)
         {
             PowerStatus status = SystemInformation.PowerStatus;
             //OBTENER PORCENTAJE BATERÍA
@@ -64,7 +64,7 @@ namespace deneOS
             bool isSaverOn = dosu.Power.BatteryStatus.IsBatterySaverOn();
 
             label22.Text = GetBatteryIcon(getBattery, isCharging, isSaverOn);
-            gws();
+            /*await*/ gws();
             gvs();
 
             if (globaldata.isImageLoaded)
@@ -76,9 +76,9 @@ namespace deneOS
         {
             RefreshTaskbar();
         }
-        void gws()
+        async Task gws()
         {
-            int wifiSignal = dosu.Network.WiFiStatus.GetWifiSignalStrength(); // 0 - 100
+            int wifiSignal = dosu.Network.WiFiStatus.GetWifiSignalStrengthAsync().Result; // 0 - 100
             string wifiIcon;
             if (wifiSignal < 0)
                 wifiIcon = ""; // no wifi

@@ -100,7 +100,7 @@ namespace deneOS.init
                 }
                 else
                 {
-                    formToShow = new newusr();
+                    //formToShow = new newusr();
                 }
             }
             else
@@ -251,11 +251,11 @@ namespace deneOS.init
                     if (formToShow is login)
                     {
                         formToShow = new login();
-                    }
+                    }/*
                     else if (formToShow is newusr)
                     {
-                        formToShow = new newusr();
-                    }
+                        //formToShow = new newusr();
+                    }*/
                 }
                 formToShow.Show();
                 formToShow.BringToFront();
@@ -263,12 +263,12 @@ namespace deneOS.init
                 {
                     Close();
                 }
-                else if (formToShow is newusr newUserForm)
+                /*else if (formToShow is newusr newUserForm)
                 {
                     formToShow = new login();
                     formToShow.Show();
                     logonui_KeyDown(sender, e); // Llama a la función de inicio de sesión
-                }
+                }*/
             }
         }
         /// <summary>

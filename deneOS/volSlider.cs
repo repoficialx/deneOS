@@ -20,8 +20,8 @@ namespace deneOS
             this.TopMost = true;
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - 200, 40);
-            this.BackColor = ColorTranslator.FromHtml(globaldata.wallpaperPredominantColorHex);
-            this.Opacity = 0.55;
+            //this.BackColor = ColorTranslator.FromHtml(globaldata.wallpaperPredominantColorHex);
+            this.Opacity = 0.85;
         }
 
         private void volSlider_Load(object sender, EventArgs e)
@@ -32,7 +32,8 @@ namespace deneOS
                 Maximum = 100,
                 Value = (int)dosu.Audio.VolumeManager.GetSystemVolume(), // tu método GetVolume
                 TickStyle = TickStyle.None,
-                Width = 150
+                Width = 150,
+                Location = new Point(12, 48)
             };
 
             slider.Scroll += (s, ev) =>

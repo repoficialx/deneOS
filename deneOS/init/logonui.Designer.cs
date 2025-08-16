@@ -67,24 +67,25 @@
             // 
             // button2
             // 
+            button2.BackColor = Color.Transparent;
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Segoe MDL2 Assets", 24F);
-            button2.ForeColor = SystemColors.Control;
+            button2.ForeColor = Color.Cyan;
             button2.Location = new Point(1820, 980);
             button2.Name = "button2";
             button2.Size = new Size(75, 57);
             button2.TabIndex = 100;
             button2.Text = "";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // logonui
             // 
             AutoScaleDimensions = new SizeF(120F, 120F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            BackColor = SystemColors.ControlText;
-            BackgroundImage = Properties.Resources.img100;
-            BackgroundImageLayout = ImageLayout.Zoom;
+            BackColor = SystemColors.Control;
+            BackgroundImage = Properties.Resources.FY25_Pride2025__BKG_02_Desktop;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1920, 1055);
             Controls.Add(button2);
             Controls.Add(txt2);
@@ -95,7 +96,6 @@
             MinimumSize = new Size(1918, 1018);
             Name = "logonui";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Wed., 31th December 8888";
             WindowState = FormWindowState.Maximized;
             FormClosing += logonui_FormClosing;
             Load += logonui_Load;

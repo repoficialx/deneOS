@@ -158,7 +158,7 @@ namespace deneOS
         private async void sm_Load(object sender, EventArgs e)
         {
             this.Opacity = 0;
-            for (double i = 0; i <= 0.5; i += 0.05)
+            for (double i = 0; i <= 0.75; i += 0.05)
             {
                 this.Opacity = i;
                 await Task.Delay(5);
@@ -187,7 +187,7 @@ namespace deneOS
 
         private void panel7_Click(object sender, EventArgs e)
         {
-            panel4_Click(sender, e); 
+            panel4_Click(sender, e);
         }
 
         private void panel8_Click(object sender, EventArgs e)
@@ -266,7 +266,7 @@ namespace deneOS
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("ERROR 0x5"+ex.Message+ex.StackTrace+ex.Source);
+                        MessageBox.Show("ERROR 0x5" + ex.Message + ex.StackTrace + ex.Source);
                     }
                     dnpai.WaitForExit();
                     Directory.Delete($"C:\\DENEOS\\appDnpkgTmpDownload\\{dtdNMR}", true);
@@ -274,7 +274,7 @@ namespace deneOS
                     rec.Location = new System.Drawing.Point(312, 21);
                 }
             }
-        }   
+        }
         private void button4_Click(object sender, EventArgs e)
         {
             var psi = new ProcessStartInfo
@@ -335,9 +335,9 @@ namespace deneOS
             Application.Restart();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void sm_Deactivate(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

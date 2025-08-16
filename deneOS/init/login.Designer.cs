@@ -119,6 +119,7 @@
             txt6.TabIndex = 22;
             txt6.Text = "Txt6";
             txt6.UseVisualStyleBackColor = false;
+            txt6.Click += txt6_Click;
             // 
             // tableLayoutPanel1
             // 
@@ -164,7 +165,6 @@
             ForeColor = SystemColors.Control;
             FormBorderStyle = FormBorderStyle.None;
             Name = "login";
-            Opacity = 0.75D;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "login";
             TopMost = true;

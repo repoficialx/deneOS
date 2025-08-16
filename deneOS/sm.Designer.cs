@@ -522,6 +522,7 @@
             Opacity = 0.75D;
             StartPosition = FormStartPosition.Manual;
             Text = "sm";
+            Deactivate += sm_Deactivate;
             Load += sm_Load;
             panel2.ResumeLayout(false);
             flowLayoutPanel1.ResumeLayout(false);

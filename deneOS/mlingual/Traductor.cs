@@ -26,7 +26,7 @@ public static class Traductor
         // Descarga desde internet si hay diferencias
         if (NeedsUpdate(localPath, remoteUrl))
         {
-            File.WriteAllText(localPath, new WebClient().DownloadString(remoteUrl));
+            //[Debug]File.WriteAllText(localPath, new WebClient().DownloadString(remoteUrl));
             MessageBox.Show("🔄 Traducciones actualizadas correctamente.", "Actualización de idioma");
         }
 
@@ -49,7 +49,7 @@ public static class Traductor
             var reply = ping.Send(google);
             if (!(reply.Status == IPStatus.Success))
             {
-                MessageBox.Show("ERROR: No Internet Connection.", "deneOS", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                Console.WriteLine("[ERROR] No Internet Connection.", "deneOS", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 return false;
             }
         }
