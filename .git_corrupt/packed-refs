@@ -1,0 +1,10 @@
+# pack-refs with: peeled fully-peeled sorted 
+7edaeb35cd4c445f78d4e90c1edf64b55aa210c6 refs/heads/master
+7edaeb35cd4c445f78d4e90c1edf64b55aa210c6 refs/remotes/origin/master
+83805b529b26e97cbb36592bb34268ec1c84234d refs/tags/minibrowser-v1.0
+d1ab7795964f621ae18425373a5447dc05c261db refs/tags/v0.1-beta
+8def1dd93f0016bf5c49414ccae63892b771fb24 refs/tags/v0.5-alpha
+81b0dc703200b7f7f89983163616930e242c0e53 refs/tags/v0.6-alpha
+4eb86f012b2124452f5ca6221dde2fb8d516d011 refs/tags/v0.7-alpha
+5e43d54731e84139b1a45f80d401e2d0b9146317 refs/tags/v0.8-alpha
+98bc48254f716c207cfa0e57eaf203e669099739 refs/tags/v0.9-alpha

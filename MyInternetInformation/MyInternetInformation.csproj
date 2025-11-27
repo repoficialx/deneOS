@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+	<PublishSingleFile>true</PublishSingleFile>
+    <TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <SupportedOSPlatformVersion>10.0.22000.0</SupportedOSPlatformVersion>
+    <ApplicationIcon>fingerprint_ico.ico</ApplicationIcon>
+    <Authors>repoficialx</Authors>
+    <Version>1.0</Version>
+    <Company>$(Authors)</Company>
+    <Product>My Internet Information</Product>
+    <Description>App based on WebView2 and idcrawl.com; optimized por deneOS</Description>
+    <Copyright>©2025 repoficialx</Copyright>
+    <PackageIcon>fingerprint_png.png</PackageIcon>
+    <PackageProjectUrl>https://repoficialx.github.io/deneos/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/repoficialx/deneos/</RepositoryUrl>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="fingerprint_ico.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\..\..\Downloads\fingerprint_png.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3240.44" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows10.0.22621.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <SupportedOSPlatformVersion>10.0.22000.0</SupportedOSPlatformVersion>
+    <PlatformTarget>x64</PlatformTarget>
+    <ApplicationIcon>icons8-macbook-settings-100.ico</ApplicationIcon>
+    <Company>repoficialx</Company>
+	  <PublishSingleFile>true</PublishSingleFile>
+	  <SelfContained>true</SelfContained>
+    <Authors>repoficialx</Authors>
+    <Product>deneOS</Product>
+    <Description>Control Center for deneOS /\/\/\/ More user friendly alternative to Control Panel for deneOS.
+Made in together with deneOS v0.1b</Description>
+    <Copyright>©2025 repoficialx</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="icons8-macbook-settings-100.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="dosu">
+      <HintPath>..\dosu\bin\Debug\net8.0-windows\dosu.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="CustomControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Traductor">
+      <Static>True</Static>
+    </Using>
+  </ItemGroup>
+
+</Project>

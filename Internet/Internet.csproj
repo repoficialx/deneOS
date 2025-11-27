@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Management" Version="9.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NativeWifi">
+      <HintPath>..\..\..\..\NativeWifi\bin\Debug\NativeWifi.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

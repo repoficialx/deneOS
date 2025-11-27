@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "deneOS": {
+      "commandName": "Project",
+      "commandLineArgs": "/locale:es\r\n/language:es"
+    }
+  }
+}

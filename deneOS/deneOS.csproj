@@ -1,0 +1,113 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0-windows10.0.22621.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <SupportedOSPlatformVersion>10.0.22000.0</SupportedOSPlatformVersion>
+    <ApplicationIcon>denelogo-_1_.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+	<!-- ✅ Para .NET 6+ (Windows Forms) -->
+	<ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <PlatformTarget>x64</PlatformTarget>
+    <Version>0.2.1</Version>
+    <Authors>Ray Cifuentes</Authors>
+    <Company>repoficialx</Company>
+    <Description>deneOS.
+Windows? Nah. Mejor deneOS. No es solo una "skin". Es una super-shell.</Description>
+    <Copyright>©2025 repoficialx. MIT license</Copyright>
+    <PackageProjectUrl>https://repoficialx.xyz/deneOS</PackageProjectUrl>
+	  <PublishSingleFile>true</PublishSingleFile>
+	  <SelfContained>true</SelfContained>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>False</Optimize>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>True</Optimize>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="denelogo-_1_.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="ksemenenko.ColorThief" Version="1.1.1.4" />
+    <PackageReference Include="NAudio" Version="2.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\dosu\dosu.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="RXUI25">
+      <HintPath>..\..\!New\repos\NewBackup\repos\daNextgen\RXUI25\bin\Debug\net8.0-windows\RXUI25.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="HomeScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="desktop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="EmergencyScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="init\BootScreenVertical.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="init\BootScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="init\logonuiVertical.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="init\logonui.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="OOBE\Region.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Update="sm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="TopBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="tbar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="volSlider.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Traductor">
+      <Static>True</Static>
+    </Using>
+  </ItemGroup>
+
+</Project>
