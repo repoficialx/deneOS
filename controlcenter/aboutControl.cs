@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 using System.Windows.Forms;
 using System.ComponentModel;
 
-namespace deneOS_Home
+namespace deneOS
 {
     public partial class AboutControl : UserControl
     {

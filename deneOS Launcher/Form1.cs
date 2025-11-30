@@ -251,7 +251,7 @@ namespace deneOS_Launcher
                 Verb = "runas",
                 CreateNoWindow = true
             };
-            string[] execs = { "deneOS_Home.exe", "deneOS.exe" };
+            string[] execs = { "deneOS.exe", "deneOS.exe" };
             foreach (var a in execs)
             {
                 processStartInfo.Arguments += " " + a;

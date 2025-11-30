@@ -42,5 +42,26 @@ public:
 		{
 			Directory::Delete(sysPath, true);
 		}
+		Directory::CreateDirectory(sysPath);
+		array<String^>^ files = Directory::GetFiles(tempPath);
+		for each (String ^ file in files)
+		{
+			String^ fileName = Path::GetFileName(file);
+			File::Copy(file, Path::Combine(sysPath, fileName));
+		}
+		Console::WriteLine("Adding to PATH environment variable...");
+		String^ pathEnv = Environment::GetEnvironmentVariable("PATH", EnvironmentVariableTarget::Machine);
+		if (!pathEnv->Contains(sysPath))
+		{
+			pathEnv += ";" + sysPath;
+			Environment::SetEnvironmentVariable("PATH", pathEnv, EnvironmentVariableTarget::Machine);
+		}
+		Console::WriteLine("DPKXT has been installed successfully!");
+		Console::WriteLine("Cleaning up...");
+		Directory::Delete(tempPath, true);
+		Console::WriteLine("Installation complete! You can now use DPKXT from deneOS terminal by typing 'dpkxt'.");
+		Console::WriteLine("Press any key to exit...");
+		Console::ReadKey();
+		Environment::Exit(0);
     }
 };

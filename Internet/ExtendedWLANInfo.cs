@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagedNativeWifi;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using EugenPechanec.NativeWifi;
 
 namespace Internet
 {
@@ -25,27 +25,52 @@ namespace Internet
 
         void UpdateInternetInfo()
         {
-            // Initialize the 'client' variable before using it.  
-            EugenPechanec.NativeWifi.Wlan.WlanClient client = EugenPechanec.NativeWifi.Wlan.WlanClient.CreateClient();
-            foreach (var @interface in client.Interfaces)
-            {
-                var network = @interface;
+            // Obtener la interfaz Wi-Fi actualmente conectada
+            var connectedInterface = NativeWifi.EnumerateInterfaces()
+                                                .FirstOrDefault(i => i.State == InterfaceState.Connected);
 
-                if (network != null)
+            if (connectedInterface != null)
+            {
+                // Info de la red actual
+                var network = NativeWifi.GetCurrentConnection(connectedInterface.Id);
+
+                if (!network.Equals(null))
                 {
-                    var ssid = (network.CurrentConnection.AssociationAttributes.Ssid.Ssid).TrimEnd('\0');
+                    // SSID
+                    var ssid = network.value.Ssid.ToString();
                     this.ssid.Text = ssid;
-                    band.Text = ObtenerBanda(network.Channel);
-                    dspeed.Text = $"{network.CurrentConnection.AssociationAttributes.TxRate / 1000} Mbps";
-                    uspeed.Text = $"{network.CurrentConnection.AssociationAttributes.RxRate / 1000} Mbps";
-                    int signalQuality = (int)network.CurrentConnection.AssociationAttributes.LanSignalQuality;
-                    strength.Text = $"{signalQuality}%";
-                    rssi.Text = $"{network.Rssi} dBm";
+
+                    // Velocidad Tx/Rx aproximada (Mbps)
+                    dspeed.Text = $"{network.value.TxRate / 1000} Mbps";
+                    uspeed.Text = $"{network.value.RxRate / 1000} Mbps";
+
+                    // Calidad de señal
+                    strength.Text = $"{network.value.SignalQuality}%";
+
+                    var bssEntries = NativeWifi.EnumerateBssNetworks(connectedInterface.Id);
+                    var bss = bssEntries.list.FirstOrDefault(b => b.Ssid.ToString() == ssid);
+
+                    if (bss != null)
+                    {
+                        // Banda (2.4GHz / 5GHz / 6GHz)
+                        band.Text = ObtenerBanda(bss.Channel);
+                        // RSSI en dBm
+                        rssi.Text = $"{bss.Rssi} dBm";
+                    }
+                    else
+                    {
+                        rssi.Text = "N/A";
+                        band.Text = "N/A";
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("No estás conectado a ninguna red Wi-Fi.");
+                    MessageBox.Show("No se pudo obtener información de la red actual.");
                 }
+            }
+            else
+            {
+                MessageBox.Show("No estás conectado a ninguna red Wi-Fi.");
             }
         }
 

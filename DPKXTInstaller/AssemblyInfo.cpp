@@ -9,12 +9,12 @@ using namespace System::Security::Permissions;
 [assembly:AssemblyTitleAttribute(L"DPKXTInstaller")] ;
 [assembly:AssemblyDescriptionAttribute(L"")] ;
 [assembly:AssemblyConfigurationAttribute(L"")] ;
-[assembly:AssemblyCompanyAttribute(L"")] ;
+[assembly:AssemblyCompanyAttribute(L"repoficialx")] ;
 [assembly:AssemblyProductAttribute(L"DPKXT")] ;
-[assembly:AssemblyCopyrightAttribute(L"Copyright (c)  2025")] ;
+[assembly:AssemblyCopyrightAttribute(L"Copyright (c) repoficialx 2025")] ;
 [assembly:AssemblyTrademarkAttribute(L"")] ;
 [assembly:AssemblyCultureAttribute(L"")] ;
 
-[assembly:AssemblyVersionAttribute(L"1.0.*")] ;
+[assembly:AssemblyVersionAttribute(L"1.0")] ;
 
 [assembly:ComVisible(false)] ;

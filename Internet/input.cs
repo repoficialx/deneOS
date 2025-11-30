@@ -18,7 +18,7 @@ namespace Internet
         public string contraseña { get; private set; } // Propiedad de instancia
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public static string ssid { get; set; }  // Puedes dejar esto estático si necesitas acceder a la SSID desde cualquier parte
+        public string ssid { get; set; }
 
         public input()
         {

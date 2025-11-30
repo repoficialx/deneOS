@@ -31,7 +31,8 @@ namespace controlcenter
                 forcedUrl = true;
                 downloadUrl = URL;
             }
-            var x = FileVersionInfo.GetVersionInfo(@"C:\DENEOS\core\deneOS_Home.exe");
+            var x = FileVersionInfo.GetVersionInfo(@"C:\DENEOS\core\deneOS.exe");
+            // 0.2b -> 0 . 2 . 1
             int[] preVersion = { x.FileMajorPart, x.FileMinorPart, x.FileBuildPart };
             string tag = preVersion[2] == 0 ? "" : (preVersion[2] == 1 ? "b" : "a");
             currentVersion = $"{preVersion[0]}.{preVersion[1]}{tag}";
@@ -66,7 +67,7 @@ namespace controlcenter
                     changelog = info.changelog;
                     downloadUrl = forcedUrl ? downloadUrl : info.download;
                     log.Text += "Deleting actual system files..." + Environment.NewLine;
-                    Process.Start("taskkill", "/f /im deneOS_Home.exe");
+                    Process.Start("taskkill", "/f /im deneOS.exe");
                     ZipFile.CreateFromDirectory(@"C:\DENEOS\core\", @$"C:\DENEOS\core{currentVersion}_backup.bck");
                     Directory.Delete(@"C:\DENEOS\lang\", true);
                     Directory.Delete(@"C:\DENEOS\core\", true);
@@ -94,7 +95,7 @@ namespace controlcenter
                     await Task.Delay(1000);
                     log.Text += "Restarting.";
                     await Task.Delay(1000);
-                    Process.Start(@"C:\DENEOS\core\deneOS_Home.exe");
+                    Process.Start(@"C:\DENEOS\core\deneOS.exe");
                 }
             }
             catch

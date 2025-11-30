@@ -104,7 +104,7 @@
             // 
             button1.Location = new Point(12, 154);
             button1.Name = "button1";
-            button1.Size = new Size(258, 28);
+            button1.Size = new Size(279, 28);
             button1.TabIndex = 6;
             button1.Text = "Ok";
             button1.UseVisualStyleBackColor = true;
@@ -168,7 +168,7 @@
             // 
             button2.FlatStyle = FlatStyle.Popup;
             button2.Font = new Font("Material Icons", 9F);
-            button2.Location = new Point(250, 5);
+            button2.Location = new Point(265, 5);
             button2.Name = "button2";
             button2.Size = new Size(26, 24);
             button2.TabIndex = 13;
@@ -188,7 +188,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = button1;
-            ClientSize = new Size(282, 194);
+            ClientSize = new Size(303, 194);
             ControlBox = false;
             Controls.Add(button2);
             Controls.Add(rssi);

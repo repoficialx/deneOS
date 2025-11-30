@@ -217,7 +217,7 @@ namespace dosu
         {
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
-                FileName = @"C:\DENEOS\core\deneOS_Home.exe",
+                FileName = @"C:\DENEOS\core\deneOS.exe",
                 Arguments = args,
                 UseShellExecute = true,
                 WorkingDirectory = @"C:\DENEOS\core",
@@ -229,7 +229,7 @@ namespace dosu
             }
             catch (Exception ex)
             {
-                Utils.SysMsg($"Error al iniciar deneOS Home: {ex.Message}", 0x01, 0x01, "Error de Inicio");
+                Utils.SysMsg($"Error al iniciar deneOS: {ex.Message}", 0x01, 0x01, "Error de Inicio");
             }
         }
 
@@ -316,7 +316,7 @@ namespace dosu
         {
             try
             {
-                Process[] processes = Process.GetProcessesByName("deneOS_Home");
+                Process[] processes = Process.GetProcessesByName("deneOS");
                 foreach (Process process in processes)
                 {
                     process.Kill();
@@ -324,14 +324,14 @@ namespace dosu
             }
             catch (Exception ex)
             {
-                Utils.SysMsg($"Error al cerrar deneOS Home: {ex.Message}", 0x01, 0x01, "Error de Cierre");
+                Utils.SysMsg($"Error al cerrar deneOS: {ex.Message}", 0x01, 0x01, "Error de Cierre");
             }
         }
 
         public static void KillAll()
         {
             string[] processNames = {
-                "deneOS_Home",
+                "deneOS",
                 "controlcenter",
                 "deneFiles",
                 "deneNotes"
@@ -437,7 +437,7 @@ namespace dosu
             {
                 File.WriteAllLines(userFilePath, new[] 
                 { 
-                    "[deneOS Home]", 
+                    "[deneOS]", 
                     "username = " + user.Username, 
                     "password = " + user.Password 
                 });
@@ -886,7 +886,7 @@ namespace dosu
                                     continue;
 
                                 string exeName = Path.GetFileNameWithoutExtension(proceso.MainModule.FileName);
-                                string[] procesosInternos = { "deneOS_Home", "explorerdna", "tbar", "Shell de experiencia de Windows", "sm", "volSlider", "Host de experiencia del shell de Windows" };
+                                string[] procesosInternos = { "deneOS", "explorerdna", "tbar", "Shell de experiencia de Windows", "sm", "volSlider", "Host de experiencia del shell de Windows" };
                                 if (procesosInternos.Contains<string>(exeName))
                                     continue;
 

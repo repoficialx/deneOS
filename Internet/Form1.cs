@@ -1,5 +1,7 @@
 using System.Diagnostics;
+using Windows.Networking.Connectivity;
 using System.Management;
+using System.Threading.Tasks;
 
 namespace Internet
 {
@@ -19,19 +21,16 @@ namespace Internet
         {
             debug("obtenerssid a ser llamado");
             label6.Text = Internet.ObtenerSSID();
-            debug("obtenerssid llamado");
+            debug("obtenerssid devolvió: " + label6.Text);
             debug("obtenerversionwifi a ser llamado");
             label4.Text = Internet.ObtenerVersionWiFi(comboBox1);
-            debug("obtenerversionwifi llaado");
+            debug("obtenerversionwifi devolvió: " + label4.Text);
             debug("obtenerestadodatosmoviles a ser llamado");
-            ObtenerEstadoDatosMoviles();
-            debug("obtenerestadodatosmoviles llamado");
-            //MessageBox.Show(Internet.getBand().ToString());
-            debug("msgbox mostrado");
-            label3.Text = Band2Icon(Internet.getBand());
-            debug("label3 asignado");
+
+            string band = Internet.getBand();
+            label3.Text = Band2Icon(band);
             debug($"texto asignado a label3: {label3.Text}");
-            debug($"getBand estado: {Internet.getBand()}");
+            debug($"getBand estado: {band}");
         }
         void debug(string texto)
         {
@@ -58,8 +57,10 @@ namespace Internet
 
         }
 
-        private void ObtenerEstadoDatosMoviles()
+        private async void ObtenerEstadoDatosMoviles()
         {
+            // MÉTODO ANTIGUO (NETSH):
+            /*
             Process process = new Process
             {
                 StartInfo = new ProcessStartInfo
@@ -71,7 +72,6 @@ namespace Internet
                     CreateNoWindow = true
                 }
             };
-
             process.Start();
             string output = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
@@ -83,6 +83,8 @@ namespace Internet
                 label3.Text = "";
                 return;
             }
+
+
 
             bool datosEncendidos = output.Contains("Estado de la conexión: Conectado");
             string tipoRed = output.Split('\n')
@@ -109,6 +111,12 @@ namespace Internet
                     case "4G+":
                         label3.Text = "4g_plus_mobiledata";
                         break;
+
+
+
+
+
+
                     case "LTE":
                         label3.Text = "lte_mobiledata";
                         break;
@@ -122,6 +130,67 @@ namespace Internet
                         label3.Text = "Unknown Network Type";
                         break;
                 }
+            }*/
+            // MÉTODO NUEVO (Windows.Networking.Connectivity):
+            var profiles = NetworkInformation.GetConnectionProfiles();
+            var cellular = profiles.FirstOrDefault(p => p.IsWwanConnectionProfile);
+            if (cellular == null)
+            {
+                Thread.Sleep(500);
+
+                this.Invoke(() =>
+                {
+                    label5.Text = "Mobile Data: NOT SUPPORTED";
+                    label5.ForeColor = Color.Gray;
+                    label3.Text = "";
+
+                });
+                return;
+            }
+            bool datosEncendidos = cellular.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
+            string tipoRed = cellular.WwanConnectionProfileDetails.GetCurrentDataClass().ToString();
+            if (!datosEncendidos)
+            {
+                Thread.Sleep(500);
+
+                this.Invoke(() =>
+                {
+                    label5.Text = "Mobile Data: OFF";
+                    label3.Text = "";
+                });
+            }
+            else
+            {
+                Thread.Sleep(500);
+
+                this.Invoke(() =>
+                {
+                    label5.Text = "Mobile Data: ON";
+                    switch (tipoRed.ToLower())
+                    {
+                        case "hsdpa":
+                            label3.Text = "h_plus_mobiledata";
+                            break;
+                        case "4g":
+                            label3.Text = "4g_mobiledata";
+                            break;
+                        case "4gplus":
+                            label3.Text = "4g_plus_mobiledata";
+                            break;
+                        case "lte":
+                            label3.Text = "lte_mobiledata";
+                            break;
+                        case "lteplus":
+                            label3.Text = "lte_plus_mobiledata";
+                            break;
+                        case "5g":
+                            label3.Text = "5g";
+                            break;
+                        default:
+                            label3.Text = "Unknown Network Type";
+                            break;
+                    }
+                });
             }
 
         }
@@ -134,6 +203,25 @@ namespace Internet
         private void button2_Click(object sender, EventArgs e)
         {
             new ExtendedWLANInfo().ShowDialog();
+        }
+
+        private async void Form1_Shown(object sender, EventArgs e)
+        {
+            await Task.Run(() =>
+            {
+                debug("obtenerestadodatosmoviles a ser llamado");
+                ObtenerEstadoDatosMoviles();
+                debug("obtenerestadodatosmoviles devolvió: " + label5.Text);
+            });
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            label6.Text = Internet.ObtenerSSID();
+            label4.Text = Internet.ObtenerVersionWiFi(comboBox1);
+            string band = Internet.getBand();
+            label3.Text = Band2Icon(band);
         }
     }
 }

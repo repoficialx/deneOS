@@ -1,4 +1,4 @@
-using deneOS_Home;
+using deneOS;
 
 namespace controlcenter
 {

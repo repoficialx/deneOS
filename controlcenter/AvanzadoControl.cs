@@ -188,7 +188,7 @@ namespace controlcenter
                 {
                     // Ruta al ejecutable principal
                     string deneOSExe = @"C:\DENEOS\core\deneOS.exe";
-                    Process.GetProcessesByName("deneOS").ToList().ForEach(p => p.Kill()); // Cerrar cualquier instancia de deneOS_Home
+                    Process.GetProcessesByName("deneOS").ToList().ForEach(p => p.Kill()); // Cerrar cualquier instancia de deneOS
 
                     // Lanzar deneOS con la flag de root
                     Process.Start(new ProcessStartInfo

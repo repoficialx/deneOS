@@ -62,7 +62,7 @@ namespace controlcenter
                 }
                 catch
                 {
-                    MessageBox.Show("ERROR 0x4", "DENEOS HOME EDITION", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    MessageBox.Show("ERROR 0x4", "DENEOS", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                     lang = "en";
                     return;
                 }

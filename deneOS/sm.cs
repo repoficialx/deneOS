@@ -308,7 +308,7 @@ namespace deneOS
         {
             string a1; string b1; object c1; object d1;
             a1 = (string)T("sdopt");
-            b1 = "deneOS Home Edition";
+            b1 = "deneOS";
             c1 = MessageBoxButtons.YesNoCancel;
             d1 = MessageBoxIcon.Question;
             var a = MessageBox.Show(a1, b1, (MessageBoxButtons)c1, (MessageBoxIcon)d1);

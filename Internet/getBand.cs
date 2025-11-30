@@ -1,45 +1,54 @@
-﻿using System;
+﻿using ManagedNativeWifi;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace Internet
 {
     internal class Internet
     {
+        static string ObtenerBanda(int channel)
+        {
+            if (channel >= 1 && channel <= 14) return "2.4 GHz";
+            else if (channel >= 32 && channel <= 173) return "5 GHz";
+            else if (channel >= 1 && channel <= 233) return "6 GHz";
+            else return "Desconocida";
+        }
         public static string getBand()
         {
+            var connectedInterface = NativeWifi.EnumerateInterfaces()
+                                                .FirstOrDefault(i => i.State == InterfaceState.Connected);
 
-
-            Process process = new Process();
-            process.StartInfo.FileName = "netsh";
-            process.StartInfo.Arguments = "wlan show interfaces";
-            process.StartInfo.RedirectStandardOutput = true;
-            process.StartInfo.UseShellExecute = false;
-            process.StartInfo.CreateNoWindow = true;
-            process.StartInfo.StandardOutputEncoding = Encoding.UTF8;
-
-
-            process.Start();
-            string output = process.StandardOutput.ReadToEnd();
-            process.WaitForExit();
-
-            // Buscar la línea de la banda
-            Match match = Regex.Match(output, @"Banda\s*:\s*(.+)");
-            if (match.Success)
+            if (connectedInterface != null)
             {
-                string banda = match.Groups[1].Value.Trim();
-                Console.WriteLine($"Banda detectada: {banda}");
-                return cleanString(normalizeSpaces(changeDot2Comma(banda)));
-            }
-            else
-            {
-                Console.WriteLine("No se pudo determinar la banda.");
-                return "Unknown";
-            }
+                // Info de la red actual
+                var network = NativeWifi.GetCurrentConnection(connectedInterface.Id);
+
+                if (!network.Equals(null))
+                {
+                    var ssid = network.value.Ssid.ToString();
+                    var bssEntries = NativeWifi.EnumerateBssNetworks(connectedInterface.Id);
+                    var bss = bssEntries.list.FirstOrDefault(b => b.Ssid.ToString() == ssid);
+
+                    if (bss != null)
+                    {
+                        // Banda (2.4GHz / 5GHz / 6GHz)
+                        return cleanString(normalizeSpaces(changeDot2Comma(ObtenerBanda(bss.Channel))));
+                    }
+                    else
+                    {
+                        Console.WriteLine("No BSS entry found for the connected SSID.");
+                        return "Unknown";
+                    }
+                }
+            } 
+            Console.WriteLine("No connected WiFi interface found.");
+            return "Unknown";
         }
         private static string changeDot2Comma(string band)
         {
@@ -49,26 +58,24 @@ namespace Internet
         }
         public static string ObtenerSSID()
         {
-            Process process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = "netsh",
-                    Arguments = "wlan show interfaces",
-                    RedirectStandardOutput = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true,
-                    StandardOutputEncoding = Encoding.UTF8
-                }
-            };
+            // Obtener la interfaz Wi-Fi actualmente conectada
+            var connectedInterface = NativeWifi.EnumerateInterfaces()
+                                                .FirstOrDefault(i => i.State == InterfaceState.Connected);
 
-            process.Start();
-            string output = process.StandardOutput.ReadToEnd();
-            process.WaitForExit();
-#pragma warning disable CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
-            // Extraer el SSID de la salida
-            
-            string ssid = output.Split('\n').FirstOrDefault(line => line.Contains("SSID") && !line.Contains("BSSID"))?.Split(':')[1].Trim();
+            string ssid=null;
+
+            if (connectedInterface != null)
+            {
+                // Info de la red actual
+                var network = NativeWifi.GetCurrentConnection(connectedInterface.Id);
+
+                if (!network.Equals(null))
+                {
+                    // SSID
+                    ssid =  network.value.Ssid.ToString();
+                }
+            }
+            //string ssid = output.Split('\n').FirstOrDefault(line => line.Contains("SSID") && !line.Contains("BSSID"))?.Split(':')[1].Trim();
 
             return "WiFi: " + (ssid ?? "No conectado");
         }
@@ -84,28 +91,57 @@ namespace Internet
 
         public static string ObtenerVersionWiFi(ComboBox comboBox1)
         {
-            Process process = new Process
+            var connectedInterface = NativeWifi.EnumerateInterfaces()
+                                                .FirstOrDefault(i => i.State == InterfaceState.Connected);
+
+            string wifiVersion = null;
+
+            if (connectedInterface != null)
             {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = "netsh",
-                    Arguments = "wlan show interfaces",
-                    RedirectStandardOutput = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true
-                }
-            };
+                var network = NativeWifi.GetCurrentConnection(connectedInterface.Id);
 
-            process.Start();
-            string output = process.StandardOutput.ReadToEnd();
-            process.WaitForExit();
+                if (!network.Equals(null)) {
+                    var ssid = network.value.Ssid.ToString();
+                    var bssEntries = NativeWifi.EnumerateBssNetworks(connectedInterface.Id);
+                    var bss = bssEntries.list.FirstOrDefault(b => b.Ssid.ToString() == ssid);
 
-            // Extraer la versión WiFi
+                    if (bss != null)
+                    {
+                        wifiVersion = bss.PhyType.ToString();
+                        //MessageBox.Show("Versión WiFi detectada: " + wifiVersion);
+                        comboBox1.Text = wifiVersion;
+                        switch (wifiVersion)
+                        {
+                            //case "Ofdm":
+                                //wifiVersion = "802.11a";
+                                //break;
+                            case "Ofdm":
+                                wifiVersion = "802.11b";
+                                break;
+                            case "Erp":
+                                wifiVersion = "802.11g";
+                                break;
+                            case "Ht":
+                                wifiVersion = "802.11n";
+                                break;
+                            case "Vht":
+                                wifiVersion = "802.11ac";
+                                break;
+                            case "He":
+                                wifiVersion = "802.11ax";
+                                break;
+                            case "Eht":
+                                wifiVersion = "802.11be";
+                                break;
+                            default:
+                                wifiVersion = "Desconocida";
+                                break;
+                        }
+                    }
+                    
 
-            string wifiVersion = output.Split('\n')
-                                      .FirstOrDefault(line => line.Contains("Tipo de radio"))?
-                                      .Split(':')[1]
-                                      .Trim();
+                } 
+            }
 
             comboBox1.Text = wifiVersion;
 

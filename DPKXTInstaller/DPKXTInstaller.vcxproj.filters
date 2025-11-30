@@ -18,7 +18,7 @@
     <ClCompile Include="DPKXTInstaller.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="AssemnlyInfo.cpp">
+    <ClCompile Include="AssemblyInfo.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

@@ -90,7 +90,7 @@ namespace controlcenter
             cbAnimaciones.AutoSize = true;
             cbAutoStart.CheckedChanged += (s, e) =>
             {
-                //Hacer deneOS_Home.exe shell (en vez de explorer) elevando el programa
+                //Hacer deneOS.exe shell (en vez de explorer) elevando el programa
                 if (cbAutoStart.Checked)
                 {
                     MessageBox.Show((string)T("dnOSwillstartwithWindows"));
@@ -113,7 +113,7 @@ namespace controlcenter
                             // Ejemplo:
                             // using (var key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run"))
                             // {
-                            //     key.SetValue("deneOS", @"C:\ruta\a\deneOS_Home.exe");
+                            //     key.SetValue("deneOS", @"C:\ruta\a\deneOS.exe");
                             // }
                             MessageBox.Show($"{T("regeditedsuccess")}. {T("dnOSwillstartwithWindows")}");
                         }

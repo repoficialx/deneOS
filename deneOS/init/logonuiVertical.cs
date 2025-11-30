@@ -94,7 +94,7 @@ namespace deneOS.init
             {
                 if (Corrupted)
                 {
-                    MessageBox.Show($"{T("cfgflcorr")} {T("plsfxit")}", "deneOS Home Edition", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{T("cfgflcorr")} {T("plsfxit")}", "deneOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Environment.Exit(1);
                 }
                 else

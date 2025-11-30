@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace MyInternetInformation
@@ -37,6 +38,19 @@ namespace MyInternetInformation
                 this.WindowState = FormWindowState.Normal;
             else
                 this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            this.webIdc.CoreWebView2.Navigate($"http://idcrawl.com/u/{txtUser.Text}");
+            this.webIdc.Show();
+            this.webIdc.Enabled = true;
+            this.webIdc.BringToFront();
+        }
+
+        private void lblCreditos_Click(object sender, EventArgs e)
+        {
+            Process.Start(new ProcessStartInfo{FileName = "https://idcrawl.com/",UseShellExecute = true});
         }
     }
 }

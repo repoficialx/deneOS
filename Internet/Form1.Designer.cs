@@ -40,6 +40,7 @@
             label7 = new Label();
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
+            button3 = new Button();
             button2 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -57,13 +58,12 @@
             // 
             // label2
             // 
-            label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe Fluent Icons", 52F, FontStyle.Bold);
             label2.ForeColor = SystemColors.Highlight;
-            label2.Location = new Point(24, 53);
+            label2.Location = new Point(30, 57);
             label2.Name = "label2";
-            label2.Size = new Size(125, 87);
+            label2.Size = new Size(106, 87);
             label2.TabIndex = 1;
             label2.Text = "";
             // 
@@ -84,7 +84,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Material Icons", 20F);
             label4.ForeColor = SystemColors.Highlight;
-            label4.Location = new Point(142, 106);
+            label4.Location = new Point(127, 110);
             label4.Name = "label4";
             label4.Size = new Size(49, 34);
             label4.TabIndex = 3;
@@ -97,9 +97,9 @@
             label5.ForeColor = Color.Gray;
             label5.Location = new Point(126, 40);
             label5.Name = "label5";
-            label5.Size = new Size(319, 46);
+            label5.Size = new Size(214, 46);
             label5.TabIndex = 4;
-            label5.Text = "Mobile Data: {MDS}";
+            label5.Text = "Mobile Data:";
             label5.Click += label5_Click;
             // 
             // label6
@@ -126,6 +126,7 @@
             // 
             // comboBox1
             // 
+            comboBox1.Enabled = false;
             comboBox1.FlatStyle = FlatStyle.Popup;
             comboBox1.Font = new Font("Segoe UI Light", 12F);
             comboBox1.FormattingEnabled = true;
@@ -142,9 +143,9 @@
             label7.Font = new Font("Segoe UI", 4.5F);
             label7.Location = new Point(-1, 402);
             label7.Name = "label7";
-            label7.Size = new Size(566, 11);
+            label7.Size = new Size(713, 11);
             label7.TabIndex = 8;
-            label7.Text = "Internet es una app desarrollada entera por Ray (@repoficialx); no hubieron contribudores de open source. App diseñada para deneOS. Detección vía netsh";
+            label7.Text = "Internet es una app desarrollada entera por Ray (@repoficialx); no hubieron contribudores de open source. App diseñada para deneOS. Detección vía netsh, ManagedNativeWifi y Windows.SDK.Ref";
             // 
             // groupBox1
             // 
@@ -152,13 +153,14 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(670, 117);
+            groupBox1.Size = new Size(688, 117);
             groupBox1.TabIndex = 9;
             groupBox1.TabStop = false;
             groupBox1.Text = "Mobile Data";
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(button3);
             groupBox2.Controls.Add(button2);
             groupBox2.Controls.Add(label2);
             groupBox2.Controls.Add(label3);
@@ -166,10 +168,23 @@
             groupBox2.Controls.Add(label6);
             groupBox2.Location = new Point(12, 135);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(670, 164);
+            groupBox2.Size = new Size(688, 164);
             groupBox2.TabIndex = 10;
             groupBox2.TabStop = false;
             groupBox2.Text = "Wireless Local Area Network (WLAN)";
+            // 
+            // button3
+            // 
+            button3.BackColor = SystemColors.Control;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Font = new Font("Material Icons", 10F);
+            button3.Location = new Point(299, 0);
+            button3.Name = "button3";
+            button3.Size = new Size(31, 26);
+            button3.TabIndex = 7;
+            button3.Text = "refresh";
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // button2
             // 
@@ -178,7 +193,7 @@
             button2.Font = new Font("Material Icons", 10F);
             button2.Location = new Point(262, 0);
             button2.Name = "button2";
-            button2.Size = new Size(31, 26);
+            button2.Size = new Size(31, 25);
             button2.TabIndex = 6;
             button2.Text = "info";
             button2.UseVisualStyleBackColor = false;
@@ -186,9 +201,10 @@
             // 
             // Form1
             // 
+            AcceptButton = button1;
             AutoScaleDimensions = new SizeF(120F, 120F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(694, 413);
+            ClientSize = new Size(712, 413);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(label7);
@@ -202,6 +218,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Internet";
             Load += Form1_Load;
+            Shown += Form1_Shown;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -224,5 +241,6 @@
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private Button button2;
+        private Button button3;
     }
 }

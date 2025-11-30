@@ -48,7 +48,7 @@
             this.label15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label15.Size = new System.Drawing.Size(250, 56);
             this.label15.TabIndex = 2;
-            this.label15.Text = "deneOS Home version 0.1b\r\nTest mode";
+            this.label15.Text = "deneOS version 0.1b\r\nTest mode";
             // 
             // flowLayoutPanel2
             // 

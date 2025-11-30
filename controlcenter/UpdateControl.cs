@@ -147,7 +147,7 @@ public partial class UpdateControl : UserControl
 
     private void btnInstallUpdate_Click(object sender, EventArgs e)
     {
-        //Process.Start("deneOS_Home.exe", "/installUpdate:" + downloadUrl);
+        //Process.Start("deneOS.exe", "/installUpdate:" + downloadUrl);
         new UpdateScreen().Show();
         Application.Exit();
     }
