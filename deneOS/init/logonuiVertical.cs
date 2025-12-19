@@ -89,7 +89,7 @@ namespace deneOS.init
             bool userSpecified = cfgInfo[userLn].Contains("username = ");
             bool passSpecified = cfgInfo[passLn].Contains("password = ");
             bool isValid = userSpecified && passSpecified;
-            bool Corrupted = ( userSpecified && !passSpecified ) || ( !userSpecified && passSpecified) ;
+            bool Corrupted = (userSpecified && !passSpecified) || (!userSpecified && passSpecified);
             if (!isValid)
             {
                 if (Corrupted)
@@ -106,14 +106,14 @@ namespace deneOS.init
             {
                 formToShow = new login();
             }
-                Panel panelOculto = new Panel();
+            Panel panelOculto = new Panel();
             this.Controls.Add(panelOculto);
             this.ActiveControl = panelOculto; // Evita que button2 tome el foco
             this.KeyPreview = true;
             //MessageBox.Show($"Control con foco: {this.ActiveControl?.Name}");
             this.Activate();
             this.Focus();
-            
+
         }
         /// <summary>
         /// Trabajos de fecha como asignar las variables de días, meses, años, etc.
@@ -175,7 +175,7 @@ namespace deneOS.init
             {
                 mm2 = DateTime.Now.Month.ToString(); // MES= MES DE 2 CIFRAS
             }
-           
+
 
             if (T("sisfct") is bool sisfctValue && !sisfctValue) // Si es booleano y es false]
             {
@@ -183,15 +183,15 @@ namespace deneOS.init
             }
             else // SI (SI) TERMINACIÓN
             {
-                if (dd.EndsWith("1") && int.Parse(dd)!=11)
+                if (dd.EndsWith("1") && int.Parse(dd) != 11)
                 {
                     ddd = dd + "st";
                 }
-                else if (dd.EndsWith("2") && int.Parse(dd)!=12)
+                else if (dd.EndsWith("2") && int.Parse(dd) != 12)
                 {
                     ddd = dd + "nd";
                 }
-                else if (dd.EndsWith("3") && int.Parse(dd)!=13)
+                else if (dd.EndsWith("3") && int.Parse(dd) != 13)
                 {
                     ddd = dd + "rd";
                 }
@@ -307,6 +307,11 @@ namespace deneOS.init
         }
 
         private void boxusr_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt1_Click(object sender, EventArgs e)
         {
 
         }

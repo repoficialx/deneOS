@@ -3,8 +3,10 @@ using System.Data;
 using System.Diagnostics;
 using System.Net;
 using System.Runtime.InteropServices;
+//using Math = System.Math;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using System.Web;
 
 namespace dosu
 {
@@ -745,6 +747,17 @@ namespace dosu
                 }
             }
 
+            public static float GetScaling(Form form)
+            {
+                Graphics g = form.CreateGraphics();
+                float dpiX = g.DpiX; // DPI horizontal
+                g.Dispose();
+
+                // Escalado respecto al estándar 96 DPI
+                float scalingPercent = dpiX / 96 * 100;
+                return scalingPercent;
+            }
+
             /// <summary>
             /// Escala un tamaño desde el diseño base al DPI actual
             /// </summary>
@@ -794,7 +807,7 @@ namespace dosu
 
                     var original = originalSizes[ctrl];
 
-                    // ✅ Escalar desde el tamaño ORIGINAL, no el actual
+                    // Escalar desde el tamaño ORIGINAL, no el actual
                     ctrl.Location = ScalePoint(original.Location);
                     ctrl.Size = ScaleSize(original.Size);
 
@@ -833,7 +846,7 @@ namespace dosu
 
                 var original = originalSizes[form];
 
-                // ✅ Escalar el formulario desde su tamaño original
+                // Escalar el formulario desde su tamaño original
                 form.Size = ScaleSize(original.Size);
 
                 // Escalar controles dentro
@@ -854,7 +867,125 @@ namespace dosu
             public Icon Icono { get; set; }
             public Process Proceso { get; set; }
         }
+        public static class Fonts
+        {
+            public enum AvailableFonts
+            {
+                FluentSystemIcons,
+                MaterialIcons,
+                SegoeMDL2,
+                SegoeSLBoot,
+                SegoeFluentIcons
+            }
+            private static string GetFontName(AvailableFonts font)
+            {
+                return font switch
+                {
+                    AvailableFonts.FluentSystemIcons => "FluentSystemIcons-Regular",
+                    AvailableFonts.MaterialIcons => "Material Icons",
+                    AvailableFonts.SegoeMDL2 => "Segoe MDL2 Assets",
+                    AvailableFonts.SegoeSLBoot => "Segoe Boot Semilight",
+                    AvailableFonts.SegoeFluentIcons => "Segoe Fluent Icons",
+                    _ => "Segoe UI Symbol"
+                };
+            }
+            public static void SetGlyph(AvailableFonts font, string glyph, Control control, int size)
+            {
+                control.Font = new Font(GetFontName(font), size);
+                int code = int.Parse(glyph, System.Globalization.NumberStyles.HexNumber);
+                char unicode = (char)code;
+                control.Text = unicode.ToString();
+            }
+            public static char GetGlyph(AvailableFonts font, string glyph)
+            {
+                int code = int.Parse(glyph, System.Globalization.NumberStyles.HexNumber);
+                char unicode = (char)code;
+                return unicode;
+            }
+            public static string GetGlyphAsString(AvailableFonts font, string glyph)
+            {
+                return GetGlyph(font, glyph).ToString();
+            }
+            public static List<AvailableFonts> GetFonts() {
+                List<AvailableFonts> list = [AvailableFonts.FluentSystemIcons, AvailableFonts.MaterialIcons, AvailableFonts.SegoeMDL2,
+                    AvailableFonts.SegoeSLBoot, AvailableFonts.SegoeFluentIcons];
+                return list;
+            }
+            public static Array GetFontsAsArray()
+            {
+                string[] fonts = ["FluentSystemIcons", "MaterialIcons", "SegoeMDL2", "SegoeSLBoot", "SegoeFluentIcons"];
+                return fonts;
+            }
+            public static List<string> GetFontsAsStringList()
+            {
+                List<string> list = new();
+                foreach (var item in GetFonts())
+                {
+                    list.Add(GetFontName(item));
+                }
+                return list;
+            }
+        }
+        public static class DisplayFonts
+        {
+            public enum Fonts
+            {
+                AgencyFB,
+                AgencyFBBold,
+                ProductSansBold,
+                ProductSansBoldItalic,
+                ProductSansItalic,
+                ProductSans,
+                SegoeUIVD,
+                SegoeUIVDLight,
+                SegoeUIVDSemibold,
+                SegoeUIVDSemilight,
+                SegoeUIVS,
+                SegoeUIVSLight,
+                SegoeUIVSSemibold,
+                SegoeUIVSSemilight,
+                SegoeUIVT,
+                SegoeUIVTLight,
+                SegoeUIVTSemibold,
+                SegoeUIVTSemilight
+            }
 
+            
+
+            public static string GetFontName(Fonts font)
+            {
+                return font switch
+                {
+                    Fonts.AgencyFB =>           "Agency FB",
+                    Fonts.AgencyFBBold =>       "Agency FB",
+                    Fonts.ProductSansBold =>    "Product Sans",
+                   Fonts.ProductSansBoldItalic=>"Product Sans",
+                    Fonts.ProductSansItalic =>  "Product Sans",
+                    Fonts.ProductSans =>        "Product Sans",
+                    Fonts.SegoeUIVD =>          "Segoe UI Variable Display",
+                    Fonts.SegoeUIVDLight =>     "Segoe UI Variable Display Light",
+                    Fonts.SegoeUIVDSemibold =>  "Segoe UI Variable Display Semib",
+                    Fonts.SegoeUIVDSemilight => "Segoe UI Variable Display Semil",
+                    Fonts.SegoeUIVS =>          "Segoe UI Variable Small",
+                    Fonts.SegoeUIVSLight =>     "Segoe UI Variable Small Light",
+                    Fonts.SegoeUIVSSemibold =>  "Segoe UI Variable Small Semibol",
+                    Fonts.SegoeUIVSSemilight => "Segoe UI Variable Small Semilig",
+                    Fonts.SegoeUIVT =>          "Segoe UI Variable Text",
+                    Fonts.SegoeUIVTLight =>     "Segoe UI Variable Text Light",
+                    Fonts.SegoeUIVTSemibold =>  "Segoe UI Variable Text Semibold",
+                    Fonts.SegoeUIVTSemilight => "Segoe UI Variable Text Semiligh",
+                    _ =>                        "Segoe UI Variable Text"
+                };
+            }
+            public static void SetFont(Fonts font, Control control)
+            {
+                control.Font = new Font(GetFontName(font), control.Font.Size);
+            }
+            public static void SetFont(Fonts font, Control control, float size)
+            {
+                control.Font = new Font(GetFontName(font), size);
+            }
+        }
         public static class WindowTracker
         {
             [DllImport("user32.dll")]
@@ -886,7 +1017,15 @@ namespace dosu
                                     continue;
 
                                 string exeName = Path.GetFileNameWithoutExtension(proceso.MainModule.FileName);
-                                string[] procesosInternos = { "deneOS", "explorerdna", "tbar", "Shell de experiencia de Windows", "sm", "volSlider", "Host de experiencia del shell de Windows" };
+                                string[] procesosInternos = { 
+                                    "deneOS", 
+                                    "explorerdna", 
+                                    "tbar", 
+                                    "Shell de experiencia de Windows", 
+                                    "sm", 
+                                    "volSlider", 
+                                    "Host de experiencia del shell de Windows" 
+                                };
                                 if (procesosInternos.Contains<string>(exeName))
                                     continue;
 
@@ -943,7 +1082,7 @@ namespace dosu
             {
                 var deviceEnumerator = new MMDeviceEnumerator();
                 var device = deviceEnumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
-                float newVol = Math.Clamp(device.AudioEndpointVolume.MasterVolumeLevelScalar + delta, 0f, 1f);
+                float newVol = System.Math.Clamp(device.AudioEndpointVolume.MasterVolumeLevelScalar + delta, 0f, 1f);
                 device.AudioEndpointVolume.MasterVolumeLevelScalar = newVol;
             }
 
@@ -1102,7 +1241,7 @@ namespace dosu
                 for (int i = 0; i < 256; i++)
                 {
                     ushort temp = (ushort)(i * adjustedBrightness);
-                    byte value = (byte)Math.Min((ushort)255, (ushort)temp);
+                    byte value = (byte)System.Math.Min((ushort)255, (ushort)temp);
                     ramp.Red[i] = ramp.Green[i] = ramp.Blue[i] = value;
                 }
 
@@ -1204,5 +1343,199 @@ namespace dosu
             });
         }
 
+    }
+
+    public static class Math
+    {
+        /// <summary>
+        /// Represents a single binary value that can be either 0 or 1, providing type safety and convenient conversions
+        /// between Boolean and bit representations.
+        /// </summary>
+        /// <remarks>The Bit struct is useful when a value must be explicitly stored as a bit (0 or 1)
+        /// rather than a Boolean, such as for interoperability with binary data or low-level protocols. It supports
+        /// implicit conversions to and from Boolean and integer types for ease of use in expressions and assignments.
+        /// Bit is a value type and does not allocate heap memory. Using <code>using bit = dosu.Math.Bit;</code> is recommended.</remarks>
+        public struct Bit
+        {
+            private byte value; // 0 o 1
+
+            // Constructor desde bool
+            /// <summary>
+            /// Initializes a new instance of the Bit class using the specified Boolean value.
+            /// </summary>
+            /// <param name="b">The Boolean value to represent. <see langword="true"/> creates a Bit with value 1; <see
+            /// langword="false"/> creates a Bit with value 0.</param>
+            public Bit(bool b) => value = (byte)(b ? 1 : 0);
+
+            // Conversiones implícitas
+            /// <summary>
+            /// Defines an implicit conversion from a Bit to a Boolean value.
+            /// </summary>
+            /// <remarks>This operator enables a Bit instance to be used in Boolean expressions. The
+            /// conversion returns <see langword="true"/> if the Bit represents a nonzero value; otherwise, it returns
+            /// <see langword="false"/>.</remarks>
+            /// <param name="b"></param>
+            public static implicit operator bool(Bit b) => b.value != 0;
+
+            /// <summary>
+            /// Defines an implicit conversion from a Boolean value to a Bit instance.
+            /// </summary>
+            /// <remarks>This operator enables assigning a Boolean value directly to a Bit variable
+            /// without explicit casting. The resulting Bit will represent the same logical value as the input
+            /// Boolean.</remarks>
+            /// <param name="b">The Boolean value to convert to a Bit.</param>
+            public static implicit operator Bit(bool b) => new Bit(b);
+
+            // Conversion implícita desde int
+            /// <summary>
+            /// Defines an implicit conversion from an integer to a Bit instance.
+            /// </summary>
+            /// <remarks>This conversion allows an integer to be assigned directly to a Bit. The
+            /// conversion treats zero as false and any nonzero value as true, following common C# conventions for
+            /// boolean conversion.</remarks>
+            /// <param name="i">The integer value to convert. A value of 0 is converted to a Bit representing false; any other value is
+            /// converted to a Bit representing true.</param>
+            public static implicit operator Bit(int i) => new Bit(i != 0);
+
+            /// <summary>
+            /// Returns a string that represents the boolean value of this instance.
+            /// </summary>
+            /// <returns>A string representation of the boolean value; either "True" or "False".</returns>
+            public override string ToString() => (value != 0).ToString();
+
+            // Métodos de ayuda
+            /// <summary>
+            /// Sets the value using a Boolean representation.
+            /// </summary>
+            /// <param name="b">The Boolean value to assign. If <see langword="true"/>, the value is set to 1; otherwise, it is set to
+            /// 0.</param>
+            public void Set(bool b) => value = (byte)(b ? 1 : 0);
+
+            /// <summary>
+            /// Toggles the current value between two states.
+            /// </summary>
+            /// <remarks>This method switches the value from one state to the other, such as from
+            /// enabled to disabled or vice versa. The specific meaning of each state depends on the context in which
+            /// this method is used.</remarks>
+            public void Toggle() => value ^= 1;
+        }
+
+
+        public static class Integers
+        {
+            public static readonly Bit MaxValue1 = 1;
+            public static readonly sbyte MaxValue8 = 127;
+            public static readonly byte MaxValueU8 = 255;
+            public static readonly short MaxValue16 = 32767;
+            public static readonly ushort MaxValueU16 = 65535;
+            public static readonly int MaxValue32 = 2147483647;
+            public static readonly uint MaxValueU32 = 4294967295;
+            public static readonly long MaxValue64 = 9223372036854775807;
+            public static readonly ulong MaxValueU64 = 18446744073709551615;
+            public static readonly Int128 MaxValue128 = Int128.Parse("170141183460469231731687303715884105727");
+            public static readonly UInt128 MaxValueU128 = UInt128.Parse("340282366920938463463374607431768211455");
+            // -- Mins --
+            public static readonly Bit MinValue1 = 0;
+            public static readonly sbyte MinValue8 = -128;
+            public static readonly byte MinValueU8 = 0;
+            public static readonly short MinValue16 = -32768;
+            public static readonly ushort MinValueU16 = 0;
+            public static readonly int MinValue32 = -2147483648;
+            public static readonly uint MinValueU32 = 0;
+            public static readonly long MinValue64 = -9223372036854775808;
+            public static readonly ulong MinValueU64 = 0;
+            public static readonly Int128 MinValue128 = Int128.Parse("-170141183460469231731687303715884105728");
+            public static readonly UInt128 MinValueU128 = UInt128.Parse("0");
+            /// <summary>
+            /// Provides constants representing powers of two as integer and long values for use in bitwise operations
+            /// and calculations.
+            /// </summary>
+            /// <remarks>This class offers predefined fields for powers of two from 2^0 up to 2^62, as
+            /// well as maximum values for 32-bit and 64-bit signed integers. It is intended to simplify bit
+            /// manipulation and flag operations by providing named constants for common binary values. The class is
+            /// static and cannot be instantiated.</remarks>
+            public static class BinaryPowers
+            {
+                public static readonly int _0 = 1;
+                public static readonly int _1 = 2;
+                public static readonly int _2 = 4;
+                public static readonly int _3 = 8;
+                public static readonly int _4 = 16;
+                public static readonly int _5 = 32;
+                public static readonly int _6 = 64;
+                public static readonly int _7 = 128;
+                public static readonly int _8 = 256;
+                public static readonly int _9 = 512;
+                public static readonly int _10 = 1024;
+                public static readonly int _11 = 2048;
+                public static readonly int _12 = 4096;
+                public static readonly int _13 = 8192;
+                public static readonly int _14 = 16384;
+                public static readonly int _15 = 1 << 15;
+                public static readonly int _16 = 1 << 16;
+                public static readonly int _17 = 1 << 17;
+                public static readonly int _18 = 1 << 18;
+                public static readonly int _19 = 1 << 19;
+                public static readonly int _20 = 1 << 20;
+                public static readonly int _21 = 1 << 21;
+                public static readonly int _22 = 1 << 22;
+                public static readonly int _23 = 1 << 23;
+                public static readonly int _24 = 1 << 24;
+                public static readonly int _25 = 1 << 25;
+                public static readonly int _26 = 1 << 26;
+                public static readonly int _27 = 1 << 27;
+                public static readonly int _28 = 1 << 28;
+                public static readonly int _29 = 1 << 29;
+                public static readonly int _30 = 1 << 30;
+                public static readonly int _max32 = 2147483647;
+                public static readonly long _31 = 1L << 31;
+                public static readonly long _32 = 1L << 32;
+                public static readonly long _33 = 1L << 33;
+                public static readonly long _34 = 1L << 34;
+                public static readonly long _35 = 1L << 35;
+                public static readonly long _36 = 1L << 36;
+                public static readonly long _37 = 1L << 37;
+                public static readonly long _38 = 1L << 38;
+                public static readonly long _39 = 1L << 39;
+                public static readonly long _40 = 1L << 40;
+                public static readonly long _41 = 1L << 41;
+                public static readonly long _42 = 1L << 42;
+                public static readonly long _43 = 1L << 43;
+                public static readonly long _44 = 1L << 44;
+                public static readonly long _45 = 1L << 45;
+                public static readonly long _46 = 1L << 46;
+                public static readonly long _47 = 1L << 47;
+                public static readonly long _48 = 1L << 48;
+                public static readonly long _49 = 1L << 49;
+                public static readonly long _50 = 1L << 50;
+                public static readonly long _51 = 1L << 51;
+                public static readonly long _52 = 1L << 52;
+                public static readonly long _53 = 1L << 53;
+                public static readonly long _54 = 1L << 54;
+                public static readonly long _55 = 1L << 55;
+                public static readonly long _56 = 1L << 56;
+                public static readonly long _57 = 1L << 57;
+                public static readonly long _58 = 1L << 58;
+                public static readonly long _59 = 1L << 59;
+                public static readonly long _60 = 1L << 60;
+                public static readonly long _61 = 1L << 61;
+                public static readonly long _62 = 1L << 62;
+                public static readonly long _max64 = 9223372036854775807;
+                /// <summary>
+                /// Calculates 2 raised to the specified exponent as a 64-bit integer.
+                /// </summary>
+                /// <param name="exponent">The exponent to raise 2 to. Must be in the range 0 to 62, inclusive.</param>
+                /// <returns>A 64-bit integer equal to 2 raised to the power of the specified exponent.</returns>
+                /// <exception cref="ArgumentOutOfRangeException">Thrown when exponent is less than 0 or greater than 62.</exception>
+                public static long bPower(int exponent)
+                {
+                    if (exponent<0 || exponent>62)
+                    {
+                        throw new ArgumentOutOfRangeException(nameof(exponent));
+                    }
+                    return 1L << exponent;
+                }
+            }
+        }
     }
 }

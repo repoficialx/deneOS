@@ -39,13 +39,14 @@
             // 
             txt1.AutoSize = true;
             txt1.BackColor = Color.Transparent;
-            txt1.Font = new Font("Segoe UI Variable Display", 152F);
+            txt1.Font = new Font("Segoe UI Variable Display Light", 90F);
             txt1.ForeColor = SystemColors.Control;
-            txt1.Location = new Point(213, 77);
+            txt1.Location = new Point(132, 95);
             txt1.Name = "txt1";
-            txt1.Size = new Size(650, 338);
+            txt1.Size = new Size(293, 159);
             txt1.TabIndex = 0;
             txt1.Text = "TXT1";
+            txt1.Click += txt1_Click;
             // 
             // txt2
             // 
@@ -53,9 +54,9 @@
             txt2.BackColor = Color.Transparent;
             txt2.Font = new Font("Segoe UI Variable Display", 32F);
             txt2.ForeColor = SystemColors.Control;
-            txt2.Location = new Point(485, 984);
+            txt2.Location = new Point(213, 821);
             txt2.Name = "txt2";
-            txt2.Size = new Size(147, 72);
+            txt2.Size = new Size(118, 57);
             txt2.TabIndex = 1;
             txt2.Text = "TXT2";
             // 
@@ -80,19 +81,17 @@
             // 
             // logonuiVertical
             // 
-            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = SystemColors.ControlText;
-            BackgroundImage = Properties.Resources.img100;
+            BackgroundImage = Properties.Resources.gradiente;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1080, 1102);
+            ClientSize = new Size(540, 960);
             Controls.Add(button2);
             Controls.Add(txt2);
             Controls.Add(txt1);
             Font = new Font("Segoe UI", 24F);
             FormBorderStyle = FormBorderStyle.None;
-            MaximumSize = new Size(1080, 1920);
-            MinimumSize = new Size(1080, 1018);
             Name = "logonuiVertical";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "deneOS";

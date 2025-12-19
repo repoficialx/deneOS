@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static Traductor;
+﻿using System.Diagnostics;
 using Timer = System.Windows.Forms.Timer;
 
 namespace deneOS
@@ -59,7 +49,7 @@ namespace deneOS
             ToolTip toolTip = new ToolTip();
             toolTip.ShowAlways = true;
             toolTip.SetToolTip(label22, !flagMgmt.MockBattery ? $"{getBattery}%" : "100%");
-            
+
             //CAMBIAR ICONO (LABEL22)
             BatteryChargeStatus chargeStatus = status.BatteryChargeStatus;
             PowerLineStatus powerLineStatus = status.PowerLineStatus;
@@ -68,7 +58,8 @@ namespace deneOS
             bool isSaverOn = dosu.Power.BatteryStatus.IsBatterySaverOn();
 
             label22.Text = GetBatteryIcon(getBattery, isCharging, isSaverOn);
-            /*await*/ gws();
+            /*await*/
+            gws();
             gvs();
 
             if (globaldata.isImageLoaded)
@@ -119,7 +110,7 @@ namespace deneOS
             label23.Text = voli;
             ToolTip toolTip = new ToolTip();
             toolTip.ShowAlways = true;
-            toolTip.SetToolTip(label23, vol.ToString()+"%");
+            toolTip.SetToolTip(label23, vol.ToString() + "%");
         }
         static string GetBatteryIcon(float percentage, bool charging, bool saverMode)
         {
@@ -191,7 +182,7 @@ namespace deneOS
                 sm sm = new sm();
                 sm.Show();
             }
-            
+
         }
         public static List<Form> VentanasAbiertas = new List<Form>();
         void addApps()
@@ -205,7 +196,7 @@ namespace deneOS
                 app1.BackgroundImage = app.Icono.ToBitmap();
                 app1.BackgroundImageLayout = ImageLayout.Zoom;
                 app1.FlatStyle = FlatStyle.Popup;
-                
+
 
                 app1.Click += (s, e) =>
                 {

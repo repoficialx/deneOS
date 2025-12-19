@@ -151,58 +151,7 @@ namespace deneOS_Launcher
 
         void InstallFonts()
         {
-            WebClient client = new WebClient();
-            // Descargar Segoe UI Fluent Icons
-
-            string baseUri = "https://repoficialx.xyz/fonts/";
-            string materialIconsUri = baseUri + "Material Icons.ttf";
-            string segoeUI_VFUri = baseUri + "SegoeUI-VF.ttf";
-            string segoeUIFluentIconsUri = baseUri + "segoe-fluent-icons.ttf";
-            string segoe_slbootUri = baseUri + "segoe_slboot.ttf";
-            string FluentSystemIcons_RegularUri = baseUri + "FluentSystemIcons-Regular.ttf";
-
-            string fontsPath = @"C:\DENEOS\sysfonts\";
-            if (!Directory.Exists(fontsPath))
-            {
-                Directory.CreateDirectory(fontsPath);
-            }
-            string materialIconsPath = Path.Combine(fontsPath, "Material Icons.ttf");
-            string segoeUI_VFPath = Path.Combine(fontsPath, "SegoeUI-VF.ttf");
-            string segoeUIFluentIconsPath = Path.Combine(fontsPath, "segoe-fluent-icons.ttf");
-            string segoe_slbootPath = Path.Combine(fontsPath, "segoe_slboot.ttf");
-            string FluentSystemIcons_RegularPath = Path.Combine(fontsPath, "FluentSystemIcons-Regular.ttf");
-
-            if (File.Exists(materialIconsPath))
-            {
-                File.Delete(materialIconsPath);
-            }
-            if (File.Exists(segoeUI_VFPath))
-            {
-                File.Delete(segoeUI_VFPath);
-            }
-            if (File.Exists(segoeUIFluentIconsPath))
-            {
-                File.Delete(segoeUIFluentIconsPath);
-            }
-            if (File.Exists(segoe_slbootPath))
-            {
-                File.Delete(segoe_slbootPath);
-            }
-            if (File.Exists(FluentSystemIcons_RegularPath))
-            {
-                File.Delete(FluentSystemIcons_RegularPath);
-            }
-
-            client.DownloadFile(segoeUI_VFUri, segoeUI_VFPath);
-            Console.WriteLine($"Downloaded Segoe UI VF to {segoeUI_VFPath}");
-            client.DownloadFile(materialIconsUri, materialIconsPath);
-            Console.WriteLine($"Downloaded Material Icons to {materialIconsPath}");
-            client.DownloadFile(segoeUIFluentIconsUri, segoeUIFluentIconsPath);
-            Console.WriteLine($"Downloaded Segoe UI Fluent Icons to {segoeUIFluentIconsPath}");
-            client.DownloadFile(segoe_slbootUri, segoe_slbootPath);
-            Console.WriteLine($"Downloaded Segoe SL Boot to {segoe_slbootPath}");
-            client.DownloadFile(FluentSystemIcons_RegularUri, FluentSystemIcons_RegularPath);
-            Console.WriteLine($"Downloaded Fluent System Icons Regular to {FluentSystemIcons_RegularPath}");
+            FontInstaller.InstallFonts();
         }
         private async Task<UpdateInfo> GetUpdateInfo()
         {

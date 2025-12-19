@@ -57,7 +57,7 @@
             panel1.Dock = DockStyle.Bottom;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1920, 60);
+            panel1.Size = new Size(1920, 48);
             panel1.TabIndex = 1;
             // 
             // flowLayoutPanel1
@@ -66,7 +66,7 @@
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1396, 60);
+            flowLayoutPanel1.Size = new Size(1396, 48);
             flowLayoutPanel1.TabIndex = 2;
             flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
             // 
@@ -75,7 +75,7 @@
             panel2.Controls.Add(button1);
             panel2.Location = new Point(3, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(72, 60);
+            panel2.Size = new Size(53, 48);
             panel2.TabIndex = 3;
             // 
             // button1
@@ -85,7 +85,7 @@
             button1.FlatStyle = FlatStyle.Popup;
             button1.Location = new Point(0, 0);
             button1.Name = "button1";
-            button1.Size = new Size(72, 55);
+            button1.Size = new Size(48, 48);
             button1.TabIndex = 0;
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
@@ -96,7 +96,7 @@
             panel16.Dock = DockStyle.Right;
             panel16.Location = new Point(1396, 0);
             panel16.Name = "panel16";
-            panel16.Size = new Size(524, 60);
+            panel16.Size = new Size(524, 48);
             panel16.TabIndex = 1;
             // 
             // flowLayoutPanel3
@@ -111,8 +111,9 @@
             flowLayoutPanel3.FlowDirection = FlowDirection.RightToLeft;
             flowLayoutPanel3.Location = new Point(0, 0);
             flowLayoutPanel3.Name = "flowLayoutPanel3";
-            flowLayoutPanel3.Size = new Size(524, 60);
+            flowLayoutPanel3.Size = new Size(524, 48);
             flowLayoutPanel3.TabIndex = 0;
+            flowLayoutPanel3.Paint += flowLayoutPanel3_Paint;
             // 
             // panel17
             // 
@@ -126,7 +127,7 @@
             // label20
             // 
             label20.Font = new Font("Segoe UI", 13F);
-            label20.Location = new Point(3, 24);
+            label20.Location = new Point(3, 20);
             label20.Name = "label20";
             label20.Size = new Size(151, 35);
             label20.TabIndex = 1;
@@ -136,7 +137,7 @@
             // label19
             // 
             label19.Font = new Font("Segoe UI", 13F);
-            label19.Location = new Point(3, 0);
+            label19.Location = new Point(3, -3);
             label19.Name = "label19";
             label19.Size = new Size(151, 35);
             label19.TabIndex = 0;
@@ -148,7 +149,7 @@
             label21.Font = new Font("Segoe UI Variable Display", 9F);
             label21.Location = new Point(319, 0);
             label21.Name = "label21";
-            label21.Size = new Size(45, 58);
+            label21.Size = new Size(45, 48);
             label21.TabIndex = 2;
             label21.Text = "100%";
             label21.TextAlign = ContentAlignment.MiddleLeft;
@@ -158,7 +159,7 @@
             label22.Font = new Font("Segoe Fluent Icons", 16F);
             label22.Location = new Point(271, 0);
             label22.Name = "label22";
-            label22.Size = new Size(42, 58);
+            label22.Size = new Size(42, 48);
             label22.TabIndex = 4;
             label22.Text = "";
             label22.TextAlign = ContentAlignment.MiddleRight;
@@ -168,7 +169,7 @@
             label25.Font = new Font("Segoe UI Variable Display", 9F);
             label25.Location = new Point(220, 0);
             label25.Name = "label25";
-            label25.Size = new Size(45, 58);
+            label25.Size = new Size(45, 48);
             label25.TabIndex = 7;
             label25.Text = "100%";
             label25.TextAlign = ContentAlignment.MiddleLeft;
@@ -178,7 +179,7 @@
             label23.Font = new Font("Segoe Fluent Icons", 16F);
             label23.Location = new Point(176, 0);
             label23.Name = "label23";
-            label23.Size = new Size(38, 62);
+            label23.Size = new Size(38, 48);
             label23.TabIndex = 5;
             label23.Text = "";
             label23.TextAlign = ContentAlignment.MiddleRight;
@@ -189,17 +190,17 @@
             label24.Font = new Font("Segoe Fluent Icons", 16F);
             label24.Location = new Point(129, 0);
             label24.Name = "label24";
-            label24.Size = new Size(41, 58);
+            label24.Size = new Size(41, 48);
             label24.TabIndex = 6;
             label24.Text = "";
             label24.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // tbar
             // 
-            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = SystemColors.ControlText;
-            ClientSize = new Size(1920, 60);
+            ClientSize = new Size(1920, 48);
             Controls.Add(panel1);
             Font = new Font("Segoe UI Variable Display", 12F);
             ForeColor = SystemColors.Control;

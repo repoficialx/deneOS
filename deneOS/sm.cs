@@ -25,7 +25,7 @@ namespace deneOS
             int screenWidth = Screen.PrimaryScreen.Bounds.Width;
             int screenHeight = Screen.PrimaryScreen.Bounds.Height;
 
-            int taskbarHeight = 60;
+            int taskbarHeight = (int)(48 * (dosu.UI.Scaling.GetScaling(new tbar()) / 100));
 
             this.FormBorderStyle = FormBorderStyle.None;
             this.StartPosition = FormStartPosition.Manual;

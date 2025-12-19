@@ -28,107 +28,114 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label15 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.label18 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel2.SuspendLayout();
-            this.panel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.SuspendLayout();
+            label15 = new Label();
+            flowLayoutPanel2 = new FlowLayoutPanel();
+            panel12 = new Panel();
+            label18 = new Label();
+            pictureBox2 = new PictureBox();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            flowLayoutPanel2.SuspendLayout();
+            panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            tableLayoutPanel1.SuspendLayout();
+            SuspendLayout();
             // 
             // label15
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(1670, 0);
-            this.label15.Name = "label15";
-            this.label15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label15.Size = new System.Drawing.Size(250, 56);
-            this.label15.TabIndex = 2;
-            this.label15.Text = "deneOS version 0.1b\r\nTest mode";
+            label15.AutoSize = true;
+            label15.Dock = DockStyle.Fill;
+            label15.Location = new Point(3, 486);
+            label15.Name = "label15";
+            label15.RightToLeft = RightToLeft.Yes;
+            label15.Size = new Size(954, 54);
+            label15.TabIndex = 2;
+            label15.Text = "deneOS version 0.2b\r\nTest mode";
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Controls.Add(this.panel12);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(1920, 1020);
-            this.flowLayoutPanel2.TabIndex = 3;
-            this.flowLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel2_Paint);
+            flowLayoutPanel2.Controls.Add(panel12);
+            flowLayoutPanel2.Dock = DockStyle.Fill;
+            flowLayoutPanel2.FlowDirection = FlowDirection.TopDown;
+            flowLayoutPanel2.Font = new Font("Microsoft Sans Serif", 8.25F);
+            flowLayoutPanel2.Location = new Point(3, 3);
+            flowLayoutPanel2.Name = "flowLayoutPanel2";
+            flowLayoutPanel2.Size = new Size(954, 480);
+            flowLayoutPanel2.TabIndex = 3;
+            flowLayoutPanel2.Paint += flowLayoutPanel2_Paint;
             // 
             // panel12
             // 
-            this.panel12.Controls.Add(this.label18);
-            this.panel12.Controls.Add(this.pictureBox2);
-            this.panel12.Location = new System.Drawing.Point(20, 20);
-            this.panel12.Margin = new System.Windows.Forms.Padding(20);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(75, 94);
-            this.panel12.TabIndex = 0;
-            this.panel12.Click += new System.EventHandler(this.panel12_Click);
+            panel12.Controls.Add(label18);
+            panel12.Controls.Add(pictureBox2);
+            panel12.Location = new Point(20, 20);
+            panel12.Margin = new Padding(20);
+            panel12.Name = "panel12";
+            panel12.Size = new Size(75, 94);
+            panel12.TabIndex = 0;
+            panel12.Click += panel12_Click;
             // 
             // label18
             // 
-            this.label18.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label18.Location = new System.Drawing.Point(3, 64);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(69, 28);
-            this.label18.TabIndex = 1;
-            this.label18.Text = "dnStore";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            label18.Font = new Font("Segoe UI", 9F);
+            label18.Location = new Point(3, 64);
+            label18.Name = "label18";
+            label18.Size = new Size(69, 28);
+            label18.TabIndex = 1;
+            label18.Text = "deneStore";
+            label18.TextAlign = ContentAlignment.TopCenter;
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::deneOS.Properties.Resources.denestore;
-            this.pictureBox2.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(69, 60);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
+            pictureBox2.Image = Properties.Resources.denestore;
+            pictureBox2.Location = new Point(3, 3);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(69, 60);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 0;
+            pictureBox2.TabStop = false;
             // 
-            // panel1
+            // tableLayoutPanel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.label15);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 964);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1920, 56);
-            this.panel1.TabIndex = 4;
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Controls.Add(flowLayoutPanel2, 0, 0);
+            tableLayoutPanel1.Controls.Add(label15, 0, 1);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 90F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel1.Size = new Size(960, 540);
+            tableLayoutPanel1.TabIndex = 5;
             // 
             // desktop
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.SystemColors.ControlText;
-            this.ClientSize = new System.Drawing.Size(1920, 1020);
-            this.ControlBox = false;
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.flowLayoutPanel2);
-            this.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.ForeColor = System.Drawing.SystemColors.Control;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "desktop";
-            this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "explorer.dna";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.desktop_FormClosing);
-            this.Load += new System.EventHandler(this.desktop_Load);
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.panel12.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            BackColor = SystemColors.ControlText;
+            ClientSize = new Size(960, 540);
+            ControlBox = false;
+            Controls.Add(tableLayoutPanel1);
+            Font = new Font("Segoe UI", 12F);
+            ForeColor = SystemColors.Control;
+            FormBorderStyle = FormBorderStyle.None;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "desktop";
+            ShowIcon = false;
+            ShowInTaskbar = false;
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "explorer.dna";
+            WindowState = FormWindowState.Maximized;
+            FormClosing += desktop_FormClosing;
+            Load += desktop_Load;
+            flowLayoutPanel2.ResumeLayout(false);
+            panel12.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            ResumeLayout(false);
 
         }
 
@@ -138,6 +145,6 @@
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Panel panel1;
+        private TableLayoutPanel tableLayoutPanel1;
     }
 }

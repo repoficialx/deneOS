@@ -33,6 +33,13 @@ namespace deneOS.init
             InitializeComponent();
             dosu.UI.Scaling.ScaleForm(this);
 
+
+            float rowHeight = tableLayoutPanel1.GetRowHeights()[1]; // altura de la fila 0
+            txt1.Font = new Font(txt1.Font.FontFamily, rowHeight * 0.6f); // 60% de la altura
+
+            float row2Height = tableLayoutPanel1.GetRowHeights()[2];
+            txt2.Font = new Font(txt2.Font.FontFamily, row2Height * 0.6f);
+
             this.Show();
         }
         protected override void OnFormClosed(FormClosedEventArgs e)

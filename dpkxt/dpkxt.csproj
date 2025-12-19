@@ -11,6 +11,8 @@
     <RootNamespace>$(MSBuildProjectName.Replace(" ", "_").ToUpper())</RootNamespace>
     <PlatformTarget>x64</PlatformTarget>
     <ApplicationIcon>icons8-software-installer-100.ico</ApplicationIcon>
+	<PublishSingleFile>true</PublishSingleFile>
+	<SelfContained>true</SelfContained>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

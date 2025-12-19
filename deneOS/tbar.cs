@@ -36,7 +36,8 @@ namespace deneOS
             int screenWidth = Screen.PrimaryScreen.Bounds.Width;
             int screenHeight = Screen.PrimaryScreen.Bounds.Height;
             Console.WriteLine("[INFO] Obtenida resolución de pantalla: " + screenWidth + "x" + screenHeight);
-            int taskbarHeight = 60; // O el valor que tú elijas (¡como los 60px de Windows!)
+            //uint dpi = GetDpiForWindow();
+            int taskbarHeight = 48; // O el valor que tú elijas (¡como los 48px de Windows!)
             Console.WriteLine("[INFO] Configurando barra de tareas...");
             this.FormBorderStyle = FormBorderStyle.None;
             this.StartPosition = FormStartPosition.Manual;
@@ -213,7 +214,7 @@ namespace deneOS
                 Console.WriteLine("[WARN] Batería crítica <5%: " + percentage + '%');
                 return ""; // batería crítica
             }
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -269,7 +270,7 @@ namespace deneOS
                 };
                 ToolTip tip = new ToolTip();
                 tip.SetToolTip(app1, app.Titulo);
-                app1.Size = new Size(50, 60);
+                app1.Size = new Size(50, 48);
                 app1.Location = new Point(0, 0);
                 flowLayoutPanel1.Controls.Add(app1);
             }
@@ -290,7 +291,7 @@ namespace deneOS
             home.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             home.Location = new System.Drawing.Point(0, 0);
             home.Name = "button1";
-            home.Size = new System.Drawing.Size(72, 60);
+            home.Size = new System.Drawing.Size(72, 48);
             home.TabIndex = 0;
             home.UseVisualStyleBackColor = true;
             home.Click += new System.EventHandler(this.button1_Click);
@@ -343,6 +344,11 @@ namespace deneOS
 
             // 2. Cerrar la aplicación
             Application.Exit();
+        }
+
+        private void flowLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

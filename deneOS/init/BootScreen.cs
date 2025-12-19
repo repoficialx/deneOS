@@ -73,6 +73,12 @@ namespace deneOS.init
             // ✅ PRIMERO: Inicializar componentes visuales
             InitializeComponent();
 
+            this.DoubleBuffered = true;
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            UpdateStyles();
+
             // ✅ SEGUNDO: Configurar la ventana
             ConfigureWindow();
 
