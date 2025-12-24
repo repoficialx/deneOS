@@ -32,11 +32,16 @@ public:
     static initonly String^ userPath = "C:\\DNUSR";
     static initonly String^ softwarePath = "C:\\SOFTWARE";
     static String^ currentPath = "C:\\DNUSR";
+    static String^ argCmd = String::Empty;
 
-    // M�todo Main como en C#
+    // Método Main
     static void Main(array<String^>^ args)
     {
-        // Configuraci�n de la consola
+        if (args->Length > 1) {
+            argCmd = String::Join(" ", args, 0, args->Length);
+        }
+
+        // Configuración de la consola
         Console::Title = "deneTerm - Terminal Segura";
         Console::ForegroundColor = ConsoleColor::Green;
         Console::OutputEncoding = System::Text::Encoding::UTF8;
@@ -44,16 +49,28 @@ public:
         Console::WriteLine("Escribe 'help' para ver los comandos disponibles.\n");
 
         while (true) {
+            String^ cmd;
+            String^ argument;
+            if (argCmd != String::Empty) {
+                Console::WriteLine("Ejecutando comando desde argumento: {0}", argCmd);
+                array<String^>^ partsArg = argCmd->Split(' ', 2);
+                String^ cmdArg = partsArg[0]->ToLower();
+				cmd = cmdArg;
+                String^ argArg = partsArg->Length > 1 ? partsArg[1] : "";
+                argCmd = String::Empty; // Limpiar para evitar bucle infinito
+                argument = argArg;
+                goto ifs; // Saltar a la l��gica de comandos
+			}
             Console::Write("{0}\\> ", { GetAlias(currentPath) });
             String^ input = Console::ReadLine()->Trim();
             if (String::IsNullOrEmpty(input)) continue;
             array<String^>^ parts = input->Split(' ', 2);
-            String^ cmd = parts[0]->ToLower();
+            cmd = parts[0]->ToLower();
             String^ arg = parts->Length > 1 ? parts[1] : "";
             array<String^>^ parts1 = input->Trim()->Split(gcnew array<wchar_t>{' '}, 2);
             String^ command = parts1[0]->ToLower();
-            String^ argument = parts1->Length > 1 ? parts1[1] : "";
-
+            argument = parts1->Length > 1 ? parts1[1] : "";
+            ifs: 
             if (cmd == "help") {
                 Console::WriteLine("Comandos disponibles:");
                 Console::WriteLine("- help: Muestra esta ayuda");
