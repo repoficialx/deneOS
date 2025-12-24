@@ -7,7 +7,7 @@ using namespace System::Runtime::InteropServices;
 using namespace System::Security::Permissions;
 
 [assembly:AssemblyTitleAttribute(L"DPKXTInstaller")] ;
-[assembly:AssemblyDescriptionAttribute(L"")] ;
+[assembly:AssemblyDescriptionAttribute(L"(Internal use) is used to install the app used to install DPK files")] ;
 [assembly:AssemblyConfigurationAttribute(L"")] ;
 [assembly:AssemblyCompanyAttribute(L"repoficialx")] ;
 [assembly:AssemblyProductAttribute(L"DPKXT")] ;
