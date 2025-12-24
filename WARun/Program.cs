@@ -23,11 +23,21 @@ namespace WARun
             foreach (string arg in args)
             {
                 if (arg.StartsWith("/title:"))
+                {
+                    Console.WriteLine("title: " + arg["/title:".Length..]);
                     title = arg["/title:".Length..];
+                }
                 else if (arg.StartsWith("/icon:"))
+                {
+                    Console.WriteLine("icon: " + arg["/icon:".Length..]);
                     icon = arg["/icon:".Length..];
+                }
                 else if (arg.StartsWith("/url:"))
+                {
+                    Console.WriteLine("url: " + arg["/url:".Length..]);
                     url = arg["/url:".Length..];
+                    
+                }
             }
             Application.Run(new Form1(title, icon, url));
         }
