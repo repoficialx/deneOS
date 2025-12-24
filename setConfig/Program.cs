@@ -33,7 +33,42 @@ if (args != null)
                     bool isAdmin = IsRunningAsAdmin();
                     _ = isAdmin ? InstallWPISupport() : (Elevate() ? InstallWPISupport() : 0);
                 }
-                    break;
+                break;
+
+            case ("sdoptions", true):
+                if (args[1] is "s" or "shutdown")
+                {
+                    Process.Start("shutdown -s");
+                }
+                else if (args[1] is "si" or "shutdown_inmediate" or "shutdown_now" or "sn")
+                {
+                    Process.Start("shutdown -s -t 0");
+                }
+                else if (args[1] is "p" or "power_off" or "force_shutdown" or "shutdown_force" or "sf" or "fs" or "po")
+                {
+                    Process.Start("shutdown -s -f");
+                }
+                else if (args[1] is "pi" or "power_off_inmediate" or "power_off_now" or "pn" or "shutdown_force_now" or "sfn")
+                {
+                    Process.Start("shutdown -s -f -t 0");
+                }
+                else if (args[1] is "rs" or "reset" or "r+" or "reboot_force" or "rf")
+                {
+                    Process.Start("shutdown -r -f");
+                }
+                else if (args[1] is "rsi" or "reset_inmediate" or "reset_now" or "reboot_force_inmediate" or "reboot_force_now" or "rfi" or "rfn" or "rsn")
+                {
+                    Process.Start("shutdown -r -f -t 0");
+                }
+                else if (args[1] is "r" or "reboot")
+                {
+                    Process.Start("shutdown -r");
+                }
+                else if (args[1] is "ri" or "reboot_inmediate" or "reboot_now" or "rn")
+                {
+                    Process.Start("shutdown -r -t 0");
+                }
+                break;
         }
     }
 }
