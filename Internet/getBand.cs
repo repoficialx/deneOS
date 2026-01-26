@@ -3,15 +3,126 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Windows.Networking.Connectivity;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace Internet
 {
     internal class Internet
     {
+        private static bool IsHumanSsid(string ssid)
+        {
+            if (string.IsNullOrWhiteSpace(ssid))
+                return false;
+
+            string[] keywords =
+            {
+                "iphone", "android", "redmi", "samsung", "pixel",
+                "oneplus", "mi", "galaxy"
+            };
+
+            return keywords.Any(k =>
+                ssid.ToLower().Contains(k) ||
+                ssid.Contains(" de ") ||
+                ssid.Contains("'s ")
+            );
+        }
+        private static bool IsMobileGateway()
+        {
+            try
+            {
+                foreach (var ni in NetworkInterface.GetAllNetworkInterfaces())
+                {
+                    if (ni.OperationalStatus != OperationalStatus.Up)
+                        continue;
+
+                    var props = ni.GetIPProperties();
+                    foreach (var gw in props.GatewayAddresses)
+                    {
+                        var ip = gw.Address?.ToString();
+                        if (ip == null) continue;
+
+                        if (ip.StartsWith("192.168.43.") || // Android
+                            ip == "172.20.10.1" ||          // iOS
+                            ip.StartsWith("10.42.0."))      // Linux hotspot
+                            return true;
+                    }
+                }
+            }
+            catch { }
+
+            return false;
+        }
+        private static bool IsMobileOUI()
+        {
+            try
+            {
+                foreach (var ni in NetworkInterface.GetAllNetworkInterfaces())
+                {
+                    if (ni.OperationalStatus != OperationalStatus.Up)
+                        continue;
+
+                    var mac = ni.GetPhysicalAddress()?.ToString();
+                    if (string.IsNullOrEmpty(mac) || mac.Length < 6)
+                        continue;
+
+                    string oui = mac.Substring(0, 6).ToUpper();
+
+                    string[] mobileOUIs =
+                    {
+                        "0016CB", // Apple
+                        "F4F5E8", // Samsung
+                        "7C49EB", // Xiaomi
+                        "A4C138", // Google
+                    };
+
+                    if (mobileOUIs.Contains(oui))
+                        return true;
+                }
+            }
+            catch { }
+
+            return false;
+        }
+        public static string GetConnectionDescription()
+        {
+            var profile = NetworkInformation.GetInternetConnectionProfile();
+            if (profile == null || profile.GetNetworkConnectivityLevel() != NetworkConnectivityLevel.InternetAccess)
+                return "Sin conexión";
+
+            _ = int.TryParse(profile.NetworkAdapter?.IanaInterfaceType.ToString() ?? "-1", out int iana);
+
+            // 6 = Ethernet, 71 = Wi-Fi
+            if (iana == 6)
+                return "Ethernet";
+
+            if (iana != 71)
+                return "Conectado";
+
+            bool metered = profile.GetConnectionCost().NetworkCostType != NetworkCostType.Unrestricted;
+            string ssid = profile.WlanConnectionProfileDetails?.GetConnectedSsid() ?? "";
+
+            int score = 0;
+
+            if (metered) score++;
+
+            if (IsHumanSsid(ssid)) score++;
+
+            if (IsMobileGateway()) score++;
+
+            if (IsMobileOUI()) score++;
+
+            return score >= 3
+                ? "hotspot"
+                : "wifi";
+        }
+
+        public static bool isHotspot() => GetConnectionDescription() == "hotspot";
+
         static string ObtenerBanda(int channel)
         {
             if (channel >= 1 && channel <= 14) return "2.4 GHz";
@@ -79,6 +190,24 @@ namespace Internet
 
             return "WiFi: " + (ssid ?? "No conectado");
         }
+
+        public static bool ObtenerEsEthernet()
+        {
+            foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if ((nic.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
+                     nic.NetworkInterfaceType == NetworkInterfaceType.GigabitEthernet ||
+                     nic.NetworkInterfaceType == NetworkInterfaceType.FastEthernetFx ||
+                     nic.NetworkInterfaceType == NetworkInterfaceType.FastEthernetT) &&
+                    nic.OperationalStatus == OperationalStatus.Up)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private static string normalizeSpaces(string band)
         {
             return band.Replace("\u00A0", " ").Trim(); // Reemplaza espacio de ancho no rompible

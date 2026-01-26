@@ -9,11 +9,25 @@ namespace deneOS
         {
             InitializeComponent();
             this.TopMost = true;
+            Shown += (_, __) =>
+            {
+                AppBarManager.Register(this, AppBarManager.AppBarEdge.Top, 48);
+            };
+            FormClosing += (_, __) =>
+            {
+                AppBarManager.Unregister(this);
+            };
+        }
 
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            AppBarManager.SetPosition(this, AppBarManager.AppBarEdge.Top, 48);
         }
 
         private void tbar_Load(object sender, EventArgs e)
         {
+            
             int screenWidth = Screen.PrimaryScreen.Bounds.Width;
             int screenHeight = Screen.PrimaryScreen.Bounds.Height;
 

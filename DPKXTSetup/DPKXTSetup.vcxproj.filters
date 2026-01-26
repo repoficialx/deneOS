@@ -15,29 +15,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DPKXTInstaller.cpp">
+    <ClCompile Include="DPKXTSetup.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="AssemblyInfo.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="pch.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="..\deneTerm\app.rc">
-      <Filter>Archivos de recursos</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\deneTerm\app.ico">
-      <Filter>Archivos de recursos</Filter>
-    </Image>
   </ItemGroup>
 </Project>

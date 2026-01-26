@@ -96,7 +96,7 @@ namespace Internet
             }
         }
 
-        private void ConectarWiFi(string ssid)
+        /*private void ConectarWiFi(string ssid)
         {/*
             var iface = NativeWifi.EnumerateInterfaces().FirstOrDefault();
             if (iface == null)
@@ -169,7 +169,7 @@ namespace Internet
             if (ok)
                 MessageBox.Show($"Conectando a {ssid} ({security})...");
             else
-                MessageBox.Show($"No se pudo conectar a {ssid}");*/
+                MessageBox.Show($"No se pudo conectar a {ssid}");*
 
             // 1️⃣ Generar la contraseña y seguridad
 
@@ -209,7 +209,70 @@ namespace Internet
                 MessageBox.Show($"Conectado a {ssid} correctamente ✅");
             else
                 MessageBox.Show($"Error al conectar a {ssid} ❌");
-        }
+        }*/private void ConectarWiFi(string ssid)
+           {
+               if (string.IsNullOrWhiteSpace(ssid))
+               {
+                   MessageBox.Show("SSID inválido.");
+                   return;
+               }
+           
+               var iface = NativeWifi.EnumerateInterfaces().FirstOrDefault();
+               if (iface == null)
+               {
+                   MessageBox.Show("No se encontró interfaz Wi-Fi.");
+                   return;
+               }
+           
+               var networks = NativeWifi.EnumerateAvailableNetworks(iface.Id);
+               var selected = networks.list.FirstOrDefault(n => n.Ssid.ToString() == ssid);
+           
+               if (selected == null)
+               {
+                   MessageBox.Show("Red no encontrada.");
+                   return;
+               }
+           
+               var security = DetectSecurity(selected);
+               string password = "";
+           
+               if (security != WifiSecurityType.Open)
+               {
+                   using var dialog = new input { ssid = ssid };
+                   dialog.ShowDialog();
+           
+                   if (string.IsNullOrEmpty(dialog.contraseña))
+                   {
+                       MessageBox.Show("Contraseña requerida.");
+                       return;
+                   }
+           
+                   password = dialog.contraseña;
+               }
+           
+               string xml = GenerateWifiProfileXml(ssid, password, security);
+               string path = Path.GetTempFileName();
+               File.WriteAllText(path, xml);
+           
+               var psi = new ProcessStartInfo("netsh", $"wlan add profile filename=\"{path}\"")
+               {
+                   UseShellExecute = false,
+                   CreateNoWindow = true
+               };
+           
+               Process.Start(psi)?.WaitForExit();
+               File.Delete(path);
+           
+               bool connected = NativeWifi.ConnectNetwork(iface.Id, ssid, BssType.Infrastructure);
+           
+               MessageBox.Show(
+                   connected
+                   ? $"Conectado a {ssid} ✅"
+                   : $"No se pudo conectar a {ssid} ❌"
+               );
+           }
+           
+
 
 
 
@@ -356,7 +419,7 @@ namespace Internet
                     }*/
                     List<WifiNetworkInfo> redes = new List<WifiNetworkInfo>();
 
-                    foreach (var net in networks.list   ) // tu lista de redes detectadas
+                    foreach (var net in networks.list   ) // lista de redes detectadas
                     {
                         string ssid = net.Ssid.ToString();
                         if (string.IsNullOrWhiteSpace(ssid))

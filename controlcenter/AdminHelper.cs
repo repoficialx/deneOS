@@ -8,10 +8,11 @@ public static class AdminHelper
     {
         var exeName = Application.ExecutablePath;
 
-        var startInfo = new ProcessStartInfo(exeName)
+        var startInfo = new ProcessStartInfo()
         {
             UseShellExecute = true,
             Verb = "runas", // <-- Esto muestra el UAC
+            FileName = "C:\\DENEOS\\systemApps\\controlcenter\\controlcenter.exe",
             Arguments = args
         };
 

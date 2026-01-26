@@ -29,6 +29,8 @@ namespace deneOS.init
             txt4.Text = (string)T("txt4");
             txt5.Text = (string)T("txt5");
             txt6.Text = (string)T("txt6");
+
+            
         }
 
         protected override void OnPaintBackground(PaintEventArgs e)
@@ -168,8 +170,18 @@ namespace deneOS.init
                 );
 
                 Hide();
-                new desktop().Show();
-                new tbar().Show();
+                if (ornMgmt.GetOrientation() == Orientation.Horizontal)
+                {
+                    new desktop().Show();
+                    new tbar().Show();
+                }
+                else
+                {
+                    new TopBar().Show();
+                    new HomeScreen().Show();
+                    
+                    new BottomBar().Show();
+                }
             }
             else
             {

@@ -33,9 +33,9 @@
             // 
             // Store
             // 
-            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(1572, 853);
+            ClientSize = new Size(1442, 811);
             Font = new Font("Segoe UI Variable Display", 10F);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Store";

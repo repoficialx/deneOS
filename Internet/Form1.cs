@@ -19,27 +19,69 @@ namespace Internet
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            debug("obtenerssid a ser llamado");
-            label6.Text = Internet.ObtenerSSID();
-            debug("obtenerssid devolvió: " + label6.Text);
-            debug("obtenerversionwifi a ser llamado");
-            label4.Text = Internet.ObtenerVersionWiFi(comboBox1);
-            debug("obtenerversionwifi devolvió: " + label4.Text);
-            debug("obtenerestadodatosmoviles a ser llamado");
+            var isEthernet = Internet.ObtenerEsEthernet();
+            if (isEthernet)
+            {
+                if (Internet.isHotspot())
+                {
+                    label6.Text = @"Mobile ";
+                    debug("Internet.isHotspot() = true");
+                    label6.Text += Internet.ObtenerSSID();
+                    debug("Internet.ObtenerSSID() = " + label6.Text);
+                    label4.Text = Internet.ObtenerVersionWiFi(comboBox1);
+                    debug("Internet.ObtenerVersionWiFi() = " + label4.Text);
+                    string band_ = Internet.getBand();
+                    label3.Text = Band2Icon(band_);
+                    debug($"Band2Icon(Internet.getBand()) = {label3.Text}");
+                    debug($"Internet.getBand() = {band_}");
+                    label2.Text = @"îœ›";
+                    return;
+                }
+                label6.Text = @"Ethernet";
+                debug("Internet.ObtenerEsEthernet() = " + isEthernet);
+                label4.Text = "";
+                label3.Text = "";
+                button2.Visible = false;
+                button3.Visible = false;
+                label2.Text = @"î ¹";
+                return;
+            }
 
+            if (Internet.isHotspot())
+            {
+                label6.Text = @"Mobile ";
+                debug("Internet.isHotspot() = true");
+                label6.Text += Internet.ObtenerSSID();
+                debug("Internet.ObtenerSSID() = " + label6.Text);
+                label4.Text = Internet.ObtenerVersionWiFi(comboBox1);
+                debug("Internet.ObtenerVersionWiFi() = " + label4.Text);
+                string band_ = Internet.getBand();
+                label3.Text = Band2Icon(band_);
+                debug($"Band2Icon(Internet.getBand()) = {label3.Text}");
+                debug($"Internet.getBand() = {band_}");
+                label2.Text = @"îœ›";
+                return;
+            }
+
+            label6.Text = Internet.ObtenerSSID();
+            debug("Internet.ObtenerSSID() = " + label6.Text);
+            label4.Text = Internet.ObtenerVersionWiFi(comboBox1);
+            debug("Internet.ObtenerVersionWiFi() = " + label4.Text);
             string band = Internet.getBand();
             label3.Text = Band2Icon(band);
-            debug($"texto asignado a label3: {label3.Text}");
-            debug($"getBand estado: {band}");
+            debug($"Band2Icon(Internet.getBand()) = {label3.Text}");
+            debug($"Internet.getBand() = {band}");
         }
         void debug(string texto)
         {
+#if DEBUG
             Console.WriteLine("[DEBUG] " + texto);
+#endif
         }
 
         string Band2Icon(string band)
         {
-            switch (band.Trim().ToLowerInvariant()) // Quita espacios y estandariza mayúsculas
+            switch (band.Trim().ToLower())
             {
                 case "2,4 ghz":
                     return "filter_4";
@@ -59,79 +101,6 @@ namespace Internet
 
         private async void ObtenerEstadoDatosMoviles()
         {
-            // MÉTODO ANTIGUO (NETSH):
-            /*
-            Process process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = "netsh",
-                    Arguments = "mbn show interfaces",
-                    RedirectStandardOutput = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true
-                }
-            };
-            process.Start();
-            string output = process.StandardOutput.ReadToEnd();
-            process.WaitForExit();
-
-            if (!output.Contains("Estado de la SIM"))
-            {
-                label5.Text = "Mobile Data: NOT SUPPORTED";
-                label5.ForeColor = Color.Gray;
-                label3.Text = "";
-                return;
-            }
-
-
-
-            bool datosEncendidos = output.Contains("Estado de la conexión: Conectado");
-            string tipoRed = output.Split('\n')
-                                   .FirstOrDefault(line => line.Contains("Tipo de acceso de datos"))?
-                                   .Split(':')[1]
-                                   .Trim();
-
-            if (!datosEncendidos)
-            {
-                label5.Text = "Mobile Data: OFF";
-                label3.Text = "";
-            }
-            else
-            {
-                label5.Text = "Mobile Data: ON";
-                switch (tipoRed)
-                {
-                    case "HSDPA":
-                        label3.Text = "h_plus_mobiledata";
-                        break;
-                    case "4G":
-                        label3.Text = "4g_mobiledata";
-                        break;
-                    case "4G+":
-                        label3.Text = "4g_plus_mobiledata";
-                        break;
-
-
-
-
-
-
-                    case "LTE":
-                        label3.Text = "lte_mobiledata";
-                        break;
-                    case "LTE+":
-                        label3.Text = "lte_plus_mobiledata";
-                        break;
-                    case "5G":
-                        label3.Text = "5g";
-                        break;
-                    default:
-                        label3.Text = "Unknown Network Type";
-                        break;
-                }
-            }*/
-            // MÉTODO NUEVO (Windows.Networking.Connectivity):
             var profiles = NetworkInformation.GetConnectionProfiles();
             var cellular = profiles.FirstOrDefault(p => p.IsWwanConnectionProfile);
             if (cellular == null)
@@ -169,25 +138,25 @@ namespace Internet
                     switch (tipoRed.ToLower())
                     {
                         case "hsdpa":
-                            label3.Text = "h_plus_mobiledata";
+                            label3.Text = @"h_plus_mobiledata";
                             break;
                         case "4g":
-                            label3.Text = "4g_mobiledata";
+                            label3.Text = @"4g_mobiledata";
                             break;
                         case "4gplus":
-                            label3.Text = "4g_plus_mobiledata";
+                            label3.Text = @"4g_plus_mobiledata";
                             break;
                         case "lte":
-                            label3.Text = "lte_mobiledata";
+                            label3.Text = @"lte_mobiledata";
                             break;
                         case "lteplus":
-                            label3.Text = "lte_plus_mobiledata";
+                            label3.Text = @"lte_plus_mobiledata";
                             break;
                         case "5g":
-                            label3.Text = "5g";
+                            label3.Text = @"5g";
                             break;
                         default:
-                            label3.Text = "Unknown Network Type";
+                            label3.Text = @"Unknown Network Type";
                             break;
                     }
                 });
@@ -209,15 +178,27 @@ namespace Internet
         {
             await Task.Run(() =>
             {
-                debug("obtenerestadodatosmoviles a ser llamado");
                 ObtenerEstadoDatosMoviles();
-                debug("obtenerestadodatosmoviles devolvió: " + label5.Text);
+                debug("ObtenerEstadoDatosMoviles() = " + label5.Text);
             });
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            var isEthernet = Internet.ObtenerEsEthernet();
+            if (isEthernet)
+            {
+                label6.Text = @"Ethernet";
+                debug("Internet.ObtenerEsEthernet() = " + label6.Text);
+                label4.Text = "";
+                label3.Text = "";
+                button2.Visible = false;
+                button3.Visible = false;
+                label2.Text = @"î ¹";
+                return;
+            }
+
             label6.Text = Internet.ObtenerSSID();
             label4.Text = Internet.ObtenerVersionWiFi(comboBox1);
             string band = Internet.getBand();

@@ -17,6 +17,7 @@ namespace deneOS
             ApplicationConfiguration.Initialize();
             if (ornMgmt.GetOrientation() == Orientation.Vertical)
             {
+                
                 Application.Run(new BootScreenVertical());
             }
             else

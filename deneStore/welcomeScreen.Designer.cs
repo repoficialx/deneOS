@@ -43,9 +43,9 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
+            label1.Location = new Point(49, 9);
             label1.Name = "label1";
-            label1.Size = new Size(385, 243);
+            label1.Size = new Size(309, 189);
             label1.TabIndex = 0;
             label1.Text = "Welcome to deneStore!\r\n\r\nThese apps are designed specially \r\nfor deneOS.\r\n\r\nThese apps run faster, smoother, safer and \r\nare more integrated into deneOS.\r\n\r\nAlways install from deneStore.";
             label1.TextAlign = ContentAlignment.TopCenter;
@@ -65,7 +65,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(146, 286);
             label2.Name = "label2";
-            label2.Size = new Size(226, 81);
+            label2.Size = new Size(182, 63);
             label2.TabIndex = 2;
             label2.Text = "deneStore\r\nApps made for deneOS.\r\nSafer. Smoother. Lighter.";
             // 
@@ -84,7 +84,7 @@
             label3.AutoSize = true;
             label3.Location = new Point(146, 417);
             label3.Name = "label3";
-            label3.Size = new Size(231, 81);
+            label3.Size = new Size(185, 63);
             label3.TabIndex = 4;
             label3.Text = "deneOS.\r\ndeneOS is not just a skin.\r\ndeneOS is a super-shell.";
             // 
@@ -103,14 +103,14 @@
             checkBox1.AutoSize = true;
             checkBox1.Location = new Point(12, 530);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(181, 31);
+            checkBox1.Size = new Size(148, 25);
             checkBox1.TabIndex = 6;
             checkBox1.Text = "Don't remind me";
             checkBox1.UseVisualStyleBackColor = true;
             // 
             // welcomeScreen
             // 
-            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(410, 573);
             Controls.Add(checkBox1);

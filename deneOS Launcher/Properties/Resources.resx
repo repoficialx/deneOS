@@ -121,10 +121,13 @@
   <data name="denelogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\denelogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DeneOSPro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DeneOSPro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="DeneOSHome" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeneOSHome.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DeneOSPro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DeneOSPro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="deneOS_Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\deneOS_Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

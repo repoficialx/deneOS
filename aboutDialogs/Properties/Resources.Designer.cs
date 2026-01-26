@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DPKXTExtractor.Properties {
+namespace aboutDialogs.Properties {
     using System;
     
     
@@ -19,7 +19,7 @@ namespace DPKXTExtractor.Properties {
     // a través de una herramienta como ResGen o Visual Studio.
     // Para agregar o quitar un miembro, edite el archivo .ResX y, a continuación, vuelva a ejecutar ResGen
     // con la opción /str o recompile su proyecto de VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -39,7 +39,7 @@ namespace DPKXTExtractor.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DPKXTExtractor.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("aboutDialogs.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,62 +61,12 @@ namespace DPKXTExtractor.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Byte[].
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] dpkxtdepsjson {
+        internal static System.Drawing.Bitmap deneOS_Banner {
             get {
-                object obj = ResourceManager.GetObject("dpkxtdepsjson", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Byte[].
-        /// </summary>
-        internal static byte[] dpkxtdll {
-            get {
-                object obj = ResourceManager.GetObject("dpkxtdll", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Byte[].
-        /// </summary>
-        internal static byte[] dpkxtexe {
-            get {
-                object obj = ResourceManager.GetObject("dpkxtexe", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Byte[].
-        /// </summary>
-        internal static byte[] dpkxtruntimeconfigjson {
-            get {
-                object obj = ResourceManager.GetObject("dpkxtruntimeconfigjson", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Byte[].
-        /// </summary>
-        internal static byte[] MicrosoftWindowsSDKNETdll {
-            get {
-                object obj = ResourceManager.GetObject("MicrosoftWindowsSDKNETdll", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Byte[].
-        /// </summary>
-        internal static byte[] WinRTRuntimedll {
-            get {
-                object obj = ResourceManager.GetObject("WinRTRuntimedll", resourceCulture);
-                return ((byte[])(obj));
+                object obj = ResourceManager.GetObject("deneOS_Banner", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

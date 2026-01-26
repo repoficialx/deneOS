@@ -112,8 +112,19 @@ namespace deneOS
             Ping ping = new();
             string wifiIcon;
             IPAddress google = new([142, 250, 184, 14]);
-            var reply = ping.Send(google);
-            if (!(reply.Status == IPStatus.Success))
+            IPStatus response;
+            try
+            {
+                var reply = ping.Send(google);
+                response = reply.Status;
+            }
+            catch (Exception)
+            {
+                response = IPStatus.NoResources;
+            }
+
+            
+            if (!(response == IPStatus.Success))
             {
                 wifiIcon = "";
                 label24.Text = wifiIcon;

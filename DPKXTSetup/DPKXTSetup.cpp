@@ -1,17 +1,13 @@
-//#include "pch.h"
-//#include <windows.h>
-//#include <iostream>
-
 using namespace System;
 using namespace System::Diagnostics;
 using namespace System::IO;
 using namespace System::Net;
 
-ref class Program
+class Program
 {
 public:
-    static void Main(array<String^>^ args)
-    {
+	static void Main()
+	{
 		Console::WriteLine("DPKXT - deneOS Package Extractor Installer");
 		Console::WriteLine("Setting up variables...");
 		String^ webHosting = "https://repoficialx.xyz/dpkxt/";
@@ -63,5 +59,10 @@ public:
 		Console::WriteLine("Press any key to exit...");
 		Console::ReadKey();
 		Environment::Exit(0);
-    }
+	}
 };
+
+int main() {
+	Program::Main();
+	return 0;
+}

@@ -180,7 +180,7 @@ namespace deneStore
             MessageBox.Show($"{app.name} instalado en {AdaptPath(appDir)}");
         }*/
 
-        private async Task InstallApp(App app)
+        public async Task InstallApp(App app)
         {
             string appDir = $@"C:\SOFTWARE\{app.code}";
             Directory.CreateDirectory(appDir);

@@ -1,5 +1,4 @@
-﻿//#if WINDOWS
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System.Diagnostics;
 using System.Security.Principal;
 #pragma warning disable CA1416 // Validar la compatibilidad de la plataforma
@@ -14,8 +13,6 @@ if (args != null)
             case ("deneStore", true):
                 if (args[1] == "swc=true")
                 {
-                    // HKEY_CURRENT_USER\Software\deneOS\deneStore\skipWelcomeScreen(DWORD)
-                    //Microsoft.Win32.Registry.SetValue("HKEY_CURRENT_USER\\Software\\deneOS\\deneStore", "skipWelcomeScreen", 1);
                     // Registrar wpifile
                     using (RegistryKey skipWelcomeScreen = Registry.CurrentUser.CreateSubKey("Software\\deneOS\\deneStore"))
                     {
@@ -23,7 +20,6 @@ if (args != null)
                     }
                 } else if (args[1] == "swc=false")
                 {
-                    //Microsoft.Win32.Registry.SetValue("HKEY_CURRENT_USER\\Software\\deneOS\\deneStore", "skipWelcomeScreen", 0);
                     using (RegistryKey skipWelcomeScreen = Registry.CurrentUser.CreateSubKey("Software\\deneOS\\deneStore"))
                     {
                         skipWelcomeScreen.SetValue("skipWelcomeScreen", 0, RegistryValueKind.DWord);
@@ -261,6 +257,7 @@ bool Elevate()
         ProcessStartInfo psi = new ProcessStartInfo
         {
             FileName = Process.GetCurrentProcess().MainModule.FileName,
+            Arguments = Process.GetCurrentProcess().StartInfo.Arguments,
             UseShellExecute = true,
             Verb = "runas" // Esto activa el UAC
         };

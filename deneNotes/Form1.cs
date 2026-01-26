@@ -16,6 +16,7 @@ namespace deneNotes
     {
         bool isFileOpen = false;
         string currentFilePath = string.Empty;
+        private bool isDirty = false;
         public Form1()
         {
             InitializeComponent();
@@ -27,7 +28,35 @@ namespace deneNotes
 
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!CheckSaveBeforeContinue())
+                return;
+
             textBox1.Clear();
+            currentFilePath = "";
+            isFileOpen = false;
+            isDirty = false;
+            UpdateTitle();
+
+        }
+        bool CheckSaveBeforeContinue()
+        {
+            if (!isDirty)
+                return true;
+
+            var result = MessageBox.Show(
+                @"Unsaved changes. Keep them?",
+                @"deneNotes",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Warning
+            );
+
+            if (result == DialogResult.Cancel)
+                return false;
+
+            if (result == DialogResult.Yes)
+                Guardar();
+
+            return true;
         }
 
         private void ventanaNuevaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -42,13 +71,23 @@ namespace deneNotes
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-            File.ReadAllLines(openFileDialog1.FileName).ToList().ForEach(line => textBox1.AppendText(line + Environment.NewLine));
+            File.ReadAllLines(openFileDialog1.FileName).ToList().ForEach(line =>
+            {
+                // Si no es la última línea, agregar un salto de línea
+                if (line == File.ReadAllLines(openFileDialog1.FileName).Last())
+                    textBox1.AppendText(line);
+                else
+                    textBox1.AppendText(line + Environment.NewLine);
+            });
             isFileOpen = true;
             currentFilePath = openFileDialog1.FileName;
+            UpdateTitle();
         }
 
-        private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        private void guardarToolStripMenuItem_Click(object sender, EventArgs e) => Guardar();
+
+        void Guardar()
+        {/*
             if (isFileOpen && !string.IsNullOrEmpty(currentFilePath))
             {
                 File.WriteAllText(currentFilePath, textBox1.Text);
@@ -56,14 +95,41 @@ namespace deneNotes
             else
             {
                 saveFileDialog1.ShowDialog();
+            }*/
+            if (!isFileOpen)
+            {
+                GuardarComo();
+                return;
             }
-        }
 
+            File.WriteAllText(currentFilePath, textBox1.Text);
+            isDirty = false;
+            UpdateTitle();
+
+        }
         private void guardarComoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            saveFileDialog1.ShowDialog();
+            GuardarComo();
         }
+        SaveFileDialog saveFileDialog = new SaveFileDialog()
+        {
+            Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*",
+            DefaultExt = "txt",
+            AddExtension = true,
+            Title = "Save As"
+        };
+        void GuardarComo()
+        {
+            if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                return;
 
+            currentFilePath = saveFileDialog.FileName;
+            File.WriteAllText(currentFilePath, textBox1.Text);
+
+            isFileOpen = true;
+            isDirty = false;
+            UpdateTitle();
+        }
         private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             File.WriteAllLines(saveFileDialog1.FileName, textBox1.Lines);
@@ -81,22 +147,23 @@ namespace deneNotes
 
         private void acercaDeDeneNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new about().ShowDialog();
+            //new about().ShowDialog();
+            Process.Start("C:\\DENEOS\\core\\aboutDialogs.exe", "deneNotes");
         }
 
         private void verLaAyudaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("http://repoficialx.xyz/deneos/help/deneNotes.html");
+            Process.Start("http://repoficialx.xyz/deneos/help/deneNotes");
         }
 
         private void acercarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            textBox1.Font = new Font(textBox1.Font.Name, textBox1.Font.Size + 2, textBox1.Font.Style,textBox1.Font.Unit, textBox1.Font.GdiCharSet, textBox1.Font.GdiVerticalFont);
+            textBox1.Font = new Font(textBox1.Font.Name, textBox1.Font.Size + 2, textBox1.Font.Style, textBox1.Font.Unit, textBox1.Font.GdiCharSet, textBox1.Font.GdiVerticalFont);
         }
 
         private void alejarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            textBox1.Font = new Font(textBox1.Font.Name, textBox1.Font.Size>=2 ? textBox1.Font.Size-2 : textBox1.Font.Size, textBox1.Font.Style, textBox1.Font.Unit, textBox1.Font.GdiCharSet, textBox1.Font.GdiVerticalFont);
+            textBox1.Font = new Font(textBox1.Font.Name, textBox1.Font.Size >= 2 ? textBox1.Font.Size - 2 : textBox1.Font.Size, textBox1.Font.Style, textBox1.Font.Unit, textBox1.Font.GdiCharSet, textBox1.Font.GdiVerticalFont);
         }
 
         private void restaurarAlPredeterminadoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -204,7 +271,7 @@ namespace deneNotes
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = $"Línea {textBox1.GetLineFromCharIndex(textBox1.SelectionStart) + 1}, Columna {textBox1.SelectionStart - textBox1.GetFirstCharIndexFromLine(textBox1.GetLineFromCharIndex(textBox1.SelectionStart)) + 1}";
+            toolStripStatusLabel1.Text = $"Line {textBox1.GetLineFromCharIndex(textBox1.SelectionStart) + 1}, column {textBox1.SelectionStart - textBox1.GetFirstCharIndexFromLine(textBox1.GetLineFromCharIndex(textBox1.SelectionStart)) + 1}";
             toolStripStatusLabel2.Text = $"{(int)Math.Round((textBox1.Font.Size / 12) * 100)}%";
             toolStripStatusLabel3.Text = getNLineMethod(textBox1);
             toolStripStatusLabel4.Text = Encoding.UTF8.EncodingName;
@@ -228,7 +295,7 @@ namespace deneNotes
             }
             else
             {
-                return "There isn't more than 1 line";
+                return "Not enough lines";
             }
 
         }
@@ -261,6 +328,31 @@ namespace deneNotes
         private void ediciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            isDirty = true;
+            UpdateTitle();
+        }
+
+        void UpdateTitle()
+        {
+            string name = isFileOpen ? Path.GetFileName(currentFilePath) : "Untitled";
+
+            Text = $@"deneNotes - {name}" + (isDirty ? "*" : "");
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!CheckSaveBeforeContinue())
+                e.Cancel = true;
+
+        }
+
+        private void toolStripSeparator4_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿namespace deneFiles
-{
+{/*
     partial class Form1
     {
         /// <summary>
@@ -145,6 +145,62 @@
         private System.Windows.Forms.ToolStripMenuItem deneossysToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem parentDirectoryToolStripMenuItem;
+    }*/
+
+    partial class Form1
+    {
+        private SplitContainer splitContainer1;
+        private TreeView treeView1;
+        private ListView listView1;
+        private ImageList imageList1;
+        private ToolStrip toolStrip1;
+        private ToolStripButton backButton;
+        private ToolStripButton forwardButton;
+        private ToolStripLabel pathLabel;
+
+        private void InitializeComponent()
+        {
+            splitContainer1 = new SplitContainer();
+            treeView1 = new TreeView();
+            listView1 = new ListView();
+            imageList1 = new ImageList();
+            toolStrip1 = new ToolStrip();
+            backButton = new ToolStripButton("⬅");
+            forwardButton = new ToolStripButton("➡");
+            pathLabel = new ToolStripLabel();
+
+            toolStrip1.Items.Add(backButton);
+            toolStrip1.Items.Add(forwardButton);
+            toolStrip1.Items.Add(new ToolStripSeparator());
+            toolStrip1.Items.Add(pathLabel);
+
+            splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.Panel1.Controls.Add(treeView1);
+            splitContainer1.Panel2.Controls.Add(listView1);
+
+            treeView1.Dock = DockStyle.Fill;
+            listView1.Dock = DockStyle.Fill;
+
+            listView1.View = View.Details;
+            listView1.FullRowSelect = true;
+            listView1.SmallImageList = imageList1;
+            listView1.LargeImageList = imageList1;
+
+            listView1.Columns.Add("Nombre", 250);
+            listView1.Columns.Add("Tipo", 120);
+            listView1.Columns.Add("Tamaño", 100);
+            listView1.Columns.Add("Modificado", 150);
+
+            Controls.Add(splitContainer1);
+            Controls.Add(toolStrip1);
+
+            toolStrip1.Dock = DockStyle.Top;
+
+            Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            Text = "deneFiles";
+            Width = 900;
+            Height = 600;
+        }
     }
 }
 

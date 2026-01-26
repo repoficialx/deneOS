@@ -46,9 +46,9 @@ class FontInstaller
             if (!File.Exists(destPath))
             {
                 client.DownloadFile(fontUri, destPath);
-                Console.WriteLine($"Downloaded {font} to {destPath}");
+                Console.WriteLine($@"Downloaded {font} to {destPath}");
                 client.DownloadFile(fontUri, _desPath);
-                Console.WriteLine($"Downloaded {font} to {_desPath}");
+                Console.WriteLine($@"Downloaded {font} to {_desPath}");
             }
 
             // Añadir al registro para instalación permanente
@@ -61,23 +61,23 @@ class FontInstaller
                     {
                         string fontName = Path.GetFileNameWithoutExtension(font) + " (TrueType)";
                         key.SetValue(fontName, font);
-                        Console.WriteLine($"{font} registrado en el sistema.");
+                        Console.WriteLine($@"{font} registrado en el sistema.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al registrar {font} en el registro: {ex.Message}");
+                Console.WriteLine($@"Error al registrar {font} en el registro: {ex.Message}");
             }
 
             // Registrar para uso inmediato
             int res = AddFontResourceEx(destPath, FR_NOT_ENUM, IntPtr.Zero);
             if (res > 0)
-                Console.WriteLine($"{font} cargada para uso inmediato.");
+                Console.WriteLine($@"{font} cargada para uso inmediato.");
             else
-                Console.WriteLine($"Error cargando {font}, código: {Marshal.GetLastWin32Error()}");
+                Console.WriteLine($@"Error cargando {font}, código: {Marshal.GetLastWin32Error()}");
         }
 
-        Console.WriteLine("Todas las fuentes procesadas.");
+        Console.WriteLine(@"Todas las fuentes procesadas.");
     }
 }

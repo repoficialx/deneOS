@@ -1,22 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static Traductor;
+﻿using System.Diagnostics;
 
 namespace deneOS.init
 {
     public partial class logonui : Form
     {
-        public Form formToShow;
+        public Form? formToShow;
         /// <summary>
         /// Inicialización de Compontentes vía InitializeComponent();
         /// </summary>
@@ -25,7 +13,7 @@ namespace deneOS.init
             if (flagMgmt.DisableLockScreen)
             {
                 // Cerrar formulario y abrir el escritorio directamente lanzando una advertencia de seguridad
-                MessageBox.Show($"{T("lockscrdisabled")} {T("thismayposeasecrisk")}", (string)T("warn"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($@"{T("lockscrdisabled")} {T("thismayposeasecrisk")}", (string)T("warn"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 new desktop().Show();
                 new tbar().Show();
                 return;
@@ -97,24 +85,21 @@ namespace deneOS.init
             {
                 button1.Show();
             }
-            string pss = "";
-            string usr = "";
-            string configFile = @"C:\DENEOS\sysconf\config.ini";
-            bool fileExists = File.Exists(configFile);
-            int headerLn = 0;
-            int userLn = 1;
-            int passLn = 2;
-            string[] cfgInfo = new string[3];
-            cfgInfo = fileExists ? File.ReadAllLines(configFile).Concat(new string[] { "", "", "" }).Take(3).ToArray() : new string[] { "", "", "" };
-            bool userSpecified = cfgInfo[userLn].Contains("username = ");
-            bool passSpecified = cfgInfo[passLn].Contains("password = ");
-            bool isValid = userSpecified && passSpecified;
-            bool Corrupted = (userSpecified && !passSpecified) || (!userSpecified && passSpecified);
+
+            var configFile = @"C:\DENEOS\sysconf\config.ini";
+            var fileExists = File.Exists(configFile);
+            var userLn = 1;
+            var passLn = 2;
+            var cfgInfo = fileExists ? File.ReadAllLines(configFile).Concat(["", "", ""]).Take(3).ToArray() : ["", "", ""];
+            var userSpecified = cfgInfo[userLn].Contains("username = ");
+            var passSpecified = cfgInfo[passLn].Contains("password = ");
+            var isValid = userSpecified && passSpecified;
+            var Corrupted = (userSpecified && !passSpecified) || (!userSpecified && passSpecified);
             if (!isValid)
             {
                 if (Corrupted)
                 {
-                    MessageBox.Show($"{T("cfgflcorr")} {T("plsfxit")}", "deneOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($@"{T("cfgflcorr")} {T("plsfxit")}", @"deneOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Environment.Exit(1);
                 }
                 else
@@ -225,7 +210,7 @@ namespace deneOS.init
             ddddnl = DateTime.Now.DayOfWeek.ToString().Substring(0, 3);
             dddd = (string)T($"dow{ddddnl.ToLower()}");
             yyyy = DateTime.Now.Year.ToString();
-            txt2.Text = $"{dddd}., {ddd} {MonthNum2Month(mm2)} {yyyy}";
+            txt2.Text = @$"{dddd}., {ddd} {MonthNum2Month(mm2)} {yyyy}";
         }
         /// <summary>
         /// Actualizar en la pantalla la hora (00:00) y la fecha (31-12-9999)
@@ -278,7 +263,7 @@ namespace deneOS.init
                 }
                 formToShow.Show();
                 formToShow.BringToFront();
-                if (formToShow is login loginForm)
+                if (formToShow is login)
                 {
                     Close();
                 }

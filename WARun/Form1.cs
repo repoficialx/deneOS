@@ -2,21 +2,17 @@ namespace WARun
 {
     public partial class Form1 : Form
     {
-        public Form1(string Title, string IconPath, string Url)
+        private readonly AppConfig _config;
+
+        public Form1(AppConfig config)
         {
             InitializeComponent();
-            Text = Title;
-            try
-            {
-                Icon = new Icon(IconPath);
-            }
-            catch
-            {
-                Console.WriteLine("No se pudo cargar el icono.");
-            }
+            _config = config;
 
-            InitializeWebView(Url);
+            Text = _config.Title;
+            try { Icon = new Icon(_config.IconPath); } catch { }
 
+            InitializeWebView(_config.Url);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -27,12 +23,10 @@ namespace WARun
         private async void InitializeWebView(string url)
         {
             await webView21.EnsureCoreWebView2Async();
-
             if (!url.StartsWith("http"))
                 url = "https://" + url;
 
             webView21.CoreWebView2.Navigate(url);
         }
-
     }
 }

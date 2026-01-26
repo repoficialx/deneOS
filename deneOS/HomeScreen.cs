@@ -47,7 +47,7 @@ namespace deneOS
                         this.BackgroundImageLayout = ImageLayout.Stretch;
 
                         flowLayoutPanel2.BackColor = Color.Transparent;
-                        panel1.BackColor = Color.Transparent;
+                        tableLayoutPanel1.BackColor = Color.Transparent;
 
                         var colorThief = new ColorThief();
                         Bitmap bmp = new Bitmap(wallpaperPath);

@@ -19,13 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>17.0</VCProjectVersion>
+    <VCProjectVersion>18.0</VCProjectVersion>
     <EnableManagedPackageReferenceSupport>true</EnableManagedPackageReferenceSupport>
-    <ProjectGuid>{0EB0283D-ADC4-D38C-D4A7-E4C0E05D742D}</ProjectGuid>
+    <ProjectGuid>{B47120AF-78F4-134A-F729-68F1017498FC}</ProjectGuid>
     <Keyword>NetCoreCProj</Keyword>
-    <RootNamespace>DPKXTInstaller</RootNamespace>
+    <RootNamespace>DPKXTSetup</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -48,6 +48,7 @@
     <PlatformToolset>v145</PlatformToolset>
     <CLRSupport>NetCore</CLRSupport>
     <CharacterSet>Unicode</CharacterSet>
+	<UseAppHost>true</UseAppHost>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -113,17 +114,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="DPKXTInstaller.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="Resource.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="..\deneTerm\app.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\deneTerm\app.ico" />
+    <ClCompile Include="DPKXTSetup.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

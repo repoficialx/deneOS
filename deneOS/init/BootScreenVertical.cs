@@ -1,16 +1,18 @@
-﻿using System;
+﻿using deneOS.Security;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.IO;
 using System.Windows.Forms;
+using static dosu.UniversalConfiguration;
 using static Traductor;
 using Timer = System.Windows.Forms.Timer;
-using deneOS.OOBE;
 
 namespace deneOS.init
 {
@@ -38,235 +40,369 @@ namespace deneOS.init
         private System.Windows.Forms.Timer bootTimer;
         public BootScreenVertical()
         {
-            if (flagMgmt.ResetPrefs)
-            {
-                Properties.Settings.Default.Reset();
-                Properties.Settings.Default.Save();
-            }
-            if (flagMgmt.EnableDebug)
-            {
-                Console.WriteLine("[DEBUG] Debug mode enabled");
-            }
-            if (flagMgmt.EnableRoot)
-            {
-                Console.WriteLine("[DEBUG] Root mode enabled");
-            }
-            if (flagMgmt.DisableLockScreen)
-            {
-                Console.WriteLine("[DEBUG] Lock screen disabled");
-            }
-            if (flagMgmt.MockBattery)
-            {
-                Console.WriteLine("[DEBUG] Mock battery enabled");
-            }
-            if (flagMgmt.ClassicMode)
-            {
-                Console.WriteLine("[DEBUG] Classic mode enabled");
-            }
-            if (flagMgmt.ForceUpdate)
-            {
-                Console.WriteLine("[DEBUG] Force update enabled");
-            }
-            if (flagMgmt.SafeMode)
-            {
-                Console.WriteLine("[DEBUG] Safe mode enabled");
-            }
-            if (flagMgmt.SafeModeWithNetwork)
-            {
-                Console.WriteLine("[DEBUG] Safe mode with network enabled");
-            }
-            if (flagMgmt.RecoverMode)
-            {
-                Console.WriteLine("[DEBUG] Recover mode enabled");
-            }
-            if (flagMgmt.LogSession)
-            {
-                Console.WriteLine("[DEBUG] Session logging enabled");
-            }
-            if (flagMgmt.BypassChecks)
-            {
-                Console.WriteLine("[DEBUG] Bypass checks enabled");
-            }
-            if (flagMgmt.ShowSysInfo)
-            {
-                Console.WriteLine("[DEBUG] System info display enabled");
-            }
-            if (flagMgmt.NoShell)
-            {
-                Console.WriteLine("[DEBUG] No shell mode enabled");
-            }
             if (flagMgmt.EmergencyUI)
             {
-                Console.WriteLine("[DEBUG] Emergency UI enabled");
+                // Mostrar pantalla de emergencia sin inicializar nada más
                 EmergencyScreen emergencyScreen = new EmergencyScreen();
                 emergencyScreen.ShowDialog();
-                this.BeginInvoke(new Action(() => this.Close()));
+                Application.Exit();
+                return;
             }
-            if (flagMgmt.OfflineOnly)
-            {
-                Console.WriteLine("[DEBUG] Offline only mode enabled");
-            }
-            if (flagMgmt.Language != "")
-            {
-                Console.WriteLine($"[DEBUG] Language set to {flagMgmt.Language}");
-            }
-            if (flagMgmt.LaunchAppId != "")
-            {
-                Console.WriteLine($"[DEBUG] Launch app ID set to {flagMgmt.LaunchAppId}");
-            }
-            if (flagMgmt.Locale != "")
-            {
-                Console.WriteLine($"[DEBUG] Locale set to {flagMgmt.Locale}");
-            }
-            if (flagMgmt.SelectedTimeFormat != flagMgmt.TimeFormat.SystemDefault)
-            {
-                Console.WriteLine($"[DEBUG] Time format set to {flagMgmt.SelectedTimeFormat}");
-            }
-            if (flagMgmt.ShowUntranslatedStrings)
-            {
-                Console.WriteLine("[DEBUG] Showing untranslated strings");
-            }
-
             if (flagMgmt.SkipBootAnim)
             {
+                // Saltar completamente la pantalla de boot
+                InitializeComponent();
+                this.Opacity = 0; // Hacerlo invisible
+                this.Show();
+
                 DisableExplorer();
                 FilenFolderCheck();
                 CargarIdioma();
-                new logonuiVertical();
+
+                // Iniciar directamente el login
+                this.BeginInvoke(new Action(() =>
+                {
+                    this.Hide();
+                    new logonui().Show();
+                }));
                 return;
             }
-            
-            // Configura el timer
+
+            // ✅ PRIMERO: Inicializar componentes
+            InitializeComponent();
+
+            this.DoubleBuffered = true;
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            UpdateStyles();
+
+            // ✅ SEGUNDO: Configurar la ventana
+            ConfigureWindow();
+
+
+            // ✅ TERCERO: Iniciar el timer de animación
+            InitializeBootAnimation();
+
+
+            // ✅ CUARTO: Mostrar el formulario
+            this.Show();
+            Application.DoEvents(); // Forzar renderizado inicial
+        }
+        private void ConfigureWindow()
+        {
+            int screenWidth = Screen.PrimaryScreen.Bounds.Width;
+            int screenHeight = Screen.PrimaryScreen.Bounds.Height;
+
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(0, 0);
+            this.Size = new Size(screenWidth, screenHeight);
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.TopMost = true;
+            this.BackColor = Color.Black;
+            this.WindowState = FormWindowState.Maximized;
+
+            // Posicionar logo proporcionalmente
+            float posX = 684f / 1920f;
+            float posY = 261f / 1080f;
+            float widthPct = 572f / 1920f;
+            float heightPct = 468f / 1080f;
+
+            logo.Location = new Point((int)(posX * this.Width), (int)(posY * this.Height));
+            logo.Size = new Size((int)(widthPct * this.Width), (int)(heightPct * this.Height));
+        }
+        private void InitializeBootAnimation()
+        {
+            // Configurar el timer de animación
             bootTimer = new Timer();
-            bootTimer.Interval = 30; // Puedes ajustar la velocidad aquí
+            bootTimer.Interval = 30;
             bootTimer.Tick += BootTimer_Tick;
             bootTimer.Start();
-            InitializeComponent();
+
+            Console.WriteLine("[INFO] Animación de boot iniciada");
         }
         void DisableExplorer()
         {
-            Process cproc = new Process();
-            cproc.StartInfo.FileName = "taskkill";
-            cproc.StartInfo.Arguments = "/f /im explorer.exe";
-            cproc.StartInfo.CreateNoWindow = true;
-            cproc.Start();
-            //Process.Start("explorer.exe", "/nogui");
+            Process[] processes = Process.GetProcessesByName("explorer");
+            foreach (Process process in processes)
+            {
+                process.Kill(true);
+            }
+
+            ConfigureExplorerAutoRestart();
+        }
+        private void ConfigureExplorerAutoRestart()
+        {
+            const string subkey = @"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon";
+            const string valueName = "AutoRestartShell";
+
+            // Abrir la clave del registro en modo de escritura
+            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(subkey, true))
+            {
+                if (key != null)
+                {
+                    // Leer el valor actual
+                    object value = key.GetValue(valueName);
+                    int? currentValue = value as int?;
+
+                    // Si el valor es 1, cambiarlo a 0
+                    if (currentValue.HasValue && currentValue.Value == 1)
+                    {
+                        key.SetValue(valueName, 0, RegistryValueKind.DWord);
+                        Console.WriteLine("AutoRestartShell cambiado a 0 para prevenir el reinicio de explorer.exe.");
+                        SetAutoRun();
+                        RebootSystem();
+                    }
+                    else if (currentValue.HasValue && currentValue.Value == 0)
+                    {
+                        // El valor ya es 0, no hacer nada
+                        Console.WriteLine("AutoRestartShell ya es 0. No se requiere ninguna acción.");
+                    }
+                    else
+                    {
+                        // El valor no existe o es de otro tipo, crearlo y establecerlo a 0
+                        key.SetValue(valueName, 0, RegistryValueKind.DWord);
+                        Console.WriteLine("AutoRestartShell no existía o tenía un valor inesperado, se ha creado y establecido a 0.");
+                        SetAutoRun();
+                        RebootSystem();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No se pudo abrir la clave del registro. Asegúrese de que el programa se ejecuta con permisos de administrador.");
+                }
+            }
+        }
+        private void SetAutoRun()
+        {
+            const string runKey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(runKey, true))
+            {
+                if (key != null)
+                {
+                    key.SetValue("deneOS", Application.ExecutablePath);
+                }
+            }
+        }
+        private void RebootSystem()
+        {
+            Process.Start("shutdown.exe", "/r /t 0");
         }
         void FilenFolderCheck()
         {
-            //Comprobar que todos los archivos estén
-            bool existeCarpetaDN = Directory.Exists("C:\\DENEOS");
-            bool existeLauncher = true;
-            bool existeLauncherCFG = File.Exists("C:\\DENEOS\\sysconf\\config.ini");
-            bool existeHomeEdition = Directory.Exists("C:\\DENEOS\\sysconf\\");
-            bool existecfgIdioma = File.Exists("C:\\DENEOS\\sysconf\\lang.ini");
-            bool cfgIdiomaContenido = File.ReadAllText("C:\\DENEOS\\sysconf\\lang.ini") != String.Empty;
-            bool cfgIdiomaNotNull = File.ReadAllText("C:\\DENEOS\\sysconf\\lang.ini") != null;
+            Console.WriteLine("[INFO] Verificando estructura de archivos...");
 
-            bool carpetas = existeCarpetaDN && existeLauncher && existeHomeEdition;
-            bool archivos = existeLauncherCFG && existecfgIdioma;
-            bool nonempty = cfgIdiomaNotNull && cfgIdiomaContenido;
+            try
+            {
+                // Verificar carpetas
+                bool existeCarpetaDN = Directory.Exists("C:\\DENEOS");
+                bool existeHomeEdition = Directory.Exists("C:\\DENEOS\\sysconf\\");
 
-            if (carpetas && archivos && nonempty)
-            {
-                Console.WriteLine("[INFO] No files missing");
-                Console.WriteLine($"[INFO] ~D\\ Folder status: {existeCarpetaDN}");
-                Console.WriteLine($"[INFO] sysconf\\config.ini status: {existeLauncherCFG}");
-                Console.WriteLine($"[INFO] DENEOS\\sysconf folder status: {existeHomeEdition}");
-                Console.WriteLine($"[INFO] sysconf\\lang.ini status: {existecfgIdioma}");
-                Console.WriteLine($"[INFO] lang.ini has any type of content? {cfgIdiomaContenido}");
-                Console.WriteLine($"[INFO] lang.ini is not null (blank)? {cfgIdiomaNotNull}");
-                Console.WriteLine($"[INFO] Do all the folders exist? {carpetas}");
-                Console.WriteLine($"[INFO] Do all the files exist? {archivos}");
-                Console.WriteLine($"[INFO] lang.ini isn't neither blank nor null? {nonempty}");
+                // Verificar archivos
+                bool existeLauncherCFG = File.Exists("C:\\DENEOS\\sysconf\\config.ini");
+                bool existecfgIdioma = File.Exists("C:\\DENEOS\\sysconf\\lang.ini");
+
+                bool cfgIdiomaContenido = false;
+                bool cfgIdiomaNotNull = false;
+
+                if (existecfgIdioma)
+                {
+                    string contenido = File.ReadAllText("C:\\DENEOS\\sysconf\\lang.ini");
+                    cfgIdiomaContenido = !string.IsNullOrWhiteSpace(contenido);
+                    cfgIdiomaNotNull = contenido != null;
+                }
+
+                bool carpetas = existeCarpetaDN && existeHomeEdition;
+                bool archivos = existeLauncherCFG && existecfgIdioma;
+                bool nonempty = cfgIdiomaNotNull && cfgIdiomaContenido;
+
+                if (carpetas && archivos && nonempty)
+                {
+                    Console.WriteLine("[SUCCESS] Todos los archivos presentes");
+                }
+                else
+                {
+                    Console.WriteLine("[WARN] Archivos faltantes detectados");
+                    Console.WriteLine($"[INFO] Carpeta DENEOS: {existeCarpetaDN}");
+                    Console.WriteLine($"[INFO] Carpeta sysconf: {existeHomeEdition}");
+                    Console.WriteLine($"[INFO] config.ini: {existeLauncherCFG}");
+                    Console.WriteLine($"[INFO] lang.ini: {existecfgIdioma}");
+
+                    // ✅ CREAR estructura automáticamente
+                    CreateMissingStructure();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine("[WARN] files missing");
-                Console.WriteLine($"[INFO] ~D\\ Folder status: {existeCarpetaDN}");
-                Console.WriteLine($"[INFO] sysconf\\config.ini status: {existeLauncherCFG}");
-                Console.WriteLine($"[INFO] DENEOS\\sysconf folder status: {existeHomeEdition}");
-                Console.WriteLine($"[INFO] sysconf\\lang.ini status: {existecfgIdioma}");
-                Console.WriteLine($"[INFO] lang.ini has any type of content? {cfgIdiomaContenido}");
-                Console.WriteLine($"[INFO] lang.ini is not null (blank)? {cfgIdiomaNotNull}");
-                Console.WriteLine($"[INFO] Do all the folders exist? {carpetas}");
-                Console.WriteLine($"[INFO] Do all the files exist? {archivos}");
-                Console.WriteLine($"[INFO] lang.ini isn't neither blank nor null? {nonempty}");
+                Console.WriteLine($"[ERROR] Error verificando archivos: {ex.Message}");
             }
-            
+        }
+        void CreateMissingStructure()
+        {
+            Console.WriteLine("[INFO] Creando estructura de archivos faltante...");
+
+            try
+            {
+                // Crear carpetas
+                Directory.CreateDirectory("C:\\DENEOS");
+                Directory.CreateDirectory("C:\\DENEOS\\sysconf");
+                Directory.CreateDirectory("C:\\DENEOS\\lang");
+                Directory.CreateDirectory("C:\\DENEOS\\desktop");
+
+                // Crear lang.ini con inglés por defecto
+                if (!File.Exists("C:\\DENEOS\\sysconf\\lang.ini"))
+                {
+                    File.WriteAllText("C:\\DENEOS\\sysconf\\lang.ini", "en");
+                }
+
+                // Crear archivo de idioma inglés básico
+                if (!File.Exists("C:\\DENEOS\\lang\\en.json"))
+                {
+                    string basicEnglish = @"{
+  ""txt1"": ""00:00"",
+  ""txt2"": ""Date"",
+  ""welctodeneosE"": ""Welcome to deneOS!"",
+  ""welc"": ""Welcome"",
+  ""sisfct"": false,
+  ""mo1"": ""January"",
+  ""mo2"": ""February"",
+  ""mo3"": ""March"",
+  ""mo4"": ""April"",
+  ""mo5"": ""May"",
+  ""mo6"": ""June"",
+  ""mo7"": ""July"",
+  ""mo8"": ""August"",
+  ""mo9"": ""September"",
+  ""mo10"": ""October"",
+  ""mo11"": ""November"",
+  ""mo12"": ""December"",
+  ""dowmon"": ""Mon"",
+  ""dowtue"": ""Tue"",
+  ""dowwed"": ""Wed"",
+  ""dowthu"": ""Thu"",
+  ""dowfri"": ""Fri"",
+  ""dowsat"": ""Sat"",
+  ""dowsun"": ""Sun""
+}";
+                    File.WriteAllText("C:\\DENEOS\\lang\\en.json", basicEnglish);
+                }
+
+                Console.WriteLine("[SUCCESS] Estructura creada exitosamente");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Error creando estructura: {ex.Message}");
+            }
         }
         void CargarIdioma()
         {
-            if (flagMgmt.ShowUntranslatedStrings)
+            Console.WriteLine("[INFO] Cargando idioma...");
+
+            try
             {
-                UN_ST = true;
-                return;
+                if (flagMgmt.ShowUntranslatedStrings)
+                {
+                    UN_ST = true;
+                    Console.WriteLine("[INFO] Modo strings sin traducir activado");
+                    return;
+                }
+
+                string idioma = "en"; // ✅ Fallback por defecto
+
+                if (flagMgmt.Language != "")
+                {
+                    idioma = flagMgmt.Language;
+                    Console.WriteLine($"[INFO] Idioma desde flag: {idioma}");
+                }
+                else
+                {
+                    try
+                    {
+                        idioma = dosu.UniversalConfiguration.GetLang();
+                        Console.WriteLine($"[INFO] Idioma desde configuración: {idioma}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"[WARN] No se pudo obtener idioma de configuración: {ex.Message}");
+                        Console.WriteLine("[INFO] Usando idioma por defecto: en");
+                    }
+                }
+
+                Cargar(idioma);
+                Console.WriteLine($"[SUCCESS] Idioma cargado: {idioma}");
             }
-            if (flagMgmt.Language != "")
+            catch (Exception ex)
             {
-                Cargar(flagMgmt.Language);
-                return;
+                Console.WriteLine($"[ERROR] Error cargando idioma: {ex.Message}");
+                Console.WriteLine("[INFO] Continuando sin traducciones...");
             }
-            Cargar(dosu.UniversalConfiguration.GetLang());
         }
         private void BootScreen_Load(object sender, EventArgs e)
         {
             DisableExplorer();
             FilenFolderCheck();
             CargarIdioma();
-        }
 
+            // ✅ Ejecutar migración de contraseñas si es necesario
+            try
+            {
+                PasswordMigration.MigrateIfNeeded();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Error en migración de contraseñas: {ex.Message}");
+                // No bloqueamos el arranque por esto, pero lo registramos
+            }
+        }
         private void timer1_Tick(object sender, EventArgs e)
         {
             timer1.Stop();
-            this.Hide();
-            string userDataFile = @"C:\DENEOS\sysconf\config.ini";
-            int UserLine = 1;
-            int PassLine = 2;
-            string[] userData = File.Exists(userDataFile) ? File.ReadAllLines(userDataFile) : ["", "", ""];
-            string userLine = userData[UserLine];
-            string passLine = userData[PassLine];
-            string usr;
-            string pss;
-            if (passLine.ToLower().Contains("password = "))
-            {
-                pss = passLine.Substring(11);
-            }
-            else
-            {
-                MessageBox.Show((string)T("npss"), "dene Safety", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                pss = "";
-            }
-            if (userLine.ToLower().Contains("username = "))
-            {
-                usr = userLine.Substring(11);
-            }
-            else
-            {
-                MessageBox.Show((string)T("nuss"), "dene Safety", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                usr = "";
-            }
-            bool user = !(string.IsNullOrEmpty(usr));
-            bool pass = !(string.IsNullOrEmpty(pss));
-            bool account = user && pass;
-            bool newUser = !account;
-            // en vez de false, aquí debería ir una comprobación de si existe algún usuario
-            if (account)
-            {
-                // Si hay usuarios, mostramos la pantalla de inicio de sesión
-                Console.WriteLine("[INFO] BootScreen: Showing logonuiVertical");
-                this.BeginInvoke(new Action(() => { Hide(); new logonuiVertical().ShowDialog(); }));
-            }
-            else if (newUser)
-            {
-                // Si no hay usuarios, mostramos la pantalla de bienvenida
-                Console.WriteLine("[INFO] BootScreen: Showing welcome screen");
-                this.BeginInvoke(new Action(() => { Hide(); new Intro().ShowDialog(); }));
-            }
-            //new logonuiVertical();
-            
-        }
 
+            Console.WriteLine("[INFO] Timer de boot completado, iniciando login...");
+
+            try
+            {
+                this.Hide();
+
+                // Verificar usuario de forma segura
+                User user = GetUser();
+
+                // ✅ Verificar que el usuario Y la contraseña no estén vacíos
+                bool isUserNull = user.Equals(null);
+                bool hasValidUser = (!isUserNull) &&
+                                    (!string.IsNullOrWhiteSpace(user.Username)) &&
+                                    (!string.IsNullOrWhiteSpace(user.Password));
+
+                if (!hasValidUser)
+                {
+                    Console.WriteLine("[INFO] No hay usuario configurado, iniciando OOBE...");
+
+                    this.BeginInvoke(new Action(() =>
+                    {
+                        new OOBE.PCWelcomeBG().ShowDialog();
+                    }));
+                }
+                else
+                {
+                    Console.WriteLine($"[INFO] Usuario encontrado: {user.Username}, mostrando login...");
+
+                    this.BeginInvoke(new Action(() =>
+                    {
+                        new logonui().Show();
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Error en timer1_Tick: {ex.Message}");
+
+                // Fallback: Si hay error, ir a OOBE por seguridad
+                this.BeginInvoke(new Action(() =>
+                {
+                    new OOBE.PCWelcomeBG().ShowDialog();
+                }));
+            }
+        }
         private void BootTimer_Tick(object sender, EventArgs e)
         {
             label1.Text = bootAnillas[bootIndex];

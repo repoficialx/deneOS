@@ -5,6 +5,7 @@ using System.Net;
 using System.Runtime.InteropServices;
 //using Math = System.Math;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -92,10 +93,92 @@ namespace dosu
         }
         public static class deneOSVersion
         {
-            private static int majorVersion = FileVersionInfo.GetVersionInfo(@"C:\DENEOS\core\deneOS.exe").FileMajorPart;
-            private static int minorVersion = FileVersionInfo.GetVersionInfo(@"C:\DENEOS\core\deneOS.exe").FileMinorPart;
-            private static int buildVersion = FileVersionInfo.GetVersionInfo(@"C:\DENEOS\core\deneOS.exe").FileBuildPart;
-            private static string versionTag = buildVersion == 0 ? "Release" : (buildVersion == 1 ? "Beta" : "Alpha");
+            public class ShortVersion
+            {
+                public enum Formats
+                {
+                    /// <summary>
+                    /// vMajor.Minor.Tag (ex: v1.0.r, v0.2.b, v0.7.a)
+                    /// </summary>
+                    vM_m_x,
+                    /// <summary>
+                    /// vMajor.Minor (ex: v1.0, v0.2, v0.7)
+                    /// </summary>
+                    vM_m,
+                    /// <summary>
+                    /// vMajor (ex: v1, v0)
+                    /// </summary>
+                    vM,
+                    /// <summary>
+                    /// vMinor (ex: v0, v2, v7)
+                    /// </summary>
+                    vm,
+                    /// <summary>
+                    /// Major.Minor.Tag (ex: 1.0.r, 0.2.b, 0.7.a)
+                    /// </summary>
+                    M_m_x,
+                    /// <summary>
+                    /// Major.Minor (ex: 1.0, 0.2, 0.7)
+                    /// </summary>
+                    M_m,
+                    /// <summary>
+                    /// Tag (ex: r, b, a)
+                    /// </summary>
+                    x,
+                    /// <summary>
+                    /// Major (ex: 1, 0)
+                    /// </summary>
+                    M,
+                    /// <summary>
+                    /// Minor (ex: 0, 2, 7)
+                    /// </summary>
+                    m,
+                    /// <summary>
+                    /// vMajor.MinorTag (ex: v1.0b, v0.2, v0.7a) || Note: No tag if Release
+                    /// </summary>
+                    vM_mx,
+                    /// <summary>
+                    /// Major.MinorTag (ex: 1.0b, 0.2, 0.7a) || Note: No tag if Release
+                    /// </summary>
+                    M_mx
+                }
+
+                public static string GetVersion(Formats format)
+                {
+                    switch (format)
+                    {
+                        case Formats.vM_m_x:
+                        default:
+                            return $"v{majorVersion}.{minorVersion}.{versionShortTagA}";
+                        case Formats.vM_m:
+                            return $"v{majorVersion}.{minorVersion}";
+                        case Formats.vM:
+                            return $"v{majorVersion}";
+                        case Formats.vm:
+                            return $"v{minorVersion}";
+                        case Formats.M_m_x:
+                            return $"{majorVersion}.{minorVersion}.{versionShortTagA}";
+                        case Formats.M_m:
+                            return $"{majorVersion}.{minorVersion}";
+                        case Formats.x:
+                            return $"{versionShortTagA}";
+                        case Formats.M:
+                            return $"{majorVersion}";
+                        case Formats.m:
+                            return $"{minorVersion}";
+                        case Formats.vM_mx:
+                            return $"v{majorVersion}.{minorVersion}{versionShortTagB}";
+                        case Formats.M_mx:
+                            return $"{majorVersion}.{minorVersion}{versionShortTagB}";
+                    }
+                }
+            }
+            private static readonly int majorVersion = FileVersionInfo.GetVersionInfo(@"C:\DENEOS\core\deneOS.exe").FileMajorPart;
+            private static readonly int minorVersion = FileVersionInfo.GetVersionInfo(@"C:\DENEOS\core\deneOS.exe").FileMinorPart;
+            private static readonly int buildVersion = FileVersionInfo.GetVersionInfo(@"C:\DENEOS\core\deneOS.exe").FileBuildPart;
+            private static readonly string versionTag = buildVersion == 0 ? "Release" : (buildVersion == 1 ? "Beta" : "Alpha");
+            private static readonly char versionShortTagA = buildVersion == 0 ? 'r' : (buildVersion == 1 ? 'b' : 'a');
+            private static readonly char versionShortTagB = buildVersion == 0 ? char.MinValue : (buildVersion == 1 ? 'b' : 'a');
             public static readonly string Version = $"{majorVersion}.{minorVersion}";
             public static readonly string Build = DateTime.Now.ToString("yyyyMMdd");
 
@@ -419,8 +502,8 @@ namespace dosu
                     {
                         return new User
                         {
-                            Username = lines[1].Trim(),
-                            Password = lines[2].Trim()
+                            Username = lines[1].Trim()[11..],
+                            Password = lines[2].Trim()[11..]
                         };
                     }
                 }
@@ -1535,6 +1618,78 @@ namespace dosu
                     }
                     return 1L << exponent;
                 }
+            }
+        }
+    }
+
+    public static class Food
+    {
+        public class FInfo
+        {
+            public string Name { get; set; }
+
+            public string Brand { get; set; }
+
+            public string ImageURL { get; set; }
+
+            public string IngredientsText { get; set; }
+
+            public List<string> Additives { get; set; }
+
+            public List<string> Allergens { get; set; }
+
+            public List<string> Tags { get; set; }
+
+            public float SugarPer100g { get; set; }
+
+            public float FatPer100g { get; set; }
+
+            public float SaltPer100g { get; set; }
+
+            public float EnergyKcal { get; set; }
+
+            public string NutriScore { get; set; }
+
+            public string EcoScore { get; set; }
+
+            public string Barcode { get; set; }
+        }
+
+        public static async Task<FInfo?> GetFoodInfo(string barcode)
+        {
+            string url = "https://world.openfoodfacts.org/api/v2/product/" + barcode;
+            using HttpClient client = new HttpClient();
+            try
+            {
+                JsonNode product = JsonNode.Parse(await client.GetStringAsync(url))?["product"];
+                if (product == null)
+                {
+                    return null;
+                }
+                return new FInfo
+                {
+                    Name = (((string?)product["abbreviated_product_name"]) ?? ((string?)product["product_name"]) ?? "Desconocido"),
+                    Brand = (((string?)product["brands"]) ?? "Sin marca"),
+                    ImageURL = (string?)product["image_front_url"],
+                    IngredientsText = (((string?)product["ingredients_text"]) ?? ""),
+                    Additives = ((from x in product["additives_tags"]?.AsArray()
+                                  select x.ToString()).ToList() ?? new List<string>()),
+                    Allergens = ((from x in product["allergens_tags"]?.AsArray()
+                                  select x.ToString()).ToList() ?? new List<string>()),
+                    Tags = ((from x in product["ingredients_analysis_tags"]?.AsArray()
+                             select x.ToString()).ToList() ?? new List<string>()),
+                    SugarPer100g = ((float?)product["nutriments"]?["sugars_100g"]).GetValueOrDefault(),
+                    FatPer100g = ((float?)product["nutriments"]?["fat_100g"]).GetValueOrDefault(),
+                    SaltPer100g = ((float?)product["nutriments"]?["salt_100g"]).GetValueOrDefault(),
+                    EnergyKcal = ((float?)product["nutriments"]?["energy-kcal_100g"]).GetValueOrDefault(),
+                    NutriScore = (((string?)product["nutriscore_grade"]) ?? "?"),
+                    EcoScore = (((string?)product["ecoscore_grade"]) ?? "?"),
+                    Barcode = barcode
+                };
+            }
+            catch
+            {
+                return null;
             }
         }
     }

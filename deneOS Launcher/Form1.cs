@@ -20,8 +20,6 @@ namespace deneOS_Launcher
 {
     public partial class Form1 : Form
     {
-        bool havePro;
-        bool proId;
         public Form1()
         {
             InitializeComponent();
@@ -29,94 +27,37 @@ namespace deneOS_Launcher
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            #region DON'T TOUCH THIS CODE!
-            getRgKey();
-            if (havePro)
-            {
-                if (!proId)
-                {
-                    havePro = false;
-                    MessageBox.Show("ANTI-PIRACY ALERT! - PLEASE BUY deneOS PRO ON iNS WEBPAGE!");
-                    //Registry.SetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\iNS\\deneOS", "deneOSProEnabled", "n");
-                    Directory.Delete(@"C:\DENEOS\sysconf\cfg", true);
-                    Environment.Exit(-3278947);
-                }
-                else
-                {
-                    loadPro();
-                }
-            }
-            else
-            {
-                //MessageBox.Show("Are you a developer? Try deneOS Pro! 32,5$ or 28€");
-                Size = new Size(401, 185);
-                MaximumSize = new Size(401, 185);
-            }
-            #endregion
-            if (!File.Exists("C:\\DENEOS\\core\\deneOS.exe"))
-            {
-                button1.Text = "INSTALL►";
-                button1.Click -= button1_Click!;
-                button1.Click += Install_Click!;
-            }
+            if (File.Exists("C:\\DENEOS\\core\\deneOS.exe")) return;
+            button1.Text = @"INSTALL►";
+            button1.Click -= button1_Click!;
+            button1.Click += Install_Click!;
         }
-        #region DON'T TOUCH THIS CODE!
-        void getRgKey()
-        {
-            bool proEnabled2 = false;
-            bool proKeyEnabled = false;
-            bool cfg = File.Exists(@"C:\DENEOS\sisconf\config.ini");
-            if (cfg)
-            {
-                var cfgInfo = File.ReadAllLines(@"C:\DENEOS\sysconf\config.ini");
-                if (cfgInfo[1].Contains("deneOSProEnabled = true"))
-                {
-                    proEnabled2 = true;
-                }
-                if (cfgInfo.Length > 2 && cfgInfo[2].Contains("deneOSProKey = {7843NF-DRF764-VD9786-67W4N3}"))
-                {
-                    proKeyEnabled = true;
-                }
-                if (proEnabled2 && proKeyEnabled)
-                {
-
-                }
-            }
-            havePro = proEnabled2;
-            proId = proKeyEnabled;
-        }
-        void loadPro()
-        {
-            Size = new Size(401, 338);
-            MaximumSize = new Size(401, 338);
-        }
-        #endregion
 
         async void Install_Click(object sender, EventArgs e)
         {
-            var response = MessageBox.Show("Install on Verbose mode?", "deneOS Setup", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            var response = MessageBox.Show(@"Install on Verbose mode?", @"deneOS Setup", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
             var info = await GetUpdateInfo();
             if (info == null)
             {
-                MessageBox.Show("Could not fetch update information.");
+                MessageBox.Show(@"Could not fetch update information.");
                 return;
             }
 
             switch (response)
             {
                 case DialogResult.Yes:
-                    MessageBox.Show("Installing fonts...", "deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(@"Installing fonts...", @"deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     InstallFonts();
-                    MessageBox.Show("Installing deneOS...");
+                    MessageBox.Show(@"Installing deneOS...");
                     await UpdateScreen(true, info.download);
-                    MessageBox.Show("Installing languages...");
+                    MessageBox.Show(@"Installing languages...");
                     InstallLanguages();
-                    MessageBox.Show("Writing Configuration...");
+                    MessageBox.Show(@"Writing Configuration...");
                     WriteConfiguration();
-                    MessageBox.Show("Downloading System Applications...");
+                    MessageBox.Show(@"Downloading System Applications...");
                     DownloadSystemApps();
-                    MessageBox.Show("Installation completed successfully!", "deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(@"Installation completed successfully!", @"deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
 
                 case DialogResult.No:
@@ -125,11 +66,11 @@ namespace deneOS_Launcher
                     InstallLanguages();
                     WriteConfiguration();
                     DownloadSystemApps();
-                    MessageBox.Show("Installation completed successfully!", "deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(@"Installation completed successfully!", @"deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
 
                 case DialogResult.Cancel:
-                    MessageBox.Show("Installation cancelled.", "deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(@"Installation cancelled.", @"deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
             }
 
@@ -146,7 +87,7 @@ namespace deneOS_Launcher
             WriteConfiguration();
             DownloadSystemApps();
 
-            MessageBox.Show("Installation completed successfully!", "deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(@"Installation completed successfully!", @"deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         void InstallFonts()
@@ -189,8 +130,8 @@ namespace deneOS_Launcher
 
         async Task UpdateScreen(bool verbose, string downloadUrl)
         {
-            Console.WriteLine("Deleting actual system files..." + Environment.NewLine);
-            if (verbose) MessageBox.Show("Deleting actual system files...");
+            Console.WriteLine(@"Deleting actual system files..." + Environment.NewLine);
+            if (verbose) MessageBox.Show(@"Deleting actual system files...");
 
             ProcessStartInfo processStartInfo = new ProcessStartInfo
             {
@@ -226,21 +167,21 @@ namespace deneOS_Launcher
                 Directory.Delete(@"C:\DENEOS\lang\", true);
             }
 
-            Console.WriteLine("Starting download...");
-            if (verbose) MessageBox.Show("Starting download...");
+            Console.WriteLine(@"Starting download...");
+            if (verbose) MessageBox.Show(@"Starting download...");
 
             WebClient client1 = new();
             Uri h = new Uri(downloadUrl);
             await client1.DownloadFileTaskAsync(h, @"C:\DENEOS\newcore.zip");
 
-            Console.WriteLine("Decompressing new system files...");
-            if (verbose) MessageBox.Show("Decompressing new system files...");
+            Console.WriteLine(@"Decompressing new system files...");
+            if (verbose) MessageBox.Show(@"Decompressing new system files...");
 
             Directory.CreateDirectory(@"C:\DENEOS\lang\");
             ZipFile.ExtractToDirectory(@"C:\DENEOS\newcore.zip", @"C:\DENEOS\core\");
 
-            Console.WriteLine("Patching...");
-            if (verbose) MessageBox.Show("Patching...");
+            Console.WriteLine(@"Patching...");
+            if (verbose) MessageBox.Show(@"Patching...");
 
             File.Delete(@"C:\DENEOS\newcore.zip");
         }
@@ -270,7 +211,7 @@ namespace deneOS_Launcher
                     File.Delete(languagePath);
                 }
                 client.DownloadFile(languageUri, languagePath);
-                Console.WriteLine($"Downloaded {language} to {languagePath}");
+                Console.WriteLine($@"Downloaded {language} to {languagePath}");
             }
         }
 
@@ -317,16 +258,14 @@ namespace deneOS_Launcher
             // Registro
             string input = InputMessageBox.Show("Wallpaper location: (leave empty for default)", "deneOS Installer");
             string fixedInput = string.IsNullOrEmpty(input) ? @"c:\windows\web\4k\Wallpaper\windows\img0_1920x1200.jpg" : input;
-            using (RegistryKey key = Registry.CurrentUser.CreateSubKey(@"Software\deneOS\desktop"))
+            using RegistryKey key = Registry.CurrentUser.CreateSubKey(@"Software\deneOS\desktop");
+            if (key != null)
             {
-                if (key != null)
-                {
-                    // Establecer valor DWORD showIcons = 1
-                    key.SetValue("showIcons", 1, RegistryValueKind.DWord);
+                // Establecer valor DWORD showIcons = 1
+                key.SetValue("showIcons", 1, RegistryValueKind.DWord);
 
-                    // Establecer valor cadena wallpaper = ruta de la imagen
-                    key.SetValue("wallpaper", fixedInput, RegistryValueKind.String);
-                }
+                // Establecer valor cadena wallpaper = ruta de la imagen
+                key.SetValue("wallpaper", fixedInput, RegistryValueKind.String);
             }
         }
 
@@ -360,7 +299,7 @@ namespace deneOS_Launcher
                     string fileUri = denefilehost + a;
                     string filePath = Path.Combine(denefilespath, a);
                     client.DownloadFile(fileUri, filePath);
-                    Console.WriteLine($"Downloaded {a} to {filePath}");
+                    Console.WriteLine($@"Downloaded {a} to {filePath}");
                 }
             }
         }
@@ -404,7 +343,7 @@ namespace deneOS_Launcher
                     Directory.CreateDirectory(directory);
 
                 client.DownloadFile(fileUri, filePath);
-                Console.WriteLine($"Downloaded {a} to {filePath}");
+                Console.WriteLine($@"Downloaded {a} to {filePath}");
             }
         }
 
@@ -431,7 +370,7 @@ namespace deneOS_Launcher
                         File.Delete(filePath);
                     }
                     client.DownloadFile(fileUri, filePath);
-                    Console.WriteLine($"Downloaded {b} to {filePath}");
+                    Console.WriteLine($@"Downloaded {b} to {filePath}");
 
                 }
             }
@@ -456,15 +395,15 @@ namespace deneOS_Launcher
                 // futuro: archivo .wav de sonido debug
                 //sp.Play();
 
-                if (button1.Text != "INSTALL►")
+                if (button1.Text != @"INSTALL►")
                 {
-                    button1.Text = "INSTALL►";
+                    button1.Text = @"INSTALL►";
                     button1.Click -= button1_Click!;
                     button1.Click += Install_Click!;
                 }
                 else
                 {
-                    button1.Text = "RUN►";
+                    button1.Text = @"RUN►";
                     button1.Click -= Install_Click!;
                     button1.Click += button1_Click!;
                 }

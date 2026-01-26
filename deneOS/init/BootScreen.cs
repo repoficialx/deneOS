@@ -40,7 +40,7 @@ namespace deneOS.init
         private System.Windows.Forms.Timer bootTimer;
         public BootScreen()
         {
-            // ⚠️ Primero verificar flags críticos ANTES de InitializeComponent
+            // comprobar flags importantes antes del inicio
             if (flagMgmt.EmergencyUI)
             {
                 // Mostrar pantalla de emergencia sin inicializar nada más
@@ -70,7 +70,7 @@ namespace deneOS.init
                 return;
             }
 
-            // ✅ PRIMERO: Inicializar componentes visuales
+            // iniciar cosas visuales
             InitializeComponent();
 
             this.DoubleBuffered = true;
@@ -79,17 +79,16 @@ namespace deneOS.init
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             UpdateStyles();
 
-            // ✅ SEGUNDO: Configurar la ventana
+            // config. la ventana
             ConfigureWindow();
 
-            // ✅ TERCERO: Iniciar el timer de animación
+            // iniciar el timer de la anim.
             InitializeBootAnimation();
 
-            // ✅ CUARTO: Mostrar el formulario
+            // mostrar el form
             this.Show();
-            Application.DoEvents(); // Forzar renderizado inicial
+            Application.DoEvents(); // render inicial
         }
-
         private void ConfigureWindow()
         {
             int screenWidth = Screen.PrimaryScreen.Bounds.Width;
@@ -103,7 +102,7 @@ namespace deneOS.init
             this.BackColor = Color.Black;
             this.WindowState = FormWindowState.Maximized;
 
-            // Posicionar logo proporcionalmente
+            // centrar y redim. logo
             float posX = 684f / 1920f;
             float posY = 261f / 1080f;
             float widthPct = 572f / 1920f;
@@ -112,10 +111,9 @@ namespace deneOS.init
             logo.Location = new Point((int)(posX * this.Width), (int)(posY * this.Height));
             logo.Size = new Size((int)(widthPct * this.Width), (int)(heightPct * this.Height));
         }
-
         private void InitializeBootAnimation()
         {
-            // Configurar el timer de animación
+            // crear el timer de la anim.
             bootTimer = new Timer();
             bootTimer.Interval = 30;
             bootTimer.Tick += BootTimer_Tick;
@@ -125,30 +123,29 @@ namespace deneOS.init
         }
         void DisableExplorer()
         {
-            Process cproc = new Process();
-            cproc.StartInfo.FileName = "taskkill";
-            cproc.StartInfo.Arguments = "/f /im explorer.exe";
-            cproc.StartInfo.CreateNoWindow = true;
-            cproc.Start();
+            Process[] processes = Process.GetProcessesByName("explorer");
+            foreach (Process process in processes)
+            {
+                process.Kill(true);
+            }
+
             ConfigureExplorerAutoRestart();
-
         }
-
         private void ConfigureExplorerAutoRestart()
         {
             const string subkey = @"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon";
             const string valueName = "AutoRestartShell";
 
-            // Abrir la clave del registro en modo de escritura
+            // abrir la key (con write access)
             using (RegistryKey key = Registry.LocalMachine.OpenSubKey(subkey, true))
             {
                 if (key != null)
                 {
-                    // Leer el valor actual
+                    // obtener el value
                     object value = key.GetValue(valueName);
                     int? currentValue = value as int?;
 
-                    // Si el valor es 1, cambiarlo a 0
+                    // si es 1, que sea 0
                     if (currentValue.HasValue && currentValue.Value == 1)
                     {
                         key.SetValue(valueName, 0, RegistryValueKind.DWord);
@@ -158,12 +155,12 @@ namespace deneOS.init
                     }
                     else if (currentValue.HasValue && currentValue.Value == 0)
                     {
-                        // El valor ya es 0, no hacer nada
+                        // si es 0 está bien
                         Console.WriteLine("AutoRestartShell ya es 0. No se requiere ninguna acción.");
                     }
                     else
                     {
-                        // El valor no existe o es de otro tipo, crearlo y establecerlo a 0
+                        // si no existe o es otra cosa, que sea 0
                         key.SetValue(valueName, 0, RegistryValueKind.DWord);
                         Console.WriteLine("AutoRestartShell no existía o tenía un valor inesperado, se ha creado y establecido a 0.");
                         SetAutoRun();
@@ -240,7 +237,6 @@ namespace deneOS.init
                 Console.WriteLine($"[ERROR] Error verificando archivos: {ex.Message}");
             }
         }
-
         void CreateMissingStructure()
         {
             Console.WriteLine("[INFO] Creando estructura de archivos faltante...");
@@ -252,17 +248,6 @@ namespace deneOS.init
                 Directory.CreateDirectory("C:\\DENEOS\\sysconf");
                 Directory.CreateDirectory("C:\\DENEOS\\lang");
                 Directory.CreateDirectory("C:\\DENEOS\\desktop");
-
-                // Crear config.ini vacío
-                /*if (!File.Exists("C:\\DENEOS\\sysconf\\config.ini"))
-                {
-                    File.WriteAllLines("C:\\DENEOS\\sysconf\\config.ini", new[]
-                    {
-                "[Account]",
-                "username = ",
-                "password = "
-            });
-                }*/
 
                 // Crear lang.ini con inglés por defecto
                 if (!File.Exists("C:\\DENEOS\\sysconf\\lang.ini"))
@@ -369,7 +354,6 @@ namespace deneOS.init
                 // No bloqueamos el arranque por esto, pero lo registramos
             }
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             timer1.Stop();
@@ -419,7 +403,6 @@ namespace deneOS.init
                 }));
             }
         }
-
         private void BootTimer_Tick(object sender, EventArgs e)
         {
             label1.Text = bootAnillas[bootIndex];

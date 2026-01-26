@@ -66,11 +66,13 @@ namespace Internet
                 else
                 {
                     MessageBox.Show("No se pudo obtener información de la red actual.");
+                    Close();
                 }
             }
             else
             {
                 MessageBox.Show("No estás conectado a ninguna red Wi-Fi.");
+                Close();
             }
         }
 

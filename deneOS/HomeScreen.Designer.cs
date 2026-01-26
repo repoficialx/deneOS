@@ -28,37 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label15 = new Label();
             flowLayoutPanel2 = new FlowLayoutPanel();
             panel12 = new Panel();
-            label18 = new Label();
             pictureBox2 = new PictureBox();
-            panel1 = new Panel();
+            label18 = new Label();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            label15 = new Label();
             flowLayoutPanel2.SuspendLayout();
             panel12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            panel1.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Location = new Point(836, 0);
-            label15.Name = "label15";
-            label15.RightToLeft = RightToLeft.Yes;
-            label15.Size = new Size(244, 56);
-            label15.TabIndex = 2;
-            label15.Text = "deneOS Concept Testing\r\nNot Final - Concept v0.1-b";
             // 
             // flowLayoutPanel2
             // 
             flowLayoutPanel2.Controls.Add(panel12);
-            flowLayoutPanel2.Dock = DockStyle.Fill;
             flowLayoutPanel2.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel2.Font = new Font("Microsoft Sans Serif", 8.25F);
-            flowLayoutPanel2.Location = new Point(0, 0);
+            flowLayoutPanel2.Location = new Point(3, 3);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(1080, 1102);
+            flowLayoutPanel2.Size = new Size(534, 906);
             flowLayoutPanel2.TabIndex = 3;
             flowLayoutPanel2.Paint += flowLayoutPanel2_Paint;
             // 
@@ -69,50 +58,63 @@
             panel12.Location = new Point(20, 20);
             panel12.Margin = new Padding(20);
             panel12.Name = "panel12";
-            panel12.Size = new Size(152, 185);
+            panel12.Size = new Size(74, 83);
             panel12.TabIndex = 0;
             panel12.Click += panel12_Click;
-            // 
-            // label18
-            // 
-            label18.AutoSize = true;
-            label18.Font = new Font("Segoe UI", 18F);
-            label18.Location = new Point(15, 144);
-            label18.Name = "label18";
-            label18.Size = new Size(122, 41);
-            label18.TabIndex = 1;
-            label18.Text = "dnStore";
-            label18.TextAlign = ContentAlignment.TopCenter;
             // 
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.denestore;
             pictureBox2.Location = new Point(3, 3);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(148, 144);
+            pictureBox2.Size = new Size(68, 61);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 0;
             pictureBox2.TabStop = false;
             // 
-            // panel1
+            // label18
             // 
-            panel1.BackColor = Color.Transparent;
-            panel1.Controls.Add(label15);
-            panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(0, 1046);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1080, 56);
-            panel1.TabIndex = 4;
+            label18.Font = new Font("Segoe UI", 9F);
+            label18.Location = new Point(3, 62);
+            label18.Name = "label18";
+            label18.Size = new Size(68, 15);
+            label18.TabIndex = 1;
+            label18.Text = "Store";
+            label18.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Controls.Add(label15, 0, 1);
+            tableLayoutPanel1.Controls.Add(flowLayoutPanel2, 0, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 95F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
+            tableLayoutPanel1.Size = new Size(540, 960);
+            tableLayoutPanel1.TabIndex = 1;
+            // 
+            // label15
+            // 
+            label15.Dock = DockStyle.Fill;
+            label15.Location = new Point(3, 912);
+            label15.Name = "label15";
+            label15.RightToLeft = RightToLeft.Yes;
+            label15.Size = new Size(534, 48);
+            label15.TabIndex = 4;
+            label15.Text = "deneOS v0.2b\r\nTest Mode";
             // 
             // HomeScreen
             // 
-            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = SystemColors.ControlText;
-            ClientSize = new Size(1080, 1102);
+            ClientSize = new Size(540, 960);
             ControlBox = false;
-            Controls.Add(panel1);
-            Controls.Add(flowLayoutPanel2);
+            Controls.Add(tableLayoutPanel1);
             Font = new Font("Segoe UI", 12F);
             ForeColor = SystemColors.Control;
             FormBorderStyle = FormBorderStyle.None;
@@ -120,26 +122,26 @@
             MinimizeBox = false;
             Name = "HomeScreen";
             ShowIcon = false;
-            StartPosition = FormStartPosition.Manual;
+            ShowInTaskbar = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "explorer";
+            WindowState = FormWindowState.Maximized;
             FormClosing += desktop_FormClosing;
             Load += desktop_Load;
             flowLayoutPanel2.ResumeLayout(false);
             panel12.ResumeLayout(false);
-            panel12.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Panel panel1;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Label label15;
     }
 }
