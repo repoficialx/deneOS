@@ -43,4 +43,4 @@ Actualmente se encuentra en fase **beta**, pero ya puedes probar su funcionalida
 
 ---
 
-**© 2025 Ray / repoficialx – Proyecto experimental, sin garantías.**
+**© 2026 Ray / repoficialx – Proyecto experimental, sin garantías.**
