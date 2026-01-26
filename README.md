@@ -21,14 +21,13 @@ En resumen: es como tener tu propio sistema operativo… ¡pero encima de Window
 
 ### 🧩 Tecnologías usadas
 
-- **.NET F4.8** (.NET Framework en deneTerm)
-- **.NET 8** (Algunos que no se han migrado)
-- **.NET 9** (Los que menos se tocaron en el último mes)
-- **.NET 10** (Lo más importante, como deneOS en sí o deneOS Launcher.
+- **.NET 8** -> deneNotes, deneOS Launcher, denePathParser
+- **.NET 9** -> deneTerm
+- **.NET 10** -> Calendar.IO, Internet, Control Center, deneOS, aboutDialogs, setConfig, deneFiles, deneStore, dosu, dpkxt, dpkxtconsole, Terminal, WARun
 - Compatible con:
   - `.exe` estándar
-  - Archivos `.wpi` (formato de instalación personalizado de deneOS)
-  - Archivos `.dna` y próximamente con `.dpk`
+  - Archivos `.wpi`
+  - Archivos `.dpk` y próximamente con `.dna`
 
 ### 🛠️ Próximamente
 
@@ -39,7 +38,7 @@ En resumen: es como tener tu propio sistema operativo… ¡pero encima de Window
 
 ### 🧪 Estado del proyecto
 
-> **deneOS v1.0** estará disponible próximamente. (previsto para 2025 o 2026)
+> **deneOS v1.0** estará disponible próximamente. (previsto para 2026 o 2027)
 Actualmente se encuentra en fase **beta**, pero ya puedes probar su funcionalidad base.
 
 ---
