@@ -123,7 +123,7 @@
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Segoe UI Light", 12F);
             button1.Location = new Point(97, 244);
-            button1.Margin = new Padding(2, 2, 2, 2);
+            button1.Margin = new Padding(2);
             button1.Name = "button1";
             button1.Size = new Size(121, 27);
             button1.TabIndex = 6;
@@ -139,7 +139,7 @@
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "802.11n", "802.11ac", "802.11ax", "802.11be" });
             comboBox1.Location = new Point(283, 242);
-            comboBox1.Margin = new Padding(2, 2, 2, 2);
+            comboBox1.Margin = new Padding(2);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(144, 29);
             comboBox1.TabIndex = 7;
@@ -152,18 +152,18 @@
             label7.Location = new Point(-1, 322);
             label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
-            label7.Size = new Size(531, 8);
+            label7.Size = new Size(513, 8);
             label7.TabIndex = 8;
-            label7.Text = "Internet es una app desarrollada entera por Ray (@repoficialx); no hubieron contribudores de open source. App diseñada para deneOS. Detección vía netsh, ManagedNativeWifi y Windows.SDK.Ref";
+            label7.Text = "Internet es una app desarrollada por Ray (@repoficialx); no hubieron contribudores de open source. App diseñada para deneOS. Detección vía netsh, ManagedNativeWifi y Windows.SDK.Ref";
             // 
             // groupBox1
             // 
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(10, 10);
-            groupBox1.Margin = new Padding(2, 2, 2, 2);
+            groupBox1.Margin = new Padding(2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(2, 2, 2, 2);
+            groupBox1.Padding = new Padding(2);
             groupBox1.Size = new Size(550, 94);
             groupBox1.TabIndex = 9;
             groupBox1.TabStop = false;
@@ -178,9 +178,9 @@
             groupBox2.Controls.Add(label4);
             groupBox2.Controls.Add(label6);
             groupBox2.Location = new Point(10, 108);
-            groupBox2.Margin = new Padding(2, 2, 2, 2);
+            groupBox2.Margin = new Padding(2);
             groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(2, 2, 2, 2);
+            groupBox2.Padding = new Padding(2);
             groupBox2.Size = new Size(550, 131);
             groupBox2.TabIndex = 10;
             groupBox2.TabStop = false;
@@ -192,7 +192,7 @@
             button3.FlatStyle = FlatStyle.Flat;
             button3.Font = new Font("Material Icons", 8F);
             button3.Location = new Point(239, 0);
-            button3.Margin = new Padding(2, 2, 2, 2);
+            button3.Margin = new Padding(2);
             button3.Name = "button3";
             button3.Size = new Size(25, 21);
             button3.TabIndex = 7;
@@ -206,7 +206,7 @@
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Material Icons", 8F);
             button2.Location = new Point(210, 0);
-            button2.Margin = new Padding(2, 2, 2, 2);
+            button2.Margin = new Padding(2);
             button2.Name = "button2";
             button2.Size = new Size(25, 21);
             button2.TabIndex = 6;
@@ -227,7 +227,7 @@
             Controls.Add(button1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form1";
