@@ -14,9 +14,10 @@ namespace WARun
         {
             if (args.Length < 3)
             {
-                Console.WriteLine("Format: /title:(Title) /icon:(IconPath).ico /url:(Website)");
+                Console.WriteLine("Format: < /url:(Website) > [ /title:(Title) ] [ /icon:(IconPath).ico ]");
                 Application.Exit();
             }
+
 
             AppConfig config = new();
 
