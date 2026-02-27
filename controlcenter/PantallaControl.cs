@@ -12,10 +12,30 @@ namespace controlcenter
 {
     public partial class PantallaControl : UserControl
     {
+        private TrackBar slider;
         public PantallaControl()
         {
             InitializeComponent();
             SetupUI();
+            Load += (s, e) => {
+                switch (dosu.BrightnessMGMT.GetBrightness())
+                {
+                    case -2:
+                        // error obteniendo brillo
+                        slider.Enabled = false;
+                        break;
+                    case -1:
+                        // error obteniendo monitor
+                        slider.Enabled = false;
+                        break;
+                    case null:
+                        slider.Enabled = false;
+                        break;
+                    default:
+                        slider.Value = (int)dosu.BrightnessMGMT.GetBrightness()!;
+                        break;
+                }
+            };
         }
 
         private void PantallaControl_Load(object sender, EventArgs e)
@@ -42,7 +62,7 @@ namespace controlcenter
             lbl.Location = new Point(60, 25);
 
             // Slider
-            TrackBar slider = new TrackBar();
+            slider = new TrackBar();
             slider.Minimum = 0;
             slider.Maximum = 100;
             slider.Value = 50;
@@ -79,23 +99,7 @@ namespace controlcenter
             this.Controls.Add(lbl2);
             this.Controls.Add(button);
             
-            switch (dosu.BrightnessMGMT.GetBrightness())
-            {
-                case -2:
-                    // error obteniendo brillo
-                    slider.Enabled = false;
-                    break;
-                case -1:
-                    // error obteniendo monitor
-                    slider.Enabled = false;
-                    break;
-                case null:
-                    slider.Enabled = false;
-                    break;
-                default:
-                    slider.Value = (int)dosu.BrightnessMGMT.GetBrightness()!;
-                    break;
-            }
+            
         }
     }
 }
