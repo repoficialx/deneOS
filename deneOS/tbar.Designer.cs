@@ -114,32 +114,37 @@
             flowLayoutPanel3.Size = new Size(524, 48);
             flowLayoutPanel3.TabIndex = 0;
             flowLayoutPanel3.Paint += flowLayoutPanel3_Paint;
+            flowLayoutPanel3.WrapContents = false;
+            flowLayoutPanel3.AutoSize = false;
+            flowLayoutPanel3.Padding = new Padding(0, 0, 10, 0);
             // 
             // panel17
             // 
             panel17.Controls.Add(label20);
             panel17.Controls.Add(label19);
-            panel17.Location = new Point(370, 3);
+            panel17.Location = new Point(410, 3);
             panel17.Name = "panel17";
-            panel17.Size = new Size(151, 79);
+            panel17.Size = new Size(111, 48);
             panel17.TabIndex = 0;
             // 
             // label20
             // 
+            label20.Dock = DockStyle.Bottom;
             label20.Font = new Font("Segoe UI", 13F);
-            label20.Location = new Point(3, 20);
+            label20.Location = new Point(0, 22);
             label20.Name = "label20";
-            label20.Size = new Size(151, 35);
+            label20.Size = new Size(111, 26);
             label20.TabIndex = 1;
             label20.Text = "00/00/0000";
             label20.TextAlign = ContentAlignment.TopRight;
             // 
             // label19
             // 
+            label19.Dock = DockStyle.Top;
             label19.Font = new Font("Segoe UI", 13F);
-            label19.Location = new Point(3, -3);
+            label19.Location = new Point(0, 0);
             label19.Name = "label19";
-            label19.Size = new Size(151, 35);
+            label19.Size = new Size(111, 22);
             label19.TabIndex = 0;
             label19.Text = "00:00";
             label19.TextAlign = ContentAlignment.TopRight;
@@ -147,37 +152,40 @@
             // label21
             // 
             label21.Font = new Font("Segoe UI Variable Display", 9F);
-            label21.Location = new Point(319, 0);
+            label21.Location = new Point(371, 0);
             label21.Name = "label21";
-            label21.Size = new Size(45, 48);
+            label21.Size = new Size(33, 48);
             label21.TabIndex = 2;
             label21.Text = "100%";
             label21.TextAlign = ContentAlignment.MiddleLeft;
+            label21.Margin = new Padding(0, 0, 10, 0);
             // 
             // label22
             // 
             label22.Font = new Font("Segoe Fluent Icons", 16F);
-            label22.Location = new Point(271, 0);
+            label22.Location = new Point(323, 0);
             label22.Name = "label22";
             label22.Size = new Size(42, 48);
             label22.TabIndex = 4;
             label22.Text = "";
-            label22.TextAlign = ContentAlignment.MiddleRight;
+            label22.TextAlign = ContentAlignment.MiddleRight; 
+            label22.Margin = new Padding(6, 0, 6, 0);
             // 
             // label25
             // 
             label25.Font = new Font("Segoe UI Variable Display", 9F);
-            label25.Location = new Point(220, 0);
+            label25.Location = new Point(284, 0);
             label25.Name = "label25";
-            label25.Size = new Size(45, 48);
+            label25.Size = new Size(33, 48);
             label25.TabIndex = 7;
             label25.Text = "100%";
             label25.TextAlign = ContentAlignment.MiddleLeft;
+            label25.Visible = false;
             // 
             // label23
             // 
             label23.Font = new Font("Segoe Fluent Icons", 16F);
-            label23.Location = new Point(176, 0);
+            label23.Location = new Point(240, 0);
             label23.Name = "label23";
             label23.Size = new Size(38, 48);
             label23.TabIndex = 5;
@@ -188,9 +196,9 @@
             // label24
             // 
             label24.Font = new Font("Segoe Fluent Icons", 16F);
-            label24.Location = new Point(129, 0);
+            label24.Location = new Point(201, 0);
             label24.Name = "label24";
-            label24.Size = new Size(41, 48);
+            label24.Size = new Size(33, 48);
             label24.TabIndex = 6;
             label24.Text = "";
             label24.TextAlign = ContentAlignment.MiddleLeft;

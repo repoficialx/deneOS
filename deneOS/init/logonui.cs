@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using Microsoft.Win32;
+using System.Diagnostics;
 
 namespace deneOS.init
 {
@@ -158,59 +159,83 @@ namespace deneOS.init
         /// </summary>
         void Date_Stuff()
         {
-            //---------------------------Date
-            string dddd; // DÍA DE LA SEMANA
-            string dd; // DÍA
-            string ddd; // DÍA CON TERMINACIÓN (ENG.)
-            string mm2; // MES
-            string yyyy; // AÑO (4 CIFRAS)
-            if (DateTime.Now.Day.ToString().Length < 2)
+            // --- Día y mes ---
+            string dd = DateTime.Now.Day.ToString("00");
+            string mm2 = DateTime.Now.Month.ToString("00");
+            string yyyy = DateTime.Now.Year.ToString();
+
+            // --- Leer región desde registro ---
+            string region = "es"; // default
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\deneOS\system\region"))
             {
-                dd = $"0{DateTime.Now.Day}"; // DÍA= 0(DÍA DE 1 CIFRA)
+                if (key?.GetValue("@") is string val) region = val.ToLower();
+            }
+
+            // --- Día con terminación según región ---
+            string ddd;
+            if (region == "us")
+            {
+                // terminaciones inglesas
+                int dayNum = int.Parse(dd);
+                if (dayNum % 10 == 1 && dayNum != 11) ddd = dd + "st";
+                else if (dayNum % 10 == 2 && dayNum != 12) ddd = dd + "nd";
+                else if (dayNum % 10 == 3 && dayNum != 13) ddd = dd + "rd";
+                else ddd = dd + "th";
             }
             else
             {
-                dd = DateTime.Now.Day.ToString(); // DIA= DÍA DE 2 CIFRAS
-            }
-            if (DateTime.Now.Month.ToString().Length < 2)
-            {
-                mm2 = $"0{DateTime.Now.Month}"; // MES= 0(MES DE 1 CIFRA)
-            }
-            else
-            {
-                mm2 = DateTime.Now.Month.ToString(); // MES= MES DE 2 CIFRAS
+                // resto de idiomas → solo número
+                ddd = dd;
             }
 
+            // --- Día de la semana ---
+            string ddddnl = DateTime.Now.DayOfWeek.ToString().Substring(0, 3).ToLower();
+            string dddd = (string)T($"dow{ddddnl}");
 
-            if (T("sisfct") is bool sisfctValue && !sisfctValue) // Si es booleano y es false]
-            {
-                ddd = dd; // DÍA= DÍA DE 2 CIFRAS
-            }
-            else // SI (SI) TERMINACIÓN
-            {
-                if (dd.EndsWith("1") && int.Parse(dd) != 11)
-                {
-                    ddd = dd + "st";
-                }
-                else if (dd.EndsWith("2") && int.Parse(dd) != 12)
-                {
-                    ddd = dd + "nd";
-                }
-                else if (dd.EndsWith("3") && int.Parse(dd) != 13)
-                {
-                    ddd = dd + "rd";
-                }
-                else
-                {
-                    ddd = dd + "th";
-                }
-            }
+            // --- Mes según región ---
+            string month = MonthNum2Month(mm2, region);
 
-            string ddddnl;
-            ddddnl = DateTime.Now.DayOfWeek.ToString().Substring(0, 3);
-            dddd = (string)T($"dow{ddddnl.ToLower()}");
-            yyyy = DateTime.Now.Year.ToString();
-            txt2.Text = @$"{dddd}., {ddd} {MonthNum2Month(mm2)} {yyyy}";
+            txt2.Text = @$"{dddd}., {ddd} {month} {yyyy}";
+        }
+
+        // --- Meses por región ---
+        string MonthNum2Month(string mm2, string region)
+        {
+            return region switch
+            {
+                "us" => mm2 switch
+                {
+                    "01" => "January",
+                    "02" => "February",
+                    "03" => "March",
+                    "04" => "April",
+                    "05" => "May",
+                    "06" => "June",
+                    "07" => "July",
+                    "08" => "August",
+                    "09" => "September",
+                    "10" => "October",
+                    "11" => "November",
+                    "12" => "December",
+                    _ => "???"
+                },
+                _ => mm2 switch  
+                {
+                    "01" => "Enero",
+                    "02" => "Febrero",
+                    "03" => "Marzo",
+                    "04" => "Abril",
+                    "05" => "Mayo",
+                    "06" => "Junio",
+                    "07" => "Julio",
+                    "08" => "Agosto",
+                    "09" => "Septiembre",
+                    "10" => "Octubre",
+                    "11" => "Noviembre",
+                    "12" => "Diciembre",
+                    _ => "???"
+                }
+            };
         }
         /// <summary>
         /// Actualizar en la pantalla la hora (00:00) y la fecha (31-12-9999)
@@ -242,7 +267,7 @@ namespace deneOS.init
         }
         /// <summary>
         /// Inicio del formulario de inicio de sesión tras presionar INTRO.
-        /// </summary>
+        /// </summary>cv
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void logonui_KeyDown(object sender, KeyEventArgs e)

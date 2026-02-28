@@ -36,6 +36,8 @@
             pictureBox1 = new PictureBox();
             txt6 = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
+            invusrpss = new Label();
+            lggng = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
@@ -48,7 +50,7 @@
             txt3.Location = new Point(3, 0);
             txt3.Name = "txt3";
             txt3.Padding = new Padding(5, 5, 0, 0);
-            txt3.Size = new Size(41, 25);
+            txt3.Size = new Size(32, 21);
             txt3.TabIndex = 24;
             txt3.Text = "Txt3";
             // 
@@ -59,7 +61,7 @@
             boxpass.ForeColor = SystemColors.ControlText;
             boxpass.Location = new Point(594, 307);
             boxpass.Name = "boxpass";
-            boxpass.Size = new Size(216, 52);
+            boxpass.Size = new Size(216, 43);
             boxpass.TabIndex = 20;
             // 
             // boxusr
@@ -69,7 +71,7 @@
             boxusr.ForeColor = SystemColors.ControlText;
             boxusr.Location = new Point(594, 243);
             boxusr.Name = "boxusr";
-            boxusr.Size = new Size(216, 52);
+            boxusr.Size = new Size(216, 43);
             boxusr.TabIndex = 18;
             // 
             // txt5
@@ -99,7 +101,7 @@
             // pictureBox1
             // 
             pictureBox1.Dock = DockStyle.Fill;
-            pictureBox1.Image = Properties.Resources.DefaultAccountTile;
+            pictureBox1.Image = Properties.Resources.loading;
             pictureBox1.Location = new Point(352, 58);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(236, 179);
@@ -138,6 +140,8 @@
             tableLayoutPanel1.Controls.Add(txt4, 1, 2);
             tableLayoutPanel1.Controls.Add(pictureBox1, 2, 1);
             tableLayoutPanel1.Controls.Add(txt6, 2, 4);
+            tableLayoutPanel1.Controls.Add(invusrpss, 3, 4);
+            tableLayoutPanel1.Controls.Add(lggng, 2, 2);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -152,9 +156,31 @@
             tableLayoutPanel1.TabIndex = 27;
             tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
             // 
+            // invusrpss
+            // 
+            invusrpss.AutoSize = true;
+            invusrpss.ForeColor = Color.Red;
+            invusrpss.Location = new Point(594, 376);
+            invusrpss.Name = "invusrpss";
+            invusrpss.Size = new Size(92, 26);
+            invusrpss.TabIndex = 26;
+            invusrpss.Text = "invusrpss";
+            invusrpss.Visible = false;
+            invusrpss.Click += label1_Click;
+            // 
+            // lggng
+            // 
+            lggng.Dock = DockStyle.Fill;
+            lggng.Location = new Point(352, 240);
+            lggng.Name = "lggng";
+            lggng.Size = new Size(236, 64);
+            lggng.TabIndex = 27;
+            lggng.Text = "lggng";
+            lggng.TextAlign = ContentAlignment.BottomCenter;
+            // 
             // login
             // 
-            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = SystemColors.ControlText;
             BackgroundImage = Properties.Resources.gradiente;
@@ -187,5 +213,7 @@
         private PictureBox pictureBox1;
         private Button txt6;
         private TableLayoutPanel tableLayoutPanel1;
+        private Label invusrpss;
+        private Label lggng;
     }
 }

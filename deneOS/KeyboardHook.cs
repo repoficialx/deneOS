@@ -25,12 +25,13 @@ public class KeyboardHook
 
     public void HookKeyboard()
     {
-        _hookID = SetWindowsHookEx(WH_KEYBOARD_LL, _proc, GetModuleHandle(Process.GetCurrentProcess().MainModule.ModuleName), 0);
+
+        //_hookID = SetWindowsHookEx(WH_KEYBOARD_LL, _proc, GetModuleHandle(Process.GetCurrentProcess().MainModule.ModuleName), 0);
     }
 
     public void UnhookKeyboard()
     {
-        UnhookWindowsHookEx(_hookID);
+        //UnhookWindowsHookEx(_hookID);
     }
 
     private IntPtr _proc(int nCode, IntPtr wParam, IntPtr lParam)

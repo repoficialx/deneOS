@@ -24,13 +24,10 @@ namespace deneOS.init
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             UpdateStyles();
-            //debug
             txt3.Text = (string)T("txt3");
             txt4.Text = (string)T("txt4");
             txt5.Text = (string)T("txt5");
             txt6.Text = (string)T("txt6");
-
-            
         }
 
         protected override void OnPaintBackground(PaintEventArgs e)
@@ -135,7 +132,7 @@ namespace deneOS.init
                 return;
             }
 
-            // ✅ Pasar el hash, no texto plano
+            // Pasar hash, no plaintext
             _login(usr, pssHash);
         }
         private void _login(string storedUsername, string storedPasswordHash)
@@ -155,19 +152,28 @@ namespace deneOS.init
                 return;
             }
 
-            // ✅ Verificar usuario y contraseña de forma SEGURA
+            // Verificar usuario y contraseña (seguro)
             bool usernameMatch = inputUsername.Equals(storedUsername, StringComparison.Ordinal);
             bool passwordMatch = PasswordHasher.VerifyPassword(inputPassword, storedPasswordHash);
 
             if (usernameMatch && passwordMatch)
             {
                 Console.WriteLine($"[SUCCESS] Login exitoso para usuario: {inputUsername}");
-                MessageBox.Show(
+                /*MessageBox.Show(
                     (string)T("welctodeneosE"),
                     (string)T("welc"),
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
-                );
+                );*/
+                foreach (Control control in tableLayoutPanel1.Controls)
+                {
+                    control.Enabled = false;
+                    control.Visible = false;
+                }
+
+                lggng.Visible = true;
+                lggng.Text = (string)T("lggng");
+                pictureBox1.Image = Properties.Resources.loading;
 
                 Hide();
                 if (ornMgmt.GetOrientation() == Orientation.Horizontal)
@@ -179,20 +185,21 @@ namespace deneOS.init
                 {
                     new TopBar().Show();
                     new HomeScreen().Show();
-                    
+
                     new BottomBar().Show();
                 }
             }
             else
             {
                 Console.WriteLine($"[WARN] Login fallido para usuario: {inputUsername}");
-                MessageBox.Show(
-                    (string)T("invusrpss"),
-                    (string)T("err"),
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-
+                //MessageBox.Show(
+                //  (string)T("invusrpss"),
+                //(string)T("err"),
+                //  MessageBoxButtons.OK,
+                //MessageBoxIcon.Error
+                //);
+                invusrpss.Text = (string)T("invusrpss");
+                invusrpss.Visible = true;
                 // Limpiar el campo de contraseña por seguridad
                 boxpass.Clear();
                 boxpass.Focus();
@@ -206,7 +213,12 @@ namespace deneOS.init
 
         private void login_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

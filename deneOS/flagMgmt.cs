@@ -22,6 +22,7 @@
         public static bool EmergencyUI = false;
         public static bool OfflineOnly = false;
         public static bool ForceVertical = false;
+        public static bool ForceOOBE = false;
 
         // Flags de tipo string
         public static string Language = "";              // "es", "en", etc.

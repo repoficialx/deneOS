@@ -38,6 +38,7 @@ namespace deneOS.init
     };
         private int bootIndex = 0;
         private System.Windows.Forms.Timer bootTimer;
+        private bool skipUserCheck = false;
         public BootScreen()
         {
             // comprobar flags importantes antes del inicio
@@ -68,6 +69,11 @@ namespace deneOS.init
                     new logonui().Show();
                 }));
                 return;
+            }
+
+            if (flagMgmt.ForceOOBE)
+            {
+                skipUserCheck = true;
             }
 
             // iniciar cosas visuales
@@ -362,12 +368,23 @@ namespace deneOS.init
 
             try
             {
+                //if (skipUserCheck) throw new Exception("Flag ForceOOBE activado, saltando verificación de usuario");
+                if (skipUserCheck)
+                {
+                    Console.WriteLine("[INFO] ForceOOBE activado, saltando verificación de usuario...");
+                    this.BeginInvoke(new Action(() =>
+                    {
+                        new OOBE.PCWelcomeBG().ShowDialog();
+                    }));
+                    return;
+                }
+
                 this.Hide();
 
-                // Verificar usuario de forma segura
+                // obtener user con dosu
                 User user = GetUser();
 
-                // ✅ Verificar que el usuario Y la contraseña no estén vacíos
+                // check user / password no vacíos
                 bool isUserNull = user.Equals(null);
                 bool hasValidUser = (!isUserNull) &&
                                     (!string.IsNullOrWhiteSpace(user.Username)) &&

@@ -30,13 +30,13 @@ namespace deneOS
         public static void Arguments()
         {
             if (File.Exists("c:\\currentsessionflags.txt")) File.Delete("c:\\currentsessionflags.txt");
-            else _ = (string)null;
+            
 
 #if DEBUG
             flagMgmt.EnableDebug = true;
 #endif
             string[] args = Environment.GetCommandLineArgs();
-            string[] argfile = { };
+            string[] argfile = Array.Empty<string>();
             foreach (string arg in args)
             {
                 _ = argfile.Length < args.Length ? argfile.Append(arg + Environment.NewLine) : null;
@@ -61,6 +61,7 @@ namespace deneOS
                 else if (arg == "/emergencyUI") flagMgmt.EmergencyUI = true;
                 else if (arg == "/offlineOnly") flagMgmt.OfflineOnly = true;
                 else if (arg == "/forceVertical") flagMgmt.ForceVertical = true;
+                else if (arg == "/forceOOBE") flagMgmt.ForceOOBE = true;
 
                 else if (arg.StartsWith("/language:"))
                     flagMgmt.Language = arg.Split(':')[1];
@@ -73,6 +74,9 @@ namespace deneOS
 
                 else if (arg.StartsWith("/metricTime"))
                     flagMgmt.SelectedTimeFormat = flagMgmt.TimeFormat.Metric;
+
+                else if (arg.StartsWith("/militaryTime"))
+                    flagMgmt.SelectedTimeFormat = flagMgmt.TimeFormat.Military;
             }
             File.WriteAllLines(@"C:\CurrentSessionFlags.txt", argfile);
         }

@@ -25,6 +25,10 @@ namespace deneOS
             button1.Text = (string)T("rstnow");
             label4.Text = string.Format("{0} {1} {2}", T("resetin"), 10, T("ss"));
         }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            return true; // bloquea TODO
+        }
         void CargarIdioma()
         {
             if (flagMgmt.ShowUntranslatedStrings)

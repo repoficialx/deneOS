@@ -19,6 +19,7 @@ namespace deneOS.OOBE
         public PCWelcome()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
         }
         private void btnContinuar_Click(object sender, EventArgs e)
         {
@@ -35,7 +36,7 @@ namespace deneOS.OOBE
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Open repoficialx.xyz page for deneOS
-             Process.Start(new ProcessStartInfo("https://repoficialx.xyz/deneOS") { UseShellExecute = true });
+            Process.Start(new ProcessStartInfo("https://repoficialx.xyz/deneOS") { UseShellExecute = true });
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -55,7 +56,40 @@ namespace deneOS.OOBE
                     "/bypassChecks"
                     )
                 { UseShellExecute = true });
-            Environment.Exit (0);
+            Environment.Exit(0);
+        }
+        private void button1_MouseEnter(object sender, EventArgs e)
+        {
+            button1.BackColor = Color.FromArgb(220, 220, 255);
+        }
+
+        private void button1_MouseLeave(object sender, EventArgs e)
+        {
+            button1.BackColor = Color.White;
+        }
+        private async void PCWelcome_Load(object sender, EventArgs e)
+        {
+            pictureBox1.Visible = false;
+            label2.Visible = false;
+            label3.Visible = false;
+            button1.Visible = false;
+
+            await Task.Delay(200);
+            pictureBox1.Visible = true;
+
+            await Task.Delay(150);
+            label2.Visible = true;
+
+            await Task.Delay(150);
+            label3.Visible = true;
+
+            await Task.Delay(200);
+            button1.Visible = true;
+        }
+
+        private void button1_DragEnter(object sender, DragEventArgs e)
+        {
+
         }
     }
 }

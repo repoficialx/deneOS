@@ -30,9 +30,9 @@
         {
             components = new System.ComponentModel.Container();
             timer1 = new System.Windows.Forms.Timer(components);
-            pictureBox1 = new PictureBox();
+            logo = new PictureBox();
             label1 = new Label();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             SuspendLayout();
             // 
             // timer1
@@ -41,16 +41,16 @@
             timer1.Interval = 6000;
             timer1.Tick += timer1_Tick;
             // 
-            // pictureBox1
+            // logo
             // 
-            pictureBox1.Dock = DockStyle.Fill;
-            pictureBox1.Image = Properties.Resources.denelogo;
-            pictureBox1.Location = new Point(0, 0);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(540, 757);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            logo.Dock = DockStyle.Fill;
+            logo.Image = Properties.Resources.denelogo;
+            logo.Location = new Point(0, 0);
+            logo.Name = "logo";
+            logo.Size = new Size(540, 757);
+            logo.SizeMode = PictureBoxSizeMode.Zoom;
+            logo.TabIndex = 0;
+            logo.TabStop = false;
             // 
             // label1
             // 
@@ -70,7 +70,7 @@
             BackColor = SystemColors.ControlText;
             ClientSize = new Size(540, 960);
             ControlBox = false;
-            Controls.Add(pictureBox1);
+            Controls.Add(logo);
             Controls.Add(label1);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ForeColor = SystemColors.Control;
@@ -84,14 +84,14 @@
             Text = "deninit";
             WindowState = FormWindowState.Maximized;
             Load += BootScreen_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)logo).EndInit();
             ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox logo;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label1;
     }
