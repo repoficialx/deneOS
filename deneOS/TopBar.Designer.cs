@@ -31,20 +31,20 @@
             panel1 = new Panel();
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel2 = new Panel();
+            panel16 = new Panel();
+            flowLayoutPanel3 = new FlowLayoutPanel();
             panel17 = new Panel();
             label20 = new Label();
             label19 = new Label();
-            panel16 = new Panel();
-            flowLayoutPanel3 = new FlowLayoutPanel();
             label22 = new Label();
             label23 = new Label();
             label24 = new Label();
             panel1.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
-            panel17.SuspendLayout();
             panel16.SuspendLayout();
             flowLayoutPanel3.SuspendLayout();
+            panel17.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -76,36 +76,6 @@
             panel2.Size = new Size(180, 60);
             panel2.TabIndex = 3;
             // 
-            // panel17
-            // 
-            panel17.Controls.Add(label20);
-            panel17.Controls.Add(label19);
-            panel17.Dock = DockStyle.Fill;
-            panel17.Location = new Point(0, 0);
-            panel17.Name = "panel17";
-            panel17.Size = new Size(180, 60);
-            panel17.TabIndex = 0;
-            // 
-            // label20
-            // 
-            label20.AutoSize = true;
-            label20.Font = new Font("Segoe UI", 6F);
-            label20.Location = new Point(123, 45);
-            label20.Name = "label20";
-            label20.Size = new Size(43, 11);
-            label20.TabIndex = 1;
-            label20.Text = "00/00/0000";
-            // 
-            // label19
-            // 
-            label19.AutoSize = true;
-            label19.Font = new Font("Segoe UI", 30F);
-            label19.Location = new Point(0, -7);
-            label19.Name = "label19";
-            label19.Size = new Size(120, 54);
-            label19.TabIndex = 0;
-            label19.Text = "00:00";
-            // 
             // panel16
             // 
             panel16.Controls.Add(flowLayoutPanel3);
@@ -123,17 +93,46 @@
             flowLayoutPanel3.Dock = DockStyle.Fill;
             flowLayoutPanel3.FlowDirection = FlowDirection.RightToLeft;
             flowLayoutPanel3.Location = new Point(0, 0);
-            flowLayoutPanel3.Margin = new Padding(0);
             flowLayoutPanel3.Name = "flowLayoutPanel3";
             flowLayoutPanel3.Size = new Size(524, 60);
             flowLayoutPanel3.TabIndex = 0;
             // 
+            // panel17
+            // 
+            panel17.Controls.Add(label20);
+            panel17.Controls.Add(label19);
+            panel17.Dock = DockStyle.Fill;
+            panel17.Location = new Point(0, 0);
+            panel17.Name = "panel17";
+            panel17.Size = new Size(180, 60);
+            panel17.TabIndex = 0;
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Font = new Font("Segoe UI", 6F);
+            label20.Location = new Point(123, 45);
+            label20.Name = "label20";
+            label20.Size = new Size(53, 12);
+            label20.TabIndex = 1;
+            label20.Text = "00/00/0000";
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Font = new Font("Segoe UI", 30F);
+            label19.Location = new Point(0, -7);
+            label19.Name = "label19";
+            label19.Size = new Size(148, 67);
+            label19.TabIndex = 0;
+            label19.Text = "00:00";
+            // 
             // label22
             // 
             label22.Font = new Font("Segoe Fluent Icons", 16F);
-            label22.Location = new Point(486, 0);
+            label22.Location = new Point(479, 0);
             label22.Name = "label22";
-            label22.Size = new Size(35, 58);
+            label22.Size = new Size(42, 58);
             label22.TabIndex = 4;
             label22.Text = "";
             label22.TextAlign = ContentAlignment.MiddleRight;
@@ -141,9 +140,9 @@
             // label23
             // 
             label23.Font = new Font("Segoe Fluent Icons", 16F);
-            label23.Location = new Point(445, 0);
+            label23.Location = new Point(437, 0);
             label23.Name = "label23";
-            label23.Size = new Size(35, 58);
+            label23.Size = new Size(36, 62);
             label23.TabIndex = 5;
             label23.Text = "";
             label23.TextAlign = ContentAlignment.MiddleRight;
@@ -152,16 +151,16 @@
             // label24
             // 
             label24.Font = new Font("Segoe Fluent Icons", 16F);
-            label24.Location = new Point(404, 0);
+            label24.Location = new Point(392, 0);
             label24.Name = "label24";
-            label24.Size = new Size(35, 58);
+            label24.Size = new Size(39, 58);
             label24.TabIndex = 6;
             label24.Text = "";
             label24.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // TopBar
             // 
-            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleDimensions = new SizeF(120F, 120F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = SystemColors.ControlText;
             ClientSize = new Size(1080, 60);
@@ -177,10 +176,10 @@
             panel1.ResumeLayout(false);
             flowLayoutPanel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
-            panel17.ResumeLayout(false);
-            panel17.PerformLayout();
             panel16.ResumeLayout(false);
             flowLayoutPanel3.ResumeLayout(false);
+            panel17.ResumeLayout(false);
+            panel17.PerformLayout();
             ResumeLayout(false);
 
         }

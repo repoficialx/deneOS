@@ -54,19 +54,18 @@
             panel1.Controls.Add(label2);
             panel1.Controls.Add(pictureBox1);
             panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(0, 26);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(0, 35);
             panel1.Name = "panel1";
-            panel1.Size = new Size(619, 276);
+            panel1.Size = new Size(707, 368);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
             // linkLabel3
             // 
             linkLabel3.AutoSize = true;
-            linkLabel3.Location = new Point(369, 254);
+            linkLabel3.Location = new Point(422, 339);
             linkLabel3.Name = "linkLabel3";
-            linkLabel3.Size = new Size(64, 15);
+            linkLabel3.Size = new Size(79, 20);
             linkLabel3.TabIndex = 7;
             linkLabel3.TabStop = true;
             linkLabel3.Text = "Contribute";
@@ -75,9 +74,9 @@
             // linkLabel2
             // 
             linkLabel2.AutoSize = true;
-            linkLabel2.Location = new Point(485, 254);
+            linkLabel2.Location = new Point(554, 339);
             linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new Size(112, 15);
+            linkLabel2.Size = new Size(141, 20);
             linkLabel2.TabIndex = 6;
             linkLabel2.TabStop = true;
             linkLabel2.Text = "Emergency Desktop";
@@ -86,9 +85,9 @@
             // linkLabel1
             // 
             linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(444, 254);
+            linkLabel1.Location = new Point(507, 339);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(32, 15);
+            linkLabel1.Size = new Size(41, 20);
             linkLabel1.TabIndex = 5;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Help";
@@ -97,25 +96,21 @@
             // button1
             // 
             button1.BackColor = SystemColors.Window;
-            button1.Location = new Point(248, 237);
-            button1.Margin = new Padding(3, 2, 3, 2);
+            button1.Location = new Point(284, 316);
             button1.Name = "button1";
-            button1.Size = new Size(92, 22);
+            button1.Size = new Size(105, 29);
             button1.TabIndex = 4;
             button1.Text = "YES!";
             button1.UseVisualStyleBackColor = false;
             button1.Click += btnContinuar_Click;
-            button1.DragEnter += button1_DragEnter;
-            button1.MouseEnter += button1_MouseEnter;
-            button1.MouseLeave += button1_MouseLeave;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Variable Display", 9F);
-            label4.Location = new Point(177, 213);
+            label4.Location = new Point(202, 284);
             label4.Name = "label4";
-            label4.Size = new Size(223, 16);
+            label4.Size = new Size(280, 20);
             label4.TabIndex = 3;
             label4.Text = "Ready to have your computer a glow up?";
             // 
@@ -123,9 +118,9 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Variable Display", 12F);
-            label3.Location = new Point(102, 184);
+            label3.Location = new Point(116, 246);
             label3.Name = "label3";
-            label3.Size = new Size(386, 21);
+            label3.Size = new Size(481, 27);
             label3.TabIndex = 2;
             label3.Text = "deneOS is not just a skin. deneOS is an alternate shell.";
             // 
@@ -133,19 +128,18 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Variable Display Semib", 18F);
-            label2.Location = new Point(235, 145);
+            label2.Location = new Point(269, 193);
             label2.Name = "label2";
-            label2.Size = new Size(122, 32);
+            label2.Size = new Size(152, 40);
             label2.TabIndex = 1;
             label2.Text = "Welcome.";
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.deneOS_Logo;
-            pictureBox1.Location = new Point(221, 2);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Image = Properties.Resources.denelogo;
+            pictureBox1.Location = new Point(253, 3);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(160, 134);
+            pictureBox1.Size = new Size(183, 178);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -153,24 +147,22 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(239, 7);
+            label1.Location = new Point(273, 9);
             label1.Name = "label1";
-            label1.Size = new Size(118, 15);
+            label1.Size = new Size(148, 20);
             label1.TabIndex = 1;
             label1.Text = "Welcome to deneOS.";
             // 
             // PCWelcome
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(619, 302);
+            ClientSize = new Size(707, 403);
             Controls.Add(label1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "PCWelcome";
             Text = "PCWelcome";
-            Load += PCWelcome_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
