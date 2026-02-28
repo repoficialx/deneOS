@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -179,7 +180,7 @@ namespace deneStore
 
             MessageBox.Show($"{app.name} instalado en {AdaptPath(appDir)}");
         }*/
-
+        /*
         public async Task InstallApp(App app)
         {
             string appDir = $@"C:\SOFTWARE\{app.code}";
@@ -221,7 +222,105 @@ namespace deneStore
             progressForm.Close();
 
             MessageBox.Show($"{app.name} instalado en {AdaptPath(appDir)}");
-            //Application.DoEvents();
+        }
+        */
+        public async Task InstallApp(App app)
+        {
+            bool esPaqueteDpk = app.downloadUrl.EndsWith(".dpk", StringComparison.OrdinalIgnoreCase);
+
+            string destino;
+
+            if (esPaqueteDpk)
+            {
+                // Guardar en carpeta temporal
+                string tempDir = Path.GetTempPath();
+                destino = Path.Combine(tempDir, Path.GetFileName(app.downloadUrl));
+            }
+            else
+            {
+                // Guardar en C:\SOFTWARE\{code}
+                string appDir = $@"C:\SOFTWARE\{app.code}";
+                Directory.CreateDirectory(appDir);
+                destino = Path.Combine(appDir, Path.GetFileName(app.downloadUrl));
+            }
+
+            using var client = new HttpClient();
+
+            var progressForm = new ProgressForm();
+            progressForm.Show();
+
+            using var response = await client.GetAsync(app.downloadUrl, HttpCompletionOption.ResponseHeadersRead);
+            response.EnsureSuccessStatusCode();
+
+            var totalBytes = response.Content.Headers.ContentLength ?? -1L;
+            var buffer = new byte[8192];
+            long totalRead = 0;
+
+            using var stream = await response.Content.ReadAsStreamAsync();
+            using var fileStream = new FileStream(destino, FileMode.Create, FileAccess.Write, FileShare.None);
+
+            int read;
+            while ((read = await stream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+            {
+                await fileStream.WriteAsync(buffer, 0, read);
+                totalRead += read;
+
+                if (totalBytes > 0)
+                {
+                    int progress = (int)((totalRead * 100) / totalBytes);
+                    progressForm.ProgressBar.Value = Math.Min(progress, 100);
+                }
+
+                Application.DoEvents();
+            }
+
+            progressForm.Close();
+            /*
+            if (esPaqueteDpk)
+            {
+                // Ejecutar el extractor con el .dpk como argumento
+                string extractor = @"C:\DENEOS\dpkxt.exe";
+
+                var proc = new Process();
+                proc.StartInfo.FileName = extractor;
+                proc.StartInfo.Arguments = $"\"{destino}\"";
+                proc.StartInfo.UseShellExecute = false;
+                proc.StartInfo.CreateNoWindow = true;
+                proc.Start();
+
+                MessageBox.Show($"Paquete DPK descargado y enviado al extractor:\n{destino}");
+            }
+            else
+            {
+                MessageBox.Show($"{app.name} instalado en {AdaptPath(Path.GetDirectoryName(destino))}");
+            }*/
+
+            if (esPaqueteDpk)
+            {
+                string extractor = @"C:\DENEOS\dpkxt.exe";
+
+                var proc = new Process();
+                proc.StartInfo.FileName = extractor;
+                proc.StartInfo.Arguments = $"\"{destino}\"";
+                proc.StartInfo.UseShellExecute = false;
+                proc.StartInfo.CreateNoWindow = true;
+
+                proc.Start();
+                proc.WaitForExit(); // Esperar a que termine
+
+                if (Debugger.IsAttached)
+                {
+                    MessageBox.Show(
+                        $"Package processed successfully.\n\n" +
+                        $"File: {destino}\n" +
+                        $"DPKXT Ended with code: {proc.ExitCode}"
+                    );
+                }
+            }
+            else
+            {
+                MessageBox.Show($"{app.name} instalado en {AdaptPath(Path.GetDirectoryName(destino))}");
+            }
         }
         public class App
         {
