@@ -38,6 +38,8 @@ class FontInstaller
 
         foreach (string font in fonts)
         {
+            if (!Directory.Exists(@"C:\DENEOS\sysfonts"))
+                Directory.CreateDirectory(@"C:\DENEOS\sysfonts");
             string fontUri = baseUri + font;
             string destPath = Path.Combine(fontsPath, font);
             string _desPath = Path.Combine(dnosFonts, font);
