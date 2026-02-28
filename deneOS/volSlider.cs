@@ -15,7 +15,6 @@ namespace deneOS
         public volSlider()
         {
             InitializeComponent();
-            InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             this.TopMost = true;
             this.StartPosition = FormStartPosition.Manual;
