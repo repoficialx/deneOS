@@ -1,20 +1,7 @@
-using Microsoft.VisualBasic.Logging;
 using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.IO.Compression;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using dosu;
 
 namespace deneOS_Launcher
 {
@@ -35,10 +22,13 @@ namespace deneOS_Launcher
 
         async void Install_Click(object sender, EventArgs e)
         {
+            SetupScreen setup = new SetupScreen();
+            setup.Show();
+            /*
             var response = MessageBox.Show(@"Install on Verbose mode?", @"deneOS Setup", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
             var info = await GetUpdateInfo();
-            if (info == null)
+            if (info.Equals(null))
             {
                 MessageBox.Show(@"Could not fetch update information.");
                 return;
@@ -50,7 +40,7 @@ namespace deneOS_Launcher
                     MessageBox.Show(@"Installing fonts...", @"deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     InstallFonts();
                     MessageBox.Show(@"Installing deneOS...");
-                    await UpdateScreen(true, info.download);
+                    await UpdateScreen(true, info.download!);
                     MessageBox.Show(@"Installing languages...");
                     InstallLanguages();
                     MessageBox.Show(@"Writing Configuration...");
@@ -62,7 +52,7 @@ namespace deneOS_Launcher
 
                 case DialogResult.No:
                     InstallFonts();
-                    await UpdateScreen(false, info.download);
+                    await UpdateScreen(false, info.download!);
                     InstallLanguages();
                     WriteConfiguration();
                     DownloadSystemApps();
@@ -75,10 +65,9 @@ namespace deneOS_Launcher
             }
 
             Process.Start(Application.ExecutablePath);
-            Application.Exit();
-
+            Application.Exit();*/
         }
-
+/*
         async Task DownloadAll()
         {
             await btnCheckUpdates_Click(false);
@@ -89,7 +78,7 @@ namespace deneOS_Launcher
 
             MessageBox.Show(@"Installation completed successfully!", @"deneOS Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
+*/
         void InstallFonts()
         {
             FontInstaller.InstallFonts();
@@ -110,83 +99,82 @@ namespace deneOS_Launcher
 
         private class UpdateInfo
         {
-            public string latestVersion { get; set; }
-            public string download { get; set; }
-            public string changelog { get; set; }
-        }
-        private string currentVersion = "0.0";
-        private string latestVersion = "0.0";
-        private string changelog = "";
-        private string downloadUrl = "";
+            public string? latestVersion { get; set; }
+            public string? download { get; set; }
+            public string? changelog { get; set; }
+        }/*
         private async Task btnCheckUpdates_Click(bool verbose)
         {
             var info = await GetUpdateInfo();
-            if (info != null)
+            if (info.Equals(null))
             {
-                await UpdateScreen(true, info.download);
+                await UpdateScreen(true, info!.download!);
             }
             //return info;
         }
+        */
 
+
+        private string currentVersion;// = Utils.deneOSVersion.ShortVersion.GetVersion(Utils.deneOSVersion.ShortVersion.Formats.M_mx);
+        
+        
         async Task UpdateScreen(bool verbose, string downloadUrl)
         {
-            Console.WriteLine(@"Deleting actual system files..." + Environment.NewLine);
-            if (verbose) MessageBox.Show(@"Deleting actual system files...");
+            if (!Directory.Exists(@"C:\DENEOS\core\"))
+                Directory.CreateDirectory(@"C:\DENEOS\core\");
 
-            ProcessStartInfo processStartInfo = new ProcessStartInfo
-            {
-                FileName = "taskkill",
-                Arguments = "/f /im",
-                UseShellExecute = true,
-                Verb = "runas",
-                CreateNoWindow = true
-            };
-            string[] execs = { "deneOS.exe", "deneOS.exe" };
-            foreach (var a in execs)
-            {
-                processStartInfo.Arguments += " " + a;
-                Process process = Process.Start(processStartInfo);
-                await process!.WaitForExitAsync();
-            }
+            currentVersion = File.Exists(@"C:\DENEOS\core\deneOS.exe") ? Utils.deneOSVersion.ShortVersion.GetVersion(Utils.deneOSVersion.ShortVersion.Formats.M_mx) : "0.0";
+            string corePath = @"C:\DENEOS\core\";
+            string exePath = Path.Combine(corePath, "deneOS.exe");
+            string backupPath = Path.Combine(corePath, $"deneOS_{currentVersion}.bak");
+            string tempPath = Path.Combine(corePath, "deneOS.new");
 
-            if (Directory.Exists(@"C:\DENEOS\core"))
+            if (verbose) MessageBox.Show(@"Closing deneOS...");
+
+            // 1️⃣ Cerrar deneOS si está abierto
+            try
             {
-                if (!File.Exists(@$"C:\DENEOS\core{currentVersion}_backup.bck"))
+                var kill = Process.Start(new ProcessStartInfo
                 {
-                    ZipFile.CreateFromDirectory(@"C:\DENEOS\core\", @$"C:\DENEOS\core{currentVersion}_backup.bck");
-                }
-                else
-                {
-                    File.Delete(@$"C:\DENEOS\core{currentVersion}_backup.bck");
-                    ZipFile.CreateFromDirectory(@"C:\DENEOS\core\", @$"C:\DENEOS\core{currentVersion}_backup.bck");
-                }
-                Directory.Delete(@"C:\DENEOS\core\", true);
+                    FileName = "taskkill",
+                    Arguments = "/f /im deneOS.exe",
+                    UseShellExecute = true,
+                    Verb = "runas",
+                    CreateNoWindow = true
+                });
+                await kill!.WaitForExitAsync();
             }
-            if (Directory.Exists(@"C:\DENEOS\lang"))
+            catch
             {
-                Directory.Delete(@"C:\DENEOS\lang\", true);
+                // No estaba abierto → seguimos
             }
 
-            Console.WriteLine(@"Starting download...");
-            if (verbose) MessageBox.Show(@"Starting download...");
+            // 2️⃣ Backup del binario actual
+            if (File.Exists(exePath))
+            {
+                File.Copy(exePath, backupPath, overwrite: true);
+            }
 
-            WebClient client1 = new();
-            Uri h = new Uri(downloadUrl);
-            await client1.DownloadFileTaskAsync(h, @"C:\DENEOS\newcore.zip");
+            if (verbose) MessageBox.Show(@"Downloading update...");
 
-            Console.WriteLine(@"Decompressing new system files...");
-            if (verbose) MessageBox.Show(@"Decompressing new system files...");
+            // 3️⃣ Descargar nuevo binario a archivo temporal usando HttpClient
+            using (HttpClient httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead))
+                {
+                    response.EnsureSuccessStatusCode();
+                    using (var fs = new FileStream(tempPath, FileMode.Create, FileAccess.Write, FileShare.None))
+                    {
+                        await response.Content.CopyToAsync(fs);
+                    }
+                }
+            }
 
-            Directory.CreateDirectory(@"C:\DENEOS\lang\");
-            ZipFile.ExtractToDirectory(@"C:\DENEOS\newcore.zip", @"C:\DENEOS\core\");
+            // 4️⃣ Reemplazo atómico
+            File.Move(tempPath, exePath, overwrite: true);
 
-            Console.WriteLine(@"Patching...");
-            if (verbose) MessageBox.Show(@"Patching...");
-
-            File.Delete(@"C:\DENEOS\newcore.zip");
+            if (verbose) MessageBox.Show(@"deneOS updated successfully.");
         }
-
-
 
 
         void InstallLanguages()
@@ -196,22 +184,26 @@ namespace deneOS_Launcher
             {
                 Directory.CreateDirectory(languagesPath);
             }
-            string[] languages = new string[]
-            {
+            string[] languages =
+            [
                 "en.json",
                 "es.json"
-            };
-            WebClient client = new();
-            foreach (string language in languages)
+            ];
+
+            using (HttpClient client = new HttpClient())
             {
-                string languageUri = $"https://repoficialx.xyz/deneOS/api/{language}";
-                string languagePath = Path.Combine(languagesPath, language);
-                if (File.Exists(languagePath))
+                foreach (string language in languages)
                 {
-                    File.Delete(languagePath);
+                    string languageUri = $"https://repoficialx.xyz/deneOS/api/{language}";
+                    string languagePath = Path.Combine(languagesPath, language);
+                    if (File.Exists(languagePath))
+                    {
+                        File.Delete(languagePath);
+                    }
+                    var data = client.GetByteArrayAsync(languageUri).GetAwaiter().GetResult();
+                    File.WriteAllBytes(languagePath, data);
+                    Console.WriteLine($@"Downloaded {language} to {languagePath}");
                 }
-                client.DownloadFile(languageUri, languagePath);
-                Console.WriteLine($@"Downloaded {language} to {languagePath}");
             }
         }
 
@@ -259,14 +251,12 @@ namespace deneOS_Launcher
             string input = InputMessageBox.Show("Wallpaper location: (leave empty for default)", "deneOS Installer");
             string fixedInput = string.IsNullOrEmpty(input) ? @"c:\windows\web\4k\Wallpaper\windows\img0_1920x1200.jpg" : input;
             using RegistryKey key = Registry.CurrentUser.CreateSubKey(@"Software\deneOS\desktop");
-            if (key != null)
-            {
-                // Establecer valor DWORD showIcons = 1
-                key.SetValue("showIcons", 1, RegistryValueKind.DWord);
+            if (key.Equals(null)) return;
+            // Establecer valor DWORD showIcons = 1
+            key.SetValue("showIcons", 1, RegistryValueKind.DWord);
 
-                // Establecer valor cadena wallpaper = ruta de la imagen
-                key.SetValue("wallpaper", fixedInput, RegistryValueKind.String);
-            }
+            // Establecer valor cadena wallpaper = ruta de la imagen
+            key.SetValue("wallpaper", fixedInput, RegistryValueKind.String);
         }
 
         void DownloadSystemApps()
@@ -274,6 +264,8 @@ namespace deneOS_Launcher
             DownloadDeneFiles();
             DownloadDeneNavi();
             DownloadDeneNotes();
+            DownloadDPKXT();
+            DownloadInternal();
         }
 
         void DownloadDeneFiles()
@@ -282,9 +274,7 @@ namespace deneOS_Launcher
             const string denefilehost = "https://repoficialx.xyz/deneosversions/systemApps/deneFiles/";
             string[] files =
             {
-                "deneFiles.exe",
-                "deneFiles.exe.config",
-                "deneFiles.pdb"
+                "deneFiles.exe"
             };
             if (Directory.Exists(denefilespath))
             {
@@ -293,36 +283,77 @@ namespace deneOS_Launcher
             else
             {
                 Directory.CreateDirectory(denefilespath);
-                foreach (var a in files)
+                using (HttpClient client = new HttpClient())
                 {
-                    WebClient client = new WebClient();
-                    string fileUri = denefilehost + a;
-                    string filePath = Path.Combine(denefilespath, a);
-                    client.DownloadFile(fileUri, filePath);
-                    Console.WriteLine($@"Downloaded {a} to {filePath}");
+                    foreach (var a in files)
+                    {
+                        string fileUri = denefilehost + a;
+                        string filePath = Path.Combine(denefilespath, a);
+                        var data = client.GetByteArrayAsync(fileUri).GetAwaiter().GetResult();
+                        File.WriteAllBytes(filePath, data);
+                        Console.WriteLine($@"Downloaded {a} to {filePath}");
+                    }
                 }
             }
         }
 
+        void DownloadDPKXT()
+        {
+            const string host = "https://repoficialx.xyz/deneosversions/systemApps/dpkxt/dpkxt.exe";
+            const string path = @"C:\DENEOS\core\dpkxt.exe";
+            if (File.Exists(path))
+                File.Delete(path);
+
+            using (HttpClient client = new HttpClient())
+            {
+                var data = client.GetByteArrayAsync(host).GetAwaiter().GetResult();
+                File.WriteAllBytes(path, data);
+                Console.WriteLine($@"Downloaded dpkxt.exe to {path}");
+            }
+        }
+
+        void DownloadInternal()
+        {
+            DownloadsetConfig();
+            DownloadaboutDialogs();
+        }
+
+        void DownloadsetConfig()
+        {
+            const string host = "https://repoficialx.xyz/deneosversions/internalApps/setConfig/setConfig.exe";
+            const string path = @"C:\DENEOS\core\setConfig.exe";
+
+            if (File.Exists(path))
+                File.Delete(path);
+
+            using (HttpClient client = new HttpClient())
+            {
+                var data = client.GetByteArrayAsync(host).GetAwaiter().GetResult();
+                File.WriteAllBytes(path, data);
+                Console.WriteLine($@"Downloaded setConfig.exe to {path}");
+            }
+        }
+
+        void DownloadaboutDialogs()
+        {
+            const string host = "https://repoficialx.xyz/deneosversions/internalApps/aboutDialogs/aboutDialogs.exe";
+            const string path = @"C:\DENEOS\core\aboutDialogs.exe";
+
+            if (File.Exists(path))
+                File.Delete(path);
+
+            using (HttpClient client = new HttpClient())
+            {
+                var data = client.GetByteArrayAsync(host).GetAwaiter().GetResult();
+                File.WriteAllBytes(path, data);
+                Console.WriteLine($@"Downloaded aboutDialogs.exe to {path}");
+            }
+        }
         void DownloadDeneNavi()
         {
             const string denenavipath = @"C:\DENEOS\systemApps\deneNavi\";
             const string denenavihost = "https://repoficialx.xyz/deneosversions/systemApps/deneNavi/";
-            string[] files =
-            {
-        "Internet Explorer 11.exe",
-        "Internet Explorer 11.exe.config",
-        "Internet Explorer 11.pdb",
-        "Microsoft.Web.WebView2.Core.dll",
-        "Microsoft.Web.WebView2.Core.xml",
-        "Microsoft.Web.WebView2.WinForms.dll",
-        "Microsoft.Web.WebView2.WinForms.xml",
-        "Microsoft.Web.WebView2.Wpf.dll",
-        "Microsoft.Web.WebView2.Wpf.xml",
-        "runtimes/win-arm64/native/WebView2Loader.dll",
-        "runtimes/win-x64/native/WebView2Loader.dll",
-        "runtimes/win-x86/native/WebView2Loader.dll",
-    };
+            string[] files = ["deneNavi.exe"];
 
             if (Directory.Exists(denenavipath))
             {
@@ -331,19 +362,22 @@ namespace deneOS_Launcher
 
             Directory.CreateDirectory(denenavipath);
 
-            foreach (var a in files)
+            using (HttpClient client = new HttpClient())
             {
-                WebClient client = new WebClient();
-                string fileUri = denenavihost + a;
-                string filePath = Path.Combine(denenavipath, a);
+                foreach (var a in files)
+                {
+                    string fileUri = denenavihost + a;
+                    string filePath = Path.Combine(denenavipath, a);
 
-                // Crear carpetas intermedias si no existen
-                string directory = Path.GetDirectoryName(filePath);
-                if (!string.IsNullOrEmpty(directory))
-                    Directory.CreateDirectory(directory);
+                    // Crear carpetas intermedias si no existen
+                    string directory = Path.GetDirectoryName(filePath);
+                    if (!string.IsNullOrEmpty(directory))
+                        Directory.CreateDirectory(directory);
 
-                client.DownloadFile(fileUri, filePath);
-                Console.WriteLine($@"Downloaded {a} to {filePath}");
+                    var data = client.GetByteArrayAsync(fileUri).GetAwaiter().GetResult();
+                    File.WriteAllBytes(filePath, data);
+                    Console.WriteLine($@"Downloaded {a} to {filePath}");
+                }
             }
         }
 
@@ -351,7 +385,7 @@ namespace deneOS_Launcher
         {
             const string denenotespath = @"C:\DENEOS\systemApps\deneNotes\";
             const string denenoteshost = "https://repoficialx.xyz/deneosversions/systemApps/deneNotes/";
-            Array files = new string[]
+            string[] files =
             {
                 "deneNotes.exe",
                 "deneNotes.exe.config",
@@ -360,21 +394,22 @@ namespace deneOS_Launcher
             if (!Directory.Exists(denenotespath))
             {
                 Directory.CreateDirectory(denenotespath);
-                foreach (string b in files)
+                using (HttpClient client = new HttpClient())
                 {
-                    var client = new WebClient();
-                    string fileUri = denenoteshost + b;
-                    string filePath = Path.Combine(denenotespath, b);
-                    if (File.Exists(filePath))
+                    foreach (string b in files)
                     {
-                        File.Delete(filePath);
+                        string fileUri = denenoteshost + b;
+                        string filePath = Path.Combine(denenotespath, b);
+                        if (File.Exists(filePath))
+                        {
+                            File.Delete(filePath);
+                        }
+                        var data = client.GetByteArrayAsync(fileUri).GetAwaiter().GetResult();
+                        File.WriteAllBytes(filePath, data);
+                        Console.WriteLine($@"Downloaded {b} to {filePath}");
                     }
-                    client.DownloadFile(fileUri, filePath);
-                    Console.WriteLine($@"Downloaded {b} to {filePath}");
-
                 }
             }
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -388,25 +423,23 @@ namespace deneOS_Launcher
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F10)
-            {
-                System.Media.SystemSounds.Beep.Play();
-                System.Media.SoundPlayer sp = new();
-                // futuro: archivo .wav de sonido debug
-                //sp.Play();
+            if (e.KeyCode != Keys.F10) return;
+            System.Media.SystemSounds.Asterisk.Play();
+            //System.Media.SoundPlayer sp = new();
+            //sp.SoundLocation = "deneos_sound.wav";
+            //sp.Play();
 
-                if (button1.Text != @"INSTALL►")
-                {
-                    button1.Text = @"INSTALL►";
-                    button1.Click -= button1_Click!;
-                    button1.Click += Install_Click!;
-                }
-                else
-                {
-                    button1.Text = @"RUN►";
-                    button1.Click -= Install_Click!;
-                    button1.Click += button1_Click!;
-                }
+            if (button1.Text != @"INSTALL►")
+            {
+                button1.Text = @"INSTALL►";
+                button1.Click -= button1_Click!;
+                button1.Click += Install_Click!;
+            }
+            else
+            {
+                button1.Text = @"RUN►";
+                button1.Click -= Install_Click!;
+                button1.Click += button1_Click!;
             }
         }
 
@@ -415,7 +448,7 @@ namespace deneOS_Launcher
         }
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
-        {
+        {   
         }
     }
 }
