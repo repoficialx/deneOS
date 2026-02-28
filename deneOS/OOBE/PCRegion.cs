@@ -29,6 +29,7 @@ namespace deneOS.OOBE
             button5.Text = (string)T("OOBEPCRegionDE");
             button4.Text = (string)T("OOBEPCRegionFR");
             button6.Text = (string)T("OOBEPCRegionSystem");
+            this.DoubleBuffered = true;
         }
 
         private void btnContinuar_Click(object sender, EventArgs e)
