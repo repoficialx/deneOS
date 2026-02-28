@@ -18,6 +18,7 @@ namespace deneOS.OOBE
         public PCLanguage()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
         }
         private void btnContinuar_Click(object sender, EventArgs e)
         {

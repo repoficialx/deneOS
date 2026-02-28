@@ -24,6 +24,7 @@ namespace deneOS.OOBE
             linkLabel2.Text = (string)T("OOBEPCED");
             linkLabel1.Text = (string)T("OOBEPCHelp");
             linkLabel3.Text = (string)T("OOBEPCContribute");
+            this.DoubleBuffered = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
