@@ -44,6 +44,8 @@ Windows? Nah. Mejor deneOS. No es solo una "skin". Es una super-shell.</Descript
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\dosu.System\dosu.System.csproj" />
+    <ProjectReference Include="..\dosu.UI\dosu.UI.csproj" />
     <ProjectReference Include="..\dosu\dosu.csproj" />
   </ItemGroup>
 

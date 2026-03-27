@@ -18,7 +18,7 @@ namespace controlcenter
             InitializeComponent();
             SetupUI();
             Load += (s, e) => {
-                switch (dosu.BrightnessMGMT.GetBrightness())
+                switch (dosu.System.BrightnessMGMT.GetBrightness())
                 {
                     case -2:
                         // error obteniendo brillo
@@ -32,7 +32,7 @@ namespace controlcenter
                         slider.Enabled = false;
                         break;
                     default:
-                        slider.Value = (int)dosu.BrightnessMGMT.GetBrightness()!;
+                        slider.Value = (int)dosu.System.BrightnessMGMT.GetBrightness()!;
                         break;
                 }
             };
@@ -75,7 +75,7 @@ namespace controlcenter
 
             // Label con el brillo
             Label lbl2 = new Label();
-            lbl2.Text = dosu.BrightnessLaptopMGMT.GetBrightness().ToString()+'%';
+            lbl2.Text = dosu.System.BrightnessLaptopMGMT.GetBrightness().ToString()+'%';
             lbl2.Font = new Font("Segoe UI", 11);
             lbl2.AutoSize = true;
             lbl2.Location = new Point(285, 70);
@@ -87,7 +87,7 @@ namespace controlcenter
             button.Location = new Point(20, 130);
             button.Click += async (s, e) => {
                 //await dosu.BrightnessLaptopMGMT.SetBrightnessAsync((byte)slider.Value);
-                dosu.BrightnessLaptopMGMT.SetBrightness((byte)slider.Value);
+                dosu.System.BrightnessLaptopMGMT.SetBrightness((byte)slider.Value);
             };
             button.Font = new Font("Segoe UI", 11);
 

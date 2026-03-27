@@ -29,9 +29,13 @@ namespace deneNavi
             Directory.CreateDirectory(DOWNLOADS_PATH);
 
             // Configurar eventos
+            
+            // ReSharper disable once StringLiteralTypo
+            var icon = "\xE710";
             newTabButton = new Button
             {
-                Text = "\uE710", // Icono de Añadir (+)
+                
+                Text = icon, // Icono de Añadir (+)
                 Size = new Size(35, 30),
                 Location = new Point(5, 7),
                 FlatStyle = FlatStyle.Flat,
@@ -292,7 +296,7 @@ namespace deneNavi
 <!DOCTYPE html>
 <html>
 <head>
-    <title>deneNavi - Inicio</title>
+    <title>deneNavi - Home</title>
     <style>
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
@@ -330,12 +334,12 @@ namespace deneNavi
 <body>
     <div class='container'>
         <h1>deneNavi</h1>
-        <p>Navegador oficial de deneOS</p>
+        <p>Official web browser</p>
         <div class='links'>
-            <a href='dnnav:about'>Acerca de</a>
-            <a href='dnnav:downloads'>Descargas</a>
-            <a href='dnnav:history'>Historial</a>
-            <a href='dnnav:passwords'>Contraseñas</a>
+            <a href='https://ntp.msn.com/edge/ntp'>Edge New Tab</a>
+            <a href='https://bing.com/'>Bing</a>
+            <a href='https://google.com'>Google</a>
+            <a href='https://startpage.com'>Startpage</a>
         </div>
     </div>
 </body>
@@ -348,7 +352,7 @@ namespace deneNavi
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Acerca de deneNavi</title>
+    <title>About deneNavi</title>
     <style>
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
@@ -372,26 +376,26 @@ namespace deneNavi
 <body>
     <div class='container'>
         <h1>deneNavi</h1>
-        <p class='version'>Versión 1.0.0 - Navegador oficial de deneOS</p>
+        <p class='version'>deneNavi for deneOS 0.3 beta - Official deneOS web browser</p>
         <div class='info'>
-            <h2>Características</h2>
+            <h2>Features</h2>
             <ul>
-                <li>Navegación por pestañas</li>
-                <li>Motor WebView2 de Microsoft</li>
-                <li>URLs especiales del sistema (dnnav:)</li>
-                <li>Gestión de descargas integrada</li>
-                <li>Interfaz moderna estilo Chrome</li>
+                <li>Tab navegation</li>
+                <li>Based on Microsoft's WebView2</li>
+                <li>Special URLs (dnnav:)</li>
+                <li>Download management integrated</li>
+                <li>Chrome-like modern appearance</li>
             </ul>
-            <h2>URLs especiales</h2>
+            <h2>Special sites</h2>
             <ul>
-                <li><strong>dnnav:home</strong> - Página de inicio</li>
-                <li><strong>dnnav:about</strong> - Información del navegador</li>
-                <li><strong>dnnav:downloads</strong> - Gestor de descargas</li>
-                <li><strong>dnnav:history</strong> - Historial de navegación</li>
-                <li><strong>dnnav:passwords</strong> - Gestor de contraseñas</li>
+                <li><strong>dnnav:home</strong> - Homepage</li>
+                <li><strong>dnnav:about</strong> - Browser information</li>
+                <li><strong>dnnav:downloads</strong> - Downloads manager</li>
+                <li><strong>dnnav:history</strong> - Browsing history</li>
+                <li><strong>dnnav:passwords</strong> - Password manager</li>
             </ul>
             <p style='margin-top: 30px; color: #888;'>
-                © 2024 deneOS Project. Desarrollado con C# y .NET 10
+                © 2026 repoficialx. Made with C# and .NET 10
             </p>
         </div>
     </div>
@@ -401,8 +405,8 @@ namespace deneNavi
 
         private string GeneratePasswordsPage()
         {
-            return GenerateSimplePage("Gestor de Contraseñas",
-                "El gestor de contraseñas estará disponible en futuras versiones de deneNavi.");
+            return GenerateSimplePage("Password manager",
+                "Password manager will be available in future versions");
         }
 
         private string GenerateDownloadsPage()
@@ -419,13 +423,13 @@ namespace deneNavi
             }
 
             if (string.IsNullOrEmpty(fileList))
-                fileList = "<li>No hay descargas</li>";
+                fileList = "<li>No downloads found</li>";
 
             return $@"
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Descargas</title>
+    <title>Downloads</title>
     <style>
         body {{ 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
@@ -452,8 +456,8 @@ namespace deneNavi
 </head>
 <body>
     <div class='container'>
-        <h1>Descargas</h1>
-        <p class='path'>Ubicación: {DOWNLOADS_PATH}</p>
+        <h1>Downloads</h1>
+        <p class='path'>Location: {DOWNLOADS_PATH}</p>
         <ul>{fileList}</ul>
     </div>
 </body>
@@ -467,7 +471,7 @@ namespace deneNavi
             string historyList = "";
             if (historyEntries.Count == 0)
             {
-                historyList = "<div class='empty'>No hay historial de navegación</div>";
+                historyList = "<div class='empty'>No history found</div>";
             }
             else
             {
@@ -482,7 +486,7 @@ namespace deneNavi
                         <div class='info'>
                             <a href='{entry.Url}' class='title'>{System.Security.SecurityElement.Escape(entry.Title)}</a>
                             <div class='url'>{System.Security.SecurityElement.Escape(entry.Url)}</div>
-                            <div class='date'>{dateStr} • {entry.VisitCount} visita{(entry.VisitCount > 1 ? "s" : "")}</div>
+                            <div class='date'>{dateStr} • {entry.VisitCount} visit{(entry.VisitCount > 1 ? "s" : "")}</div>
                         </div>
                     </div>";
                 }
@@ -492,7 +496,7 @@ namespace deneNavi
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Historial de Navegación</title>
+    <title>Browsing history</title>
     <style>
         body {{ 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
@@ -590,9 +594,9 @@ namespace deneNavi
 </head>
 <body>
     <div class='container'>
-        <h1>Historial de Navegación</h1>
+        <h1>Browsing history</h1>
         <div class='controls'>
-            <button class='btn' onclick='location.reload()'>🔄 Actualizar</button>
+            <button class='btn' onclick='location.reload()'>🔄 Refresh</button>
         </div>
         {historyList}
     </div>
@@ -690,7 +694,7 @@ namespace deneNavi
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al leer historial: {ex.Message}");
+                Console.WriteLine($"Error while reading history: {ex.Message}");
             }
 
             return entries;
@@ -698,8 +702,8 @@ namespace deneNavi
 
         private string Generate404Page()
         {
-            return GenerateSimplePage("Página no encontrada",
-                "La URL especial que intentas acceder no existe en deneNavi.");
+            return GenerateSimplePage("Page not found",
+                "Special page not found.");
         }
 
         private string GenerateSimplePage(string title, string message)
@@ -754,7 +758,7 @@ namespace deneNavi
         private void CoreWebView2_DownloadStarting(object sender, CoreWebView2DownloadStartingEventArgs e)
         {
             e.ResultFilePath = Path.Combine(DOWNLOADS_PATH, Path.GetFileName(e.ResultFilePath));
-            statusLabel.Text = $"Descargando: {Path.GetFileName(e.ResultFilePath)}";
+            statusLabel.Text = $"Downloading: {Path.GetFileName(e.ResultFilePath)}";
             progressBar.Visible = true;
 
             e.DownloadOperation.BytesReceivedChanged += (s, ev) =>
@@ -775,7 +779,7 @@ namespace deneNavi
                 if (op.State == CoreWebView2DownloadState.Completed)
                 {
                     this.Invoke((MethodInvoker)delegate {
-                        statusLabel.Text = "Descarga completada";
+                        statusLabel.Text = "Download finished";
                         progressBar.Visible = false;
                         progressBar.Value = 0;
                     });
@@ -787,7 +791,7 @@ namespace deneNavi
         {
             if (activeTab == tab)
             {
-                statusLabel.Text = "Cargando...";
+                statusLabel.Text = "Loading...";
                 progressBar.Visible = true;
             }
         }
@@ -796,7 +800,7 @@ namespace deneNavi
         {
             if (activeTab == tab)
             {
-                statusLabel.Text = "Listo";
+                statusLabel.Text = "Ready!";
                 progressBar.Visible = false;
 
                 // Solo actualizar la URL si no es una URL especial dnnav:
@@ -815,7 +819,7 @@ namespace deneNavi
             string title = tab.WebView.CoreWebView2.DocumentTitle;
 
             // Truncar el título si es muy largo para la pestaña
-            string tabTitle = string.IsNullOrEmpty(title) ? "Nueva pestaña" : title;
+            string tabTitle = string.IsNullOrEmpty(title) ? "New tab" : title;
             if (tabTitle.Length > 25)
             {
                 tabTitle = tabTitle.Substring(0, 22) + "...";
@@ -879,15 +883,15 @@ namespace deneNavi
         private void MenuButton_Click(object sender, EventArgs e)
         {
             var menu = new ContextMenuStrip();
-            menu.Items.Add("Nueva pestaña", null, (s, ev) => CreateNewTab(HOME_URL));
+            menu.Items.Add("New tab", null, (s, ev) => CreateNewTab(HOME_URL));
             menu.Items.Add(new ToolStripSeparator());
-            menu.Items.Add("Historial", null, (s, ev) => NavigateToUrl("dnnav:history"));
-            menu.Items.Add("Descargas", null, (s, ev) => NavigateToUrl("dnnav:downloads"));
-            menu.Items.Add("Contraseñas", null, (s, ev) => NavigateToUrl("dnnav:passwords"));
+            menu.Items.Add("History", null, (s, ev) => NavigateToUrl("dnnav:history"));
+            menu.Items.Add("Downloads", null, (s, ev) => NavigateToUrl("dnnav:downloads"));
+            menu.Items.Add("Passwords", null, (s, ev) => NavigateToUrl("dnnav:passwords"));
             menu.Items.Add(new ToolStripSeparator());
-            menu.Items.Add("Acerca de deneNavi", null, (s, ev) => NavigateToUrl("dnnav:about"));
+            menu.Items.Add("About deneNavi", null, (s, ev) => NavigateToUrl("dnnav:about"));
             menu.Items.Add(new ToolStripSeparator());
-            menu.Items.Add("Salir", null, (s, ev) => Application.Exit());
+            menu.Items.Add("Quit", null, (s, ev) => Application.Exit());
 
             menu.Show(menuButton, new Point(0, menuButton.Height));
         }

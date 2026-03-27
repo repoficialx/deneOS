@@ -32,6 +32,7 @@ Made in together with deneOS v0.1b</Description>
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\dosu.System\dosu.System.csproj" />
     <ProjectReference Include="..\dosu\dosu.csproj" />
   </ItemGroup>
 

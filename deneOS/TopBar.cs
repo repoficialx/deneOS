@@ -69,7 +69,7 @@ namespace deneOS
             PowerLineStatus powerLineStatus = status.PowerLineStatus;
 
             bool isCharging = chargeStatus.HasFlag(BatteryChargeStatus.Charging);
-            bool isSaverOn = dosu.Power.BatteryStatus.IsBatterySaverOn();
+            bool isSaverOn = dosu.System.Power.BatteryStatus.IsBatterySaverOn();
 
             label22.Text = GetBatteryIcon(getBattery, isCharging, isSaverOn);
             /*await*/
@@ -87,7 +87,7 @@ namespace deneOS
         }
         async Task gws()
         {
-            int wifiSignal = dosu.Network.WiFiStatus.GetWifiSignalStrengthAsync().Result; // 0 - 100
+            int wifiSignal = dosu.System.Network.WiFiStatus.GetWifiSignalStrengthAsync().Result; // 0 - 100
             string wifiIcon;
             if (wifiSignal < 0)
                 wifiIcon = ""; // no wifi
