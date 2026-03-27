@@ -61,7 +61,6 @@
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Size = new Size(954, 480);
             flowLayoutPanel2.TabIndex = 3;
-            flowLayoutPanel2.Paint += flowLayoutPanel2_Paint;
             // 
             // panel12
             // 
@@ -128,7 +127,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "explorer.dna";
             WindowState = FormWindowState.Maximized;
-            FormClosing += desktop_FormClosing;
             Load += desktop_Load;
             flowLayoutPanel2.ResumeLayout(false);
             panel12.ResumeLayout(false);
