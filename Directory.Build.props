@@ -1,0 +1,5 @@
+<Project>
+  <ItemGroup>
+    <ProjectReference Remove="deneTerm/deneTerm.vcxproj" />
+  </ItemGroup>
+</Project>
