@@ -264,6 +264,7 @@ namespace deneOS_Launcher
             DownloadDeneFiles();
             DownloadDeneNavi();
             DownloadDeneNotes();
+            DownloadCalendarIO();
             DownloadDPKXT();
             DownloadInternal();
         }
@@ -408,6 +409,34 @@ namespace deneOS_Launcher
                         File.WriteAllBytes(filePath, data);
                         Console.WriteLine($@"Downloaded {b} to {filePath}");
                     }
+                }
+            }
+        }
+
+        void DownloadCalendarIO()
+        {
+            const string calendarPath = @"C:\DENEOS\systemApps\Calendar.IO\";
+            const string calendarHost = "https://repoficialx.xyz/deneosversions/systemApps/Calendar.IO/";
+            string[] files =
+            {
+                "Calendar.IO.exe"
+            };
+
+            if (Directory.Exists(calendarPath))
+            {
+                Directory.Delete(calendarPath, true);
+            }
+
+            Directory.CreateDirectory(calendarPath);
+            using (HttpClient client = new HttpClient())
+            {
+                foreach (string file in files)
+                {
+                    string fileUri = calendarHost + file;
+                    string filePath = Path.Combine(calendarPath, file);
+                    var data = client.GetByteArrayAsync(fileUri).GetAwaiter().GetResult();
+                    File.WriteAllBytes(filePath, data);
+                    Console.WriteLine($@"Downloaded {file} to {filePath}");
                 }
             }
         }

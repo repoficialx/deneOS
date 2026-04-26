@@ -206,9 +206,20 @@ namespace deneOS
 
         private void panel8_Click(object sender, EventArgs e)
         {
-            //INICIAR CALENDAR.IO
-            try { Process.Start("C:\\Users\\rayel\\source\\repos\\!New\\repos\\deneOS\\CalendarIO\\bin\\Debug\\net9.0-windows10.0.26100.0\\CalendarIO.exe"); }
-            catch { Console.WriteLine("[ERROR] No se pudo iniciar."); }
+            // INICIAR CALENDAR.IO desde la instalación de deneOS
+            string calendarExe = @"C:\DENEOS\systemApps\Calendar.IO\Calendar.IO.exe";
+            if (!File.Exists(calendarExe))
+            {
+                MessageBox.Show((string)T("dfni"), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = calendarExe,
+                UseShellExecute = true
+            };
+            Process.Start(startInfo);
         }
 
         private void panel9_Click(object sender, EventArgs e)

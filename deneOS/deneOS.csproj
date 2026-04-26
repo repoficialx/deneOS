@@ -50,12 +50,6 @@ Windows? Nah. Mejor deneOS. No es solo una "skin". Es una super-shell.</Descript
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="RXUI25">
-      <HintPath>..\..\!New\repos\NewBackup\repos\daNextgen\RXUI25\bin\Debug\net8.0-windows\RXUI25.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="HomeScreen.cs">
       <SubType>Form</SubType>
     </Compile>
