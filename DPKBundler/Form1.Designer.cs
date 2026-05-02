@@ -59,8 +59,9 @@
             button2.Name = "button2";
             button2.Size = new Size(201, 174);
             button2.TabIndex = 2;
-            button2.Text = "Folder";
+            button2.Text = "Multi executable app (folder)";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // Form1
             // 

@@ -108,6 +108,8 @@ namespace DPKBundler
 
             DirectoryInfo di = new DirectoryInfo(tempFolder);
             Directory.Delete(di.Parent.FullName, true);
+            MessageBox.Show("Bundle created successfully!");
+            Close();
         }
     }
 }
