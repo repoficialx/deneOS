@@ -21,9 +21,9 @@ En resumen: es como tener tu propio sistema operativo… ¡pero encima de Window
 
 ### 🧩 Tecnologías usadas
 
-- **.NET 8** -> deneNotes, deneOS Launcher, denePathParser
-- **.NET 9** -> deneTerm
-- **.NET 10** -> Calendar.IO, Internet, Control Center, deneOS, aboutDialogs, setConfig, deneFiles, deneStore, dosu, dpkxt, dpkxtconsole, Terminal, WARun
+- **.NET 8** -> denePathParser
+- **.NET 9** -> controlcenter, deneAI, deneOS, deneTerm, dosu, dosu.AI, dosu.System, dosu.UI, DPKBundler
+- **.NET 10** -> aboutDialogs, Calendar.IO, deneFiles, deneNavi, deneOS Launcher, deneStore, dpkxt, dpkxtconsole, Internet, setConfig, Terminal, WARun
 - Compatible con:
   - `.exe` estándar
   - Archivos `.wpi`
