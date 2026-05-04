@@ -8,6 +8,9 @@
 **deneOS** es un miniOS que se ejecuta sobre Windows.  
 Ligero, rápido y con una interfaz totalmente personalizable, está diseñado para ofrecer una experiencia minimalista y directa, sin complicaciones ni distracciones.
 
+### -- IMPORTANTE --
+Desde el 4 de mayo de 2026 ya no hay ningún proyecto de deneOS que use .NET 8 ya que denePathParser ha sido actualizado a .NET 9. Ya no es obligatorio .NET 8 para contribuir o desarrollar.
+
 ### 💻 ¿Qué es un miniOS?
 
 Un **miniOS** (mini operating system) es una aplicación que corre a pantalla completa, imitando el comportamiento y diseño de un sistema operativo.  
@@ -21,8 +24,8 @@ En resumen: es como tener tu propio sistema operativo… ¡pero encima de Window
 
 ### 🧩 Tecnologías usadas
 
-- **.NET 8** -> denePathParser
-- **.NET 9** -> controlcenter, deneAI, deneOS, deneTerm, dosu, dosu.AI, dosu.System, dosu.UI, DPKBundler
+- **.NET 8** -> Nada ya
+- **.NET 9** -> controlcenter, deneAI, deneOS, deneTerm, dosu, dosu.AI, dosu.System, dosu.UI, DPKBundler, denePathParser
 - **.NET 10** -> aboutDialogs, Calendar.IO, deneFiles, deneNavi, deneOS Launcher, deneStore, dpkxt, dpkxtconsole, Internet, setConfig, Terminal, WARun
 - Compatible con:
   - `.exe` estándar
