@@ -35,7 +35,6 @@ namespace deneOS.init
         {
             base.OnFormClosed(e);
 
-            // ✅ Limpiar caché al cerrar
             dosu.UI.Scaling.ClearCache();
         }
         /// <summary>

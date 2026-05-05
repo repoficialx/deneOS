@@ -155,10 +155,11 @@ namespace deneOS_Launcher
             Thread.Sleep(1000);
             ChangeLine(progressLineIndex, "Restarting in 1...");
             Thread.Sleep(1000);
-#if DEBUG
-            Log("[DEBUG] Shutdown skipped in debug mode.");
-            return;
-#endif
+            //if (Debugger.IsAttached)
+            //{
+            //Log("[DEBUG] Shutdown skipped in debug mode.");
+            //return;
+            //}
             Process.Start(@"shutdown -r -t 0");
         }
         int progressLineIndex = -1;
@@ -202,7 +203,7 @@ namespace deneOS_Launcher
         void Log(string text)
         {
             label1.Text += text + "\r\n";
-            Application.DoEvents(); // opcional, pero ayuda visualmente
+            Application.DoEvents();
         }
         async Task DownloadFileAsync(string url, string path, Action<int> onProgress)
         {

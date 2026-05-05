@@ -38,14 +38,55 @@ namespace deneOS
         }
         public static bool ObtenerEsEthernet()
         {
+            bool hasWifi = false;
             foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
             {
-                if ((nic.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
+                if (nic.OperationalStatus != OperationalStatus.Up)
+                    continue;
+
+                if (nic.NetworkInterfaceType == NetworkInterfaceType.Wireless80211)
+                {
+                    hasWifi = true;
+                    break;
+                }
+            }
+
+            foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (nic.OperationalStatus != OperationalStatus.Up)
+                    continue;
+
+                string desc = (nic.Description ?? string.Empty).ToLowerInvariant();
+                string name = (nic.Name ?? string.Empty).ToLowerInvariant();
+
+                if (desc.Contains("wfp native mac layer") || desc.Contains("lightweight filter") ||
+                    desc.Contains("virtual") || desc.Contains("vpn") || desc.Contains("tunnel") ||
+                    desc.Contains("pseudo") || desc.Contains("loopback") || desc.Contains("hyper-v") ||
+                    desc.Contains("vmware") || desc.Contains("hamachi") || desc.Contains("wireguard"))
+                {
+                    continue;
+                }
+
+                if (nic.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
                      nic.NetworkInterfaceType == NetworkInterfaceType.GigabitEthernet ||
                      nic.NetworkInterfaceType == NetworkInterfaceType.FastEthernetFx ||
-                     nic.NetworkInterfaceType == NetworkInterfaceType.FastEthernetT) &&
-                    nic.OperationalStatus == OperationalStatus.Up)
+                    nic.NetworkInterfaceType == NetworkInterfaceType.FastEthernetT)
                 {
+                    var ipProps = nic.GetIPProperties();
+                    bool hasIPv4 = ipProps.UnicastAddresses.Any(u => u.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork);
+                    bool hasGateway = ipProps.GatewayAddresses.Any(g => g.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork);
+
+                    if (!hasIPv4 && !hasGateway)
+                        continue;
+
+                    if (hasWifi)
+                    {
+                        Console.WriteLine("[INFO] Wi-Fi is active, ignoring Ethernet-like adapter: " + nic.Description);
+                        continue;
+                    }
+
+                    Console.WriteLine("[INFO] Ethernet interface detected: " + nic.Name);
+                    Console.WriteLine("[INFO] Interface type: " + nic.NetworkInterfaceType);
                     return true;
                 }
             }
@@ -219,7 +260,8 @@ namespace deneOS
         {
 
             Console.WriteLine("[INFO] Getting Internet status...");
-            if (ObtenerEsEthernet())
+            bool isEthernet = ObtenerEsEthernet();
+            if (isEthernet)
             {
                 // Si está conectado por Ethernet, mostrar icono de cable
                 string ethernetIcon = "";
