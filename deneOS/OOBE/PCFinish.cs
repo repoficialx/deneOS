@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace deneOS.OOBE
 {
@@ -28,6 +29,15 @@ namespace deneOS.OOBE
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // Registro
+            string wpPath = @"c:\windows\web\Wallpaper\windows\img0.jpg";
+            using RegistryKey key = Registry.CurrentUser.CreateSubKey(@"Software\deneOS\desktop");
+            if (key.Equals(null)) return;
+            // Establecer valor DWORD showIcons = 1
+            key.SetValue("showIcons", 1, RegistryValueKind.DWord);
+
+            // Establecer valor cadena wallpaper = ruta de la imagen
+            key.SetValue("wallpaper", wpPath, RegistryValueKind.String);
             PantallaTerminada?.Invoke(this, EventArgs.Empty);
         }
     }

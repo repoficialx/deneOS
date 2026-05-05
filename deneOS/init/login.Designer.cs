@@ -34,6 +34,8 @@
             txt5 = new Label();
             txt4 = new Label();
             pictureBox1 = new PictureBox();
+            lggng = new Label();
+            invusrpss = new Label();
             txt6 = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -107,6 +109,34 @@
             pictureBox1.TabIndex = 25;
             pictureBox1.TabStop = false;
             // 
+            // lggng
+            // 
+            lggng.AutoSize = true;
+            lggng.Dock = DockStyle.Top;
+            lggng.Font = new Font("Segoe UI Variable Display", 18F);
+            lggng.ForeColor = SystemColors.Control;
+            lggng.Location = new Point(352, 240);
+            lggng.Name = "lggng";
+            lggng.Size = new Size(236, 33);
+            lggng.TabIndex = 26;
+            lggng.Text = "";
+            lggng.TextAlign = ContentAlignment.MiddleCenter;
+            lggng.Visible = false;
+            // 
+            // invusrpss
+            // 
+            invusrpss.AutoSize = true;
+            invusrpss.Dock = DockStyle.Top;
+            invusrpss.Font = new Font("Segoe UI Variable Display", 18F);
+            invusrpss.ForeColor = Color.FromArgb(233, 76, 75);
+            invusrpss.Location = new Point(352, 240);
+            invusrpss.Name = "invusrpss";
+            invusrpss.Size = new Size(236, 33);
+            invusrpss.TabIndex = 27;
+            invusrpss.Text = "";
+            invusrpss.TextAlign = ContentAlignment.MiddleCenter;
+            invusrpss.Visible = false;
+            // 
             // txt6
             // 
             txt6.BackColor = SystemColors.Control;
@@ -137,6 +167,8 @@
             tableLayoutPanel1.Controls.Add(txt5, 1, 3);
             tableLayoutPanel1.Controls.Add(txt4, 1, 2);
             tableLayoutPanel1.Controls.Add(pictureBox1, 2, 1);
+            tableLayoutPanel1.Controls.Add(lggng, 2, 2);
+            tableLayoutPanel1.Controls.Add(invusrpss, 2, 2);
             tableLayoutPanel1.Controls.Add(txt6, 2, 4);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
@@ -185,6 +217,8 @@
         private Label txt5;
         private Label txt4;
         private PictureBox pictureBox1;
+        private Label lggng;
+        private Label invusrpss;
         private Button txt6;
         private TableLayoutPanel tableLayoutPanel1;
     }

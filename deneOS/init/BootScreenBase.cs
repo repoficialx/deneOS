@@ -147,7 +147,7 @@ namespace deneOS.init
         private void DisableExplorer()
         {
             foreach (var p in Process.GetProcessesByName("explorer"))
-                p.Kill(true);
+                p.Kill();
 
             ConfigureExplorerAutoRestart();
         }
@@ -174,6 +174,14 @@ namespace deneOS.init
             key.SetValue(valueName, 0, RegistryValueKind.DWord);
             Console.WriteLine("[INFO] AutoRestartShell → 0. Reiniciando...");
             SetAutoRun();
+
+            MessageBox.Show(
+        "deneOS needs to restart Windows to complete shell configuration.\n\n" +
+        "Press OK to restart now.",
+        "deneOS Setup",
+        MessageBoxButtons.OK,
+        MessageBoxIcon.Information
+    );
             Process.Start("shutdown.exe", "/r /t 0");
         }
 
@@ -189,21 +197,21 @@ namespace deneOS.init
             Console.WriteLine("[INFO] Verificando estructura de archivos...");
             try
             {
+                //cambios: ahora el tema de config y lang es cosa del OOBE que depende del bs para cargar así que NO lo consideramos crítico más
+                
                 bool hasFolders = Directory.Exists(@"C:\DENEOS") &&
-                                  Directory.Exists(@"C:\DENEOS\sysconf");
-                bool hasConfig  = File.Exists(@"C:\DENEOS\sysconf\config.ini");
-                bool hasLang    = File.Exists(@"C:\DENEOS\sysconf\lang.ini") &&
-                                  !string.IsNullOrWhiteSpace(
-                                      File.ReadAllText(@"C:\DENEOS\sysconf\lang.ini"));
+                  Directory.Exists(@"C:\DENEOS\sysconf");
 
-                if (hasFolders && hasConfig && hasLang)
+                bool hasCore = File.Exists(@"C:\DENEOS\core\deneOS.exe");
+
+                if (hasFolders && hasCore)
                 {
                     Console.WriteLine("[SUCCESS] Folder structure OK");
                     return;
                 }
 
                 // BootScreenVertical crea la estructura; BootScreen (horizontal) avisa y sale.
-                OnMissingStructure(hasFolders, hasConfig, hasLang);
+                OnMissingStructure(hasFolders, hasCore);
             }
             catch (Exception ex)
             {
@@ -215,7 +223,7 @@ namespace deneOS.init
         /// Comportamiento cuando faltan archivos críticos.
         /// BootScreen muestra error y cierra; BootScreenVertical los crea.
         /// </summary>
-        protected virtual void OnMissingStructure(bool hasFolders, bool hasConfig, bool hasLang)
+        protected virtual void OnMissingStructure(bool hasFolders, bool hasCore)
         {
             Console.WriteLine("[CRITICAL] Archivos críticos no encontrados.");
             MessageBox.Show(
