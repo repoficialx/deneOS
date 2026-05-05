@@ -68,8 +68,8 @@ namespace deneOS
                 }
 
                 if (nic.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
-                     nic.NetworkInterfaceType == NetworkInterfaceType.GigabitEthernet ||
-                     nic.NetworkInterfaceType == NetworkInterfaceType.FastEthernetFx ||
+                    nic.NetworkInterfaceType == NetworkInterfaceType.GigabitEthernet ||
+                    nic.NetworkInterfaceType == NetworkInterfaceType.FastEthernetFx ||
                     nic.NetworkInterfaceType == NetworkInterfaceType.FastEthernetT)
                 {
                     var ipProps = nic.GetIPProperties();
@@ -221,7 +221,7 @@ namespace deneOS
             BatteryChargeStatus chargeStatus = status.BatteryChargeStatus;
             PowerLineStatus powerLineStatus = status.PowerLineStatus;
             bool isCharging = chargeStatus.HasFlag(BatteryChargeStatus.Charging);
-            bool isSaverOn = dosu.Power.BatteryStatus.IsBatterySaverOn();
+            bool isSaverOn = dosu.System.Power.BatteryStatus.IsBatterySaverOn();
             label22.Text = GetBatteryIcon(getBattery, isCharging, isSaverOn);
         }
         private async void timer1_Tick(object sender, EventArgs e)
@@ -236,9 +236,9 @@ namespace deneOS
             //CAMBIAR ICONO (LABEL22)
             BatteryChargeStatus chargeStatus = status.BatteryChargeStatus;
             PowerLineStatus powerLineStatus = status.PowerLineStatus;
-
+            Console.WriteLine("[INFO] Battery percentage: " + getBattery + "%, Charge status: " + chargeStatus + ", Power line status: " + powerLineStatus);
             bool isCharging = chargeStatus.HasFlag(BatteryChargeStatus.Charging);
-            bool isSaverOn = dosu.Power.BatteryStatus.IsBatterySaverOn();
+            bool isSaverOn = dosu.System.Power.BatteryStatus.IsBatterySaverOn();
 
             label22.Text = GetBatteryIcon(getBattery, isCharging, isSaverOn);
             await gws();
@@ -293,7 +293,7 @@ namespace deneOS
                 return; // no hay conexión a Internet
             }
             Console.WriteLine("[INFO] Internet connection detected. Getting signal strength...");
-            var wifiSignal = await dosu.Network.WiFiStatus.GetWifiSignalStrengthAsync(); // 0 - 100
+            var wifiSignal = await dosu.System.Network.WiFiStatus.GetWifiSignalStrengthAsync(); // 0 - 100
 
             if (wifiSignal < 0)
                 wifiIcon = ""; // no wifi

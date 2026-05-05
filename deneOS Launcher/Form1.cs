@@ -170,7 +170,7 @@ namespace deneOS_Launcher
                 }
             }
 
-            // 4️⃣ Reemplazo atómico
+            // 4️⃣ Reemplazo
             File.Move(tempPath, exePath, overwrite: true);
 
             if (verbose) MessageBox.Show(@"deneOS updated successfully.");
@@ -381,7 +381,6 @@ namespace deneOS_Launcher
                 }
             }
         }
-
         void DownloadDeneNotes()
         {
             const string denenotespath = @"C:\DENEOS\systemApps\deneNotes\";
