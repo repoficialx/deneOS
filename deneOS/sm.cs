@@ -15,32 +15,44 @@ namespace deneOS
 {
     public partial class sm : Form
     {
+        private float _dpiScale = 1.0f;
+
         public sm()
         {
             InitializeComponent();
 
-            int startMenuWidth = 378;
-            int startMenuHeight = 513;
+            _dpiScale = dosu.UI.Scaling.GetSystemDpiScale();
 
-            int screenWidth = Screen.PrimaryScreen.Bounds.Width;
-            int screenHeight = Screen.PrimaryScreen.Bounds.Height;
+            int startMenuWidth = (int)(378 * _dpiScale);
+            int startMenuHeight = (int)(513 * _dpiScale);
 
-            int taskbarHeight = (int)(48 * (dosu.UI.Scaling.GetScaling(new tbar()) / 100));
+            var primaryScreen = Screen.PrimaryScreen ?? Screen.AllScreens.FirstOrDefault();
+            int screenWidth = Screen.PrimaryScreen?.Bounds.Width ?? 1920;
+            int screenHeight = Screen.PrimaryScreen?.Bounds.Height ?? 1080;
+
+            int taskbarHeight = (int)(48 * _dpiScale);
 
             this.FormBorderStyle = FormBorderStyle.None;
             this.StartPosition = FormStartPosition.Manual;
             this.Size = new Size(startMenuWidth, startMenuHeight);
             this.Location = new Point(0, screenHeight - taskbarHeight - startMenuHeight);
-            this.BackColor = globaldata.isImageLoaded ? ColorTranslator.FromHtml(globaldata.wallpaperPredominantColorHex) : Color.Black;
 
+            Color bgColor = globaldata.isImageLoaded ? ColorTranslator.FromHtml(globaldata.wallpaperPredominantColorHex) : Color.Black;
+            if (bgColor.GetBrightness() > 0.6f)
+                bgColor = Color.FromArgb(30, 30, 30);
+            this.BackColor = bgColor;
+            this.ForeColor = Color.White;
+            panel2.BackColor = Color.FromArgb(24, 24, 24);
             panel2.BringToFront();
 
+            dosu.UI.Scaling.ScaleForm(this);
+
             rec.Text = (string)T("dApp");
-            this.rec.Location = new System.Drawing.Point(180, 21);
+            this.rec.Location = new System.Drawing.Point((int)(180 * _dpiScale), (int)(21 * _dpiScale));
             if (System.IO.File.Exists(@"C:\SOFTWARE\Recip\recip.wpi"))
             {
                 rec.Text = (string)T("App");
-                rec.Location = new System.Drawing.Point(312, 21);
+                rec.Location = new System.Drawing.Point((int)(312 * _dpiScale), (int)(21 * _dpiScale));
             }
             var Day = DateTime.Now.Day;
             switch (Day)

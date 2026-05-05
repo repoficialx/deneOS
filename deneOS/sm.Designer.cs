@@ -548,7 +548,7 @@
             // sm
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
-            AutoScaleMode = AutoScaleMode.Dpi;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = SystemColors.ControlText;
             ClientSize = new Size(378, 498);
             Controls.Add(panel2);

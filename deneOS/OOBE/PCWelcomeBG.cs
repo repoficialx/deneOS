@@ -16,6 +16,16 @@ namespace deneOS.OOBE
         public PCWelcomeBG()
         {
             InitializeComponent();
+
+            // cambiar Size al tamaño de la pantalla
+            var screenSize = Screen.PrimaryScreen.Bounds.Size;
+            this.Size = screenSize;
+            // centrar el panelContenedor
+            panelContenedor.Location = new Point(
+                (this.ClientSize.Width - panelContenedor.Width) / 2,
+                (this.ClientSize.Height - panelContenedor.Height) / 2
+            );
+
             MostrarWelcome();
             this.DoubleBuffered = true;
         }

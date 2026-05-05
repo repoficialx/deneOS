@@ -34,10 +34,10 @@
             // panelContenedor
             // 
             panelContenedor.BackColor = Color.Transparent;
-            panelContenedor.Dock = DockStyle.Fill;
+            //panelContenedor.Dock = DockStyle.Fill;
             panelContenedor.Location = new Point(0, 0);
             panelContenedor.Name = "panelContenedor";
-            panelContenedor.Size = new Size(1920, 1080);
+            panelContenedor.Size = new Size(707, 403);
             panelContenedor.TabIndex = 0;
             // 
             // PCWelcomeBG

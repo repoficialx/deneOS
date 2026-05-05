@@ -5,6 +5,7 @@ namespace deneOS.init
 {
     public partial class logonui : Form
     {
+        private float _dpiScale;
         public Form? formToShow;
         /// <summary>
         /// Inicialización de Compontentes vía InitializeComponent();
@@ -20,14 +21,13 @@ namespace deneOS.init
                 return;
             }
             InitializeComponent();
+            _dpiScale = dosu.UI.Scaling.GetSystemDpiScale();
             dosu.UI.Scaling.ScaleForm(this);
 
-
-            float rowHeight = tableLayoutPanel1.GetRowHeights()[1]; // altura de la fila 0
-            txt1.Font = new Font(txt1.Font.FontFamily, rowHeight * 0.6f); // 60% de la altura
-
-            float row2Height = tableLayoutPanel1.GetRowHeights()[2];
-            txt2.Font = new Font(txt2.Font.FontFamily, row2Height * 0.6f);
+            // Ajustar fuentes después de ScaleForm para evitar doble escalado
+            txt1.Font = new Font("Segoe UI Variable Display", 36f * _dpiScale);
+            txt2.Font = new Font("Segoe UI Variable Display", 18f * _dpiScale);
+            button2.Font = new Font("Segoe MDL2 Assets", 16f * _dpiScale, FontStyle.Bold);
 
             this.Show();
         }

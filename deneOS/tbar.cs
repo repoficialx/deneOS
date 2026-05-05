@@ -19,6 +19,15 @@ namespace deneOS
     public partial class tbar : Form
     {
         private KeyboardHook _keyboardHook = new KeyboardHook();
+        private float _dpiScale = 1.0f;
+        private int _taskbarHeight = 48;
+
+        private static float GetDpiScale()
+        {
+            using var g = Graphics.FromHwnd(IntPtr.Zero);
+            return g.DpiX / 96f;
+        }
+
         public tbar()
         {
             Console.WriteLine("[INFO] Initializing taskbar");
@@ -48,16 +57,25 @@ namespace deneOS
             Console.WriteLine("[INFO] Loading taskbar...");
             _keyboardHook.HookKeyboard();
             Console.WriteLine("[INFO] Keyboard hooked.");
-            int screenWidth = Screen.PrimaryScreen.Bounds.Width;
-            int screenHeight = Screen.PrimaryScreen.Bounds.Height;
+            var primaryScreen = Screen.PrimaryScreen ?? Screen.AllScreens.FirstOrDefault();
+            int screenWidth = primaryScreen?.Bounds.Width ?? 1920;
+            int screenHeight = primaryScreen?.Bounds.Height ?? 1080;
             Console.WriteLine("[INFO] Screen resolution: " + screenWidth + "x" + screenHeight);
-            //uint dpi = GetDpiForWindow();
-            int taskbarHeight = 48; // O el valor que tú elijas (¡como los 48px de Windows!)
+            _dpiScale = GetDpiScale();
+            int scaledHeight = (int)(48 * _dpiScale + 0.5f);
+            _taskbarHeight = scaledHeight < 48 ? 48 : scaledHeight;
+            Console.WriteLine("[INFO] DPI scale: " + _dpiScale + ", taskbar height: " + _taskbarHeight);
             Console.WriteLine("[INFO] Setting up taskbar...");
             this.FormBorderStyle = FormBorderStyle.None;
             this.StartPosition = FormStartPosition.Manual;
-            this.Size = new Size(screenWidth, taskbarHeight);
-            this.Location = new Point(0, screenHeight - taskbarHeight);
+            this.Size = new Size(screenWidth, _taskbarHeight);
+            this.Location = new Point(0, screenHeight - _taskbarHeight);
+            panel1.Size = new Size(screenWidth, _taskbarHeight);
+            panel16.Size = new Size((int)(524 * _dpiScale + 0.5f), _taskbarHeight);
+            flowLayoutPanel1.WrapContents = false;
+            flowLayoutPanel3.WrapContents = false;
+            flowLayoutPanel1.AutoSize = false;
+            flowLayoutPanel3.AutoSize = false;
             this.TopMost = true;
             Console.WriteLine("[INFO] Taskbar docked on bottom.");
             Console.WriteLine("[INFO] Initializing timers...");
@@ -92,6 +110,41 @@ namespace deneOS
             utb.Start();
             
             Console.WriteLine("[INFO] Timers started. Setting up Windows key hook.");
+            dosu.UI.Scaling.ScaleForm(this);
+            this.Size = new Size(screenWidth, _taskbarHeight);
+            this.Location = new Point(0, screenHeight - _taskbarHeight);
+            panel1.Size = new Size(screenWidth, _taskbarHeight);
+            panel16.Size = new Size((int)(560 * _dpiScale + 0.5f), _taskbarHeight);
+            flowLayoutPanel1.Size = new Size(screenWidth - panel16.Width, _taskbarHeight);
+            flowLayoutPanel3.Size = new Size(panel16.Width, _taskbarHeight);
+            panel2.Size = new Size(_taskbarHeight, _taskbarHeight);
+            button1.Size = new Size(_taskbarHeight, _taskbarHeight);
+            panel17.Size = new Size((int)(180 * _dpiScale + 0.5f), _taskbarHeight);
+            label19.Size = new Size(panel17.Width, _taskbarHeight / 2);
+            label19.Location = new Point(0, 0);
+            label19.Font = new Font(label19.Font.FontFamily, 10F * _dpiScale, label19.Font.Style);
+            label19.TextAlign = ContentAlignment.BottomRight;
+            label20.Size = new Size(panel17.Width, _taskbarHeight - label19.Height);
+            label20.Location = new Point(0, label19.Height);
+            label20.Font = new Font(label20.Font.FontFamily, 8.5F * _dpiScale, label20.Font.Style);
+            label20.TextAlign = ContentAlignment.TopRight;
+            label21.Size = new Size((int)(56 * _dpiScale + 0.5f), _taskbarHeight);
+            label22.Size = new Size((int)(60 * _dpiScale + 0.5f), _taskbarHeight);
+            label25.Size = new Size((int)(56 * _dpiScale + 0.5f), _taskbarHeight);
+            label23.Size = new Size((int)(60 * _dpiScale + 0.5f), _taskbarHeight);
+            label24.Size = new Size((int)(60 * _dpiScale + 0.5f), _taskbarHeight);
+            label21.Margin = new Padding(0);
+            label22.Margin = new Padding(0);
+            label25.Margin = new Padding(0);
+            label23.Margin = new Padding(0);
+            label24.Margin = new Padding(0);
+            label21.TextAlign = ContentAlignment.MiddleCenter;
+            label22.TextAlign = ContentAlignment.MiddleCenter;
+            label25.TextAlign = ContentAlignment.MiddleCenter;
+            label23.TextAlign = ContentAlignment.MiddleCenter;
+            label24.TextAlign = ContentAlignment.MiddleCenter;
+            flowLayoutPanel3.Padding = new Padding(0);
+            flowLayoutPanel3.Margin = new Padding(0);
             // Suscribirse al evento de la tecla de Windows
             // temporalmente no disponible porque saltaba excepción, así que la parte en donde se hookea pues está comentada
             _keyboardHook.WindowsKeyPressed += (s, e) =>
@@ -390,7 +443,7 @@ namespace deneOS
             home.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             home.Location = new System.Drawing.Point(0, 0);
             home.Name = "button1";
-            home.Size = new System.Drawing.Size(72, 48);
+            home.Size = new System.Drawing.Size(_taskbarHeight, _taskbarHeight);
             home.TabIndex = 0;
             home.UseVisualStyleBackColor = true;
             home.Click += new System.EventHandler(this.button1_Click);
@@ -439,7 +492,7 @@ namespace deneOS
             app1.BackgroundImageLayout = ImageLayout.Zoom;
             app1.FlatStyle = FlatStyle.Flat;
             app1.FlatAppearance.BorderSize = 0;
-            app1.Size = new Size(50, 48);
+            app1.Size = new Size(_taskbarHeight, _taskbarHeight);
             app1.BackColor = Color.Transparent;
             
             

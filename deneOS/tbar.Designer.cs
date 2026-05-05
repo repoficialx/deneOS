@@ -198,7 +198,7 @@
             // tbar
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
-            AutoScaleMode = AutoScaleMode.Dpi;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = SystemColors.ControlText;
             ClientSize = new Size(1920, 48);
             Controls.Add(panel1);

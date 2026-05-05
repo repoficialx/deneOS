@@ -76,7 +76,7 @@ public class CustomMessageBox : Form
         /// <summary>
         /// Obtiene el factor de escala actual del sistema
         /// </summary>
-        private static float GetSystemDpiScale()
+        public static float GetSystemDpiScale()
         {
             using Graphics g = Graphics.FromHwnd(IntPtr.Zero);
             return g.DpiX / 96f; // 96 DPI = 100%, 120 DPI = 125%, etc.
