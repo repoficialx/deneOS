@@ -7,6 +7,8 @@
     <Nullable>enable</Nullable>
     <SupportedOSPlatformVersion>10.0.22000.0</SupportedOSPlatformVersion>
     <SignAssembly>False</SignAssembly>
+    <PublishSingleFile>true</PublishSingleFile>
+	  <SelfContained>true</SelfContained>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
