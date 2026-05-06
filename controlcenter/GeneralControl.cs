@@ -82,39 +82,84 @@ namespace controlcenter
             currentUsuario.Font = new Font("Segoe UI", 10);
             currentUsuario.AutoSize = true;
 
-            // Checkbox animaciones
-            CheckBox cbAnimaciones = new CheckBox();
-            cbAnimaciones.Text = (string)T("dnOSdefshell");
-            cbAnimaciones.Location = new Point(20, 90);
-            cbAnimaciones.Font = new Font("Segoe UI", 10);
-            cbAnimaciones.AutoSize = true;
-            cbAutoStart.CheckedChanged += (s, e) =>
+            // Checkbox shell
+            CheckBox cbShell = new CheckBox();
+            cbShell.Text = (string)T("dnOSdefshell");
+            cbShell.Location = new Point(20, 90);
+            cbShell.Font = new Font("Segoe UI", 10);
+            cbShell.AutoSize = true;
+            cbShell.CheckedChanged += (s, e) =>
             {
-                //Hacer deneOS.exe shell (en vez de explorer) elevando el programa
-                if (cbAutoStart.Checked)
+                //HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon
+                if (cbShell.Checked)
                 {
-                    MessageBox.Show((string)T("dnOSwillstartwithWindows"));
-                    // Aquí se podría agregar el código para modificar el registro de Windows
-                    // Por ejemplo, agregar una entrada en el registro de inicio
-                    // Hacerlo de forma segura y con permisos adecuados
-                    // Elevar para obtener permisos de administrador
+                    MessageBox.Show((string)T("dnOSwillbeshell"));
                     if (!AdminHelper.IsRunningAsAdmin())
                     {
                         AdminHelper.RestartAsAdmin("page:general");
                         MessageBox.Show($"{T("err")}: {T("errnotpermission")}", $"{T("permsneeded")}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return; // O cerrar la función si es en Main()
+                        return;
+                    } else
+                    {
+                        try {
+                            using (var key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon", true))
+                            {
+                                key.SetValue("Shell", @"C:\DENEOS\core\deneOS.exe", Microsoft.Win32.RegistryValueKind.String);
+                            }
+                            cbAutoStart.Checked = false;
+                            cbAutoStart.Enabled = false;
+                            MessageBox.Show($"{T("regeditedsuccess")}. {T("dnOSwillbeshell")}");
+                        } catch (Exception ex)
+                        {
+                            MessageBox.Show($"{T("errconfiguringshell")}: {ex.Message}");
+                        }
+                    }
+                } else {
+                    MessageBox.Show((string)T("dnOSwillnotbeshell"));
+                    if (!AdminHelper.IsRunningAsAdmin())
+                    {
+                        AdminHelper.RestartAsAdmin("page:general");
+                        MessageBox.Show($"{T("err")}: {T("errnotpermission")}", $"{T("permsneeded")}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
                     else
                     {
                         try
                         {
-                            // Código para modificar el registro
-                            // Aquí se puede usar Microsoft.Win32.Registry para agregar la entrada de inicio
-                            // Ejemplo:
-                            // using (var key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run"))
-                            // {
-                            //     key.SetValue("deneOS", @"C:\ruta\a\deneOS.exe");
-                            // }
+                            using (var key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon", true))
+                            {
+                                key.SetValue("Shell", @"explorer.exe", Microsoft.Win32.RegistryValueKind.String);
+                            }
+                            MessageBox.Show($"{T("regeditedsuccess")}. {T("dnOSwillnotbeshell")}");
+                            cbAutoStart.Enabled = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"{T("errconfiguringshell")}: {ex.Message}");
+                        }
+                    }
+                }
+            };
+
+            cbAutoStart.CheckedChanged += (s, e) =>
+            {
+                if (cbAutoStart.Checked)
+                {
+                    MessageBox.Show((string)T("dnOSwillstartwithWindows"));
+                    if (!AdminHelper.IsRunningAsAdmin())
+                    {
+                        AdminHelper.RestartAsAdmin("page:general");
+                        MessageBox.Show($"{T("err")}: {T("errnotpermission")}", $"{T("permsneeded")}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            using (var key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run"))
+                            {
+                                key.SetValue("deneOS", @"C:\DENEOS\core\deneOS.exe");
+                            }
                             MessageBox.Show($"{T("regeditedsuccess")}. {T("dnOSwillstartwithWindows")}");
                         }
                         catch (Exception ex)
@@ -127,6 +172,27 @@ namespace controlcenter
                 else
                 {
                     MessageBox.Show((string)T("notinitdeneOSwithWindows"));
+                    if (!AdminHelper.IsRunningAsAdmin())
+                    {
+                        AdminHelper.RestartAsAdmin("page:general");
+                        MessageBox.Show($"{T("err")}: {T("errnotpermission")}", $"{T("permsneeded")}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            using (var key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run"))
+                            {
+                                key.DeleteValue("deneOS", false);
+                            }
+                            MessageBox.Show($"{T("regeditedsuccess")}. {T("notinitdeneOSwithWindows")}");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"{T("errconfiguringautostart")}: {ex.Message}");
+                        }
+                    }
                 }
             };
 
@@ -156,7 +222,7 @@ namespace controlcenter
             this.Controls.Add(lblIdioma);
             this.Controls.Add(cbIdioma);
             this.Controls.Add(cbAutoStart);
-            this.Controls.Add(cbAnimaciones);
+            this.Controls.Add(cbShell);
             this.Controls.Add(btnEliminarUsuario);
             this.Controls.Add(currentUsuario);
 
