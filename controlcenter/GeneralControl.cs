@@ -104,7 +104,7 @@ namespace controlcenter
                         try {
                             using (var key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon", true))
                             {
-                                key.SetValue("Shell", @"C:\DENEOS\core\deneOS.exe", Microsoft.Win32.RegistryValueKind.String);
+                                key.SetValue("Shell", @"C:\DENEOS\core\deneOS.Watchdog.exe", Microsoft.Win32.RegistryValueKind.String);
                             }
                             cbAutoStart.Checked = false;
                             cbAutoStart.Enabled = false;

@@ -1,7 +1,7 @@
 # 🧠 deneOS  
 ![Versión](https://img.shields.io/badge/v0.2-beta-blue)  
-![Compatible con .exe](https://img.shields.io/badge/exe-compatible-darkgreen)  
-![Compatible con .wpi](https://img.shields.io/badge/wpi-compatible-skyblue)
+![Compatible con Windows 11+](https://img.shields.io/badge/win11-compatible-darkgreen)  
+![Empaquetado DPK](https://img.shields.io/badge/dpk-packaging-skyblue)
 
 ### 📌 ¿Qué es *deneOS*?
 
@@ -27,15 +27,47 @@ En resumen: es como tener tu propio sistema operativo… ¡pero encima de Window
 - **.NET 8** -> Nada ya
 - **.NET 9** -> controlcenter, deneAI, deneOS, deneTerm, dosu, dosu.AI, dosu.System, dosu.UI, DPKBundler, denePathParser
 - **.NET 10** -> aboutDialogs, Calendar.IO, deneFiles, deneNavi, deneOS Launcher, deneStore, dpkxt, dpkxtconsole, Internet, setConfig, Terminal, WARun
-- Compatible con:
-  - `.exe` estándar
-  - Archivos `.wpi`
-  - Archivos `.dpk` y próximamente con `.dna`
+
+### 📦 Aplicaciones, paquetes, instaladores y desarrollo
+#### 📄 Documentación de tipos de aplicación Made for deneOS:
+
+- *.dpk -> Paquete instalador diseñado por DPKBundler o manualmente, consiste en los archivos de programa con una carpeta 'meta' y dentro de esta, un 'manifest.json' con información de la aplicación
+
+- *.dna -> Aplicación portable sin guardado interno. Puede ser autocontenida y sus datos de guardado deben realizarse de forma local en C:\DNUSR\Data\<nombre_app>\ o de forma de sistema en C:\SOFTWARE\GlobalSaveData\<nombre_app>\. De todas maneras se puede, aunque no se recomienda, guardar en (Usuario)\AppData, C:\ProgramData o similares
+
+- *.wpi -> Archivo ejecutable de Windows (.exe) pero con la extensión cambiada a wpi, que indica compatibilidad con el antiguo miniOS 'Windoze' y se mantiene por compatibilidad legacy en deneOS.
+- - Aviso -> *El soporte de .wpi será retirado en deneOS 1.0*
+
+#### 🈸💼 Documentación de rutas y librerías de sistema.
+
+- *denePathParser*
+- - denePathParser es una simple librería para deneOS que permite convertir rutas en formato interno (C:\DNUSR\Documents) a externo (~\Documents) y viceversa. **Especialmente recomendado en apps con interfaz gráfica que muestren rutas de archivo**
+
+- *dosu*
+- - dosu es una librería completa para deneOS que permite acceder a funciones del sistema de deneOS y mucho más, al sistema con acceso a la configuración de conexión a internet, brillo de pantallas y más funciones
+- - *dosu.System*
+- - - dosu.System es una extensión de dosu que permite acceder a utilidades más internas y del sistema. Solo usar si es necesario.
+- - *dosu.UI*
+- - - dosu.UI es una extensión de dosu para aplicaciones de winforms (.NET) con funciones de interfaz adaptadas a deneOS
+- - *dosu.AI*
+- - - dosu.AI es la extensión de IA para dosu con funciones de la IA local de deneOS (deneAI). Aún no está completamente terminado aunque ya soporta historial y la lista oficial de modelos compatibles con deneOS. Funciona completamente sin conexión.
+
+- *Rutas de tipo deneOS*
+- - *Rutas de nivel deneOS*
+- - - *Usuario*
+- - - - Los archivos de usuario se almacenarán en C:\DNUSR\, que en estilo deneOS es ~\, y las aplicaciones no deben permitir salir de ahí con `..` ni nada similar.
+- - - - Las carpetas generadas por defecto son Data, Desktop, Documents y Downloads
+- - - *Software*
+- - - - Todas las aplicaciones deberán estar guardadas en C:\SOFTWARE\, que en tipo deneOS es ~S\, y las aplicacioners solo pueden permitir salir si se activan con la flag `/dangerZone:enableRoot` o similares.
+- - - *Sistema*
+- - - - Esta ruta no debe ser ni visible ni accesible desde aplicaciones Made for deneOS de la deneStore. Solo si se trabaja con `/specialMode:accessSystem^Y` como flag. La ruta real es C:\DENEOS\.
+> [!WARNING]  
+> Solo se puede acceder a esta ruta si el motivo está explícitamente documentado. NUNCA ninguna aplicación podrá modificar C:\DENEOS\core\. Si esta ruta es modificada, la aplicación será inmediatamente rechazada y/o eliminada de deneStore y se retirará el permiso de publicación.
+- *Rutas de Windows*
+- - Para tratar con rutas de Windows en aplicaciones para deneOS, solo si es realmente necesario mostrarlas, se prefiere que se muestre como ~W\. Este tipo de ruta no es convertible con denePathParser y no es recomendada.
 
 ### 🛠️ Próximamente
 
-- 🧙 Instalador gráfico [NUEVO v0.2b]
-- 🔁 Arranque automático al iniciar Windows [NUEVO (cc) v0.2b]
 - 🎨 Temas personalizados y gestor de ventanas propio
 - 🧩 Sistema modular para apps y ajustes
 

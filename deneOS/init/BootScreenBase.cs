@@ -4,6 +4,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.IO.Pipes;
 using System.Windows.Forms;
 using static dosu.UniversalConfiguration;
 using static Traductor;
@@ -59,9 +60,42 @@ namespace deneOS.init
         protected abstract void PositionLogo();
 
         // ── Constructor compartido ───────────────────────────────────────
-
-        protected void InitializeBootFlow()
+        private HeartbeatClient heartbeat = new();
+        private async void heartbeatTimer_Tick(object sender, EventArgs e)
         {
+            // Este timer es solo para mantener el proceso vivo y responder al watchdog.
+            // No hace nada visible ni consume recursos significativos.
+
+            while (true)
+            {
+                try
+                {
+                    using var client = new NamedPipeClientStream(".", "deneos-heartbeat", PipeDirection.InOut);
+                    client.Connect(1000);
+
+                    using var writer = new StreamWriter(client) { AutoFlush = true };
+                    using var reader = new StreamReader(client);
+
+                    writer.WriteLine("PING");
+                    var response = reader.ReadLine();
+
+                    // opcional: validar PONG
+                }
+                catch
+                {
+                    // watchdog no disponible o sistema fallando
+                }
+
+                await Task.Delay(1000);
+            }
+        }
+        protected async void InitializeBootFlow()
+        {
+            await heartbeat.ConnectAsync();
+            Timer heartbeatTimer = new Timer { Interval = 1000 };
+            heartbeatTimer.Tick += heartbeatTimer_Tick;
+            heartbeatTimer.Start();
+
             if (flagMgmt.EmergencyUI)
             {
                 using var emergency = new EmergencyScreen();
@@ -77,7 +111,7 @@ namespace deneOS.init
                 RunBootChecks();
                 this.BeginInvoke(new Action(() =>
                 {
-                    this.Hide();
+                    this.Opacity = 0; // Oculto pero sigue vivo para el heartbeat
                     new logonui().Show();
                 }));
                 return;
@@ -271,7 +305,7 @@ namespace deneOS.init
 
             try
             {
-                this.Hide();
+                this.Opacity = 0; // Oculto pero sigue vivo para el heartbeat
                 var user = GetUser();
                 bool validUser = !string.IsNullOrWhiteSpace(user.Username) &&
                                  !string.IsNullOrWhiteSpace(user.Password);
