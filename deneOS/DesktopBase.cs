@@ -41,7 +41,7 @@ namespace deneOS
             ApplyWallpaper(wallpaperPath);
 
             // Accesos directos
-            DesktopLoader.LoadShortcuts(@"C:\DENEOS\desktop\", IconsPanel);
+            DesktopLoader.LoadShortcuts(@"C:\DNUSR\Desktop\", IconsPanel);
         }
 
         private void ApplyWallpaper(string path)

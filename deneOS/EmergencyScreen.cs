@@ -49,10 +49,10 @@ namespace deneOS
         }
         void ForceReboot()
         {
-            //Process.Start("shutdown", "/r /f /t 0");
+            Process.Start("shutdown", "/r /f /t 0");
             //Para motivos de prueba, sìmplemente arrancamos explorer y cerramos deneOS
-            Process.Start("explorer.exe");
-            Application.Exit();
+            //Process.Start("explorer.exe");
+            //Application.Exit();
         }
 
         private void timer1_Tick(object sender, EventArgs e)

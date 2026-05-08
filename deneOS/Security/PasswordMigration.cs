@@ -39,16 +39,16 @@ namespace deneOS.Security
                 // Si ya es un hash BCrypt, no hacer nada
                 if (PasswordHasher.IsValidHash(currentPassword))
                 {
-                    Console.WriteLine("[INFO] Contraseña ya está hasheada correctamente");
+                    Console.WriteLine("[INFO] Password was already hashed. No migration needed.");
                     return;
                 }
 
                 // Es texto plano, necesitamos migrar
-                Console.WriteLine("[WARN] Contraseña en texto plano detectada. Iniciando migración...");
+                Console.WriteLine("[WARN] Password in plain text detected. Starting migration...");
 
                 // Crear backup antes de modificar
                 File.Copy(ConfigFile, BackupFile, true);
-                Console.WriteLine($"[INFO] Backup creado en: {BackupFile}");
+                Console.WriteLine($"[INFO] Backup saved in: {BackupFile}");
 
                 // Hashear la contraseña
                 string hashedPassword = PasswordHasher.HashPassword(currentPassword);
@@ -57,10 +57,10 @@ namespace deneOS.Security
                 lines[2] = $"password = {hashedPassword}";
                 File.WriteAllLines(ConfigFile, lines);
 
-                Console.WriteLine("[SUCCESS] Contraseña migrada exitosamente a hash seguro");
+                Console.WriteLine("[SUCCESS] Password migrated successfully to secure hash");
 
                 MessageBox.Show(
-                    (string)T("passwordmigrated") ?? "Su contraseña ha sido migrada a un formato seguro.",
+                    (string)T("passwordmigrated") ?? "Your password has been migrated to a secure format.",
                     "deneOS Security",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
@@ -68,17 +68,17 @@ namespace deneOS.Security
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[ERROR] Error durante migración de contraseña: {ex.Message}");
+                Console.WriteLine($"[ERROR] Error during password migration: {ex.Message}");
 
                 // Restaurar backup si existe
                 if (File.Exists(BackupFile))
                 {
                     File.Copy(BackupFile, ConfigFile, true);
-                    Console.WriteLine("[INFO] Backup restaurado debido a error");
+                    Console.WriteLine("[INFO] Backup restored due to error");
                 }
 
                 MessageBox.Show(
-                    $"Error migrando contraseña: {ex.Message}",
+                    $"Error migrating password: {ex.Message}",
                     "deneOS Security Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
@@ -94,7 +94,7 @@ namespace deneOS.Security
             if (File.Exists(BackupFile))
             {
                 File.Copy(BackupFile, ConfigFile, true);
-                Console.WriteLine("[INFO] Configuración restaurada desde backup");
+                Console.WriteLine("[INFO] Configuration restored from backup");
             }
         }
     }

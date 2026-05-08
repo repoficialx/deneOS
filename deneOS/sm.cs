@@ -49,7 +49,7 @@ namespace deneOS
 
             rec.Text = (string)T("dApp");
             this.rec.Location = new System.Drawing.Point((int)(180 * _dpiScale), (int)(21 * _dpiScale));
-            if (System.IO.File.Exists(@"C:\SOFTWARE\Recip\recip.wpi"))
+            if (Directory.EnumerateFiles(@"C:\SOFTWARE\Recip", "recip.*").Any())
             {
                 rec.Text = (string)T("App");
                 rec.Location = new System.Drawing.Point((int)(312 * _dpiScale), (int)(21 * _dpiScale));
@@ -198,7 +198,7 @@ namespace deneOS
 
         private void panel4_Click(object sender, EventArgs e)
         {
-            Process.Start(@"C:\DENEOS\systemApps\deneNavi\Internet Explorer 11.exe");
+            Process.Start(@"C:\DENEOS\systemApps\deneNavi\deneNavi.exe");
         }
 
         private void panel5_Click(object sender, EventArgs e)
@@ -269,6 +269,11 @@ namespace deneOS
             }
             else
             {
+
+                // TODO: CRITICAL: CAMBIAR YA LAS RUTAS Y EL SISTEMA DE DNPKG+DNPAI A DPK+DPKXT. 
+                // ADEMÁS QUITAR LAS REFERENCIAS A LA WEB INEXISTENTE YA INSCORP.X10.MX Y 
+                // REENRUTAR TODO A LA NUEVA WEB REPOFICIALX.XYZ.
+                
                 //descargar el archivo Recip.dnpkg
                 using (var client = new System.Net.WebClient())
                 {

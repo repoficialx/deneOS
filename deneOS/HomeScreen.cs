@@ -20,7 +20,7 @@ namespace deneOS
         }
 
         private void desktop_Load(object sender, EventArgs e) => LoadDesktop();
-        private void panel12_Click(object sender, EventArgs e) => Process.Start("dnstore");
+        private void panel12_Click(object sender, EventArgs e) => Process.Start(@"C:\DENEOS\systemApps\deneStore.exe");
         private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e) { }
     }
 }
