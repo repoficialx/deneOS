@@ -31,7 +31,7 @@ public class DesktopLoader
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error al abrir el acceso directo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error opening shortcut: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 
             };
@@ -52,7 +52,7 @@ public class DesktopLoader
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error al abrir el acceso directo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error opening shortcut: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             };
@@ -74,7 +74,7 @@ public class DesktopLoader
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error al abrir el acceso directo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error opening shortcut: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             };

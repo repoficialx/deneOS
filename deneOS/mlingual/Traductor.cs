@@ -17,7 +17,7 @@ public static class Traductor
         UN_ST = false;
         string ruta = Path.Combine(@"C:\DENEOS\", "lang", $"{idioma}.json");
 
-        Console.WriteLine($"[INFO] Intentando cargar idioma desde: {ruta}");
+        Console.WriteLine($"[INFO] Trying to load languge from {ruta}");
 
         if (File.Exists(ruta))
         {
@@ -25,20 +25,20 @@ public static class Traductor
             {
                 string json = File.ReadAllText(ruta);
 
-                // ✅ Deserializar como Dictionary<string, object>
+                // Deserializar como Dictionary<string, object>
                 traducciones = JsonSerializer.Deserialize<Dictionary<string, object>>(json);
 
-                Console.WriteLine($"[SUCCESS] {traducciones.Count} traducciones cargadas");
+                Console.WriteLine($"[SUCCESS] {traducciones.Count} strings loaded");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[ERROR] Error parseando JSON: {ex.Message}");
+                Console.WriteLine($"[ERROR] Error parsing JSON: {ex.Message}");
                 traducciones = new Dictionary<string, object>();
             }
         }
         else
         {
-            Console.WriteLine($"[WARN] Archivo de idioma no encontrado: {ruta}");
+            Console.WriteLine($"[WARN] Language file not found: {ruta}");
             traducciones = new Dictionary<string, object>();
         }
     }
@@ -83,7 +83,7 @@ public static class Traductor
 
         if (traducciones.TryGetValue(clave, out var valor))
         {
-            // ✅ Manejar diferentes tipos de JSON
+            //  Manejar diferentes tipos de JSON
             if (valor is JsonElement jsonElement)
             {
                 switch (jsonElement.ValueKind)

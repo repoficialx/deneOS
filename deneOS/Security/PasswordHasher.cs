@@ -20,7 +20,7 @@ namespace deneOS.Security
         {
             if (string.IsNullOrWhiteSpace(password))
             {
-                throw new ArgumentException("La contraseña no puede estar vacía", nameof(password));
+                throw new ArgumentException("Password cannot be empty", nameof(password));
             }
 
             // BCrypt automáticamente genera un salt único por cada hash
@@ -56,7 +56,7 @@ namespace deneOS.Security
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[ERROR] Error verificando contraseña: {ex.Message}");
+                Console.WriteLine($"[ERROR] Error verifying password: {ex.Message}");
                 return false;
             }
         }

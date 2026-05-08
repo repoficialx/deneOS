@@ -194,19 +194,19 @@ namespace deneOS.init
             using var key = Registry.LocalMachine.OpenSubKey(subkey, writable: true);
             if (key == null)
             {
-                Console.WriteLine("[WARN] No se pudo abrir la clave de registro (¿sin permisos de admin?)");
+                Console.WriteLine("[WARN] Couldn't open reg key (no admin privileges?)");
                 return;
             }
 
             int current = Convert.ToInt32(key.GetValue(valueName, 1));
             if (current == 0)
             {
-                Console.WriteLine("[INFO] AutoRestartShell ya es 0.");
+                Console.WriteLine("[INFO] AutoRestartShell was already 0. No changes needed.");
                 return;
             }
 
             key.SetValue(valueName, 0, RegistryValueKind.DWord);
-            Console.WriteLine("[INFO] AutoRestartShell → 0. Reiniciando...");
+            Console.WriteLine("[INFO] AutoRestartShell set to 0. Restarting...");
             SetAutoRun();
 
             MessageBox.Show(
@@ -228,7 +228,7 @@ namespace deneOS.init
 
         private void FileAndFolderCheck()
         {
-            Console.WriteLine("[INFO] Verificando estructura de archivos...");
+            Console.WriteLine("[INFO] Checking file structure...");
             try
             {
                 //cambios: ahora el tema de config y lang es cosa del OOBE que depende del bs para cargar así que NO lo consideramos crítico más
@@ -259,9 +259,9 @@ namespace deneOS.init
         /// </summary>
         protected virtual void OnMissingStructure(bool hasFolders, bool hasCore)
         {
-            Console.WriteLine("[CRITICAL] Archivos críticos no encontrados.");
+            Console.WriteLine("[CRITICAL] Critical files are missing.");
             MessageBox.Show(
-                "Critical files are missing. Please fix the installation or contact support.",
+                "Critical files are missing. Please fix the installation or contact support. Visit https://repoficialx.xyz/deneOS/help for assistance.",
                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             Process.Start(new ProcessStartInfo("explorer.exe") { UseShellExecute = true });
             Application.Exit();
@@ -269,7 +269,7 @@ namespace deneOS.init
 
         private void LoadLanguage()
         {
-            Console.WriteLine("[INFO] Cargando idioma...");
+            Console.WriteLine("[INFO] Loading language...");
             try
             {
                 if (flagMgmt.ShowUntranslatedStrings) { UN_ST = true; return; }
@@ -279,7 +279,7 @@ namespace deneOS.init
                     : TryGetSavedLanguage();
 
                 Cargar(lang);
-                Console.WriteLine($"[SUCCESS] Idioma cargado: {lang}");
+                Console.WriteLine($"[SUCCESS] Language loaded: {lang}");
             }
             catch (Exception ex)
             {
@@ -301,7 +301,7 @@ namespace deneOS.init
         protected void OnTransitionTimerTick(object sender, EventArgs e)
         {
             TransitionTimer.Stop();
-            Console.WriteLine("[INFO] Boot timer completado, iniciando login...");
+            Console.WriteLine("[INFO] Boot timer completed, initiating login...");
 
             try
             {
@@ -314,12 +314,12 @@ namespace deneOS.init
                 {
                     if (validUser)
                     {
-                        Console.WriteLine($"[INFO] Usuario: {user.Username} → logonui");
+                        Console.WriteLine($"[INFO] User: {user.Username} → logonui");
                         new logonui().Show();
                     }
                     else
                     {
-                        Console.WriteLine("[INFO] Sin usuario → OOBE");
+                        Console.WriteLine("[INFO] No user → OOBE");
                         new OOBE.PCWelcomeBG().ShowDialog();
                     }
                 }));

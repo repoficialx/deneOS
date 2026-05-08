@@ -36,19 +36,19 @@ namespace deneOS
 
         private void BottomBar_Load(object sender, EventArgs e)
         {
-            Console.WriteLine("[INFO] Cargando tbar...");
-            int screenWidth = Screen.PrimaryScreen.Bounds.Width;
-            int screenHeight = Screen.PrimaryScreen.Bounds.Height;
-            Console.WriteLine("[INFO] Obtenida resolución de pantalla: " + screenWidth + "x" + screenHeight);
+            Console.WriteLine("[INFO] Loading tbar...");
+            int screenWidth = Screen.PrimaryScreen!.Bounds.Width;
+            int screenHeight = Screen.PrimaryScreen!.Bounds.Height;
+            Console.WriteLine("[INFO] Obtained screen resolution: " + screenWidth + "x" + screenHeight);
             int taskbarHeight = 64;
-            Console.WriteLine("[INFO] Configurando barra de tareas...");
+            Console.WriteLine("[INFO] Configuring taskbar...");
             this.FormBorderStyle = FormBorderStyle.None;
             this.StartPosition = FormStartPosition.Manual;
             
             this.Location = new Point(0, screenHeight - taskbarHeight);
             this.Size = new Size(screenWidth, taskbarHeight);
             this.TopMost = true;
-            Console.WriteLine("[INFO] Barra inferior configurada en la parte inferior de la pantalla.");
+            Console.WriteLine("[INFO] Bottom bar configured at the bottom of the screen.");
         }
 
         

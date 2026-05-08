@@ -158,7 +158,7 @@ namespace deneOS.init
 
             if (usernameMatch && passwordMatch)
             {
-                Console.WriteLine($"[SUCCESS] Login exitoso para usuario: {inputUsername}");
+                Console.WriteLine($"[SUCCESS] Login successful for {inputUsername}");
                 /*MessageBox.Show(
                     (string)T("welctodeneosE"),
                     (string)T("welc"),
@@ -191,7 +191,7 @@ namespace deneOS.init
             }
             else
             {
-                Console.WriteLine($"[WARN] Login fallido para usuario: {inputUsername}");
+                Console.WriteLine($"[WARN] Login failed for user {inputUsername}");
                 //MessageBox.Show(
                 //  (string)T("invusrpss"),
                 //(string)T("err"),
