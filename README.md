@@ -25,8 +25,8 @@ En resumen: es como tener tu propio sistema operativo… ¡pero encima de Window
 ### 🧩 Tecnologías usadas
 
 - **.NET 8** -> Nada ya
-- **.NET 9** -> controlcenter, deneAI, deneOS, deneTerm, dosu, dosu.AI, dosu.System, dosu.UI, DPKBundler, denePathParser
-- **.NET 10** -> aboutDialogs, Calendar.IO, deneFiles, deneNavi, deneOS Launcher, deneStore, dpkxt, dpkxtconsole, Internet, setConfig, Terminal, WARun
+- **.NET 9** -> controlcenter, deneAI, deneOS, deneTerm, dosu, dosu.AI, dosu.System, dosu.UI, denePathParser
+- **.NET 10** -> aboutDialogs, Calendar.IO, deneFiles, deneNavi, deneOS Launcher, deneStore, dpkxt, dpkxtconsole, Internet, setConfig, Terminal, WARun, deneNotes, DPKBundler
 
 ### 📦 Aplicaciones, paquetes, instaladores y desarrollo
 #### 📄 Documentación de tipos de aplicación Made for deneOS:
