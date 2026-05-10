@@ -70,6 +70,7 @@
             Controls.Add(lblStatus);
             MaximizeBox = false;
             MinimizeBox = false;
+            TopMost = true;
             Name = "Ollama";
             Text = "deneAI: Core";
             FormClosing += Ollama_FormClosing;

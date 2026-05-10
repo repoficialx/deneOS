@@ -52,6 +52,9 @@ namespace deneAI
             {
                 await DownloadAndInstallOllamaAsync(progress);
                 lblStatus.Text = "✅ Ollama installed successfully.";
+                installed = true;
+                await Task.Delay(2000);
+                Close();
             }
             catch (Exception ex)
             {
