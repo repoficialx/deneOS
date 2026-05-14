@@ -428,6 +428,18 @@ void OpenFile(string name)
     }
 }
 
+void StartProcess(string filePath, bool runAsAdmin, bool showOutput)
+{
+    Process process = new();
+    process.StartInfo.FileName = filePath;
+    process.StartInfo.UseShellExecute = !showOutput;
+    process.StartInfo.RedirectStandardOutput = showOutput;
+    process.StartInfo.RedirectStandardError = showOutput;
+    process.StartInfo.CreateNoWindow = !showOutput;
+    process.StartInfo.Verb = runAsAdmin ? "runas" : string.Empty;
+    process.Start();
+}
+
 bool IsAllowedPath (string path)
 {
     return path.StartsWith(userPath) || path.StartsWith(softwarePath);
