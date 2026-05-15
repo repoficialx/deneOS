@@ -1,12 +1,12 @@
 ﻿using System.Diagnostics;
-using denePathParser;
+using static denePathParser.denePathParser;
 
 string GetAlias(string path)
 {
-    return denePathParser.Parse(path);
+    return Parse(path);
 }
 
-Console.WriteLine("Hello, World!");
+//Console.WriteLine("Hello, World!");
 
 const string userPath = @"C:\DNUSR";
 const string softwarePath = @"C:\SOFTWARE";
@@ -18,9 +18,9 @@ if (args.Length>1)
     argCmd = string.Join(" ", args, 0, args.Length);
 }
 
-void W(string message)
+void W(string message, params object[] args)
     {
-        Console.WriteLine(message);
+        Console.WriteLine(message, args);
     }
 
 Console.Title = $"deneTerm - Safe Terminal {(argCmd==null?"":$" - {argCmd}")}";
@@ -218,7 +218,7 @@ void ChangeDirectory(string dir)
             return;
         }
 
-        string newPath = parentPath;
+        newPath = parentPath;
     } else
     {
         newPath = Path.Combine(currentPath, dir);
@@ -248,12 +248,7 @@ void ChangeMainDirectory(string target)
     }
 }
 
-void StartRepair()
-{
-    StartRepairCore(false);
-}
-
-void StartRepair(bool showInfo)
+void StartRepair(bool showInfo = false)
 {
     StartRepairCore(showInfo);
 }
@@ -443,4 +438,114 @@ void StartProcess(string filePath, bool runAsAdmin, bool showOutput)
 bool IsAllowedPath (string path)
 {
     return path.StartsWith(userPath) || path.StartsWith(softwarePath);
+}
+
+void OpenApp(string appName, bool runAsAdmin, bool showOutput)
+{
+    string name = appName; 
+    W($"Attempting to open application '{appName}' {(runAsAdmin?"as administrator":string.Empty)} {(showOutput ? "with output":string.Empty)}");
+
+    // current dir
+    try
+    {
+        string path = Path.Combine(currentPath, name);
+        if (File.Exists(path))
+        {
+            StartProcess(path, runAsAdmin, showOutput);
+            W($"{name} opened from current directory");
+            return;
+        }
+    }
+    catch (Exception ex)
+    {
+        W("Error trying to open from current directory: " + ex.Message);
+    }
+
+    // PATH
+    try
+    {
+        StartProcess(name, runAsAdmin, showOutput);
+        W($"{name} opened from system PATH");
+        return;
+    }
+    catch (Exception ex)
+    {
+        W("Error trying to open from system PATH: " + ex.Message);
+    }
+
+    // SOFTWARE
+    try
+    {
+        string sPath = "C:\\SOFTWARE\\";
+
+        if (Directory.Exists(sPath))
+        {
+            string[] directories = Directory.GetDirectories(sPath);
+            foreach (var dir in directories)
+            {
+                if (dir.ToLower().Contains(name.ToLower()))
+                {
+                    
+                    // 1. ver si coincide nombre
+                    string exePathFromName = Path.Combine(dir, name+".exe");
+                    string wpiPathFromName = Path.Combine(dir, name+".wpi");
+                    string dnaPathFromName = Path.Combine(dir, name+".dna");
+                    if (File.Exists(exePathFromName))
+                    {
+                        StartProcess(exePathFromName, runAsAdmin, showOutput);
+                        W($"{name} opened from SOFTWARE directory");
+                        return;
+                    } else if (File.Exists(wpiPathFromName))
+                    {
+                        StartProcess(wpiPathFromName, runAsAdmin, showOutput);
+                        W($"{name} opened from SOFTWARE directory");
+                        return;
+                    } else if (File.Exists(dnaPathFromName))
+                    {
+                        StartProcess(dnaPathFromName, runAsAdmin, showOutput);
+                        W($"{name} opened from SOFTWARE directory");
+                        return;
+                    }
+
+                    // 2. Nombre común
+
+                    string[] _commonNames = { "launcher.", "main.", "start.", "app.", "program." };
+                    List<string> commonNames = [];
+                    foreach (var common in _commonNames)
+                    {
+                        commonNames.Add(common + "exe");
+                        commonNames.Add(common + "wpi");
+                        commonNames.Add(common + "dna");
+                    }
+                    foreach (var commonName in commonNames)
+                    {
+                        string probablePath = Path.Combine(dir, commonName);
+                        if (File.Exists(probablePath))
+                        {
+                            StartProcess(probablePath, runAsAdmin, showOutput);
+                            W($"{name} opened from SOFTWARE directory using common name '{commonName}'");
+                            return;
+                        }
+                    }
+
+                    // 3. Primer ejecutable
+                    string[] executableFiles = Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories)
+                        .Where(f => f.EndsWith(".exe") || f.EndsWith(".wpi") || f.EndsWith(".dna")).ToArray();
+
+                    if (executableFiles.Length > 0)
+                    {
+                        StartProcess(executableFiles[0], runAsAdmin, showOutput);
+                        W($"{name} opened from SOFTWARE directory using first found executable '{Path.GetFileName(executableFiles[0])}'");
+                        return;
+                    }
+                }
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+        W("Error trying to open from SOFTWARE directory: " + ex.Message);
+    }
+
+    W("Application not found: " + name);
 }
