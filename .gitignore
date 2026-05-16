@@ -362,5 +362,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
 build-log.txt
 deneOS-build-log.txt
+
+*.lscache
