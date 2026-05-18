@@ -28,8 +28,8 @@ En resumen: es como otro sistema pero cogiendo lo útil y bueno de Windows como 
 ### 🧩 Tecnologías usadas
 
 - **.NET 8** -> Nada ya
-- **.NET 9** -> deneAI y denePathParser
-- **.NET 10** -> aboutDialogs, controlcenter, Calendar.IO, deneOS, deneFiles, deneNavi, deneOS Launcher, deneStore, dpkxt, dpkxtconsole, Internet, setConfig, Terminal, WARun, deneNotes, DPKBundler, dosu, dosu.AI, dosu.System, dosu.UI, deneTerm.Core
+- **.NET 9** -> denePathParser
+- **.NET 10** -> aboutDialogs, controlcenter, Calendar.IO, deneOS, deneFiles, deneNavi, deneOS Launcher, deneStore, dpkxt, dpkxtconsole, Internet, setConfig, Terminal, WARun, deneNotes, DPKBundler, dosu, dosu.AI, dosu.System, dosu.UI, deneTerm.Core y deneAI
 
 ### 📦 Aplicaciones, paquetes, instaladores y desarrollo
 
