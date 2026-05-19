@@ -10,7 +10,7 @@ Ligero, rápido y personalizable, está diseñado para ofrecer una experiencia m
 
 ### -- IMPORTANTE --
 Desde el 4 de mayo de 2026 ya no hay ningún proyecto de deneOS que use .NET 8 ya que denePathParser ha sido actualizado a .NET 9. Ya no es obligatorio .NET 8 para contribuir o desarrollar.
-**Pronto se terminará el cambio de todo a .NET 10 y ya no será necesario más .NET 9.**
+**Pronto -estimado 22 de mayo- se terminará el cambio de todo a .NET 10 y ya no será necesario más .NET 9.**
 
 ### 💻 ¿Qué es un miniOS?
 
@@ -29,7 +29,7 @@ En resumen: es como otro sistema pero cogiendo lo útil y bueno de Windows como 
 
 - **.NET 8** -> Nada ya
 - **.NET 9** -> denePathParser
-- **.NET 10** -> aboutDialogs, controlcenter, Calendar.IO, deneOS, deneFiles, deneNavi, deneOS Launcher, deneStore, dpkxt, dpkxtconsole, Internet, setConfig, Terminal, WARun, deneNotes, DPKBundler, dosu, dosu.AI, dosu.System, dosu.UI, deneTerm.Core y deneAI
+- **.NET 10** -> aboutDialogs, controlcenter, Calendar.IO, deneOS, deneFiles, deneNavi, deneOS Launcher, deneStore, dpkxt, dpkxtconsole, Internet, setConfig, Terminal, WARun, deneNotes, DPKBundler, dosu, dosu.AI, dosu.System, dosu.UI, deneTerm.Core, deneAI.CLI y deneAI
 
 ### 📦 Aplicaciones, paquetes, instaladores y desarrollo
 
