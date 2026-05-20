@@ -84,6 +84,9 @@ Para tratar con rutas de Windows en aplicaciones para deneOS, solo si es realmen
 - 🎨 Temas personalizados y gestor de ventanas propio
 - 🧩 Sistema modular para apps y ajustes
 
+### ℹ️ Más información
+Más información en [repoficialx: deneOS](https://repoficialx.xyz/deneOS) y en [repoficialx: Portal del desarrollador](https://repoficialx.xyz/profile/devportal)
+
 ### 🧪 Estado del proyecto
 
 > **deneOS v1.0** estará disponible próximamente. (previsto para 2026 o 2027)
