@@ -161,7 +161,7 @@ namespace controlcenter
 
         private void BtnOpenSystemFolder_Click(object sender, EventArgs e)
         {
-            string systemPath = @"C:\DENEOS\systemApps\";
+            string systemPath = @"C:\DENEOS\core\";
             if (Directory.Exists(systemPath))
                 Process.Start("explorer.exe", systemPath);
             else

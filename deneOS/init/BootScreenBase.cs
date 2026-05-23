@@ -61,33 +61,32 @@ namespace deneOS.init
 
         // ── Constructor compartido ───────────────────────────────────────
         private HeartbeatClient heartbeat = new();
-        private async void heartbeatTimer_Tick(object sender, EventArgs e)
+        private void heartbeatTimer_Tick(object sender, EventArgs e)
         {
             // Este timer es solo para mantener el proceso vivo y responder al watchdog.
-            // No hace nada visible ni consume recursos significativos.
+            // No bloquea el UI thread, se ejecuta de forma asincrónica.
 
-            while (true)
+            // Ejecutar en background para no congelar la interfaz
+            Task.Run(async () =>
             {
                 try
                 {
                     using var client = new NamedPipeClientStream(".", "deneos-heartbeat", PipeDirection.InOut);
-                    client.Connect(1000);
+                    await client.ConnectAsync(1000);
 
                     using var writer = new StreamWriter(client) { AutoFlush = true };
                     using var reader = new StreamReader(client);
 
-                    writer.WriteLine("PING");
-                    var response = reader.ReadLine();
+                    await writer.WriteLineAsync("PING");
+                    var response = await reader.ReadLineAsync();
 
                     // opcional: validar PONG
                 }
                 catch
                 {
-                    // watchdog no disponible o sistema fallando
-                }
-
-                await Task.Delay(1000);
+                    // watchdog no disponible o sistema fallando - no es crítico
             }
+            });
         }
         protected async void InitializeBootFlow()
         {

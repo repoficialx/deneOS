@@ -266,7 +266,7 @@ namespace deneOS.init
         }
         /// <summary>
         /// Inicio del formulario de inicio de sesión tras presionar INTRO.
-        /// </summary>cv
+        /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void logonui_KeyDown(object sender, KeyEventArgs e)

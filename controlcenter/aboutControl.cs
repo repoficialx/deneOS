@@ -106,7 +106,7 @@ namespace deneOS
                         fields = new[] {
                             new { name = "Usuario", value = Environment.UserName, inline = true },
                             new { name = "Categoría", value = /*categoriaSeleccionada*/"No Implementado", inline = true },
-                            new { name = "Versión", value = "v0.1b", inline = true },
+                            new { name = "Versión", value = "v0.3b", inline = true },
                             new { name = "Modo root", value = /*flagMgmt.EnableRoot.ToString()*/ "No Implementado", inline = true }
                         },
                         footer = new {

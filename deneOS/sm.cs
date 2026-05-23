@@ -49,7 +49,7 @@ namespace deneOS
 
             rec.Text = (string)T("dApp");
             this.rec.Location = new System.Drawing.Point((int)(180 * _dpiScale), (int)(21 * _dpiScale));
-            if (Directory.EnumerateFiles(@"C:\SOFTWARE\Recip", "recip.*").Any())
+            if (Directory.Exists(@"C:\SOFTWARE\Recip") && Directory.EnumerateFiles(@"C:\SOFTWARE\Recip", "recip.*").Any())
             {
                 rec.Text = (string)T("App");
                 rec.Location = new System.Drawing.Point((int)(312 * _dpiScale), (int)(21 * _dpiScale));
@@ -262,9 +262,9 @@ namespace deneOS
         {
             string installPath;
             //COMPROBAR SI RECIP ESTÁ INSTALADO. SINO: INSTALAR, SI SÍ: INICIAR.
-            if (System.IO.File.Exists(@"C:\SOFTWARE\Recip\recip.wpi"))
+            if (System.IO.File.Exists(@"C:\SOFTWARE\Recip\recip.exe"))
             {
-                installPath = @"C:\SOFTWARE\Recip\recip.wpi";
+                installPath = @"C:\SOFTWARE\Recip\recip.exe";
                 System.Diagnostics.Process.Start(installPath);
             }
             else
@@ -275,44 +275,34 @@ namespace deneOS
                 // REENRUTAR TODO A LA NUEVA WEB REPOFICIALX.XYZ.
                 
                 //descargar el archivo Recip.dnpkg
-                using (var client = new System.Net.WebClient())
+                using (var client = new HttpClient())
                 {
-                    Random random = new Random();
-                    string dtdNMR = random.Next(-2147483648, 2147483647).ToString();
-                    string url = "http://inscorp.x10.mx/recip/versiones/downloads/v1.0/Recip_DNF481_deneOS.meta";
-                    string path = $@"C:\DENEOS\appDnpkgTmpDownload\{dtdNMR}\Recip_DNF481_deneOS.meta";
-                    Directory.CreateDirectory($"C:\\DENEOS\\appDnpkgTmpDownload\\{dtdNMR}");
-                    client.DownloadFile(url, path);
-                    url = "http://inscorp.x10.mx/recip/versiones/downloads/v1.0/Recip_DNF481_deneOS.zip";
-                    path = $@"C:\DENEOS\appDnpkgTmpDownload\{dtdNMR}\Recip_DNF481_deneOS.zip";
-                    client.DownloadFile(url, path);
-                    url = "http://inscorp.x10.mx/recip/versiones/downloads/v1.0/dnpai.exe";
-                    path = $@"C:\DENEOS\appDnpkgTmpDownload\{dtdNMR}\dnpai.wpi";
-                    client.DownloadFile(url, path);
-                    url = "http://inscorp.x10.mx/recip/versiones/downloads/v1.0/dnpai.exe.config";
-                    path = $@"C:\DENEOS\appDnpkgTmpDownload\{dtdNMR}\dnpai.wpi.config";
-                    client.DownloadFile(url, path);
-                    url = "http://inscorp.x10.mx/recip/versiones/downloads/v1.0/dnpai.pdb";
-                    path = $@"C:\DENEOS\appDnpkgTmpDownload\{dtdNMR}\dnpai.pdb";
-                    client.DownloadFile(url, path);
-                    Process dnpai = new Process();
-                    dnpai.StartInfo = new ProcessStartInfo
+                    // Ruta del DPK: https://repoficialx.xyz/recip/api/getLatestDpk.php
+                    var dpkUrl = "https://repoficialx.xyz/recip/api/getLatestDpk.php";
+                    var DownloadsPath = Path.Combine("C:\\", "DNUSR", "Downloads");
+                    if (!Directory.Exists(DownloadsPath))
                     {
-                        FileName = $@"C:\DENEOS\appDnpkgTmpDownload\{dtdNMR}\dnpai.wpi",
-                        Arguments = $"\"C:\\DENEOS\\appDnpkgTmpDownload\\{dtdNMR}\\Recip_DNF481_deneOS.meta\" \"C:\\DENEOS\\appDnpkgTmpDownload\\{dtdNMR}\\Recip_DNF481_deneOS.zip\" /s",
-                        UseShellExecute = true,
-                        Verb = "runas"
+                        Directory.CreateDirectory(DownloadsPath);
+                    }
+
+                    var dpkFileUrl = client.GetStringAsync(dpkUrl);
+                    // Descargar el dpk a downloads
+                    var dpkFilePath = Path.Combine(DownloadsPath, "Recip.dpk");
+                    using (var dpkStream = client.GetStreamAsync(dpkFileUrl.Result).Result)
+                    using (var fileStream = new FileStream(dpkFilePath, FileMode.Create, FileAccess.Write, FileShare.None))
+                    {
+                        dpkStream.CopyTo(fileStream);
+                    }
+                    // Llamar a dpkxtconsole para instalar el dpk
+                    var dpkxtPath = @"C:\DENEOS\core\dpkxtconsole.exe";
+                    var startInfo = new ProcessStartInfo
+                    {
+                        FileName = dpkxtPath,
+                        Arguments = dpkFilePath,
+                        UseShellExecute = true
                     };
-                    try
-                    {
-                        dnpai.Start();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("ERROR 0x5" + ex.Message + ex.StackTrace + ex.Source);
-                    }
-                    dnpai.WaitForExit();
-                    Directory.Delete($"C:\\DENEOS\\appDnpkgTmpDownload\\{dtdNMR}", true);
+                    Process.Start(startInfo).WaitForExit();
+
                     rec.Text = "App";
                     rec.Location = new System.Drawing.Point(312, 21);
                 }
@@ -334,10 +324,11 @@ namespace deneOS
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string a1; string b1; object c1; object d1;
+            string a1, b1; 
+            object c1, d1;
             a1 = (string)T("sdopt");
             b1 = "deneOS";
-            c1 = MessageBoxButtons.YesNoCancel;
+            c1 = MessageBoxButtons.OKCancel;
             d1 = MessageBoxIcon.Question;
             var a = MessageBox.Show(a1, b1, (MessageBoxButtons)c1, (MessageBoxIcon)d1);
 
@@ -345,18 +336,6 @@ namespace deneOS
             {
                 case DialogResult.Yes:
                     buttonApagarElegante_Click();
-                    break;
-                case DialogResult.No:
-                    var psi = new ProcessStartInfo
-                    {
-                        FileName = "explorer.exe",
-                        UseShellExecute = true,
-                        WorkingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Windows)
-                    };
-
-                    Process.Start(psi);
-
-                    Environment.Exit(0);
                     break;
                 case DialogResult.Cancel:
                     return;

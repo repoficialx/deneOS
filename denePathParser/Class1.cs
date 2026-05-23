@@ -19,7 +19,7 @@ public static class denePathParser
 
             return "~S\\" + fixedInput.Substring(12);
         }
-        if (fixedInput.StartsWith("C:\\DENEOS") || fixedInput.StartsWith("C:\\OSFILES"))
+        if (fixedInput.StartsWith("C:\\DENEOS"))
             throw new UnauthorizedAccessException("⛔ Acceso a sistema denegado");
         return fixedInput;
     }
