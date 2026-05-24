@@ -30,35 +30,35 @@ namespace deneOS.OOBE
         private void button2_Click(object sender, EventArgs e)
         {
             //Inglés
-            UniversalConfiguration.SetLang("en");
+            UniversalConfiguration.SetLang("en", Program.deneOSManifest);
             btnContinuar_Click(sender, e);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             // Español
-            UniversalConfiguration.SetLang("es");
+            UniversalConfiguration.SetLang("es", Program.deneOSManifest);
             btnContinuar_Click(sender, e);
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             // Sistema
-            UniversalConfiguration.SetLang(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName.ToLower().Trim());
+            UniversalConfiguration.SetLang(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName.ToLower().Trim(), Program.deneOSManifest);
             btnContinuar_Click(sender, e);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             //Francés
-            UniversalConfiguration.SetLang("fr");
+            UniversalConfiguration.SetLang("fr", Program.deneOSManifest);
             btnContinuar_Click(sender, e);
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             // Alemán
-            UniversalConfiguration.SetLang("de");
+            UniversalConfiguration.SetLang("de", Program.deneOSManifest);
             btnContinuar_Click(sender, e);
         }
     }

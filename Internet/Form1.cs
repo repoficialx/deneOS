@@ -7,9 +7,10 @@ namespace Internet
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        public Form1(IMobileDataService mobile)
         {
             InitializeComponent();
+            this.mobile = mobile;
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -99,7 +100,7 @@ namespace Internet
 
         }
 
-        private async void ObtenerEstadoDatosMoviles()
+        /*private async void ObtenerEstadoDatosMoviles()
         {
             var profiles = NetworkInformation.GetConnectionProfiles();
             var cellular = profiles.FirstOrDefault(p => p.IsWwanConnectionProfile);
@@ -162,8 +163,114 @@ namespace Internet
                 });
             }
 
+        }*/
+        #region -- DEV -- TESTS -- SIMULAR DATOS MÓVILES --
+        private void ObtenerEstadoDatosMoviles()
+        {
+            // Obtener estado en hilo actual (puede ser fondo)
+            bool supported = mobile.IsSupported;
+            bool connected = mobile.IsConnected;
+            string statusText;
+            Color statusColor = Color.Black;
+            string iconText = "";
+
+            if (!supported)
+            {
+                statusText = "Mobile Data: NOT SUPPORTED";
+                statusColor = Color.Gray;
+                iconText = "";
+            }
+            else if (!connected)
+            {
+                statusText = "Mobile Data: OFF";
+                iconText = "";
+            }
+            else
+            {
+                statusText = "Mobile Data: ON";
+                switch (mobile.NetworkType?.ToLower())
+                {
+                    case "hsdpa": iconText = "h_plus_mobiledata"; break;
+                    case "4g":    iconText = "4g_mobiledata"; break;
+                    case "4gplus":iconText = "4g_plus_mobiledata"; break;
+                    case "lte":   iconText = "lte_mobiledata"; break;
+                    case "lteplus":iconText = "lte_plus_mobiledata"; break;
+                    case "5g":    iconText = "5g"; break;
+                    default:      iconText = "Unknown Network Type"; break;
+                }
+            }
+
+            // Actualizar UI de forma segura
+            if (this.InvokeRequired)
+            {
+                this.Invoke((MethodInvoker)(() =>
+                {
+                    label5.Text = statusText;
+                    label5.ForeColor = statusColor;
+                    label3.Text = iconText;
+                }));
+            }
+            else
+            {
+                label5.Text = statusText;
+                label5.ForeColor = statusColor;
+                label3.Text = iconText;
+            }
         }
 
+        public interface IMobileDataService
+        {
+            bool IsSupported { get; }
+            bool IsConnected { get; }
+            string NetworkType { get; }
+        }
+
+        public class RealMobileDataService : IMobileDataService
+        {
+            public bool IsSupported
+            {
+                get
+                {
+                    var profiles = NetworkInformation.GetConnectionProfiles();
+                    return profiles.Any(p => p.IsWwanConnectionProfile);
+                }
+            }
+
+            public bool IsConnected
+            {
+                get
+                {
+                    var profile = NetworkInformation.GetConnectionProfiles()
+                        .FirstOrDefault(p => p.IsWwanConnectionProfile);
+
+                    if (profile == null) return false;
+
+                    return profile.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
+                }
+            }
+
+            public string NetworkType
+            {
+                get
+                {
+                    var profile = NetworkInformation.GetConnectionProfiles()
+                        .FirstOrDefault(p => p.IsWwanConnectionProfile);
+
+                    if (profile == null) return "";
+
+                    return profile.WwanConnectionProfileDetails.GetCurrentDataClass().ToString();
+                }
+            }
+        }
+        public class FakeMobileDataService : IMobileDataService
+        {
+            public bool IsSupported { get; set; }
+            public bool IsConnected { get; set; }
+            public string NetworkType { get; set; }
+        }
+        private readonly IMobileDataService mobile;
+
+        #endregion
         private void button1_Click(object sender, EventArgs e)
         {
             new networkList().ShowDialog();

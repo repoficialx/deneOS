@@ -87,7 +87,7 @@ namespace deneOS
         }
         async Task gws()
         {
-            int wifiSignal = dosu.System.Network.WiFiStatus.GetWifiSignalStrengthAsync().Result; // 0 - 100
+            int wifiSignal = dosu.System.Network.WiFiStatus.GetWifiSignalStrengthAsync(Program.deneOSManifest).Result; // 0 - 100
             string wifiIcon;
             if (wifiSignal < 0)
                 wifiIcon = ""; // no wifi

@@ -16,8 +16,8 @@
     <Authors>repoficialx</Authors>
     <Product>deneOS</Product>
     <Description>Control Center for deneOS /\/\/\/ More user friendly alternative to Control Panel for deneOS.
-Made in together with deneOS v0.1b</Description>
-    <Copyright>©2025 repoficialx</Copyright>
+Made in together with deneOS v0.3b</Description>
+    <Copyright>©2026 repoficialx</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

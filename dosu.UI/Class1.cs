@@ -1,8 +1,83 @@
-﻿using System.Diagnostics;
+﻿using DPKCore.Models;
+using DPKCore.Security;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
+using static dosu.UI.SysGUtils;
+using static dosu.Utils;
 
 namespace dosu.UI;
 
+public class SysGUtils
+{
+    public class MessageService : IMessageService
+    {
+        public int SysMsg(string msg, Manifest manifest, MessageLevel level, MessageIcon icon, string title = "", string customIconPath = "")
+        {
+            MessageBoxIcon mbIcon;
+
+            switch (icon)
+            {
+                case MessageIcon.Error:
+                    mbIcon = MessageBoxIcon.Error;
+                    break;
+
+                case MessageIcon.Question:
+                    mbIcon = MessageBoxIcon.Question;
+                    break;
+
+                case MessageIcon.Warning:
+                    mbIcon = MessageBoxIcon.Warning;
+                    break;
+
+                case MessageIcon.Information:
+                    mbIcon = MessageBoxIcon.Information;
+                    break;
+
+                case MessageIcon.Stop:
+                    mbIcon = MessageBoxIcon.Stop;
+                    break;
+
+                case MessageIcon.Exclamation:
+                    mbIcon = MessageBoxIcon.Exclamation;
+                    break;
+
+                case MessageIcon.Hand:
+                    mbIcon = MessageBoxIcon.Hand;
+                    break;
+
+                case MessageIcon.Asterisk:
+                    mbIcon = MessageBoxIcon.Asterisk;
+                    break;
+
+                case MessageIcon.LevelBased:
+                    mbIcon = level switch
+                    {
+                        MessageLevel.Info => MessageBoxIcon.Information,
+                        MessageLevel.Warning => MessageBoxIcon.Warning,
+                        MessageLevel.Error => MessageBoxIcon.Error,
+                        _ => MessageBoxIcon.None
+                    };
+                    break;
+
+                case MessageIcon.CustomIcon:
+                    var _icon = new Icon(customIconPath);
+                    var result = CustomMessageBox.Show(msg, title, _icon, manifest);
+                    return (int)result;
+
+                case MessageIcon.Success:
+                    mbIcon = MessageBoxIcon.Information; // o el que quieras
+                    break;
+
+                default:
+                    mbIcon = MessageBoxIcon.None;
+                    break;
+            }
+
+            var res = MessageBox.Show(msg, title, MessageBoxButtons.OK, mbIcon);
+            return (int)res;
+        }
+    }
+}
 public class CustomMessageBox : Form
 {
     public CustomMessageBox(string message, string title, Icon customIcon)
@@ -37,8 +112,10 @@ public class CustomMessageBox : Form
         this.Controls.Add(okButton);
         this.AcceptButton = okButton;
     }
-    public static DialogResult Show(string message, string title, Icon customIcon)
+    public static DialogResult Show(string message, string title, Icon customIcon, Manifest manifest)
     {
+        PermissionChecker.Require(manifest, PermissionChecker.SYSTEM_UI);
+        
         using var box = new CustomMessageBox(message, title, customIcon);
         return box.ShowDialog();
     }

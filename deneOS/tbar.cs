@@ -293,7 +293,7 @@ namespace deneOS
                 return; // no hay conexión a Internet
             }
             Console.WriteLine("[INFO] Internet connection detected. Getting signal strength...");
-            var wifiSignal = await dosu.System.Network.WiFiStatus.GetWifiSignalStrengthAsync(); // 0 - 100
+            var wifiSignal = await dosu.System.Network.WiFiStatus.GetWifiSignalStrengthAsync(Program.deneOSManifest); // 0 - 100
 
             if (wifiSignal < 0)
                 wifiIcon = ""; // no wifi

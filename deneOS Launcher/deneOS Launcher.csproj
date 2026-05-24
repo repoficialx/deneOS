@@ -13,6 +13,7 @@
 	<SelfContained>true</SelfContained>
 	<ApplicationIcon>icons8-launch-100.ico</ApplicationIcon>
 	<ApplicationManifest>app.manifest</ApplicationManifest>
+	  <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>

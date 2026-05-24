@@ -41,7 +41,7 @@ namespace deneOS
                 Cargar(flagMgmt.Language);
                 return;
             }
-            Cargar(dosu.UniversalConfiguration.GetLang());
+            Cargar(dosu.UniversalConfiguration.GetLang(Program.deneOSManifest));
         }
         private void button1_Click(object sender, EventArgs e)
         {

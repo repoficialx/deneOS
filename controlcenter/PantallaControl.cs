@@ -80,6 +80,16 @@ namespace controlcenter
             lbl2.AutoSize = true;
             lbl2.Location = new Point(285, 70);
 
+            DPKCore.Models.Manifest manifest = new()
+            {
+                Author = "repoficialx",
+                EntryPoint = "controlcenter.exe",
+                Name = "Control Center",
+                Version = "0.3.1",
+                Permissions = ["system.ui"],
+                TargetRuntime = "net10.0"
+            };
+
             // Botón establecer el brillo
             Button button = new Button();
             button.Text = $"{T("setbgns")}";
@@ -87,7 +97,7 @@ namespace controlcenter
             button.Location = new Point(20, 130);
             button.Click += async (s, e) => {
                 //await dosu.BrightnessLaptopMGMT.SetBrightnessAsync((byte)slider.Value);
-                dosu.System.BrightnessLaptopMGMT.SetBrightness((byte)slider.Value);
+                dosu.System.BrightnessLaptopMGMT.SetBrightness((byte)slider.Value, manifest);
             };
             button.Font = new Font("Segoe UI", 11);
 

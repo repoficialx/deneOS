@@ -89,7 +89,7 @@ namespace deneOS_Launcher
             string deneNaviUrl = sysAppsBaseUrl + "deneNavi/deneNavi.exe";
             string deneNaviPath = @"C:\DENEOS\systemApps\deneNavi\deneNavi.exe";
 
-            progressLineIndex = label1.Text.Split('\n').Length - 1;
+            progressLineIndex = GetLastLineIndex();
 
             Directory.CreateDirectory(@"C:\DENEOS\systemApps\deneFiles\");
             await DownloadFileAsync(deneFilesUrl, deneFilesPath, percent =>
@@ -120,7 +120,7 @@ namespace deneOS_Launcher
             string flsysicnsUrl = sysFontsBaseUrl + "FluentSystemIcons-Regular.ttf";
             string flsysicnsPath = @"C:\DENEOS\sysfonts\FluentSystemIcons-Regular.ttf";
 
-            progressLineIndex = label1.Text.Split('\n').Length - 1;
+            progressLineIndex = GetLastLineIndex();
 
             await DownloadFileAsync(segoeuivfUrl, segoeuivfPath, percent =>
             {
@@ -142,24 +142,24 @@ namespace deneOS_Launcher
             {
                 UpdateProgress(percent, "FluentSystemIcons-Regular.ttf", true, 5, 5);
             });
+            Log("Adding deneOS\\core\\ to PATH...");
+            AddToPath();
+
             Log("deneOS setup completed successfully!");
 
             Log("Restarting in 5...");
-            Thread.Sleep(1000);
-            progressLineIndex = label1.Text.Split('\n').Length - 1;
-            ChangeLine(progressLineIndex, "Restarting in 4...");
-            Thread.Sleep(1000);
-            ChangeLine(progressLineIndex, "Restarting in 3...");
-            Thread.Sleep(1000);
-            ChangeLine(progressLineIndex, "Restarting in 2...");
-            Thread.Sleep(1000);
-            ChangeLine(progressLineIndex, "Restarting in 1...");
-            Thread.Sleep(1000);
-            //if (Debugger.IsAttached)
-            //{
-            //Log("[DEBUG] Shutdown skipped in debug mode.");
-            //return;
-            //}
+            progressLineIndex = GetLastLineIndex();
+            for (int seconds = 4; seconds >= 1; seconds--)
+            {
+                await Task.Delay(1000);
+                ChangeLine(progressLineIndex, $"Restarting in {seconds}...");
+            }
+            await Task.Delay(1000);
+            if (Debugger.IsAttached)
+            {
+                Log("[DEBUG] Shutdown skipped in debug mode.");
+                return;
+            }
             Process.Start(@"shutdown -r -t 0");
         }
         int progressLineIndex = -1;
@@ -169,24 +169,72 @@ namespace deneOS_Launcher
             public string download { get; set; }
             public string changelog { get; set; }
         }
+        string[] GetCleanLines()
+        {
+            var content = label1.Text.Replace("\r\n", "\n").TrimEnd('\n');
+            return content.Split('\n');
+        }
+
+        int GetLastLineIndex()
+        {
+            var lines = GetCleanLines();
+            return Math.Max(0, lines.Length - 1);
+        }
+
         void StartDownload()
         {
             Log("Downloading deneOS... 0%");
-            progressLineIndex = label1.Text.Split('\n').Length - 1;
+            progressLineIndex = GetLastLineIndex();
+        }
+        void AddToPath(string newPath = @"C:\DENEOS\core\")
+        {
+            try
+            {
+                // Get current system PATH
+                string currentPath = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.Machine);
+
+                if (string.IsNullOrWhiteSpace(currentPath))
+                {
+                    currentPath = string.Empty;
+                }
+
+                // Check if already in PATH (case-insensitive)
+                var paths = currentPath.Split(';', StringSplitOptions.RemoveEmptyEntries);
+                if (paths.Any(p => string.Equals(p.Trim(), newPath, StringComparison.OrdinalIgnoreCase)))
+                {
+                    Console.WriteLine("Path already exists in system PATH.");
+                    return;
+                }
+
+                // Append new path
+                string updatedPath = currentPath.TrimEnd(';') + ";" + newPath;
+
+                // Update system PATH (requires admin rights)
+                Environment.SetEnvironmentVariable("PATH", updatedPath, EnvironmentVariableTarget.Machine);
+
+                Console.WriteLine("System PATH updated successfully.");
+            }
+            catch (UnauthorizedAccessException)
+            {
+                Console.WriteLine("Error: Administrator privileges are required to modify the system PATH.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+            }
         }
         void ChangeLine(int lineIndex, string newText)
         {
-            var lines = label1.Text
-                .Split(new[] { "\r\n" }, StringSplitOptions.None);
+            var lines = GetCleanLines();
             if (lineIndex < 0 || lineIndex >= lines.Length)
                 return;
             lines[lineIndex] = newText;
-            label1.Text = string.Join("\r\n", lines);
+            label1.Text = string.Join("\r\n", lines) + "\r\n";
+            label1.Refresh();
         }
         void UpdateProgress(int percent, string product = "deneOS", bool staged=false, int cstage=0, int stages=0)
         {
-            var lines = label1.Text
-                .Split(["\r\n"], StringSplitOptions.None);
+            var lines = GetCleanLines();
 
             if (progressLineIndex < 0 || progressLineIndex >= lines.Length)
                 return;
@@ -196,13 +244,15 @@ namespace deneOS_Launcher
             else
                 lines[progressLineIndex] = $"Downloading {product}... {percent}%";
 
-            label1.Text = string.Join("\r\n", lines);
+            label1.Text = string.Join("\r\n", lines) + "\r\n";
+            label1.Refresh();
         }
 
 
         void Log(string text)
         {
             label1.Text += text + "\r\n";
+            label1.Refresh();
             Application.DoEvents();
         }
         async Task DownloadFileAsync(string url, string path, Action<int> onProgress)

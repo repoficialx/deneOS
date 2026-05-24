@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using dosu;
+using DPKCore.Models;
 
 namespace aboutDialogs
 {
@@ -19,10 +20,21 @@ namespace aboutDialogs
             InitializeComponent();
             this.Text = @$"About {product}";
         }
-
+        public Manifest aboutManifest()
+        {
+            return new Manifest
+            {
+                Name = "deneOS:About Dialogs",
+                Version = dosu.Utils.deneOSVersion.ShortVersion.GetVersion(Utils.deneOSVersion.ShortVersion.Formats.M_m)+".0",
+                Author = "repoficialx",
+                EntryPoint = "aboutDialogs.exe",
+                // TODO: añadir permisos
+                Permissions = [ "TODO: añadirlos" ],
+            };
+        }
         private void about_Load(object sender, EventArgs e)
         {
-            label2.Text = dosu.UniversalConfiguration.GetUser().Username;
+            label2.Text = dosu.UniversalConfiguration.GetUser(aboutManifest()).Username;
             var version = dosu.Utils.deneOSVersion.ShortVersion.GetVersion(Utils.deneOSVersion.ShortVersion.Formats.vM_mx);
 
 

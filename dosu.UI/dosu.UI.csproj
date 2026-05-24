@@ -9,4 +9,9 @@
 	  <SelfContained>true</SelfContained>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\dosu\dosu.csproj" />
+    <ProjectReference Include="..\DPKCore\DPKCore.csproj" />
+  </ItemGroup>
+
 </Project>

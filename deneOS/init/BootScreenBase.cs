@@ -65,7 +65,7 @@ namespace deneOS.init
         {
             // Este timer es solo para mantener el proceso vivo y responder al watchdog.
             // No bloquea el UI thread, se ejecuta de forma asincrónica.
-
+            
             // Ejecutar en background para no congelar la interfaz
             Task.Run(async () =>
             {
@@ -85,7 +85,7 @@ namespace deneOS.init
                 catch
                 {
                     // watchdog no disponible o sistema fallando - no es crítico
-            }
+                }
             });
         }
         protected async void InitializeBootFlow()
@@ -288,7 +288,7 @@ namespace deneOS.init
 
         private static string TryGetSavedLanguage()
         {
-            try   { return dosu.UniversalConfiguration.GetLang(); }
+            try   { return dosu.UniversalConfiguration.GetLang(Program.deneOSManifest); }
             catch { return "en"; }
         }
 
@@ -305,7 +305,7 @@ namespace deneOS.init
             try
             {
                 this.Opacity = 0; // Oculto pero sigue vivo para el heartbeat
-                var user = GetUser();
+                var user = GetUser(Program.deneOSManifest);
                 bool validUser = !string.IsNullOrWhiteSpace(user.Username) &&
                                  !string.IsNullOrWhiteSpace(user.Password);
 

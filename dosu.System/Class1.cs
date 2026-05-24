@@ -2,13 +2,16 @@
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using Sys = System;
+using DPKCore.Security;
+using DPKCore.Models;
 
 namespace dosu.System;
 
 public static class Initializers
 {
-    public static void StartdO(string args = "")
+    public static void StartdO(Manifest manifest,string args = "")
     {
+        // TODO: Añadir permisos en el manifest para iniciar deneOS
         ProcessStartInfo startInfo = new ProcessStartInfo
         {
             FileName = @"C:\DENEOS\core\deneOS.exe",
@@ -23,11 +26,12 @@ public static class Initializers
         }
         catch (Exception ex)
         {
-            Utils.SysMsg($"Error al iniciar deneOS: {ex.Message}", 0x01, 0x01, "Error de Inicio");
+            Utils.LegacySysMsg.SysMsg($"Error al iniciar deneOS: {ex.Message}", manifest, 0x01, 0x01, "Error de Inicio");
         }
     }
-    public static void StartCC()
+    public static void StartCC(Manifest manifest)
     {
+        // TODO: Añadir permisos en el manifest para iniciar el Centro de Control
         ProcessStartInfo startInfo = new ProcessStartInfo
         {
             FileName = @"C:\DENEOS\systemApps\controlcenter.exe",
@@ -41,11 +45,12 @@ public static class Initializers
         }
         catch (Exception ex)
         {
-            Utils.SysMsg($"Error al iniciar el Centro de Control: {ex.Message}", 0x01, 0x01, "Error de Inicio");
+            Utils.LegacySysMsg.SysMsg($"Error al iniciar el Centro de Control: {ex.Message}", manifest, 0x01, 0x01, "Error de Inicio");
         }
     }
-    public static void UpdatedO(string url)
+    public static void UpdatedO(string url, Manifest manifest)
     {
+        // TODO: Añadir permisos para actualizar deneOS en el manifest
         // Iniciar el Control Center con argumento /installUpdate: seguido de la URL de descarga
         ProcessStartInfo startInfo = new ProcessStartInfo
         {
@@ -61,11 +66,12 @@ public static class Initializers
         }
         catch (Exception ex)
         {
-            Utils.SysMsg($"Error al iniciar el Control Center para la actualización: {ex.Message}", 0x01, 0x01, "Error de Inicio");
+            Utils.LegacySysMsg.SysMsg($"Error al iniciar el Control Center para la actualización: {ex.Message}", manifest, 0x01, 0x01, "Error de Inicio");
         }
     }
-    public static void StartDF(bool root = false, string path = "USER")
+    public static void StartDF(Manifest manifest, bool root = false, string path = "USER")
     {
+        // TODO: Añadir permisos para iniciar deneFiles en el manifest, y permisos específicos para acceso a archivos si se va a usar con argumentos de ruta
         ProcessStartInfo psi = new ProcessStartInfo
         {
             FileName = @"C:\DENEOS\systemApps\deneFiles\deneFiles.exe",
@@ -80,11 +86,12 @@ public static class Initializers
         }
         catch (Exception ex)
         {
-            Utils.SysMsg($"Error al iniciar deneFiles: {ex.Message}", 0x01, 0x01, "Error de Inicio");
+            Utils.LegacySysMsg.SysMsg($"Error al iniciar deneFiles: {ex.Message}", manifest, 0x01, 0x01, "Error de Inicio");
         }
     }
-    public static void StartDN()
+    public static void StartDN(Manifest manifest)
     {
+        // TODO: Añadir permisos para iniciar deneNotes en el manifest
         ProcessStartInfo startInfo = new ProcessStartInfo
         {
             FileName = @"C:\DENEOS\systemApps\deneNotes\deneNotes.exe",
@@ -98,11 +105,12 @@ public static class Initializers
         }
         catch (Exception ex)
         {
-            Utils.SysMsg($"Error al iniciar deneNotes: {ex.Message}", 0x01, 0x01, "Error de Inicio");
+            Utils.LegacySysMsg.SysMsg($"Error al iniciar deneNotes: {ex.Message}", manifest, 0x01, 0x01, "Error de Inicio");
         }
     }
-    public static void KilldO()
+    public static void KilldO(Manifest manifest)
     {
+        // TODO: CRITICAL: Añadir permisos (calificación de restrictivo) para cerrar deneOS en el manifest, ya que esto puede causar pérdida de datos si se hace sin guardar
         try
         {
             Process[] processes = Process.GetProcessesByName("deneOS");
@@ -113,11 +121,12 @@ public static class Initializers
         }
         catch (Exception ex)
         {
-            Utils.SysMsg($"Error al cerrar deneOS: {ex.Message}", 0x01, 0x01, "Error de Cierre");
+            Utils.LegacySysMsg.SysMsg($"Error al cerrar deneOS: {ex.Message}", manifest, 0x01, 0x01, "Error de Cierre");
         }
     }
-    public static void KillAll()
+    public static void KillAll(Manifest manifest)
     {
+        // TODO: CRITICAL: Añadir permisos (calificación de restrictivo) para cerrar deneOS y sus aplicaciones relacionadas en el manifest, ya que esto puede causar pérdida de datos si se hace sin guardar
         string[] processNames = {
             "deneOS",
             "controlcenter",
@@ -136,7 +145,7 @@ public static class Initializers
             }
             catch (Exception ex)
             {
-                Utils.SysMsg($"Error al cerrar {processName}: {ex.Message}", 0x01, 0x01, "Error de Cierre");
+                Utils.LegacySysMsg.SysMsg($"Error al cerrar {processName}: {ex.Message}", manifest, 0x01, 0x01, "Error de Cierre");
             }
         }
     }
@@ -241,11 +250,13 @@ public static class BrightnessMGMT
 
         return false;
     }
-    public static void SetBrightness(int brightness)
+    public static void SetBrightness(int brightness, Manifest manifest)
     {
+        PermissionChecker.Require(manifest, PermissionChecker.SYSTEM_UI);
+
         if (isLaptop())
         {
-            BrightnessLaptopMGMT.SetBrightness((byte)brightness);
+            BrightnessLaptopMGMT.SetBrightness((byte)brightness, manifest);
             return;
         }
         IntPtr hdc = GetDC(IntPtr.Zero);
@@ -326,8 +337,10 @@ public static class BrightnessLaptopMGMT
         return -1;
     }
 
-    public static void SetBrightness(byte brightness)
+    public static void SetBrightness(byte brightness, Manifest manifest)
     {
+        PermissionChecker.Require(manifest, PermissionChecker.SYSTEM_UI);
+
         try
         {
             using Process process = new Process();
@@ -371,8 +384,10 @@ public static class Network
 {
     public static class WiFiStatus
     {
-        public static async Task<int> GetWifiSignalStrengthAsync()
+        public static async Task<int> GetWifiSignalStrengthAsync(Manifest manifest)
         {
+            PermissionChecker.Require(manifest, PermissionChecker.NETWORK_INTERNET);
+
             ProcessStartInfo psi = new ProcessStartInfo
             {
                 FileName = "netsh",

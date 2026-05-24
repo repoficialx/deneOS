@@ -8,6 +8,8 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using Sys = System;
+using DPKCore.Security;
+using DPKCore.Models;
 
 namespace dosu;
 
@@ -27,71 +29,50 @@ public static class Utils
         Custom = 0x0B, // Custom
         None = 0x00, // No icon
         Success = 0x0C // Success
-    }*/          
-    public static int SysMsg(string msg, IntPtr level = 0x01, IntPtr Icon = 0xA0, string title = "", string pathToCustomIcon = "")
+    }*/
+    public enum MessageIcon
     {
-        
-        MessageBoxIcon icon;
-        switch (Icon)
-        {
-            case 0x01:
-                icon = MessageBoxIcon.Error;
-                break;
-            case 0x02:
-                icon = MessageBoxIcon.Question;
-                break;
-            case 0x03:
-                icon = MessageBoxIcon.Warning;
-                break;
-            case 0x04:
-                icon = MessageBoxIcon.Information;
-                break;
-            case 0x05:
-                icon = MessageBoxIcon.Stop;
-                break;
-            case 0x06:
-                icon = MessageBoxIcon.Exclamation;
-                break;
-            case 0x07:
-                icon = MessageBoxIcon.Hand;
-                break;
-            case 0x08:
-                icon = MessageBoxIcon.Asterisk;
-                break;
-            case 0x09:
-                switch (level)
-                {
-                    case 0x01:
-                        icon = MessageBoxIcon.Information;
-                        break;
-                    case 0x02:
-                        icon = MessageBoxIcon.Warning;
-                        break;
-                    case 0x03:
-                        icon = MessageBoxIcon.Error;
-                        break;
-                    default:
-                        icon = MessageBoxIcon.None;
-                        break;
-                }
-                break;
-            case 0x0A:
-                //icon = MessageBoxIcon.User;
-                throw new NotImplementedException();
-            case 0x0B:
-                var icon_ = new Icon(pathToCustomIcon);
-                var _ = CustomMessageBox.Show(msg, title, icon_);
-                return (int)_;
-            case 0x0C:
-                icon = MessageBoxIcon.None; // Success does not have a specific icon in MessageBox
-                break;
-            default:
-                icon = MessageBoxIcon.None;
-                break;
-        }
-        var __ = MessageBox.Show(msg, title, MessageBoxButtons.OK, icon);
-        return (int)__;
+        Error = 0x01,
+        Question = 0x02,
+        Warning = 0x03,
+        Information = 0x04,
+        Stop = 0x05,
+        Exclamation = 0x06,
+        Hand = 0x07,
+        Asterisk = 0x08,
+        LevelBased = 0x09,
+        NotImplemented = 0x0A,
+        CustomIcon = 0x0B,
+        Success = 0x0C,
+        None = 0x00
     }
+    public static class LegacySysMsg
+    {
+        public static IMessageService Service;
+
+        public static int SysMsg(string msg, Manifest manifest, IntPtr level = 0x01, IntPtr Icon = 0x04, string title = "", string pathToCustomIcon = "")
+        {
+            return Service.SysMsg(
+                msg,
+                manifest,
+                (MessageLevel)(int)level,
+                (MessageIcon)(int)Icon,
+                title,
+                pathToCustomIcon
+            );
+        }
+    }
+    public enum MessageLevel
+    {
+        Info = 0x01,
+        Warning = 0x02,
+        Error = 0x03
+    }
+    public interface IMessageService
+    {
+        int SysMsg(string msg, Manifest manifest, MessageLevel level = MessageLevel.Info, MessageIcon icon = MessageIcon.Information, string title = "", string customIconPath = "");
+    }
+
     public static class deneOSVersion
     {
         public class ShortVersion
@@ -253,54 +234,6 @@ public static class Utils
     }
 }
 
-public class CustomMessageBox : Form
-{
-    public CustomMessageBox(string message, string title, Icon customIcon)
-    {
-        this.Text = title;
-        this.Size = new Size(400, 200);
-
-        PictureBox iconBox = new PictureBox
-        {
-            Image = customIcon.ToBitmap(),
-            SizeMode = PictureBoxSizeMode.StretchImage,
-            Location = new Point(20, 40),
-            Size = new Size(50, 50)
-        };
-
-        Label messageLabel = new Label
-        {
-            Text = message,
-            Location = new Point(80, 50),
-            AutoSize = true
-        };
-
-        Button okButton = new Button
-        {
-            Text = "OK",
-            Location = new Point(150, 120),
-            DialogResult = DialogResult.OK
-        };
-
-        this.Controls.Add(iconBox);
-        this.Controls.Add(messageLabel);
-        this.Controls.Add(okButton);
-        this.AcceptButton = okButton;
-    }
-
-    [AllowNull] public sealed override string Text
-    {
-        get => base.Text;
-        set => base.Text = value;
-    }
-
-    public static DialogResult Show(string message, string title, Icon customIcon)
-    {
-        using var box = new CustomMessageBox(message, title, customIcon);
-        return box.ShowDialog();
-    }
-}
-
 public static class Paths
 {
     public static string DeneOSCorePath => @"C:\DENEOS\core";
@@ -312,7 +245,7 @@ public static class Paths
 
 public static class UniversalConfiguration
 {
-    public static string GetLang()
+    public static string GetLang(Manifest manifest)
     {
         string langFilePath = Path.Combine(Paths.DeneOSSystemConfPath, "lang.ini");
         if (File.Exists(langFilePath))
@@ -327,14 +260,15 @@ public static class UniversalConfiguration
             }
             catch (Exception ex)
             {
-                Utils.SysMsg($"{(string)MUI.T("errreadlangcfgfile")}{ex.Message}", 0x01, 0x01, (string)MUI.T("cfgerr"));
+                Utils.LegacySysMsg.SysMsg($"{(string)MUI.T("errreadlangcfgfile")}{ex.Message}", manifest, 0x01, 0x01, (string)MUI.T("cfgerr"));
             }
         }
         return Sys.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName.ToLower().TrimEnd();
     }
 
-    public static void SetLang(string lang)
+    public static void SetLang(string lang, Manifest manifest)
     {
+        // TODO: añadir el permiso de elegir idioma
         string langFilePath = Path.Combine(Paths.DeneOSSystemConfPath, "lang.ini");
         try
         {
@@ -342,7 +276,7 @@ public static class UniversalConfiguration
         }
         catch (Exception ex)
         {
-            Utils.SysMsg($"{MUI.T("errwritlangcfgfile")}{ex.Message}", 0x01, 0x01, (string)MUI.T("cfgerr"));
+            Utils.LegacySysMsg.SysMsg($"{MUI.T("errwritlangcfgfile")}{ex.Message}", manifest, 0x01, 0x01, (string)MUI.T("cfgerr"));
         }
     }
 
@@ -352,8 +286,9 @@ public static class UniversalConfiguration
         public string Password;
     }
 
-    public static User GetUser()
+    public static User GetUser(Manifest manifest)
     {
+        // TODO: añadir el permiso de obtener usuario
         string userFilePath = Path.Combine(Paths.DeneOSSystemConfPath, "config.ini");
         if (File.Exists(userFilePath))
         {
@@ -371,14 +306,15 @@ public static class UniversalConfiguration
             }
             catch (Exception ex)
             {
-                Utils.SysMsg($"{(string)MUI.T("errreadlangcfgfile")}{ex.Message}", 0x01, 0x01, "Error de Usuario");
+                Utils.LegacySysMsg.SysMsg($"{(string)MUI.T("errreadlangcfgfile")}{ex.Message}", manifest, 0x01, 0x01, "Error de Usuario");
             }
         }
         return new User { Username = "", Password = "" }; // Usuario por defecto si no se encuentra el archivo o hay un error
     }
 
-    public static void SetUser(User user)
+    public static void SetUser(User user, Manifest manifest)
     {
+        // TODO: añadir el permiso de establecer usuario
         string userFilePath = Path.Combine(Paths.DeneOSSystemConfPath, "config.ini");
         try
         {
@@ -391,12 +327,13 @@ public static class UniversalConfiguration
         }
         catch (Exception ex)
         {
-            Utils.SysMsg($"Error al escribir el archivo de usuario: {ex.Message}", 0x01, 0x01, "Error de Usuario");
+            Utils.LegacySysMsg.SysMsg($"Error al escribir el archivo de usuario: {ex.Message}", manifest, 0x01, 0x01, "Error de Usuario");
         }
     }
 
-    public static void ResetUser()
+    public static void ResetUser(Manifest manifest)
     {
+        // TODO: añadir el permiso de restablecer usuario
         string userFilePath = Path.Combine(Paths.DeneOSSystemConfPath, "config.ini");
         try
         {
@@ -407,12 +344,13 @@ public static class UniversalConfiguration
         }
         catch (Exception ex)
         {
-            Utils.SysMsg($"Error al eliminar el archivo de usuario: {ex.Message}", 0x01, 0x01, "Error de Usuario");
+            Utils.LegacySysMsg.SysMsg($"Error al eliminar el archivo de usuario: {ex.Message}", manifest, 0x01, 0x01, "Error de Usuario");
         }
     }
         
-    public static string GetWallpaper() 
+    public static string GetWallpaper(Manifest manifest) 
     {
+        // TODO: añadir el permiso de obtener fondo de pantalla
         const string registryPath = @"HKEY_CURRENT_USER\Software\deneOS\desktop\wallpaper";
         try
         {
@@ -424,12 +362,12 @@ public static class UniversalConfiguration
         }
         catch (Exception ex)
         {
-            Utils.SysMsg($"Error al leer el wallpaper del registro: {ex.Message}", 0x01, 0x01, "Error de Configuración");
+            Utils.LegacySysMsg.SysMsg($"Error al leer el wallpaper del registro: {ex.Message}", manifest, 0x01, 0x01, "Error de Configuración");
         }
         return @"c:\windows\web\4k\Wallpaper\windows\img0_1920x1200.jpg"; // Ruta por defecto
     }
 
-    public static void SetWallpaper(string wallpaperPath)
+    public static void SetWallpaper(string wallpaperPath, Manifest manifest)
     {
         string registryPath = @"HKEY_CURRENT_USER\Software\deneOS\desktop\wallpaper";
         try
@@ -438,11 +376,11 @@ public static class UniversalConfiguration
         }
         catch (Exception ex)
         {
-            Utils.SysMsg($"Error al escribir el wallpaper en el registro: {ex.Message}", 0x01, 0x01, "Error de Configuración");
+            Utils.LegacySysMsg.SysMsg($"Error al escribir el wallpaper en el registro: {ex.Message}", manifest, 0x01, 0x01, "Error de Configuración");
         }
     }
 
-    public static bool ShowingIconsOnDesktop()
+    public static bool ShowingIconsOnDesktop(Manifest manifest)
     {
         string registryPath = @"HKEY_CURRENT_USER\Software\deneOS\desktop\showIcons";
         try
@@ -455,12 +393,12 @@ public static class UniversalConfiguration
         }
         catch (Exception ex)
         {
-            Utils.SysMsg($"Error al leer la configuración de iconos del escritorio: {ex.Message}", 0x01, 0x01, "Error de Configuración");
+            Utils.LegacySysMsg.SysMsg($"Error al leer la configuración de iconos del escritorio: {ex.Message}", manifest, 0x01, 0x01, "Error de Configuración");
         }
         return true; // Por defecto mostrar iconos
     }
 
-    public static void SetShowingIconsOnDesktop(bool showIcons)
+    public static void SetShowingIconsOnDesktop(bool showIcons, Manifest manifest)
     {
         string registryPath = @"HKEY_CURRENT_USER\Software\deneOS\desktop\showIcons";
         try
@@ -469,7 +407,7 @@ public static class UniversalConfiguration
         }
         catch (Exception ex)
         {
-            Utils.SysMsg($"Error al escribir la configuración de iconos del escritorio: {ex.Message}", 0x01, 0x01, "Error de Configuración");
+            Utils.LegacySysMsg.SysMsg($"Error al escribir la configuración de iconos del escritorio: {ex.Message}", manifest, 0x01, 0x01, "Error de Configuración");
         }
     }
 
@@ -502,8 +440,9 @@ public static class UniversalConfiguration
                 _ => Regions.System,
             };
         }
-        public static Regions GetRegion()
+        public static Regions GetRegion(Manifest manifest)
         {
+            // TODO: añadir el permiso de obtener región
             const string registryPath = @"HKEY_CURRENT_USER\Software\deneOS\system\region";
             try
             {
@@ -515,12 +454,13 @@ public static class UniversalConfiguration
             }
             catch (Exception ex)
             {
-                Utils.SysMsg($"Error al leer la configuración de región del registro: {ex.Message}", 0x01, 0x01, "Error de Configuración");
+                Utils.LegacySysMsg.SysMsg($"Error al leer la configuración de región del registro: {ex.Message}", manifest, 0x01, 0x01, "Error de Configuración");
             }
             return Regions.System; // Por defecto usar región del sistema
         }
-        public static void SetRegion(Regions region)
+        public static void SetRegion(Regions region, Manifest manifest)
         {
+            // TODO: añadir el permiso de establecer región
             string registryPath = @"HKEY_CURRENT_USER\Software\deneOS\system\region";
             try
             {
@@ -528,7 +468,7 @@ public static class UniversalConfiguration
             }
             catch (Exception ex)
             {
-                Utils.SysMsg($"Error al escribir la configuración de región en el registro: {ex.Message}", 0x01, 0x01, "Error de Configuración");
+                Utils.LegacySysMsg.SysMsg($"Error al escribir la configuración de región en el registro: {ex.Message}", manifest, 0x01, 0x01, "Error de Configuración");
             }
         }
         public static Regions getFromSystem()
@@ -595,7 +535,7 @@ public static class MUI
         if (NeedsUpdate(localPath, remoteUrl))
         {
             File.WriteAllText(localPath, new WebClient().DownloadString(remoteUrl));
-            MessageBox.Show("🔄 Traducciones actualizadas correctamente.", "Actualización de idioma");
+            MessageBox.Show("Traducciones actualizadas correctamente.", "Actualización de idioma");
         }
 
         if (File.Exists(ruta))
@@ -1014,8 +954,10 @@ public static class InternalAppsExec
             GotoCustom,
             _default
         }
-        public static void OpenControlCenter(ControlCenterOptions option = ControlCenterOptions._default, string? args = null)
+        public static void OpenControlCenter(Manifest manifest, ControlCenterOptions option = ControlCenterOptions._default, string? args = null)
         {
+            PermissionChecker.RequireUI(manifest);
+
             const string ccPath = @"C:\DENEOS\systemApps\controlcenter\controlcenter.exe";
             var argument = getArgumentForOption(option, args);
 
@@ -1047,8 +989,10 @@ public static class InternalAppsExec
                 _ => "page:home"
             };
         }
-        public static void OpenDeneFiles()
+        public static void OpenDeneFiles(Manifest manifest)
         {
+            PermissionChecker.RequireUI(manifest);
+
             const string dfPath = @"C:\DENEOS\systemApps\denefiles\denefiles.exe";
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
@@ -1058,8 +1002,10 @@ public static class InternalAppsExec
             };
             Process.Start(startInfo);
         }
-        public static void OpenDeneStore()
+        public static void OpenDeneStore(Manifest manifest)
         {
+            PermissionChecker.RequireUI(manifest);
+
             const string dsPath = @"C:\DENEOS\systemApps\denestore\denestore.exe";
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
@@ -1069,8 +1015,10 @@ public static class InternalAppsExec
             };
             Process.Start(startInfo);
         }
-        public static void OpenDeneNotes()
+        public static void OpenDeneNotes(Manifest manifest)
         {
+            PermissionChecker.RequireUI(manifest);
+
             const string dnPath = @"C:\DENEOS\systemApps\denenotes\denenotes.exe";
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
@@ -1080,13 +1028,16 @@ public static class InternalAppsExec
             };
             Process.Start(startInfo);
         }
-        public static void OpenDeneTerm()
+        public static void OpenDeneTerm(Manifest manifest)
         {
+            PermissionChecker.RequireUI(manifest);
+
             const string dtPath = @"C:\DENEOS\systemApps\deneterm\deneterm.exe";
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
                 FileName = dtPath,
                 UseShellExecute = true,
+
                 Verb = "runas"
             };
             Process.Start(startInfo);

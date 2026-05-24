@@ -4,6 +4,16 @@ namespace deneOS
 {
     internal static class Program
     {
+        public static DPKCore.Models.Manifest deneOSManifest = new()
+            {
+                Author = "repoficialx",
+                EntryPoint = "deneOS.exe",
+                Name = "deneOS System",
+                Version = "0.3.1",
+                Permissions = ["system.ui", "filesystem.user.read", "filesystem.user.write", "filesystem.software.read", "filesystem.software.write", "network.internet", "system.core.access"],
+                TargetRuntime = "net10.0"
+            };
+
         public static bool showBoot = false;
         /// <summary>
         ///  The main entry point for the application.
