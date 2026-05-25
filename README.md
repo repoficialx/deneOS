@@ -1,5 +1,5 @@
 # 🧠 deneOS  
-![Versión](https://img.shields.io/badge/v0.2-beta-blue)  
+![Versión](https://img.shields.io/badge/v0.3-beta-blue)  
 ![Compatible con Windows 11+](https://img.shields.io/badge/win11-compatible-darkgreen)  
 ![Empaquetado DPK](https://img.shields.io/badge/dpk-packaging-skyblue)
 
@@ -29,8 +29,7 @@ En resumen: es como otro sistema pero cogiendo lo útil y bueno de Windows como 
 
 ### 🧩 Tecnologías usadas
 
-- **.NET 8** -> Nada ya
-- **.NET 9** -> Nada ya
+- **.NET 8 y 9** -> Nada ya
 - **.NET 10** -> aboutDialogs, controlcenter, Calendar.IO, deneOS, deneFiles, deneNavi, deneOS Launcher, deneStore, dpkxt, dpkxtconsole, Internet, setConfig, Terminal, WARun, deneNotes, DPKBundler, dosu, dosu.AI, dosu.System, dosu.UI, deneTerm.Core, deneAI.CLI, deneAI y denePathParser
 
 ### 📦 Aplicaciones, paquetes, instaladores y desarrollo
@@ -93,6 +92,9 @@ Más información en [repoficialx: deneOS](https://repoficialx.xyz/deneOS) y en 
 
 > **deneOS v1.0** estará disponible próximamente. (previsto para 2026 o 2027)
 Actualmente se encuentra en fase **beta**, pero ya se puede probar su funcionalidad base.
+
+# IMPORTANTE - CALENDARIO DE ACTUALIZACIONES
+A partir de ahora las releases serán más frecuentes ya que antes esperaba a otras apps dependientes como deneAI o Terminal cuando al final el release es deneOS Launcher y control center ya que el resto se maneja en deneStore, el instalador de deneOS Launcher y el actualizador de control center. Ahora cada aplicación tendrá una versión propia excepto deneOS Launcher, deneOS y Control Center que tendrán la misma, la del release.
 
 ---
 
