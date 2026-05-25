@@ -1,1 +1,0 @@
-﻿Environment.Exit(deneTerm.Program.Main(args));
