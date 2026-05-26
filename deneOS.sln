@@ -50,7 +50,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "deneAI", "deneAI\deneAI.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dosu.AI", "dosu.AI\dosu.AI.csproj", "{5D9D708E-2A5C-45BB-A56C-BE7A906777EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "deneTerm.Core", "deneTerm.Core\deneTerm.Core.csproj", "{1CED7CC8-B43D-4950-97DF-2C9EE920AC30}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "deneTerm", "deneTerm.Core\deneTerm.csproj", "{1CED7CC8-B43D-4950-97DF-2C9EE920AC30}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DPKCore", "DPKCore\DPKCore.csproj", "{B5A77AC1-F3C7-78DA-FC20-EF34967E5173}"
 EndProject
