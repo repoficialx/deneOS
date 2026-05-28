@@ -211,7 +211,6 @@ public class CustomMessageBox : Form
         {
             foreach (Control ctrl in controls)
             {
-                // Guardar tamaño original si no existe
                 if (!originalSizes.ContainsKey(ctrl))
                 {
                     originalSizes[ctrl] = (ctrl.Location, ctrl.Size);
@@ -219,11 +218,9 @@ public class CustomMessageBox : Form
 
                 var original = originalSizes[ctrl];
 
-                // Escalar desde el tamaño ORIGINAL, no el actual
                 ctrl.Location = ScalePoint(original.Location);
                 ctrl.Size = ScaleSize(original.Size);
 
-                // Escalar fuente también
                 if (!ctrl.Font.Equals(null))
                 {
                     var currentDpi = GetSystemDpiScale();
@@ -237,7 +234,6 @@ public class CustomMessageBox : Form
                     );
                 }
 
-                // Si tiene hijos, escalar recursivamente
                 if (ctrl.HasChildren)
                 {
                     ScaleControlsRecursive(ctrl.Controls);
@@ -250,7 +246,6 @@ public class CustomMessageBox : Form
         /// </summary>
         public static void ScaleForm(Form form)
         {
-            // Guardar tamaño original del formulario
             if (!originalSizes.ContainsKey(form))
             {
                 originalSizes[form] = (form.Location, form.Size);
@@ -258,10 +253,8 @@ public class CustomMessageBox : Form
 
             var original = originalSizes[form];
 
-            // Escalar el formulario desde su tamaño original
             form.Size = ScaleSize(original.Size);
 
-            // Escalar controles dentro
             ScaleControlsRecursive(form.Controls);
         }
 

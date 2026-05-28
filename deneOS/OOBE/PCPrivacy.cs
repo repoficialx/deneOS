@@ -28,7 +28,7 @@ namespace deneOS.OOBE
             protonvpn.Text = (string)T("OOBEPCPrivacyD3");
             button1.Text = (string)T("OOBEPCPrivacySUA");
             label3.Text = (string)T("OOBEPCPrivacyDisclaimer");
-            dosu.UI.Scaling.ScaleForm(this);
+            //dosu.UI.Scaling.ScaleForm(this);
             this.DoubleBuffered = true;
         }
 
