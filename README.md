@@ -29,7 +29,11 @@ En resumen: es como otro sistema pero cogiendo lo útil y bueno de Windows como 
 ### 🧩 Tecnologías usadas
 
 - **.NET 8 y 9** -> Nada ya
-- **.NET 10** -> aboutDialogs, controlcenter, Calendar.IO, deneOS, deneFiles, deneNavi, deneOS Launcher, deneStore, dpkxt, dpkxtconsole, Internet, setConfig, Terminal, WARun, deneNotes, DPKBundler, dosu, dosu.AI, dosu.System, dosu.UI, deneTerm, deneAI.CLI, deneAI y denePathParser
+- **.NET 10** -> aboutDialogs, controlcenter, Calendar.IO, deneOS, deneFiles, deneNavi*, deneOS Launcher, deneStore, dpkxt, dpkxtconsole, Internet, setConfig, Terminal, WARun, deneNotes, DPKBundler, dosu, dosu.AI, dosu.System, dosu.UI, deneTerm, deneAI.CLI, deneAI y denePathParser
+
+#### Nota sobre deneNavi
+Se está trabajando en deneNavi Next, un navegador web basado en Chromium. Aún (a 31 mayo 2026) no se sabe si será integrado en /deneOS/ o tendrá repositorio propio (lo más probable). Cuando lo esencial esté ya, deneNavi normal comenzará su proceso de retirada, comenzando por el fin de nuevos cambios y actualizaciones.
+
 
 ### 📦 Aplicaciones, paquetes, instaladores y desarrollo
 
