@@ -166,64 +166,7 @@ namespace deneStore
             string fP = path[eI..];
             string p = "~S\\" + fP;
             return p;
-        }/*
-        private async Task InstallApp(App app)
-        {
-            string appDir = $@"C:\SOFTWARE\{app.code}";
-            Directory.CreateDirectory(appDir);
-
-            string fileName = Path.Combine(appDir, Path.GetFileName(app.downloadUrl));
-
-            using var client = new HttpClient();
-            var data = await client.GetByteArrayAsync(app.downloadUrl);
-            await File.WriteAllBytesAsync(fileName, data);
-
-            MessageBox.Show($"{app.name} instalado en {AdaptPath(appDir)}");
-        }*/
-        /*
-        public async Task InstallApp(App app)
-        {
-            string appDir = $@"C:\SOFTWARE\{app.code}";
-            Directory.CreateDirectory(appDir);
-
-            string fileName = Path.Combine(appDir, Path.GetFileName(app.downloadUrl));
-
-            using var client = new HttpClient();
-
-            // Abrir el formulario de progreso
-            var progressForm = new ProgressForm();
-            progressForm.Show();
-
-            using var response = await client.GetAsync(app.downloadUrl, HttpCompletionOption.ResponseHeadersRead);
-            response.EnsureSuccessStatusCode();
-
-            var totalBytes = response.Content.Headers.ContentLength ?? -1L;
-            var buffer = new byte[8192];
-            long totalRead = 0;
-
-            using var stream = await response.Content.ReadAsStreamAsync();
-            using var fileStream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None);
-
-            int read;
-            while ((read = await stream.ReadAsync(buffer, 0, buffer.Length)) > 0)
-            {
-                await fileStream.WriteAsync(buffer, 0, read);
-                totalRead += read;
-
-                if (totalBytes > 0)
-                {
-                    int progress = (int)((totalRead * 100) / totalBytes);
-                    progressForm.ProgressBar.Value = Math.Min(progress, 100);
-                }
-
-                Application.DoEvents(); // refresca la UI
-            }
-
-            progressForm.Close();
-
-            MessageBox.Show($"{app.name} instalado en {AdaptPath(appDir)}");
         }
-        */
         public async Task InstallApp(App app)
         {
             bool esPaqueteDpk = app.downloadUrl.EndsWith(".dpk", StringComparison.OrdinalIgnoreCase);
@@ -275,29 +218,10 @@ namespace deneStore
             }
 
             progressForm.Close();
-            /*
-            if (esPaqueteDpk)
-            {
-                // Ejecutar el extractor con el .dpk como argumento
-                string extractor = @"C:\DENEOS\dpkxt.exe";
-
-                var proc = new Process();
-                proc.StartInfo.FileName = extractor;
-                proc.StartInfo.Arguments = $"\"{destino}\"";
-                proc.StartInfo.UseShellExecute = false;
-                proc.StartInfo.CreateNoWindow = true;
-                proc.Start();
-
-                MessageBox.Show($"Paquete DPK descargado y enviado al extractor:\n{destino}");
-            }
-            else
-            {
-                MessageBox.Show($"{app.name} instalado en {AdaptPath(Path.GetDirectoryName(destino))}");
-            }*/
 
             if (esPaqueteDpk)
             {
-                string extractor = @"C:\DENEOS\dpkxt.exe";
+                string extractor = @"C:\DENEOS\core\dpkxt.exe";
 
                 var proc = new Process();
                 proc.StartInfo.FileName = extractor;
