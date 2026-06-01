@@ -1,4 +1,5 @@
-﻿using System;
+﻿#pragma warning disable CS8604 // Possible null reference argument.
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +10,27 @@ using System.Windows.Forms;
 
 namespace deneOS_Launcher
 {
+    public class Dependency
+{
+    public string name { get; set; }
+    public string download { get; set; }
+    public string path { get; set; }
+}
+
+public class CoreInfo
+{
+    public string download { get; set; }
+}
+
+public class VersionInfo
+{
+    public string latestVersion { get; set; }
+    public string changelog { get; set; }
+
+    public CoreInfo core { get; set; }
+
+    public List<Dependency> dependencies { get; set; }
+}
     public partial class SetupScreen : Form
     {
         public SetupScreen()
@@ -68,7 +90,7 @@ namespace deneOS_Launcher
             string versions_json = await new HttpClient().GetStringAsync(versionsjsonurl);
             var versionInfo = System.Text.Json.JsonSerializer.Deserialize<VersionInfo>(versions_json);
             latestVersion = versionInfo.latestVersion;
-            string url = versionInfo.download;
+            string url = versionInfo.core.download;
             string path = @"C:\DENEOS\core\deneOS.exe";
 
             Log("Ready to install deneOS " + latestVersion + ".");
@@ -80,32 +102,43 @@ namespace deneOS_Launcher
                 UpdateProgress(percent);
             });
 
-            Log("Ready to install system apps.");
-            string sysAppsBaseUrl = "https://repoficialx.xyz/deneosversions/systemApps/";
-            string deneFilesUrl = sysAppsBaseUrl + "deneFiles/deneFiles.exe";
-            string deneFilesPath = @"C:\DENEOS\systemApps\deneFiles\deneFiles.exe";
-            string deneNotesUrl = sysAppsBaseUrl + "deneNotes/deneNotes.exe";
-            string deneNotesPath = @"C:\DENEOS\systemApps\deneNotes\deneNotes.exe";
-            string deneNaviUrl = sysAppsBaseUrl + "deneNavi/deneNavi.exe";
-            string deneNaviPath = @"C:\DENEOS\systemApps\deneNavi\deneNavi.exe";
+Log("Ready to install dependencies.");
 
-            progressLineIndex = GetLastLineIndex();
+progressLineIndex = GetLastLineIndex();
 
-            Directory.CreateDirectory(@"C:\DENEOS\systemApps\deneFiles\");
-            await DownloadFileAsync(deneFilesUrl, deneFilesPath, percent =>
-            {
-                UpdateProgress(percent, "deneFiles", true, 1, 3);
-            });
-            Directory.CreateDirectory(@"C:\DENEOS\systemApps\deneNotes\");
-            await DownloadFileAsync(deneNotesUrl, deneNotesPath, percent =>
-            {
-                UpdateProgress(percent, "deneNotes", true, 2, 3);
-            });
-            Directory.CreateDirectory(@"C:\DENEOS\systemApps\deneNavi\");
-            await DownloadFileAsync(deneNaviUrl, deneNaviPath, percent =>
-            {
-                UpdateProgress(percent, "deneNavi", true, 3, 3);
-            });
+int current = 0;
+int total = versionInfo.dependencies.Count;
+
+foreach (var dep in versionInfo.dependencies)
+{
+    current++;
+
+    string fullPath = Path.Combine(
+        @"C:\DENEOS",
+        dep.path.Replace("/", "\\"));
+
+    string directory =
+        Path.GetDirectoryName(fullPath);
+
+    if (!Directory.Exists(directory))
+
+                    Directory.CreateDirectory(directory);
+
+                await DownloadFileAsync(
+        dep.download,
+        fullPath,
+        percent =>
+        {
+            UpdateProgress(
+                percent,
+                dep.name,
+                true,
+                current,
+                total);
+        });
+
+    Log($"{dep.name} installed.");
+}
 
             Log("Ready to install fonts.");
             string sysFontsBaseUrl = "https://repoficialx.xyz/fonts/";
@@ -163,13 +196,7 @@ namespace deneOS_Launcher
             Process.Start(@"shutdown -r -t 0");
         }
         int progressLineIndex = -1;
-        class VersionInfo
-        {
-            public string latestVersion { get; set; }
-            public string download { get; set; }
-            public string changelog { get; set; }
-        }
-        string[] GetCleanLines()
+                string[] GetCleanLines()
         {
             var content = label1.Text.Replace("\r\n", "\n").TrimEnd('\n');
             return content.Split('\n');
