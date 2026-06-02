@@ -39,7 +39,7 @@ namespace deneStore
             this.Controls.Add(tabControl);
 
             // Pestañas
-            string[] categories = { "home", "utils", "social", "adapted", "management", "education" };
+            string[] categories = { "home", "utils", "social", "adapted", "management", "development" };
             foreach (var category in categories)
             {
                 var tab = new TabPage(FixString(category));
