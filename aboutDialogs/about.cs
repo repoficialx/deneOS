@@ -47,6 +47,11 @@ namespace aboutDialogs
                     lineas[i] = $"Version {version}";
                     break;
                 }
+                else if (lineas[i].Trim().StartsWith("© "))
+                {
+                    lineas[i] = $"© {DateTime.Now.Year} repoficialx";
+                    break;
+                }
             }
 
             label1.Text = string.Join("\r\n", lineas);
