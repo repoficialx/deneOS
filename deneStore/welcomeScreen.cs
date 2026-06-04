@@ -1,4 +1,5 @@
 using System.Net;
+using System.Net.NetworkInformation;
 
 namespace deneStore
 {
@@ -30,5 +31,47 @@ namespace deneStore
             Close();
         }
 
+        private async void welcomeScreen_Load(object sender, EventArgs e)
+        {
+            var internetTask = await InternetChecker.HasInternetAccessAsync();
+            if (internetTask)
+            {
+                pictureBox2.Load("https://repoficialx-cdn.vercel.app/desktopassets/deneos/deneOS_Logo.png");
+            }
+            
+        }
+    }
+}
+
+public class InternetChecker
+{
+    /// <summary>
+    /// Checks if the machine has actual internet access by making a small HTTP request.
+    /// </summary>
+    /// <param name="timeoutMs">Timeout in milliseconds.</param>
+    /// <param name="testUrl">URL to test connectivity.</param>
+    public static async Task<bool> HasInternetAccessAsync(int timeoutMs = 5000, string testUrl = "http://www.gstatic.com/generate_204")
+    {
+        try
+        {
+            // First, check if any network interface is up
+            if (!NetworkInterface.GetIsNetworkAvailable())
+                return false;
+
+            var request = (HttpWebRequest)WebRequest.Create(testUrl);
+            request.Method = "GET";
+            request.KeepAlive = false;
+            request.Timeout = timeoutMs;
+
+            using (var response = (HttpWebResponse)await request.GetResponseAsync())
+            {
+                // HTTP 204 means "No Content" — used by Google to test connectivity
+                return response.StatusCode == HttpStatusCode.NoContent || response.StatusCode == HttpStatusCode.OK;
+            }
+        }
+        catch
+        {
+            return false; // Any exception means no internet access
+        }
     }
 }
