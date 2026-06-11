@@ -33,7 +33,8 @@ namespace deneStore
 
         private async void welcomeScreen_Load(object sender, EventArgs e)
         {
-            var logoUrl = "https://repoficialx-cdn.vercel.app/desktopassets/deneos/deneOS_Logo.png";
+            var rxhost = "https://repoficialx-cdn.vercel.app/";
+            var logoUrl = rxhost+"desktopassets/deneos/deneOS_Logo.png";
             var internetTask = await InternetChecker.HasInternetAccessAsync(testUrl: logoUrl);
             if (internetTask)
             {
