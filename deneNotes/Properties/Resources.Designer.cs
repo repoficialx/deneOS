@@ -65,7 +65,7 @@ namespace deneNotes.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap denelogo {
             get {
-                object obj = ResourceManager.GetObject("denelogo", resourceCulture);
+                object obj = ResourceManager.GetObject("denelogo1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
