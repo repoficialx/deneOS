@@ -33,8 +33,9 @@ Made in together with deneOS v0.3b</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\dosu.System\dosu.System.csproj" />
-    <ProjectReference Include="..\dosu\dosu.csproj" />
+    <PackageReference Include="dosu" Version="1.0.0" />
+    <PackageReference Include="dosu.System" Version="1.0.0" />
+    <PackageReference Include="DPKCore" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>

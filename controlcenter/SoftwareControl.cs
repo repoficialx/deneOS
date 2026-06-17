@@ -54,12 +54,24 @@ public partial class SoftwareControl : UserControl
         systemAppsList.Size = new Size(250, 200);
         systemAppsList.Enabled = false; // solo lectura
 
+        // Botón de importar .dpk
+        Button btnImport = new();
+        btnImport.Text = (string)T("importpackage");
+        btnImport.Location = new Point(30, 330);
+        btnImport.Click += BtnImport_Click;
+        btnImport.Size = new Size(100, 30);
+
         // Añadir a control
         this.Controls.Add(lblUserApps);
         this.Controls.Add(userAppsList);
         this.Controls.Add(btnUninstall);
         this.Controls.Add(lblSysApps);
         this.Controls.Add(systemAppsList);
+    }
+
+    private void BtnImport_Click(object? sender, EventArgs e)
+    {
+        throw new NotImplementedException();
     }
 
     private void LoadAppLists()

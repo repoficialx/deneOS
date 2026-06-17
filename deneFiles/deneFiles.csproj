@@ -34,8 +34,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="dosu" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\denePathParser\denePathParser.csproj" />
-    <ProjectReference Include="..\dosu\dosu.csproj" />
   </ItemGroup>
 
   <ItemGroup>

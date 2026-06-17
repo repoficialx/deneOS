@@ -23,11 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="dosu" Version="1.0.0" />
     <PackageReference Include="naudio.winforms" Version="2.2.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\dosu\dosu.csproj" />
   </ItemGroup>
 
   <ItemGroup>
