@@ -4,8 +4,6 @@ using System.IO.Compression;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Forms;
-using System.Windows.Interop;
-using System.Windows.Shell;
 using MessageBox = System.Windows.Forms.MessageBox;
 #pragma warning disable CS8618 // Para evitar advertencias de propiedades no inicializadas
 #pragma warning disable IDE0044 // Para evitar advertencias de campos no utilizados

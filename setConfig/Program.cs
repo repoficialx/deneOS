@@ -267,7 +267,7 @@ bool Elevate()
     }
     catch
     {
-        Console.WriteLine("El usuario ha cancelado la elevación. Nada que hacer 🙃");
+        Console.WriteLine("El usuario ha cancelado la elevación. Nada que hacer.");
         return false;
     }
 }

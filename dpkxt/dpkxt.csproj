@@ -7,7 +7,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <SupportedOSPlatformVersion>10.0.22000.0</SupportedOSPlatformVersion>
-    <UseWPF>True</UseWPF>
+    <UseWPF>False</UseWPF>
     <RootNamespace>$(MSBuildProjectName.Replace(" ", "_").ToUpper())</RootNamespace>
     <PlatformTarget>x64</PlatformTarget>
     <ApplicationIcon>icons8-software-installer-100.ico</ApplicationIcon>
