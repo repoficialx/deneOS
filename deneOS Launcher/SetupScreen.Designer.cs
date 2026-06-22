@@ -40,7 +40,20 @@
             label1.Name = "label1";
             label1.Size = new Size(800, 450);
             label1.TabIndex = 0;
-            label1.Text = resources.GetString("label1.Text");
+            label1.Text = """
+                deneOS Launcher :: Setup
+
+                LOG # 2026-06-22 10:16:51 UTC+1
+
+                Checking if there are previous builds...
+                Creating folder structure...
+                Downloading deneOS... 100%
+                Downloading system apps... 100%
+                Downloading fonts... 5/5 100%
+                [ ~~ Installed ~~ ]
+                Restarting in 5... 4... 3... 2... 1... 0.
+                Restarting.
+                """;
             // 
             // SetupScreen
             // 
