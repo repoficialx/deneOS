@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formAjustes));
             panel1 = new Panel();
+            btnWifi = new Button();
             btnCustom = new Button();
             btnUpd = new Button();
             btnAcerca = new Button();
@@ -44,6 +45,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(btnWifi);
             panel1.Controls.Add(btnCustom);
             panel1.Controls.Add(btnUpd);
             panel1.Controls.Add(btnAcerca);
@@ -59,12 +61,26 @@
             panel1.Size = new Size(131, 338);
             panel1.TabIndex = 0;
             // 
+            // btnWifi
+            // 
+            btnWifi.Dock = DockStyle.Top;
+            btnWifi.Image = Properties.Resources.icons8_wifi_100;
+            btnWifi.ImageAlign = ContentAlignment.MiddleLeft;
+            btnWifi.Location = new Point(0, 272);
+            btnWifi.Margin = new Padding(3, 2, 3, 2);
+            btnWifi.Name = "btnWifi";
+            btnWifi.Size = new Size(131, 34);
+            btnWifi.TabIndex = 9;
+            btnWifi.Text = "Conexión";
+            btnWifi.TextAlign = ContentAlignment.MiddleRight;
+            btnWifi.UseVisualStyleBackColor = true;
+            // 
             // btnCustom
             // 
             btnCustom.Dock = DockStyle.Top;
             btnCustom.Image = Properties.Resources.icons8_windows_10_personalization_100;
             btnCustom.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCustom.Location = new Point(0, 204);
+            btnCustom.Location = new Point(0, 238);
             btnCustom.Margin = new Padding(3, 2, 3, 2);
             btnCustom.Name = "btnCustom";
             btnCustom.Size = new Size(131, 34);
@@ -79,7 +95,7 @@
             btnUpd.Dock = DockStyle.Top;
             btnUpd.Image = Properties.Resources.icons8_windows_update_100;
             btnUpd.ImageAlign = ContentAlignment.MiddleLeft;
-            btnUpd.Location = new Point(0, 170);
+            btnUpd.Location = new Point(0, 204);
             btnUpd.Margin = new Padding(3, 2, 3, 2);
             btnUpd.Name = "btnUpd";
             btnUpd.Size = new Size(131, 34);
@@ -94,7 +110,7 @@
             btnAcerca.Dock = DockStyle.Top;
             btnAcerca.Image = Properties.Resources.icons8_about_me_100;
             btnAcerca.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAcerca.Location = new Point(0, 238);
+            btnAcerca.Location = new Point(0, 170);
             btnAcerca.Margin = new Padding(3, 2, 3, 2);
             btnAcerca.Name = "btnAcerca";
             btnAcerca.Size = new Size(131, 34);
@@ -216,5 +232,6 @@
         private Button btnUpd;
         private Button btnCustom;
         private Button btnAcerca;
+        private Button btnWifi;
     }
 }

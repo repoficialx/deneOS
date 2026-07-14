@@ -41,6 +41,8 @@ namespace controlcenter
             panel2.Controls.Clear();
             UserControl inicio = page2control(CurrentPage);
             panel2.Controls.Add(inicio);
+
+
         }
 
         private Image RedimensionarImagen(Image imgOriginal, int ancho, int alto)
@@ -67,6 +69,12 @@ namespace controlcenter
             btnSoftware.Image = RedimensionarImagen(Properties.Resources.icons8_software_100, 30, 30) as Image;
             btnUpd.Image = RedimensionarImagen(Properties.Resources.icons8_windows_update_100, 30, 30) as Image;
             btnCustom.Image = RedimensionarImagen(Properties.Resources.icons8_windows_10_personalization_100, 30, 30) as Image;
+            btnWifi.Image = RedimensionarImagen(Properties.Resources.icons8_wifi_100, 30, 30) as Image;
+
+            while (!global.isReady)
+            {
+
+            }
 
             // Textos traducidos
 
@@ -77,6 +85,10 @@ namespace controlcenter
             btnInicio.Text = (string)T("home");
             btnPantalla.Text = (string)T("screen");
             btnSoftware.Text = (string)T("software");
+            btnUpd.Text = (string)T("ccupd");
+            btnCustom.Text = (string)T("cccust");
+            btnWifi.Text = (string)T("ccwifi");
+
         }
         private void btnPantalla_Click(object sender, EventArgs e)
         {
