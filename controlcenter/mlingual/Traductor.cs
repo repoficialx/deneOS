@@ -54,18 +54,18 @@ public static class Traductor
                     
 
                     string ojson = await client.GetStringAsync(jsonp);
-                    MessageBox.Show("Server recibido");
+                    //MessageBox.Show("Server recibido");
 
                     if (json != ojson)
                     {
-                        MessageBox.Show("Actualización disponible");
+                        //MessageBox.Show("Actualización disponible");
                         File.WriteAllText(ruta, ojson);
                         json = ojson;
-                        MessageBox.Show("Actualizado");
+                        //MessageBox.Show("Actualizado");
                     }
                     else
                     {
-                        MessageBox.Show("Ya actualizado");
+                        //MessageBox.Show("Ya actualizado");
                     }
                 }
                 catch
@@ -74,7 +74,7 @@ public static class Traductor
                 }
             }
 
-            MessageBox.Show(json);
+            //MessageBox.Show(json);
             
             traducciones = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
 
@@ -82,7 +82,7 @@ public static class Traductor
         }
         else
         {
-            MessageBox.Show("no hay trads");
+            //MessageBox.Show("no hay trads");
             traducciones = new Dictionary<string, string>(); // vacío si no existe  
         }
         global.isReady = true;
