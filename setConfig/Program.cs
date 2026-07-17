@@ -1,7 +1,7 @@
-﻿using Microsoft.Win32;
+using Microsoft.Win32;
 using System.Diagnostics;
 using System.Security.Principal;
-#pragma warning disable CA1416 // Validar la compatibilidad de la plataforma
+#pragma warning disable CA1416
 
 if (args != null)
 {
