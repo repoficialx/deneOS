@@ -36,17 +36,28 @@ Made in together with deneOS v0.3b</Description>
     <PackageReference Include="dosu" Version="1.0.0" />
     <PackageReference Include="dosu.System" Version="1.0.0" />
     <PackageReference Include="DPKCore" Version="1.0.0" />
+    <PackageReference Include="ManagedNativeWifi" Version="3.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Update="CustomControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="ExtendedWLANInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="input.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="networkList.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="ConnectionControl.cs" />
   </ItemGroup>
 
   <ItemGroup>

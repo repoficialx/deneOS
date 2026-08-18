@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formAjustes));
+            var resources = new System.ComponentModel.ComponentResourceManager(typeof(formAjustes));
             panel1 = new Panel();
             btnWifi = new Button();
             btnCustom = new Button();
@@ -74,6 +74,7 @@
             btnWifi.Text = "Conexión";
             btnWifi.TextAlign = ContentAlignment.MiddleRight;
             btnWifi.UseVisualStyleBackColor = true;
+            btnWifi.Click += btnWifi_Click;
             // 
             // btnCustom
             // 

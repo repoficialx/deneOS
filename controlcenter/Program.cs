@@ -13,9 +13,19 @@ namespace controlcenter
             ApplicationConfiguration.Initialize();
 
             CargarIdiomas();
-
+            bool mds = false;
+            bool mdc = false;
+            string mdn = "";
             if (args.Length > 0)
             {
+                if (args[0].StartsWith("/simulatemd:"))
+                {
+                    // formato: /simulatemd:supported,connected,5g; /simulatemd:unsupported,disconnected,4g; /simulatemd:supported,connected,3g; etc.
+                    string[] parameters = args[0].Substring("/simulatemd:".Length).Split(',');
+                    mds = parameters.Length > 0 && parameters[0] == "supported";
+                    mdc = parameters.Length > 1 && parameters[1] == "connected";
+                    mdn = parameters.Length > 2 ? parameters[2] : "";
+                }
                 if (args[0].StartsWith("/installUpdate:"))
                 {
                     string downloadUrl = args[0].Substring("/installUpdate:".Length);
@@ -46,7 +56,7 @@ namespace controlcenter
                 };
             }
 
-            Application.Run(new formAjustes());
+            Application.Run(new formAjustes(mds, mdc, mdn));
         }
 
         public static void CargarIdiomas()

@@ -4,9 +4,17 @@ namespace controlcenter
 {
     public partial class formAjustes : Form
     {
+        // Mantener una única instancia compartida para que las modificaciones
+        // aplicadas en el constructor afecten a los controles que la consumen.
+        static ConnectionControl.FakeMobileDataService testService = new()
+        {
+            IsSupported = false,
+            IsConnected = false,
+            NetworkType = "gsm"
+        };
         public enum Pages
         {
-            Inicio, Pantalla, General, Software, Avanzado, AcercaDe, Personalizacion
+            Inicio, Pantalla, General, Software, Avanzado, AcercaDe, Personalizacion, Wifi
         }
         public static Pages? CurrentPage = null;
         public static UserControl page2control(Pages? page)
@@ -28,6 +36,9 @@ namespace controlcenter
                 case Pages.AcercaDe:
                     return new AboutControl();
                 case Pages.Personalizacion:
+                    return new CustomControl();
+                case Pages.Wifi:
+                    return new ConnectionControl(testService);
                 //
                 /*case Pages.AcercaDe:
                     return new AcercaDeControl();*/
@@ -35,14 +46,19 @@ namespace controlcenter
                     throw new ArgumentOutOfRangeException(nameof(page), page, null);
             }
         }
-        public formAjustes()
+        public formAjustes(bool mdsupported, bool mdconnected, string mdnetworktype)
         {
             InitializeComponent();
+
+            // Configurar el servicio fake ANTES de crear/añadir los controles
+            // para que éstos reciban el estado simulado correcto.
+            testService.IsSupported = mdsupported;
+            testService.IsConnected = mdconnected;
+            testService.NetworkType = mdnetworktype;
+
             panel2.Controls.Clear();
             UserControl inicio = page2control(CurrentPage);
             panel2.Controls.Add(inicio);
-
-
         }
 
         private Image RedimensionarImagen(Image imgOriginal, int ancho, int alto)
@@ -88,7 +104,6 @@ namespace controlcenter
             btnUpd.Text = (string)T("ccupd");
             btnCustom.Text = (string)T("cccust");
             btnWifi.Text = (string)T("ccwifi");
-
         }
         private void btnPantalla_Click(object sender, EventArgs e)
         {
@@ -146,6 +161,13 @@ namespace controlcenter
             panel2.Controls.Clear();
             CustomControl custom = new();
             panel2.Controls.Add(custom);
+        }
+
+        private void btnWifi_Click(object sender, EventArgs e)
+        {
+            panel2.Controls.Clear();
+            ConnectionControl wifi = new(testService);
+            panel2.Controls.Add(wifi);
         }
     }
 }
