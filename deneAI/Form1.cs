@@ -235,11 +235,13 @@ namespace deneAI
             };
 
             var json = JsonSerializer.Serialize(request);
-            client.Timeout = new(Int32.MaxValue, 23, 59, 59);
-            var response = await client.PostAsync(
-                "http://localhost:11434/api/generate",
-                new StringContent(json, Encoding.UTF8, "application/json")
-            );
+            client.Timeout = System.Threading.Timeout.InfiniteTimeSpan;
+            // C#
+            var url = "http://localhost:11434/api/generate";
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            using var tempClient = new HttpClient { Timeout = System.Threading.Timeout.InfiniteTimeSpan };
+var response = await tempClient.PostAsync(url, content);
+            
 
             var responseText = await response.Content.ReadAsStringAsync();
 
@@ -256,12 +258,23 @@ namespace deneAI
             if (comboBox1.SelectedItem is LLModel llm)
             {
                 btnSend.Enabled = false;
-                string path = @"%userprofile%\.ollama\models\manifests\registry.ollama.ai\library\";
+                string path = Path.Combine(
+    Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+    ".ollama",
+    "models",
+    "manifests",
+    "registry.ollama.ai",
+    "library"
+);
                 string parentModelName = llm.codename.Split(':')[0];
                 string billionParams = llm.codename.Split(':')[1];
                 bool parentModelExists = Directory.Exists(Path.Combine(path, parentModelName));
                 bool exactModelExists =
                     parentModelExists && File.Exists(Path.Combine(path, parentModelName, billionParams));
+
+                if (Debugger.IsAttached) { 
+                    MessageBox.Show("DEBUG: Selected model: " + llm.name + "\nCodename: " + llm.codename + "\nParent model exists: " + parentModelExists + "\nExact model exists: " + exactModelExists + "\nModel path: " + Path.Combine(path, parentModelName, billionParams), "deneAI", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
 
                 if (!exactModelExists)
                 {
@@ -297,14 +310,19 @@ namespace deneAI
         private async Task ProcesarInput(string input)
         {
             string prompt = $@"
-Eres un asistente de deneOS. Solo reconoce comandos o responde normalmente.
-Lista de comandos (input exacto o similar):
-- abre el bloc de notas -> COMMAND:NOTES
-- abre explorador -> COMMAND:EXPLORER
-- reinicia el chat -> COMMAND:CLEAR_CHAT
-- abre el navegador -> COMMAND:BROWSER
+You are deneAI, a powerful AI assistant that can help with a wide range of tasks. You are knowledgeable, helpful, and friendly. You can answer questions, provide explanations, and assist with various topics.
+You are an assistant of an OS called deneOS, which is a Windows-based OS, it changes the explorer.exe shell and 
+Answer in a inferred language based on the input. If the input is in Spanish, respond in Spanish. If the input is in English, respond in English. If the input is in another language, respond in that language.
+If the input is a question, answer it. If the input is a command, execute it. If the input is a statement, respond appropriately.
+So, if the input is similar or has the same meaning as one of the command list, then answer only with the command output, and do not answer with any other text. If the input is not a command, then answer with a helpful response.
+The program itself with manage the command execution, so you don't need to worry about that. Just answer with the command output if it's a command.
+Command list (commands that you can use to perform tasks, it is val):
+- open notepad, similar -> COMMAND:NOTES
+- open file explorer, open files, similar -> COMMAND:EXPLORER
+- clear the chat, restart, reset, similar -> COMMAND:CLEAR_CHAT
+- open the web browser, open browser, similar -> COMMAND:BROWSER
 
-Usuario: {input}";
+User: {input}";
 
             string response = await AskOllama(prompt);
 

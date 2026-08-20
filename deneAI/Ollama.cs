@@ -21,8 +21,10 @@ namespace deneAI
 
         private async void btnCheckOllama_Click(object sender, EventArgs e)
         {
+
             if (IsOllamaInstalled())
             {
+                button1.Enabled = false;
                 lblStatus.Text = "✅ Ollama already installed.";
                 installed = true;
                 await Task.Delay(2000);
@@ -38,6 +40,8 @@ namespace deneAI
             );
 
             if (result != DialogResult.Yes) return;
+
+            button1.Enabled = false;
 
             progressBar1.Visible = true;
             lblStatus.Text = "Downloading Ollama...";
