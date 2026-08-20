@@ -1,4 +1,6 @@
+using System.Runtime.InteropServices;
 using deneOS;
+using dosu;
 
 namespace controlcenter
 {
@@ -72,20 +74,27 @@ namespace controlcenter
             return imgEscalada;
         }
 
+        [DllImport("user32.dll")]
+        static extern uint GetDpiForWindow(IntPtr hWnd);
+
         private void formAjustes_Load(object sender, EventArgs e)
         {
             // Cargar icono de la ventana
             //this.Icon = RedimensionarImagen(Properties.Resources.icono_ajustes, 16, 16) as Icon;
 
-            btnAcerca.Image = RedimensionarImagen(Properties.Resources.icons8_about_me_100, 30, 30) as Image;
-            btnAvanzado.Image = RedimensionarImagen(Properties.Resources.icons8_ethernet_settings_100, 30, 30) as Image;
-            btnGeneral.Image = RedimensionarImagen(Properties.Resources.icons8_laptop_settings_100, 30, 30) as Image;
-            btnInicio.Image = RedimensionarImagen(Properties.Resources.icons8_home_page_100, 30, 30) as Image;
-            btnPantalla.Image = RedimensionarImagen(Properties.Resources.icons8_monitor_100, 30, 30) as Image;
-            btnSoftware.Image = RedimensionarImagen(Properties.Resources.icons8_software_100, 30, 30) as Image;
-            btnUpd.Image = RedimensionarImagen(Properties.Resources.icons8_windows_update_100, 30, 30) as Image;
-            btnCustom.Image = RedimensionarImagen(Properties.Resources.icons8_windows_10_personalization_100, 30, 30) as Image;
-            btnWifi.Image = RedimensionarImagen(Properties.Resources.icons8_wifi_100, 30, 30) as Image;
+            uint dpi = GetDpiForWindow(this.Handle);
+            float scaling = dpi / 96f;
+            int scaledpx = (int)(30 * scaling);
+
+            btnAcerca.Image = RedimensionarImagen(Properties.Resources.icons8_about_me_100, scaledpx, scaledpx) as Image;
+            btnAvanzado.Image = RedimensionarImagen(Properties.Resources.icons8_ethernet_settings_100, scaledpx, scaledpx) as Image;
+            btnGeneral.Image = RedimensionarImagen(Properties.Resources.icons8_laptop_settings_100, scaledpx, scaledpx) as Image;
+            btnInicio.Image = RedimensionarImagen(Properties.Resources.icons8_home_page_100, scaledpx, scaledpx) as Image;
+            btnPantalla.Image = RedimensionarImagen(Properties.Resources.icons8_monitor_100, scaledpx, scaledpx) as Image;
+            btnSoftware.Image = RedimensionarImagen(Properties.Resources.icons8_software_100, scaledpx, scaledpx) as Image;
+            btnUpd.Image = RedimensionarImagen(Properties.Resources.icons8_windows_update_100, scaledpx, scaledpx) as Image;
+            btnCustom.Image = RedimensionarImagen(Properties.Resources.icons8_windows_10_personalization_100, scaledpx, scaledpx) as Image;
+            btnWifi.Image = RedimensionarImagen(Properties.Resources.icons8_wifi_100, scaledpx, scaledpx) as Image;
 
             while (!global.isReady)
             {
