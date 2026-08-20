@@ -93,12 +93,19 @@ async Task<string> AskForRecommendation()
     var availableModels = new List<string> { "qwen2:0.5b", "llama2:7b", "llama3:8b", "llama3.1:8b", "llama3.2:1b", "llama3.2:3b", "qwen3.5:0.8b", "qwen3.5:2b", "lfm2.5-thinking:1.2b" };
     var FREESPACE_GB = Math.Round(new DriveInfo(Path.GetPathRoot(Environment.CurrentDirectory)).AvailableFreeSpace / (1024.0 * 1024 * 1024));
 
-    Console.WriteLine("RAM: " + RAM_GB.GB.ToString(CultureInfo.InvariantCulture) + "GB - Free space: " + FREESPACE_GB + "GB - Windows " + WINVER);
-    string mode = Debugger.IsAttached ? "" : "Just answer with the model codename, no explanations. If you are between more than one, choose the most balanced one. Not being too small for normal tasks but being capable of running. With codename I mean the name model in the exact same way it is going to be given to you in the following list.";
+    Console.WriteLine("RAM: " + RAM_GB.GB.ToString(CultureInfo.InvariantCulture) + "GB - Free space: " + FREESPACE_GB + 
+        "GB - Windows " + WINVER);
+    string mode = Debugger.IsAttached ? "" : "Just answer with the model codename, no explanations. " +
+        "If you are between more than one, choose the most balanced one." +
+        "Not being too small for normal tasks but being capable of running. With codename I mean the name model in " +
+        "the exact same way it is going to be given to you in" +
+        " the following list.";
     var request = new
     {
         model = "qwen2:0.5b",
-        prompt = $"Which is the best LLM model for a system with {RAM_GB.GB.ToString(CultureInfo.InvariantCulture)}GB RAM, {FREESPACE_GB}GB of free disk space and Windows {WINVER} from this list? " + mode + $"\n\n List of models: {string.Join(", ", availableModels)}",
+        prompt = $"Which is the best LLM model for a system with {RAM_GB.GB.ToString(CultureInfo.InvariantCulture)}GB " +
+        $"RAM, {FREESPACE_GB}GB of free disk space and " +
+        $"Windows {WINVER} from this list? " + mode + $"\n\n List of models: {string.Join(", ", availableModels)}",
         stream = false
     };
 

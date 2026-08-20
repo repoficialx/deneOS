@@ -39,6 +39,7 @@ namespace controlcenter
             // ComboBox idiomas
             ComboBox cbIdioma = new ComboBox();
             cbIdioma.Items.AddRange(new string[] { (string)T("esp"), (string)T("eng") });
+            if (true) { }
             var lang = File.ReadAllLines(@"C:\DENEOS\sysconf\lang.ini")[1];
             int getSI(string lang) =>
                 lang switch
