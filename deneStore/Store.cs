@@ -31,11 +31,18 @@ namespace deneStore
             }
             return newString;
         }
+
+        private readonly HttpClient _http = new();
+        private readonly DamlParser _parser = new();
+
+        private const string StoreBaseUrl = "https://repoficialx.xyz/deneOS/api/storeApps/";
+
+        TabControl tabControl;
         public Store()
         {
             InitializeComponent();
 
-            var tabControl = new TabControl { Dock = DockStyle.Fill };
+            tabControl = new TabControl { Dock = DockStyle.Fill };
             this.Controls.Add(tabControl);
 
             // Pestañas
@@ -46,11 +53,89 @@ namespace deneStore
                 tab.Font = new Font("Segoe UI Variable Display", 12, GraphicsUnit.Point);
                 tabControl.TabPages.Add(tab);
                 LoadApps(tab, category);
+                HomePage_Load();
+            }
+        }
+
+        private async void HomePage_Load()
+        {
+            var damlUrl = "https://repoficialx.xyz/deneOS/api/storeApps/home.daml";
+            var daml = await _http.GetStringAsync(damlUrl);
+
+            var nodes = _parser.Parse(daml);
+            var catalog = new AppCatalog(
+                _http,
+                "https://repoficialx.xyz/deneOS/api/storeApps/");
+
+            foreach (var node in nodes)
+                await RenderAsync(node, tabControl.TabPages[0], catalog);
+        }
+
+        private async Task RenderAsync(
+    DamlElement node, Control parent, AppCatalog catalog)
+        {
+            switch (node.Name)
+            {
+                case "Label":
+                    var label = new Label
+                    {
+                        AutoSize = true,
+                        Text = node.Text,
+                        Font = node.Attributes.TryGetValue("type", out var type) &&
+                               type == "title"
+                            ? new Font("Segoe UI", 18, FontStyle.Bold)
+                            : new Font("Segoe UI", 10)
+                    };
+                    parent.Controls.Add(label);
+                    break;
+
+                case "App":
+                    var app = await catalog.GetAsync(node.Attributes["ref"]);
+                    parent.Controls.Add(new Button
+                    {
+                        AutoSize = true,
+                        Text = app.Name,
+                        Tag = app.DownloadUrl
+                    });
+                    break;
+
+                case "AppList":
+                case "LColumn":
+                case "Banner":
+                    var container = new FlowLayoutPanel
+                    {
+                        AutoSize = true,
+                        FlowDirection = FlowDirection.TopDown,
+                        WrapContents = false
+                    };
+
+                    parent.Controls.Add(container);
+
+                    foreach (var child in node.Children)
+                        await RenderAsync(child, container, catalog);
+                    break;
+
+                case "Image":
+                    var image = new PictureBox
+                    {
+                        SizeMode = PictureBoxSizeMode.Zoom,
+                        Width = 300,
+                        Height = 180
+                    };
+                    image.Load(EnsureAbsoluteUrl(node.Attributes["src"]));
+                    parent.Controls.Add(image);
+                    break;
+
+                default:
+                    throw new InvalidDataException($"Etiqueta DAML no permitida: {node.Name}");
             }
         }
 
         private async void LoadApps(TabPage tab, string category)
         {
+            if (category == "home")
+                return;
+
             var table = new TableLayoutPanel
             {
                 Dock = DockStyle.Fill,
@@ -97,7 +182,7 @@ namespace deneStore
 
             var picture = new PictureBox
             {
-                ImageLocation = app.imageUrl,
+                ImageLocation = EnsureAbsoluteUrl(app.imageUrl),
                 SizeMode = PictureBoxSizeMode.Zoom,
                 Dock = DockStyle.Top,
                 Height = 100
@@ -167,6 +252,19 @@ namespace deneStore
             string p = "~S\\" + fP;
             return p;
         }
+
+        private static string EnsureAbsoluteUrl(string url)
+        {
+            if (string.IsNullOrWhiteSpace(url))
+                return url;
+
+            // If already an absolute URI (http(s), file, data, etc.) keep it
+            if (Uri.IsWellFormedUriString(url, UriKind.Absolute))
+                return url;
+
+            // Treat it as a relative filename and resolve against the store base URL
+            return StoreBaseUrl + url.TrimStart('/');
+        }
         public async Task InstallApp(App app)
         {
             bool esPaqueteDpk = app.downloadUrl.EndsWith(".dpk", StringComparison.OrdinalIgnoreCase);
@@ -192,7 +290,7 @@ namespace deneStore
             var progressForm = new ProgressForm();
             progressForm.Show();
 
-            using var response = await client.GetAsync(app.downloadUrl, HttpCompletionOption.ResponseHeadersRead);
+            using var response = await client.GetAsync(EnsureAbsoluteUrl(app.downloadUrl), HttpCompletionOption.ResponseHeadersRead);
             response.EnsureSuccessStatusCode();
 
             var totalBytes = response.Content.Headers.ContentLength ?? -1L;
