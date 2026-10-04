@@ -33,7 +33,7 @@ namespace deneOS
         {
             lblTitle.Text = "deneOS";
             lblVersion.Text = $"{(string)T("ver")}: {version} ({(string)T("publicbeta")})";
-            lblCopyright.Text = $"© 2025 repoficialx. {(string)T("arr")}.";
+            lblCopyright.Text = $"© 2026 repoficialx. {(string)T("arr")}.";
         }
 
         private void btnCopyInfo_Click(object sender, EventArgs e)
@@ -50,7 +50,7 @@ namespace deneOS
             sb.AppendLine($"{T("flags")}: /dangerZone:enableRoot /safeMode");
             sb.AppendLine(string.Format("{2}: {0} {3}, {1} {4}", userAppCount, systemAppCount, T("installedfemplural"), T("usrapps"), T("usrapps") ));
             Clipboard.SetText(sb.ToString());
-            MessageBox.Show((string)T("infocopiedtoclipboard"), "Copiado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show((string)T("infocopiedtoclipboard"), "deneOS Control Center", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnChangelog_Click(object sender, EventArgs e)

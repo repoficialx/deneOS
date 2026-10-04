@@ -159,7 +159,7 @@ namespace controlcenter
                         {
                             using (var key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run"))
                             {
-                                key.SetValue("deneOS", @"C:\DENEOS\core\deneOS.exe");
+                                key.SetValue("deneOS", @"C:\DENEOS\core\deneOS.Watchdog.exe");
                             }
                             MessageBox.Show($"{T("regeditedsuccess")}. {T("dnOSwillstartwithWindows")}");
                         }

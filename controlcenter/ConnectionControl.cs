@@ -20,6 +20,10 @@ public partial class ConnectionControl : UserControl
 
     }
 
+    public void Reload()
+    {
+        button3.PerformClick();
+    }
     private void Form1_Load(object sender, EventArgs e)
     {
         var isEthernet = Internet.ObtenerEsEthernet();

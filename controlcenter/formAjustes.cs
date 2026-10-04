@@ -177,6 +177,7 @@ namespace controlcenter
             panel2.Controls.Clear();
             ConnectionControl wifi = new(testService);
             panel2.Controls.Add(wifi);
+            wifi.Reload();
         }
     }
 }

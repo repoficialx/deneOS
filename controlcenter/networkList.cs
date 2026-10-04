@@ -209,7 +209,9 @@ namespace Internet
                 MessageBox.Show($"Conectado a {ssid} correctamente ✅");
             else
                 MessageBox.Show($"Error al conectar a {ssid} ❌");
-        }*/private void ConectarWiFi(string ssid)
+        }*/
+        
+        private void ConectarWiFi(string ssid)
            {
                if (string.IsNullOrWhiteSpace(ssid))
                {
@@ -458,7 +460,11 @@ namespace Internet
                     // Añadir al ComboBox
                     comboBox1.Items.Clear();
                     foreach (var r in redes)
-                        comboBox1.Items.Add(r);
+                        comboBox1.Items.Add(new ComboBoxItem
+                        {
+                            Text = $"{r.Ssid} - {r.WifiVersion} ({r.Signal}%)",
+                            Tag = r.Ssid
+                        });
                 }
             }
             catch (Exception ex)
