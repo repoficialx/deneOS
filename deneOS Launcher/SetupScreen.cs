@@ -193,7 +193,7 @@ foreach (var dep in versionInfo.dependencies)
                 Log("[DEBUG] Shutdown skipped in debug mode.");
                 return;
             }
-            Process.Start(@"shutdown -r -t 0");
+            Process.Start(fileName:"setConfig", arguments:"sdoptions rn");
         }
         int progressLineIndex = -1;
                 string[] GetCleanLines()
