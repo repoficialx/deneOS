@@ -88,12 +88,8 @@ Más información en [repoficialx: deneOS](https://repoficialx.xyz/deneOS) y en 
 
 ### 🧪 Estado del proyecto
 
-> **deneOS v1.0** estará disponible próximamente. (previsto para 2026 o 2027)
+> **deneOS v1.0** estará disponible próximamente. (previsto para 2027 o 2028)
 Actualmente se encuentra en fase **beta**, pero ya se puede probar su funcionalidad base.
-
-# IMPORTANTE - CALENDARIO DE ACTUALIZACIONES
-A partir de ahora las releases serán más frecuentes ya que antes esperaba a otras apps dependientes como deneAI o Terminal cuando al final el release es deneOS Launcher y control center ya que el resto se maneja en deneStore, el instalador de deneOS Launcher y el actualizador de control center. Ahora cada aplicación tendrá una versión propia excepto deneOS Launcher, deneOS y Control Center que tendrán la misma, la del release.
-
 ---
 
 **© 2026 Ray / repoficialx – Proyecto experimental, sin garantías.**
