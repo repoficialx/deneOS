@@ -105,7 +105,7 @@ namespace controlcenter
                         try {
                             using (var key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon", true))
                             {
-                                key.SetValue("Shell", @"C:\DENEOS\core\deneOS.Watchdog.exe", Microsoft.Win32.RegistryValueKind.String);
+                                key.SetValue("Shell", @"""C:\DENEOS\core\deneOS.Watchdog.exe"" ""/mode:ShellBoot""", Microsoft.Win32.RegistryValueKind.String);
                             }
                             cbAutoStart.Checked = false;
                             cbAutoStart.Enabled = false;
@@ -159,7 +159,7 @@ namespace controlcenter
                         {
                             using (var key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run"))
                             {
-                                key.SetValue("deneOS", @"C:\DENEOS\core\deneOS.Watchdog.exe");
+                                key.SetValue("deneOS", @"""C:\DENEOS\core\deneOS.Watchdog.exe"" ""/mode:StartupBoot""");
                             }
                             MessageBox.Show($"{T("regeditedsuccess")}. {T("dnOSwillstartwithWindows")}");
                         }

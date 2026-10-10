@@ -16,6 +16,7 @@ public partial class Advanced : Form
     {
         get;
         set;
+
     }
     public static HttpClient httpClient = new HttpClient();
     List<string> history = new List<string>();
@@ -55,6 +56,8 @@ public partial class Advanced : Form
                     );
                 }
             };
+
+            label1.Text += CurrentUser?.name;
         }
     }
 
@@ -124,8 +127,8 @@ public partial class Advanced : Form
             new System.Net.Http.Headers.AuthenticationHeaderValue(
                 "Bearer",
                 SessionToken
-            );  
-        
+            );
+
         button1.Enabled = false;
         var prompt = txtPrompt.Text;
         txtPrompt.Clear();
@@ -136,7 +139,7 @@ public partial class Advanced : Form
             message = prompt,
             history = history
         };
-        
+
         rtbChat.AppendText("You: " + prompt + "\nAI: ");
         string json = JsonSerializer.Serialize(data);
 
@@ -212,13 +215,13 @@ public partial class Advanced : Form
             }
 
             txtPrompt.Focus();
-            
+
             button1.Enabled = true;
             history.Add("AI: " + _response);
         }
         catch (HttpRequestException ex)
         {
-            rtbChat.Text = $"Error de conexión: {ex.Message}";  
+            rtbChat.Text = $"Error de conexión: {ex.Message}";
         }
         catch (JsonException ex)
         {
@@ -376,5 +379,9 @@ public partial class Advanced : Form
             get; set;
         }
     }
-    
+
+    private void label2_Click(object sender, EventArgs e)
+    {
+
+    }
 }

@@ -60,7 +60,7 @@ partial class startscreen
         Controls.Add(button2);
         Controls.Add(button1);
         Name = "startscreen";
-        Text = "startscreen";
+        Text = "deneAI Mode Selector";
         Load += startscreen_Load;
         ResumeLayout(false);
     }

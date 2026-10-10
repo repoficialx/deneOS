@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using System.Text;
 using deneOS;
 using dosu;
 
@@ -48,8 +49,20 @@ namespace controlcenter
                     throw new ArgumentOutOfRangeException(nameof(page), page, null);
             }
         }
+
+        void DisableNonDemoPages()
+        {
+            btnAcerca.Enabled = false;
+            btnUpd.Enabled = false;
+            btnGeneral.Enabled = false;
+            btnAvanzado.Enabled = false;
+            btnCustom.Enabled = false;
+        }
         public formAjustes(bool mdsupported, bool mdconnected, string mdnetworktype)
         {
+            if (Program.demo)
+                DisableNonDemoPages();
+
             InitializeComponent();
 
             // Configurar el servicio fake ANTES de crear/añadir los controles

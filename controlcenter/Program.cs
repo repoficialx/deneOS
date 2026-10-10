@@ -2,12 +2,21 @@ namespace controlcenter
 {
     internal static class Program
     {
+        public static bool demo = false;
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main(string[] args)
         {
+            if (!File.Exists(@"C:\DENEOS\core\deneOS.exe"))
+            {
+                MessageBox.Show("deneOS not installed! Some features are disabled or limited.", "deneOS Control Center", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                demo = true;
+            }
+
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
