@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using deneOS.Launcher;
 
 namespace deneOS_Launcher
 {
@@ -174,6 +175,13 @@ foreach (var dep in versionInfo.dependencies)
             {
                 UpdateProgress(percent, "FluentSystemIcons-Regular.ttf", true, 5, 5);
             });
+
+            Log("Installing deneOS system fonts...");
+
+            int installedFonts = SystemFontInstaller.InstallAll();
+
+            Log($"System fonts installed or updated: {installedFonts}.");
+
             Log("Adding deneOS\\core\\ to PATH...");
             AddToPath();
 
