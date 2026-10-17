@@ -10,6 +10,11 @@
     <PublishSingleFile>true</PublishSingleFile>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <ApplicationIcon>DPKBundlerLogo.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="DPKBundlerLogo.ico" />
+  </ItemGroup>
 
 </Project>

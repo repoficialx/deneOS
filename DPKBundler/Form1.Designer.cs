@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            var resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             label1 = new Label();
             button1 = new Button();
             button2 = new Button();
@@ -36,18 +37,20 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(146, 9);
+            label1.Location = new Point(271, 19);
+            label1.Margin = new Padding(6, 0, 6, 0);
             label1.Name = "label1";
-            label1.Size = new Size(143, 15);
+            label1.Size = new Size(290, 32);
             label1.TabIndex = 0;
             label1.Text = "Welcome to DPK Bundler!";
             label1.Click += label1_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(12, 27);
+            button1.Location = new Point(22, 58);
+            button1.Margin = new Padding(6, 6, 6, 6);
             button1.Name = "button1";
-            button1.Size = new Size(201, 174);
+            button1.Size = new Size(373, 371);
             button1.TabIndex = 1;
             button1.Text = "Single executable app";
             button1.UseVisualStyleBackColor = true;
@@ -55,9 +58,10 @@
             // 
             // button2
             // 
-            button2.Location = new Point(223, 27);
+            button2.Location = new Point(414, 58);
+            button2.Margin = new Padding(6, 6, 6, 6);
             button2.Name = "button2";
-            button2.Size = new Size(201, 174);
+            button2.Size = new Size(373, 371);
             button2.TabIndex = 2;
             button2.Text = "Multi executable app (folder)";
             button2.UseVisualStyleBackColor = true;
@@ -65,12 +69,14 @@
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(436, 213);
+            ClientSize = new Size(810, 454);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(6, 6, 6, 6);
             Name = "Form1";
             Text = "repoficialx DPK bundler [deneOS]";
             Load += Form1_Load;

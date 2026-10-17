@@ -34,6 +34,7 @@ namespace DPKBundler
         /// </summary>
         private void InitializeComponent()
         {
+            var resources = new ComponentResourceManager(typeof(BundleMEA));
             textBox1 = new TextBox();
             label1 = new Label();
             button1 = new Button();
@@ -53,25 +54,28 @@ namespace DPKBundler
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(12, 27);
+            textBox1.Location = new Point(22, 58);
+            textBox1.Margin = new Padding(6, 6, 6, 6);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(262, 23);
+            textBox1.Size = new Size(483, 39);
             textBox1.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
+            label1.Location = new Point(22, 19);
+            label1.Margin = new Padding(6, 0, 6, 0);
             label1.Name = "label1";
-            label1.Size = new Size(202, 15);
+            label1.Size = new Size(463, 32);
             label1.TabIndex = 1;
             label1.Text = "Choose the folder with all the executables";
             // 
             // button1
             // 
-            button1.Location = new Point(280, 27);
+            button1.Location = new Point(520, 58);
+            button1.Margin = new Padding(6, 6, 6, 6);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(139, 49);
             button1.TabIndex = 2;
             button1.Text = "Explore...";
             button1.UseVisualStyleBackColor = true;
@@ -79,9 +83,10 @@ namespace DPKBundler
             // 
             // button2
             // 
-            button2.Location = new Point(12, 56);
+            button2.Location = new Point(22, 119);
+            button2.Margin = new Padding(6, 6, 6, 6);
             button2.Name = "button2";
-            button2.Size = new Size(75, 23);
+            button2.Size = new Size(139, 49);
             button2.TabIndex = 3;
             button2.Text = "OK";
             button2.UseVisualStyleBackColor = true;
@@ -90,9 +95,10 @@ namespace DPKBundler
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 95);
+            label2.Location = new Point(22, 203);
+            label2.Margin = new Padding(6, 0, 6, 0);
             label2.Name = "label2";
-            label2.Size = new Size(141, 15);
+            label2.Size = new Size(283, 32);
             label2.TabIndex = 4;
             label2.Text = "Fill metadata information";
             label2.Click += label2_Click;
@@ -100,27 +106,30 @@ namespace DPKBundler
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(27, 111);
+            label3.Location = new Point(50, 237);
+            label3.Margin = new Padding(6, 0, 6, 0);
             label3.Name = "label3";
-            label3.Size = new Size(39, 15);
+            label3.Size = new Size(78, 32);
             label3.TabIndex = 5;
             label3.Text = "Name";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(21, 132);
+            label4.Location = new Point(39, 282);
+            label4.Margin = new Padding(6, 0, 6, 0);
             label4.Name = "label4";
-            label4.Size = new Size(45, 15);
+            label4.Size = new Size(92, 32);
             label4.TabIndex = 6;
             label4.Text = "Version";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(22, 154);
+            label5.Location = new Point(41, 329);
+            label5.Margin = new Padding(6, 0, 6, 0);
             label5.Name = "label5";
-            label5.Size = new Size(44, 15);
+            label5.Size = new Size(87, 32);
             label5.TabIndex = 7;
             label5.Text = "Author";
             // 
@@ -128,36 +137,40 @@ namespace DPKBundler
             // 
             maskedTextBox1.Enabled = false;
             maskedTextBox1.Font = new Font("Segoe UI", 7F);
-            maskedTextBox1.Location = new Point(72, 131);
+            maskedTextBox1.Location = new Point(134, 279);
+            maskedTextBox1.Margin = new Padding(6, 6, 6, 6);
             maskedTextBox1.Mask = "0.0.0";
             maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(100, 20);
+            maskedTextBox1.Size = new Size(182, 32);
             maskedTextBox1.TabIndex = 9;
             // 
             // textBox2
             // 
             textBox2.Enabled = false;
             textBox2.Font = new Font("Segoe UI", 7F);
-            textBox2.Location = new Point(72, 110);
+            textBox2.Location = new Point(134, 235);
+            textBox2.Margin = new Padding(6, 6, 6, 6);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 20);
+            textBox2.Size = new Size(182, 32);
             textBox2.TabIndex = 8;
             // 
             // textBox3
             // 
             textBox3.Enabled = false;
             textBox3.Font = new Font("Segoe UI", 7F);
-            textBox3.Location = new Point(72, 153);
+            textBox3.Location = new Point(134, 326);
+            textBox3.Margin = new Padding(6, 6, 6, 6);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(100, 20);
+            textBox3.Size = new Size(182, 32);
             textBox3.TabIndex = 10;
             // 
             // button3
             // 
             button3.Enabled = false;
-            button3.Location = new Point(12, 179);
+            button3.Location = new Point(22, 382);
+            button3.Margin = new Padding(6, 6, 6, 6);
             button3.Name = "button3";
-            button3.Size = new Size(75, 23);
+            button3.Size = new Size(139, 49);
             button3.TabIndex = 11;
             button3.Text = "OK";
             button3.UseVisualStyleBackColor = true;
@@ -166,9 +179,10 @@ namespace DPKBundler
             // button4
             // 
             button4.Enabled = false;
-            button4.Location = new Point(12, 208);
+            button4.Location = new Point(22, 444);
+            button4.Margin = new Padding(6, 6, 6, 6);
             button4.Name = "button4";
-            button4.Size = new Size(339, 29);
+            button4.Size = new Size(630, 62);
             button4.TabIndex = 12;
             button4.Text = "Create DPK file";
             button4.UseVisualStyleBackColor = true;
@@ -183,9 +197,9 @@ namespace DPKBundler
             // 
             // BundleMEA
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(363, 249);
+            ClientSize = new Size(674, 531);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(textBox3);
@@ -199,10 +213,13 @@ namespace DPKBundler
             Controls.Add(button1);
             Controls.Add(label1);
             Controls.Add(textBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(6, 6, 6, 6);
             Name = "BundleMEA";
             Text = "Bundle multi-executable app";
             ResumeLayout(false);
-            
+            PerformLayout();
+
         }
 
         #endregion
