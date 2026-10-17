@@ -77,7 +77,7 @@ public partial class SoftwareControl : UserControl
     private void LoadAppLists()
     {
         string softwarePath = @"C:\SOFTWARE\";
-        string sysAppsPath = @"C:\DENEOS\systemApps\";
+        string sysAppsPath = @"C:\DENEOS\core\";
 
         if (Directory.Exists(softwarePath))
         {

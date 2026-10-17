@@ -65,7 +65,6 @@ public class VersionInfo
             Directory.CreateDirectory(@"C:\DENEOS\core\");
             Directory.CreateDirectory(@"C:\DENEOS\lang");
             Directory.CreateDirectory(@"C:\DENEOS\sysconf\");
-            Directory.CreateDirectory(@"C:\DENEOS\systemApps\");
             Directory.CreateDirectory(@"C:\DENEOS\sysfonts\");
             Directory.CreateDirectory(@"C:\SOFTWARE\");
             Directory.CreateDirectory(@"C:\DNUSR\");

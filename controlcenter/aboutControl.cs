@@ -39,7 +39,7 @@ namespace deneOS
         private void btnCopyInfo_Click(object sender, EventArgs e)
         {
             string userAppsPath = @"C:\SOFTWARE\";
-            string systemAppsPath = @"C:\DENEOS\systemApps\";
+            string systemAppsPath = @"C:\DENEOS\core\";
 
             int userAppCount = Directory.Exists(userAppsPath) ? Directory.GetDirectories(userAppsPath).Length : 0;
             int systemAppCount = Directory.Exists(systemAppsPath) ? Directory.GetDirectories(systemAppsPath).Length : 0;

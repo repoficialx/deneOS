@@ -54,9 +54,9 @@ HttpClient client = new HttpClient();
 List<string> history = new List<string>();
 Dictionary<string, string> comandosSistema = new Dictionary<string, string>()
         {
-            { "NOTES", @"c:\deneos\systemapps\deneNotes\deneNotes.exe" },
-            { "EXPLORER", @"c:\deneos\systemapps\deneFiles\deneFiles.exe" },
-            { "BROWSER", @"C:\deneos\systemapps\deneNavi\deneNavi.exe" },
+            { "NOTES", @"c:\deneos\core\deneNotes.exe" },
+            { "EXPLORER", @"c:\deneos\core\deneFiles.exe" },
+            { "BROWSER", @"C:\deneos\core\deneNavi.exe" },
             { "CLEAR_CHAT", "CLEAR_CHAT" }
         };
 Console.WriteLine("Wait a moment, checking which LLM model is the best for your system.");

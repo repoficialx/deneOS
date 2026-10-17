@@ -12,7 +12,7 @@ public static class AdminHelper
         {
             UseShellExecute = true,
             Verb = "runas", // <-- Esto muestra el UAC
-            FileName = "C:\\DENEOS\\systemApps\\controlcenter\\controlcenter.exe",
+            FileName = "C:\\DENEOS\\core\\controlcenter.exe",
             Arguments = args
         };
 
