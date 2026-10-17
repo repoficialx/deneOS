@@ -39,10 +39,10 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 19.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(107, 10);
-            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Location = new Point(214, 20);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(110, 37);
+            label1.Size = new Size(215, 71);
             label1.TabIndex = 1;
             label1.Text = "deneOS";
             // 
@@ -51,10 +51,10 @@
             button1.AutoSize = true;
             button1.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.ForestGreen;
-            button1.Location = new Point(114, 70);
-            button1.Margin = new Padding(2);
+            button1.Location = new Point(228, 140);
+            button1.Margin = new Padding(4, 4, 4, 4);
             button1.Name = "button1";
-            button1.Size = new Size(90, 34);
+            button1.Size = new Size(180, 68);
             button1.TabIndex = 2;
             button1.Text = "RUN ▶";
             button1.UseVisualStyleBackColor = true;
@@ -63,29 +63,27 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.deneOS_Logo;
-            pictureBox1.Location = new Point(10, 10);
-            pictureBox1.Margin = new Padding(2);
+            pictureBox1.Location = new Point(20, 20);
+            pictureBox1.Margin = new Padding(4, 4, 4, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(91, 91);
+            pictureBox1.Size = new Size(182, 182);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleDimensions = new SizeF(192F, 192F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(337, 110);
+            ClientSize = new Size(654, 231);
             Controls.Add(button1);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
-            Margin = new Padding(2);
+            Margin = new Padding(4, 4, 4, 4);
             MaximizeBox = false;
-            MaximumSize = new Size(353, 149);
-
             Name = "Form1";
             Text = "Launcher";
             Load += Form1_Load;
