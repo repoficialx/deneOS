@@ -163,7 +163,7 @@ namespace controlcenter
         {
             string systemPath = @"C:\DENEOS\core\";
             if (Directory.Exists(systemPath))
-                Process.Start("explorer.exe", systemPath);
+                Process.Start("denefiles.exe", systemPath);
             else
                 MessageBox.Show((string)T("errsysfoldernotfound"));
         }

@@ -60,10 +60,13 @@ namespace controlcenter
         }
         public formAjustes(bool mdsupported, bool mdconnected, string mdnetworktype)
         {
+            InitializeComponent();
+            
+            
             if (Program.demo)
                 DisableNonDemoPages();
 
-            InitializeComponent();
+           
 
             // Configurar el servicio fake ANTES de crear/añadir los controles
             // para que éstos reciban el estado simulado correcto.
