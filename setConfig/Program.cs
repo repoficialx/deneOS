@@ -1,5 +1,6 @@
 using Microsoft.Win32;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Security.Principal;
 #pragma warning disable CA1416
 
@@ -36,7 +37,7 @@ if (args != null)
                 {
                     Process.Start("shutdown","-s");
                 }
-                else if (args[1] is "si" or "shutdown_inmediate" or "shutdown_now" or "sn")
+                else if (args[1] is "si" or "shutdown_immediate" or "shutdown_now" or "sn")
                 {
                     Process.Start("shutdown","-s -t 0");
                 }
@@ -65,9 +66,60 @@ if (args != null)
                     Process.Start("shutdown","-r -t 0");
                 }
                 break;
+
+            case ("deneOSFileExtensions", true):
+                if (args[1] == "Enable-deneAIProtocol-debug")
+                {
+                    int result = EnabledeneAIProtocol(true);
+                    Console.WriteLine(result == 0 ? "deneAI Protocol enabled successfully." : "Failed to enable deneAI Protocol.");
+                }
+                else if (args[1] == "Enable-deneAIProtocol-release")
+                {
+                    int result = EnabledeneAIProtocol();
+                    Console.WriteLine(result == 0 ? "deneAI Protocol enabled successfully." : "Failed to enable deneAI Protocol.");
+                }
+                break;
         }
     }
 }
+int EnabledeneAIProtocol(bool debug = false)
+{
+    try
+    {
+        using (RegistryKey protocolKey = Registry.CurrentUser.CreateSubKey(
+            @"Software\Classes\deneai"))
+        {
+            if (protocolKey == null)
+                return 1;
+
+            protocolKey.SetValue("", "URL:deneAI Protocol");
+            protocolKey.SetValue("URL Protocol", "");
+        }
+
+        using (RegistryKey commandKey = Registry.CurrentUser.CreateSubKey(
+            @"Software\Classes\deneai\shell\open\command"))
+        {
+            if (commandKey == null)
+                return 1;
+
+            if (!debug)
+                commandKey.SetValue(
+                    "",
+                    "\"C:\\SOFTWARE\\deneAI\\deneAI.exe\" \"%1\"");
+            else
+                commandKey.SetValue(
+                    "",
+                    $"\"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\\source\\repos\\repoficialx\\deneOS\\deneAI\\bin\\debug\\net10.0-windows\\{/*(RuntimeInformation.ProcessArchitecture==Architecture.Arm64?"win-arm64":"win-x64")*/"win-arm64"}\\deneAI.exe\" \"%1\"");
+        }
+
+        return 0;
+    }
+    catch
+    {
+        return 1;
+    }
+}
+
 int InstallWPISupport()
 {
     /*string Header = "Windows Registry Editor Version 5.00";

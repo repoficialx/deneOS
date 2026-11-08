@@ -153,7 +153,7 @@ namespace deneNotes
 
         private void verLaAyudaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("http://repoficialx.xyz/deneos/help/deneNotes");
+            Process.Start("http://repoficialx.xyz/deneOS/deneNotes/help");
         }
 
         private void acercarToolStripMenuItem_Click(object sender, EventArgs e)
