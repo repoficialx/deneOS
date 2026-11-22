@@ -48,7 +48,7 @@ namespace deneOS
             sb.AppendLine($"deneOS {version}");
             sb.AppendLine($"{T("corepath")}: C:\\DENEOS\\");
             sb.AppendLine($"{T("flags")}: /dangerZone:enableRoot /safeMode");
-            sb.AppendLine(string.Format("{2}: {0} {3}, {1} {4}", userAppCount, systemAppCount, T("installedfemplural"), T("usrapps"), T("usrapps") ));
+            sb.AppendLine(string.Format("{2}: {0} {3}, {1} {4}", userAppCount, systemAppCount, T("installedfemplural"), T("usrapps"), T("sysapps") ));
             Clipboard.SetText(sb.ToString());
             MessageBox.Show((string)T("infocopiedtoclipboard"), "deneOS Control Center", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
