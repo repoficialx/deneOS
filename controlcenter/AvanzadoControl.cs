@@ -107,17 +107,21 @@ namespace controlcenter
             btnOpenSystemFolder.Click += BtnOpenSystemFolder_Click;
             this.Controls.Add(btnOpenSystemFolder);
 
-            // Botón para panel de control deneOS
-            btnControlPanel = new Button()
+            // Checkbox para alternar entre la visibilidad del botón R2W (Return to Windows) en el start menu
+            var cbShowR2WButton = new CheckBox()
             {
-                Text = (string)T("deneOScontrolpanel"),
+                Text = (string)T("showr2wbutton"),
                 Location = new System.Drawing.Point(20, 370),
                 AutoSize = true,
-                Enabled = false // activar cuando esté implementado
+                Checked = CustomControl.StartMenuReg.GetRegData().Item2 == 1 ? true : false
             };
-            btnControlPanel.Click += BtnControlPanel_Click;
-            this.Controls.Add(btnControlPanel);
+            cbShowR2WButton.CheckedChanged += CbShowR2WButton_CheckedChanged;
+            this.Controls.Add(cbShowR2WButton);
+
         }
+
+        private void CbShowR2WButton_CheckedChanged(object? sender, EventArgs e) => CustomControl.StartMenuReg.SetShowR2WButton(((CheckBox)sender!).Checked);
+
         private void btnLaunchWithFlags_Click(object sender, EventArgs e)
         {
             var selectedFlags = checkedListBoxFlags.CheckedItems
@@ -166,11 +170,6 @@ namespace controlcenter
                 Process.Start("denefiles.exe", systemPath);
             else
                 MessageBox.Show((string)T("errsysfoldernotfound"));
-        }
-
-        private void BtnControlPanel_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show((string)T("errdeneoscontrolpanelnotavailable"));
         }
 
         private void BtnRootRestart_Click(object sender, EventArgs e)
